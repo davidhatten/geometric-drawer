@@ -1,5 +1,5 @@
 // import * as circleUtil from "circleUtils";
-var canvas; 
+var canvas;
 
 function drawFlowerEventListener(event) {
     canvas = this; //Somehow this is the canvas, I kind of get why
@@ -14,7 +14,7 @@ function drawFlowerEventListener(event) {
 
 function previewFlowerEventListener(event) {
     var canvas = document.getElementById("drawingCanvas");
-    var radius = parseInt(document.getElementById("circleRadius").value); 
+    var radius = parseInt(document.getElementById("circleRadius") ? document.getElementById("circleRadius").value : 0);
     var previewElement = document.getElementById("diameterAnchor");
 
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
@@ -23,7 +23,7 @@ function previewFlowerEventListener(event) {
     var dpi = 300;//The canvas is scalled to 8.5x11 at 300dpi
 
     var inches = roundFloats(totalPixels/dpi, 2);
-    var inchesText = "Diameter of final shape: " + inches +" inches"; 
+    var inchesText = "Diameter of final shape: " + inches +" inches";
     previewElement.innerHTML = inchesText;
 }
 
@@ -47,7 +47,7 @@ function drawFlower(canvas, x, y, setRadius, iterations) {
 
         centerPoints = intersection(bootstrap1, petal);
     }
-    
+
     var outerPetals = innerPetals;
 
     for (let i = 0; i < iterations-1; i++) {
@@ -72,22 +72,22 @@ function drawPetals(canvas, innerPetals) {
             var centerPoints = intersection(outerPetals[i], innerPetals[j]);
             returnPetals = returnPetals.concat(populateIntersection(canvas, centerPoints));
         }
-    } 
+    }
 
     return returnPetals.unique();
 }
 
 function populateIntersection(canvas, centerPoints) {
     var outerPetals = [];
-            
+
     if (centerPoints.length > 0){
-        for (let i = 0; i < centerPoints.length; i++) {   
-            if (centerPoints[i] != undefined && usedCentersContains(centerPoints[i]) === false) {    
+        for (let i = 0; i < centerPoints.length; i++) {
+            if (centerPoints[i] != undefined && usedCentersContains(centerPoints[i]) === false) {
                 var petal = drawCircle(canvas, centerPoints[i].x, centerPoints[i].y);
                 outerPetals[outerPetals.length] = petal;
             }
         }
-    } 
+    }
 
     return outerPetals;
 }
@@ -119,7 +119,7 @@ function intersection(circle0, circle1) {
 
     /* 'point 2' is the point where the line through the circle
      * intersection points crosses the line between the circle
-     * centers.  
+     * centers.
      */
 
     /* Determine the distance from point 0 to point 2. */
@@ -151,4 +151,5 @@ function intersection(circle0, circle1) {
 
 function setFlowerOptions(element) {
     setIterationOptions(element);
+    setCircleRadiusOptions(element);
 }

@@ -3,6 +3,7 @@
 //Forgive me.
 
 var iterateElementId = "circleIterations";
+var circleRadiusId = "circleRadius";
 var radiusOffsetId = "radiusOffset";
 var usedCenters = [];
 var scaleOffset = 1;
@@ -18,6 +19,20 @@ function setIterationOptions(element) {
 
     column.appendChild(iterationLabel);
     column.appendChild(iterateElement);
+
+    element.appendChild(column);
+}
+
+function setCircleRadiusOptions(element) {
+    var column = createColumnDiv(4);
+    var radiusLabel = createLabel("Circle Radius (px):");
+    var radiusElement = document.createElement("input");
+    radiusElement.id = circleRadiusId;
+    radiusElement.type = "number";
+    radiusElement.value = 200;
+
+    column.appendChild(radiusLabel);
+    column.appendChild(radiusElement);
 
     element.appendChild(column);
 }
@@ -52,7 +67,7 @@ function createRowDiv() {
 
 function createLabel(text) {
     var label = document.createElement("label");
-    label.innerHTML = text;    
+    label.innerHTML = text;
     return label;
 }
 
@@ -90,7 +105,7 @@ function drawCrosshairs(ctx, x, y) {
 function drawLine(canvas, startX, startY, endX, endY) {
     var ctx = canvas.getContext("2d");
     ctx.beginPath();
-    ctx.lineWidth = lineWidth; //ewwww globals  
+    ctx.lineWidth = lineWidth; //ewwww globals
     ctx.lineCap = "round";
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
@@ -151,7 +166,7 @@ function getMousePositionInCanvas(canvas, event, positionOverrides) {
     if (positionOverrides.centerVertical === true) {
         yCoord = (rect.height/2)*scaleOffset.y;
     }
-    return { 
+    return {
         x: xCoord > 0 ? xCoord : (event.clientX - rect.left)*scaleOffset.x,
         y: yCoord > 0 ? yCoord : (event.clientY - rect.top)*scaleOffset.y
     };
@@ -166,7 +181,7 @@ function getScaleOffset(canvas) {
 
 function calculateVariableRadiusOffsetPreview(event, radiusOffset, radiusMultiplier) {
     var canvas = document.getElementById("drawingCanvas");
-    var radius = parseInt(document.getElementById("circleRadius").value); 
+    var radius = parseInt(document.getElementById("circleRadius").value);
     var previewElement = document.getElementById("diameterAnchor");
 
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
@@ -175,7 +190,7 @@ function calculateVariableRadiusOffsetPreview(event, radiusOffset, radiusMultipl
     var dpi = 300;//The canvas is scalled to 8.5x11 at 300dpi
 
     var inches = roundFloats(totalPixels/dpi, 2);
-    var inchesText = "Diameter of final shape: " + inches +" inches"; 
+    var inchesText = "Diameter of final shape: " + inches +" inches";
     previewElement.innerHTML = inchesText;
 }
 
@@ -185,7 +200,7 @@ function setLineWidth() {
 
 function getPointOnCircle(x, y, radius, radiusOffset, angleInDegrees) {
     var sqrY = y + (radius+radiusOffset) * Math.sin(Math.PI * angleInDegrees/180);
-    var sqrX = x + (radius+radiusOffset) * Math.cos(Math.PI * angleInDegrees/180);    
+    var sqrX = x + (radius+radiusOffset) * Math.cos(Math.PI * angleInDegrees/180);
 
     return {x: sqrX, y: sqrY};
 }
