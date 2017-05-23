@@ -1,0 +1,250 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <link rel="stylesheet" href="lib/foundation/css/foundation.css" />
+        <title>Geometry Generator</title>
+    </head>
+    <body>
+        <div class="content">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h2 align="center">Select a design and click on the canvas!</h2>
+                </div>
+            </div>
+
+            <div class="row fullWidth">
+                <div class="small-4 columns canvasContent">
+                    <canvas id="drawingCanvas" width="2550" height="3300" style="border:1px solid #d2d2d2;">
+
+                    Your browser does not support HTML5 canvas</canvas>
+                </div>
+                <div class="small-8 columns" id="options">
+                    <form>
+                        <div class="row">
+                            <div class="small-4 columns">
+                                <label>Design:
+                                    <select id="design" onChange="setDrawingSettings(this);">
+                                        <option value="flowerOfLife">
+                                            Flower of Life
+                                        </option>
+                                        <option value="squareForm">
+                                            Square Form Circle Flower
+                                        </option>
+                                        <option value="triangleForm">
+                                            Triangle Form Circle Flower
+                                        </option>
+                                        <option value="metatronCube">
+                                            Metatron's Cube
+                                        </option>
+                                        <option value="torus">
+                                            Torus
+                                        </option>
+                                        <option value="mandala">
+                                            Mandala
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="small-4 columns">
+                                <label>Page Size:
+                                    <select id="pageLayout" onChange="setPageLayout(this);">
+                                        <option value="letter">
+                                            8.5 x 11 - Letter
+                                        </option>
+                                        <option value="A4">
+                                            A4
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="small-4 columns">
+                                <label>Base Circle Radius (px):
+                                    <input type="text" id="circleRadius" value="200" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-4 columns">
+                                <label>Line Width (px):<input type="text" id="lineWidth" value="3" /></label>
+                            </div>
+                            <div class="small-8 columns">
+                                <br />
+                                <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
+                                <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
+                            </div>
+                        </div>
+                        <div id="customOptionsRowsWrapper">
+                            <div id="customOptions" class="row">
+                            </div>
+                        </div>
+                        <div class="row" id="previewInfo">
+                            <div class="small-6 column info">
+                                <label id="coordinatesAnchor">Coordinates:
+                                </label>
+                            </div>
+
+                            <div class="small-6 column info">
+                                <label id="diameterAnchor">Diameter Of Final Shape:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-6 columns">
+
+                                <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
+                            </div>
+                            <div class="small-6 columns">
+
+                                <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="lib/jquery/jquery-3.2.1.min.js" />
+        <script src="lib/foundation/js/foundation.min.js" ></script>
+        <script src="js/flowerOfLife.js"></script>
+        <script src="js/squareFormCircles.js"></script>
+        <script src="js/triangleFormCircles.js"></script>
+        <script src="js/metatronCube.js"></script>
+        <script src="js/circleUtils.js"></script>
+        <script src="js/torus.js"></script>
+        <script src="js/mandala.js"></script>
+        <script type="text/javascript">
+            var usedCenters = []; //this is a really gross bit of ugly global state too
+            var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
+            var drawingSettings = {
+                flowerOfLife: {
+                    click: drawFlowerEventListener,
+                    mousemove: previewFlowerEventListener,
+                    options: setFlowerOptions
+                },
+                squareForm: {
+                    click: drawSquareFormEventListener,
+                    mousemove: previewSquareFormEventListener,
+                    options: setSquareFormOptions
+                },
+                triangleForm: {
+                    click: drawTriangleFormEventListener,
+                    mousemove: previewTriangleFormEventListener,
+                    options: setTriangleFormOptions
+                },
+                metatronCube: {
+                    click: drawMetatronEventListener,
+                    mousemove: previewMetatronEventListener,
+                    options: setMetatronOptions
+                },
+                torus: {
+                    click: drawTorusEventListener,
+                    mousemove: previewTorusEventListener,
+                    options: setTorusOptions
+                },
+                mandala: {
+                    click: drawMandalaEventListener,
+                    mousemove: previewMandalaEventListener,
+                    options: setMandalaOptions
+                }
+            };
+
+            Array.prototype.unique = function() {
+                var a = this.concat();
+
+                for(var i=0; i<a.length; ++i) {
+                    for(var j=i+1; j<a.length; ++j) {
+                        if(a[i] === a[j])
+                            a.splice(j--, 1);
+                    }
+                }
+
+                return a;
+            };
+
+            function setPageLayout(selector) {
+                var selected = selector.value;
+                var canvas = document.getElementById("drawingCanvas");
+
+                canvas.width = dimensions[selected].x
+                canvas.height = dimensions[selected].y
+            }
+
+            function setDrawingSettings(selector) {
+                var selected = selector.value;
+                var settings = drawingSettings[selected];
+                var canvas = document.getElementById("drawingCanvas");
+                var customOptions = document.getElementById("customOptions");
+
+                canvas = removeEventListeners(canvas);
+                clearOptions(customOptions);
+
+                //specific to mandala
+                $(".extraOptionsRow").remove();
+
+                canvas.addEventListener('click', settings.click, false)
+                canvas.addEventListener('mousemove', settings.mousemove, false)
+                settings.options(customOptions);
+
+                return canvas;
+            }
+
+            function removeEventListeners(canvas) {
+
+                canvas.removeEventListener('click', drawFlowerEventListener, false);
+                canvas.removeEventListener('click', drawSquareFormEventListener, false);
+                canvas.removeEventListener('click', drawTriangleFormEventListener, false);
+                canvas.removeEventListener('click', drawMetatronEventListener, false);
+                canvas.removeEventListener('click', drawTorusEventListener, false);
+                canvas.removeEventListener('click', drawMandalaEventListener, false);
+
+                canvas.removeEventListener('mousemove', previewMetatronEventListener, false);
+                canvas.removeEventListener('mousemove', previewFlowerEventListener, false)
+                canvas.removeEventListener('mousemove', previewSquareFormEventListener, false)
+                canvas.removeEventListener('mousemove', previewTriangleFormEventListener, false)
+                canvas.removeEventListener('mousemove', previewTorusEventListener, false)
+                canvas.removeEventListener('mousemove', previewMandalaEventListener, false)
+
+                return canvas;
+            }
+
+
+            function clearCanvas() {
+                var canvas = document.getElementById("drawingCanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            function exportCanvas() {
+                var canvas = getCanvas();
+                var imgUrl = canvas.toDataURL("image/jpg");
+                window.open(imgUrl);
+            }
+
+            function getCanvas() {
+                return document.getElementById("drawingCanvas");
+            }
+
+            function clearOptions(element) {
+                while (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                }
+            }
+
+
+            //Bootstrapping with initial settings
+            var canvas = document.getElementById("drawingCanvas");
+            canvas.addEventListener('mousemove', function(event) {
+                var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+                var coordsDiv = document.getElementById("coordinatesAnchor");
+                coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
+            });
+
+            var selectedDesign = document.getElementById("design");
+            setDrawingSettings(selectedDesign);
+
+
+        </script>
+    </body>
+</html>
