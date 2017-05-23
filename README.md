@@ -10,7 +10,7 @@ A little single-page javascript app to generate simple geometries and mandalas
 * Mandalas (under construction)
 
 ## Features
-* Define the number of iteration
+* Define the number of iterations
 * Define line width 
 * Define circle radius
 * Define circle intersect distance
