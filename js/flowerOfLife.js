@@ -14,7 +14,7 @@ function drawFlowerEventListener(event) {
 
 function previewFlowerEventListener(event) {
     var canvas = document.getElementById("drawingCanvas");
-    var radius = parseInt(document.getElementById("circleRadius") ? document.getElementById("circleRadius").value : 0);
+    var radius = parseInt(document.getElementById("circleRadius").value);
     var previewElement = document.getElementById("diameterAnchor");
 
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());

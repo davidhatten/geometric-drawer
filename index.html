@@ -232,18 +232,19 @@
                 }
             }
 
+            $(document).ready(function() {
+                    //Bootstrapping with initial settings
+                    var canvas = document.getElementById("drawingCanvas");
+                    canvas.addEventListener('mousemove', function(event) {
+                        var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+                        var coordsDiv = document.getElementById("coordinatesAnchor");
+                        coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
+                    });
 
-            //Bootstrapping with initial settings
-            var canvas = document.getElementById("drawingCanvas");
-            canvas.addEventListener('mousemove', function(event) {
-                var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-                var coordsDiv = document.getElementById("coordinatesAnchor");
-                coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
-            });
-
-            var selectedDesign = document.getElementById("design");
-            setDrawingSettings(selectedDesign);
-
+                    var selectedDesign = document.getElementById("design");
+                    setDrawingSettings(selectedDesign);
+                }
+            );
 
         </script>
     </body>

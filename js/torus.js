@@ -106,6 +106,8 @@ function setTorusOptions(element) {
     repopulateSkipSelect(rotationSelect, skipSelect);
 
     setRadiusOffsetOptions(element);
+
+    setCircleRadiusOptions(element);
 }
 
 function drawTorus(canvas, x, y, setRadius, radiusOffset, rotation, skipFactor) {

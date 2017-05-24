@@ -92,5 +92,7 @@ function setTriangleFormOptions(element) {
     element.appendChild(column);
 
     setRadiusOffsetOptions(element);
+
+    setCircleRadiusOptions(element);
 }
 

@@ -59,4 +59,7 @@ function setSquareFormOptions(element) {
     setIterationOptions(element);
 
     setRadiusOffsetOptions(element);
+
+    setCircleRadiusOptions(element);
+
 }

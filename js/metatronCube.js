@@ -44,6 +44,7 @@ function setMetatronOptions(element) {
     element.appendChild(column);
 
     setRadiusOffsetOptions(element);
+    setCircleRadiusOptions(element);
 }
 
 function drawMetatronCube(canvas, x, y, setRadius, radiusOffset, includeFOL) {
