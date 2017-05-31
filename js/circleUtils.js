@@ -10,59 +10,61 @@ var scaleOffset = 1;
 var lineWidth = 1;
 
 function setIterationOptions(element) {
-    var column = createColumnDiv(4);
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var iterationLabel = createLabel("Number of Iterations:");
     var iterateElement = document.createElement("input");
     iterateElement.id = iterateElementId;
     iterateElement.type = "text";
     iterateElement.value = 3;
 
-    column.appendChild(iterationLabel);
-    column.appendChild(iterateElement);
+    column.append(iterationLabel);
+    column.append(iterateElement);
+    row.append(column);
 
-    element.appendChild(column);
+    row.insertAfter(element);
 }
 
 function setCircleRadiusOptions(element) {
-    var column = createColumnDiv(4);
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var radiusLabel = createLabel("Circle Radius (px):");
     var radiusElement = document.createElement("input");
     radiusElement.id = circleRadiusId;
     radiusElement.type = "number";
     radiusElement.value = 200;
 
-    column.appendChild(radiusLabel);
-    column.appendChild(radiusElement);
+    column.append(radiusLabel);
+    column.append(radiusElement);
+    row.append(column);
 
-    element.appendChild(column);
+    row.insertAfter(element);
 }
 
 function setRadiusOffsetOptions(element) {
-    var column = createColumnDiv(4);
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var offsetText = createLabel("Radius Offset For Drawing Circles (px):");
     var radiusOffset = document.createElement("input");
     radiusOffset.id = radiusOffsetId;
     radiusOffset.type = "text";
     radiusOffset.value = 0;
 
-    column.appendChild(offsetText);
-    column.appendChild(radiusOffset);
+    column.append(offsetText);
+    column.append(radiusOffset);
+    row.append(column);
 
-    element.appendChild(column);
-}
-
-function createColumnDiv(span) {
-    var column = document.createElement("div");
-    var spanClass = "small-" + span;
-    column.className += "column ";
-    column.className += spanClass;
-    return column;
+    row.insertAfter(element);
 }
 
 function createRowDiv() {
-    var row = document.createElement("div");
-    row.className = "row"
+    var row = $("<div>", {"class": "row customOptionRow"});
     return row;
+}
+
+function createColumnDiv() {
+    var column = $("<div>", {"class": "column"});
+    return column;
 }
 
 function createLabel(text) {

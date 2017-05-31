@@ -79,17 +79,19 @@ function drawTrianglePetals(innerPetals, radiusOffset) {
 function setTriangleFormOptions(element) {
     setIterationOptions(element);
 
-    var column = createColumnDiv(4);
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var degreeText = createLabel("Degree Of Circles");
     var degreeOfCircles = document.createElement("input");
     degreeOfCircles.id = degreeOfCirclesId;
     degreeOfCircles.type = "text";
     degreeOfCircles.value = 3;
 
-    column.appendChild(degreeText);
-    column.appendChild(degreeOfCircles);
-
-    element.appendChild(column);
+    column.append(degreeText);
+    column.append(degreeOfCircles);
+    row.append(column);
+    
+    element.appendChild(row);
 
     setRadiusOffsetOptions(element);
 

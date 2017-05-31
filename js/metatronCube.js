@@ -28,7 +28,8 @@ function validateOffsetUI() {
 }
 
 function setMetatronOptions(element) {
-    var column = createColumnDiv(4)
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var flowerOfLifeText = createLabel("Flower Of Life");
     var flowerOfLifeElement = document.createElement("input");
     flowerOfLifeElement.id = flowerOfLifeElementId;
@@ -37,11 +38,11 @@ function setMetatronOptions(element) {
     flowerOfLifeElement.onclick = validateOffsetUI;
     flowerOfLifeText.for = flowerOfLifeElementId;
 
-    column.appendChild(document.createElement("br"))
-    column.appendChild(flowerOfLifeElement);
-    column.appendChild(flowerOfLifeText);
-
-    element.appendChild(column);
+    column.append(flowerOfLifeElement);
+    column.append(flowerOfLifeText);
+    row.append(column)
+    
+    row.insertAfter(element);
 
     setRadiusOffsetOptions(element);
     setCircleRadiusOptions(element);

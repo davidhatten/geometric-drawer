@@ -53,7 +53,7 @@ function previewMandalaEventListener(event) {
 }
 
 function setMandalaOptions(element) {
-    var addButtonColumn = createColumnDiv(12);
+    var addButtonColumn = createRowDiv(12);
     var addButton = document.createElement("a");
     addButton.setAttribute("href", "#");
     addButton.setAttribute("class", "button");
@@ -64,6 +64,7 @@ function setMandalaOptions(element) {
     element.appendChild(addButtonColumn)
 }
 
+// rewrite most of this function after redesign
 function addLayerOptions() {
     var options = document.getElementById("customOptionsRowsWrapper");
 
@@ -72,7 +73,7 @@ function addLayerOptions() {
     layerRow.className += " " + "extraOptionsRow";
 
     //create petal column
-    var petalStyleColumn = createColumnDiv(2);
+    var petalStyleColumn = createRowDiv(2);
 
     var petalSelect = document.createElement("select");
     petalSelect.id = petalSelectId+layers;
@@ -86,7 +87,7 @@ function addLayerOptions() {
     layerRow.appendChild(petalStyleColumn);
 
     //create inner radius column
-    var innerRadiusColumn = createColumnDiv(2);
+    var innerRadiusColumn = createRowDiv(2);
 
     var innerRadiusInput = createInputElement(innerRadiusId+layers, 0, "text");
     var innerRadiusText = createLabel("Inner Radius (px):");
@@ -97,7 +98,7 @@ function addLayerOptions() {
     layerRow.appendChild(innerRadiusColumn);
 
     //create outer radius column
-    var outerRadiusColumn = createColumnDiv(2);
+    var outerRadiusColumn = createRowDiv(2);
 
     var outerRadiusInput = createInputElement(outerRadiusId+layers, 100, "text");
     var outerRadiusText = createLabel("Outer Radius (px):");
@@ -109,7 +110,7 @@ function addLayerOptions() {
 
 
     //create control point distance
-    var controlPointColumn = createColumnDiv(2);
+    var controlPointColumn = createRowDiv(2);
 
     var controlPointInput = createInputElement(controlPointId+layers, 75, "text");
     var controlPointText = createLabel("Control Distance (px):");
@@ -120,7 +121,7 @@ function addLayerOptions() {
     layerRow.appendChild(controlPointColumn);
 
     //create angle offset
-    var angleOffsetColumn = createColumnDiv(2);
+    var angleOffsetColumn = createRowDiv(2);
 
     var angleOffsetInput = createInputElement(angleOffsetId+layers, 0, "text");
     var angleOffsetText = createLabel("Rotation Offset (deg):");

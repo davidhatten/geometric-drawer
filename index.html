@@ -18,10 +18,10 @@
 
                     Your browser does not support HTML5 canvas</canvas>
                 </div>
-                <div class="small-6 columns" id="options">
-                    <form>
+                <div class="small-6 columns">
+                    <form id="options">
                         <div class="row">
-                            <div class="shrink columns">
+                            <div class="small-6 columns">
                                 <label>Design:
                                     <select id="design" onChange="setDrawingSettings(this);">
                                         <option value="flowerOfLife">
@@ -46,7 +46,7 @@
                                 </label>
                             </div>
 
-                            <div class="columns">
+                            <div class="small-6 columns">
                                 <label>Page Size:
                                     <select id="pageLayout" onChange="setPageLayout(this);">
                                         <option value="letter">
@@ -74,9 +74,8 @@
                                 <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
                             </div>
                         </div>
-                        <div id="customOptionsRowsWrapper">
-                            <div id="customOptions" class="row">
-                            </div>
+                        <div class="row" id="customOptionsRowsAnchor">
+
                         </div>
                         <div class="row" id="previewInfo">
                             <div class="small-6 column info">
@@ -175,13 +174,10 @@
                 var selected = selector.value;
                 var settings = drawingSettings[selected];
                 var canvas = document.getElementById("drawingCanvas");
-                var customOptions = document.getElementById("customOptions");
+                var customOptions = $("#customOptionsRowsAnchor");
 
                 canvas = removeEventListeners(canvas);
-                clearOptions(customOptions);
-
-                //specific to mandala
-                $(".extraOptionsRow").remove();
+                clearCustomOptions(customOptions);
 
                 canvas.addEventListener('click', settings.click, false)
                 canvas.addEventListener('mousemove', settings.mousemove, false)
@@ -226,10 +222,8 @@
                 return document.getElementById("drawingCanvas");
             }
 
-            function clearOptions(element) {
-                while (element.firstChild) {
-                    element.removeChild(element.firstChild);
-                }
+            function clearCustomOptions(element) {
+                $(".customOptionRow").remove()
             }
 
             $(document).ready(function() {

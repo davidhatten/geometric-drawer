@@ -72,7 +72,8 @@ function repopulateSkipSelect(rotationSelect, skipSelect) {
 }
 
 function setTorusOptions(element) {
-    var column = createColumnDiv(4);
+    var row = createRowDiv();
+    var column = createColumnDiv();
     var rotationText = createLabel("Degree of Rotation:");
     var rotationElement = document.createElement("select");
 
@@ -90,18 +91,23 @@ function setTorusOptions(element) {
         }
     }
 
-    column.appendChild(rotationText);
-    column.appendChild(rotationSelect);
-    element.appendChild(column);
+    column.append(rotationText);
+    column.append(rotationSelect);
+    row.append(column);
 
-    var skipColumn = createColumnDiv(4);
+    row.insertAfter(element);
+
+    var skipRow = createRowDiv();
+    var skipColumn = createColumnDiv();
     var skipSelect = document.createElement("select");
     skipSelect.id = skipElementId;
     var skipText = createLabel("Skip factor:");
 
-    skipColumn.appendChild(skipText);
-    skipColumn.appendChild(skipSelect);
-    element.appendChild(skipColumn)
+    skipColumn.append(skipText);
+    skipColumn.append(skipSelect);
+    skipRow.append(skipColumn);
+
+    skipRow.insertAfter(element);
 
     repopulateSkipSelect(rotationSelect, skipSelect);
 
