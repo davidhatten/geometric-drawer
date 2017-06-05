@@ -25,8 +25,11 @@ function setIterationOptions(element) {
     row.insertAfter(element);
 }
 
-function setCircleRadiusOptions(element) {
+function setCircleRadiusOptions(element, classNames) {
     var row = createRowDiv();
+
+    addClasses(row, classNames);
+
     var column = createColumnDiv();
     var radiusLabel = createLabel("Circle Radius (px):");
     var radiusElement = document.createElement("input");
@@ -41,6 +44,14 @@ function setCircleRadiusOptions(element) {
     row.insertAfter(element);
 
     return row;
+}
+
+function addClasses(element, classNames) {
+    if (classNames !== undefined) {
+        for (var i = 0; i < classNames.length; i++) {
+            element.addClass(classNames[i]);
+        }
+    }
 }
 
 function setRadiusOffsetOptions(element) {

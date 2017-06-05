@@ -11,41 +11,44 @@ var layerStyles = {
 
 
 function drawMandalaEventListener(event) {
-    // canvas = this;
-    // layers = 0;
-    // var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    // var baseRadius = parseInt(document.getElementById("circleRadius").value);
-
-    // var innerRadiusValues = {}
-    // var innerRadiusElems = $('[id^='+innerRadiusId+']').each(function(index) {
-    //     innerRadiusValues[index] = $(this).val();
-    // })
-
-    // setLineWidth();
-
-    // drawMandala(canvas, xyCoords.x, xyCoords.y, baseRadius)
-
-    var canvas = this;
+    // This is effectively a passthrough to the layerStyles data structure
+    canvas = this;
     var selectedLayer = $("#layerStyleSelect").val();
-    console.log("layer is", selectedLayer);
-    layerStyles[selectedLayer]["draw"](event, canvas);
+    radius = parseInt(document.getElementById("circleRadius").value);
+    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    layerStyles[selectedLayer]["draw"](canvas, xyCoords);
 }
 
-function drawCircleLines(event, canvas) {
+function drawCircleLines(canvas, clickCoords) {
     console.log("request to draw circle");
-
-    // canvas = this;
-    radius = parseInt(document.getElementById("circleRadius").value);
-
-    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
 
     setLineWidth();
 
-    drawCircle(canvas, xyCoords.x, xyCoords.y);
+    drawCircle(canvas, clickCoords.x, clickCoords.y);
 }
 
-function drawQuadLines(event) {
+function drawQuadLines(canvas, clickCoords) {
+    // TODO: axis subdivision options
+    // TODO: petal warping options
+    // TODO: outer radius option
+    var angle = 0;
+    var x = clickCoords.x;
+    var y = clickCoords.y;
 
+    while (angle < 360) {
+
+        var edgePoint = getPointOnCircle(x, y, radius, 0, angle);
+        var perp1 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, radius/2)
+        var perp2 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, -radius/2)
+
+        var petalBase = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius);
+        var petalTip = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius*2)
+
+        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp1.x, perp1.y, petalBase.x, petalBase.y)
+        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp2.x, perp2.y, petalBase.x, petalBase.y)
+
+        angle += 30;
+    }
 }
 
 function populateSelectWithMapValue(select, options) {
@@ -60,39 +63,27 @@ function populateSelectWithMapValue(select, options) {
     }
 }
 
-function drawMandala(canvas, x, y, setRadius) {
-    radius = setRadius;
-    var angle = 0;
-
-
-    var controlXY1 = {x:radius * Math.cos(180) + x, y:-radius * Math.sin(180) + y};
-    var controlXY2 = {x:-radius * Math.cos(180) + x, y:radius * Math.sin(180) + y};
-
-
-    // drawQuadCurve(canvas, x, y, controlXY1.x, controlXY1.y, y, x+radius);
-
-
-    for (let i = 0; i <= layers; i++) {
-        var petalStyle = document.getElementById(petalSelectId+i.toString()).value
-
-        this[petalStyle](canvas, x, y, radius);
-    }
-
-
-
-}
-
 
 function previewMandalaEventListener(event) {
-
+    //TODO: This should probably update the size based on your current radius
 }
 
 function setMandalaOptions(element) {
 
     // Layer style selector
+    var layerStylesRow = setLayerSelectionOptions(element);
+    console.log("the row is ", layerStylesRow);
+    // We want to insert the options after the select
+    // and we default at the circle layer
+    drawCircleLayerOptions(layerStylesRow);
+}
+
+function setLayerSelectionOptions(element) {
     var layerStylesRow = createRowDiv();
+    layerStylesRow.attr("id","layerStyleRow");
     var layerStylesColumn = createColumnDiv();
     var layerSelectText = createLabel("Layer Style:")
+    // TODO: convert all creations and lookups to jquery for consistency
     var layerSelectElement = document.createElement("select");
     layerSelectElement.id = "layerStyleSelect";
     layerSelectElement.onchange = changeMandalaOptions;
@@ -103,124 +94,23 @@ function setMandalaOptions(element) {
     layerStylesRow.append(layerStylesColumn);
     layerStylesRow.insertAfter(element);
 
-    // We want to insert the options after the select
-    drawCircleLayerOptions(layerStylesRow);
+    return layerStylesRow;
 }
 
-function changeMandalaOptions() {
+function changeMandalaOptions(element) {
     console.log("Request to change has happened");
+    console.log("My element is" ,element);
 
+    $('.mandalaOptionRow').remove();
+
+    var selectedLayer = element.target.value;
+    layerStyles[selectedLayer]["options"]($("#layerStyleRow"));
 }
 
 function drawQuadLayerOptions(element) {
-
+    setCircleRadiusOptions(element, ["mandalaOptionRow"]);
 }
 
 function drawCircleLayerOptions(element) {
-    setCircleRadiusOptions(element);
-}
-
-// rewrite most of this function after redesign
-function addLayerOptions() {
-    var options = document.getElementById("customOptionsRowsWrapper");
-
-    // create row
-    var layerRow = createRowDiv();
-    layerRow.className += " " + "extraOptionsRow";
-
-    //create petal column
-    var petalStyleColumn = createRowDiv(2);
-
-    var petalSelect = document.createElement("select");
-    petalSelect.id = petalSelectId+layers;
-    var petalText = createLabel("Petal Style:");
-
-    populateSelectWithMapValue(petalSelect, layerStyles);
-
-    petalStyleColumn.appendChild(petalText);
-    petalStyleColumn.appendChild(petalSelect)
-
-    layerRow.appendChild(petalStyleColumn);
-
-    //create inner radius column
-    var innerRadiusColumn = createRowDiv(2);
-
-    var innerRadiusInput = createInputElement(innerRadiusId+layers, 0, "text");
-    var innerRadiusText = createLabel("Inner Radius (px):");
-
-    innerRadiusColumn.appendChild(innerRadiusText);
-    innerRadiusColumn.appendChild(innerRadiusInput);
-
-    layerRow.appendChild(innerRadiusColumn);
-
-    //create outer radius column
-    var outerRadiusColumn = createRowDiv(2);
-
-    var outerRadiusInput = createInputElement(outerRadiusId+layers, 100, "text");
-    var outerRadiusText = createLabel("Outer Radius (px):");
-
-    outerRadiusColumn.appendChild(outerRadiusText);
-    outerRadiusColumn.appendChild(outerRadiusInput);
-
-    layerRow.appendChild(outerRadiusColumn);
-
-
-    //create control point distance
-    var controlPointColumn = createRowDiv(2);
-
-    var controlPointInput = createInputElement(controlPointId+layers, 75, "text");
-    var controlPointText = createLabel("Control Distance (px):");
-
-    controlPointColumn.appendChild(controlPointText);
-    controlPointColumn.appendChild(controlPointInput);
-
-    layerRow.appendChild(controlPointColumn);
-
-    //create angle offset
-    var angleOffsetColumn = createRowDiv(2);
-
-    var angleOffsetInput = createInputElement(angleOffsetId+layers, 0, "text");
-    var angleOffsetText = createLabel("Rotation Offset (deg):");
-
-    angleOffsetColumn.appendChild(angleOffsetText);
-    angleOffsetColumn.appendChild(angleOffsetInput);
-
-    layerRow.appendChild(angleOffsetColumn);
-
-    options.insertBefore(layerRow, document.getElementById("customOptions"));
-    layers++;
-}
-
-function drawQuadLayer(canvas, centerX, centerY, radius) {
-    var angle = 0;
-    var x = centerX;
-    var y = centerY;
-    drawCircle(canvas, x, y);
-
-    while (angle < 360) {
-
-        var edgePoint = getPointOnCircle(x, y, radius, 0, angle);
-        var perp1 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, radius/2)
-        var perp2 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, -radius/2)
-
-        var outsidePoint = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius);
-        var mostOutsidePoint = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius*2)
-        // drawCircle(canvas, perp1.x, perp1.y);
-        // drawCircle(canvas, perp2.x, perp2.y);
-        // drawCircle(canvas, outsidePoint.x, outsidePoint.y);
-
-        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp1.x, perp1.y, outsidePoint.x, outsidePoint.y)
-        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp2.x, perp2.y, outsidePoint.x, outsidePoint.y)
-        // drawCircle(canvas, outsidePoint.x, outsidePoint.y)
-        // // drawLine(canvas, x, y, edgePoint.x, edgePoint.y)
-        // // drawLine(canvas, x, y, outsidePoint.x, outsidePoint.y)
-
-        // var outerPerp1 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, radius)
-        // var outerPerp2 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, -radius)
-
-        // drawQuadCurve(canvas, outsidePoint.x, outsidePoint.y, outerPerp1.x, outerPerp1.y, mostOutsidePoint.x, mostOutsidePoint.y)
-        // drawQuadCurve(canvas, outsidePoint.x, outsidePoint.y, outerPerp2.x, outerPerp2.y, mostOutsidePoint.x, mostOutsidePoint.y)
-
-        angle += 30;
-    }
+    setCircleRadiusOptions(element, ["mandalaOptionRow"]);
 }
