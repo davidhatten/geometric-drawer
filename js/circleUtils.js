@@ -39,6 +39,8 @@ function setCircleRadiusOptions(element) {
     row.append(column);
 
     row.insertAfter(element);
+
+    return row;
 }
 
 function setRadiusOffsetOptions(element) {

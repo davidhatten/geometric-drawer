@@ -1,11 +1,12 @@
-var petalSelectId = "petalStyleSelect";
+var petalSelectId = "layerStyleselect";
 var innerRadiusId = "innerRadiusInput";
 var outerRadiusId = "outerRadiusInput";
 var controlPointId = "controlPointInput";
 var angleOffsetId = "angleOffsetInput";
 var layers = 0;
-var petalStyles = {
-    Quadratic: "drawQuadLayer"
+var layerStyles = {
+    "Circle": "drawCircleLayerOptions",
+    "Quadratic Petal": "drawQuadLayerOptions"
 };
 
 
@@ -30,7 +31,7 @@ function drawMandala(canvas, x, y, setRadius) {
     var angle = 0;
 
 
-    var controlXY1 = {x:radius * Math.cos(180) + x, y:-radius * Math.sin(180) + y}; 
+    var controlXY1 = {x:radius * Math.cos(180) + x, y:-radius * Math.sin(180) + y};
     var controlXY2 = {x:-radius * Math.cos(180) + x, y:radius * Math.sin(180) + y};
 
 
@@ -40,10 +41,10 @@ function drawMandala(canvas, x, y, setRadius) {
     for (let i = 0; i <= layers; i++) {
         var petalStyle = document.getElementById(petalSelectId+i.toString()).value
 
-        this[petalStyle](canvas, x, y, radius);        
+        this[petalStyle](canvas, x, y, radius);
     }
 
-        
+
 
 }
 
@@ -53,15 +54,34 @@ function previewMandalaEventListener(event) {
 }
 
 function setMandalaOptions(element) {
-    var addButtonColumn = createRowDiv(12);
-    var addButton = document.createElement("a");
-    addButton.setAttribute("href", "#");
-    addButton.setAttribute("class", "button");
-    addButton.innerHTML = "Add Layer";
-    addButton.addEventListener('click', addLayerOptions);
 
-    addButtonColumn.appendChild(addButton)
-    element.appendChild(addButtonColumn)
+    // Layer style selector
+    var layerStylesRow = createRowDiv();
+    var layerStylesColumn = createColumnDiv();
+    var petalSelectText = createLabel("Layer Style:")
+    var petalSelectElement = document.createElement("select");
+    petalSelectElement.onchange = changeMandalaOptions;
+    populateSelectWithMapValue(petalSelectElement, layerStyles);
+
+    layerStylesColumn.append(petalSelectText);
+    layerStylesColumn.append(petalSelectElement);
+    layerStylesRow.append(layerStylesColumn);
+    layerStylesRow.insertAfter(element);
+
+    // We want to insert the options after the select
+    drawCircleLayerOptions(layerStylesRow);
+}
+
+function changeMandalaOptions() {
+    console.log("Request to change has happened");
+}
+
+function drawQuadLayerOptions(element) {
+
+}
+
+function drawCircleLayerOptions(element) {
+    setCircleRadiusOptions(element);
 }
 
 // rewrite most of this function after redesign
@@ -79,7 +99,7 @@ function addLayerOptions() {
     petalSelect.id = petalSelectId+layers;
     var petalText = createLabel("Petal Style:");
 
-    populateSelectWithMapValue(petalSelect, petalStyles);
+    populateSelectWithMapValue(petalSelect, layerStyles);
 
     petalStyleColumn.appendChild(petalText);
     petalStyleColumn.appendChild(petalSelect)
@@ -161,7 +181,7 @@ function drawQuadLayer(canvas, centerX, centerY, radius) {
 
         // var outerPerp1 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, radius)
         // var outerPerp2 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, -radius)
-        
+
         // drawQuadCurve(canvas, outsidePoint.x, outsidePoint.y, outerPerp1.x, outerPerp1.y, mostOutsidePoint.x, mostOutsidePoint.y)
         // drawQuadCurve(canvas, outsidePoint.x, outsidePoint.y, outerPerp2.x, outerPerp2.y, mostOutsidePoint.x, mostOutsidePoint.y)
 
