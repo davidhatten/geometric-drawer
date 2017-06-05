@@ -242,18 +242,6 @@ function getPositionOverrides() {
     return {centerHorizontal: horiz, centerVertical: vert};
 }
 
-function populateSelectWithMapValue(select, options) {
-    for (var option in options) {
-        if (options.hasOwnProperty(option)) {
-            var optionElement = document.createElement("option");
-            optionElement.value = options[option];
-            optionElement.text = option;
-
-            select.appendChild(optionElement);
-        }
-    }
-}
-
 function createInputElement(id, value, type) {
     var result = document.createElement("input");
     result.id = id;

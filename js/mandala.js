@@ -5,25 +5,59 @@ var controlPointId = "controlPointInput";
 var angleOffsetId = "angleOffsetInput";
 var layers = 0;
 var layerStyles = {
-    "Circle": "drawCircleLayerOptions",
-    "Quadratic Petal": "drawQuadLayerOptions"
+    "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
+    "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines}
 };
 
 
 function drawMandalaEventListener(event) {
-    canvas = this;
-    layers = 0;
-    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var baseRadius = parseInt(document.getElementById("circleRadius").value);
+    // canvas = this;
+    // layers = 0;
+    // var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    // var baseRadius = parseInt(document.getElementById("circleRadius").value);
 
-    var innerRadiusValues = {}
-    var innerRadiusElems = $('[id^='+innerRadiusId+']').each(function(index) {
-        innerRadiusValues[index] = $(this).val();
-    })
+    // var innerRadiusValues = {}
+    // var innerRadiusElems = $('[id^='+innerRadiusId+']').each(function(index) {
+    //     innerRadiusValues[index] = $(this).val();
+    // })
+
+    // setLineWidth();
+
+    // drawMandala(canvas, xyCoords.x, xyCoords.y, baseRadius)
+
+    var canvas = this;
+    var selectedLayer = $("#layerStyleSelect").val();
+    console.log("layer is", selectedLayer);
+    layerStyles[selectedLayer]["draw"](event, canvas);
+}
+
+function drawCircleLines(event, canvas) {
+    console.log("request to draw circle");
+
+    // canvas = this;
+    radius = parseInt(document.getElementById("circleRadius").value);
+
+    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
 
     setLineWidth();
 
-    drawMandala(canvas, xyCoords.x, xyCoords.y, baseRadius)
+    drawCircle(canvas, xyCoords.x, xyCoords.y);
+}
+
+function drawQuadLines(event) {
+
+}
+
+function populateSelectWithMapValue(select, options) {
+    for (var option in options) {
+        if (options.hasOwnProperty(option)) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option;
+            optionElement.text = option;
+
+            select.appendChild(optionElement);
+        }
+    }
 }
 
 function drawMandala(canvas, x, y, setRadius) {
@@ -58,13 +92,14 @@ function setMandalaOptions(element) {
     // Layer style selector
     var layerStylesRow = createRowDiv();
     var layerStylesColumn = createColumnDiv();
-    var petalSelectText = createLabel("Layer Style:")
-    var petalSelectElement = document.createElement("select");
-    petalSelectElement.onchange = changeMandalaOptions;
-    populateSelectWithMapValue(petalSelectElement, layerStyles);
+    var layerSelectText = createLabel("Layer Style:")
+    var layerSelectElement = document.createElement("select");
+    layerSelectElement.id = "layerStyleSelect";
+    layerSelectElement.onchange = changeMandalaOptions;
+    populateSelectWithMapValue(layerSelectElement, layerStyles);
 
-    layerStylesColumn.append(petalSelectText);
-    layerStylesColumn.append(petalSelectElement);
+    layerStylesColumn.append(layerSelectText);
+    layerStylesColumn.append(layerSelectElement);
     layerStylesRow.append(layerStylesColumn);
     layerStylesRow.insertAfter(element);
 
@@ -74,6 +109,7 @@ function setMandalaOptions(element) {
 
 function changeMandalaOptions() {
     console.log("Request to change has happened");
+
 }
 
 function drawQuadLayerOptions(element) {
