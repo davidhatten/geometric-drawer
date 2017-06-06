@@ -5,6 +5,8 @@
 var iterateElementId = "circleIterations";
 var circleRadiusId = "circleRadius";
 var radiusOffsetId = "radiusOffset";
+var innerRadiusId = "innerRadius";
+var outerRadiusId = "outerRadius";
 var usedCenters = [];
 var scaleOffset = 1;
 var lineWidth = 1;
@@ -54,9 +56,30 @@ function setInnerRadiusOptions(element, classNames) {
     var column = createColumnDiv();
     var radiusLabel = createLabel("Inner Radius (px):");
     var radiusElement = document.createElement("input");
-    radiusElement.id = circleRadiusId;
+    radiusElement.id = innerRadiusId;
     radiusElement.type = "number";
     radiusElement.value = 200;
+
+    column.append(radiusLabel);
+    column.append(radiusElement);
+    row.append(column);
+
+    row.insertAfter(element);
+
+    return row;
+}
+
+function setOuterRadiusOptions(element, classNames) {
+    var row = createRowDiv();
+
+    addClasses(row, classNames);
+
+    var column = createColumnDiv();
+    var radiusLabel = createLabel("Outer Radius (px):");
+    var radiusElement = document.createElement("input");
+    radiusElement.id = outerRadiusId;
+    radiusElement.type = "number";
+    radiusElement.value = 300;
 
     column.append(radiusLabel);
     column.append(radiusElement);
@@ -89,6 +112,8 @@ function setRadiusOffsetOptions(element) {
     row.append(column);
 
     row.insertAfter(element);
+
+    return row;
 }
 
 function createRowDiv() {

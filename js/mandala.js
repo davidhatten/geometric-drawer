@@ -1,6 +1,4 @@
 var petalSelectId = "layerStyleselect";
-var innerRadiusId = "innerRadiusInput";
-var outerRadiusId = "outerRadiusInput";
 var controlPointId = "controlPointInput";
 var angleOffsetId = "angleOffsetInput";
 var layers = 0;
@@ -14,13 +12,13 @@ function drawMandalaEventListener(event) {
     // This is effectively a passthrough to the layerStyles data structure
     canvas = this;
     var selectedLayer = $("#layerStyleSelect").val();
-    radius = parseInt(document.getElementById("circleRadius").value);
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     layerStyles[selectedLayer]["draw"](canvas, xyCoords);
 }
 
 function drawCircleLines(canvas, clickCoords) {
     console.log("request to draw circle");
+    radius = parseInt(document.getElementById("circleRadius").value);
 
     setLineWidth();
 
@@ -35,17 +33,19 @@ function drawQuadLines(canvas, clickCoords) {
     var x = clickCoords.x;
     var y = clickCoords.y;
 
+    radius = parseInt($("#"+innerRadiusId).val());
+    var outerRadius = parseInt($("#"+outerRadiusId).val());
+    var controlPoint = parseInt($("#"+controlPointId).val());
+
     while (angle < 360) {
+        var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
+        var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
 
-        var edgePoint = getPointOnCircle(x, y, radius, 0, angle);
-        var perp1 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, radius/2)
-        var perp2 = getPerpendicularLine(x, y, edgePoint.x, edgePoint.y, -radius/2)
+        var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, controlPoint);
+        var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -controlPoint);
 
-        var petalBase = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius);
-        var petalTip = getPointOnLine(x, y, edgePoint.x, edgePoint.y, radius*2)
-
-        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp1.x, perp1.y, petalBase.x, petalBase.y)
-        drawQuadCurve(canvas, edgePoint.x, edgePoint.y, perp2.x, perp2.y, petalBase.x, petalBase.y)
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp1.x, perp1.y, outerEdgePoint.x, outerEdgePoint.y)
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp2.x, perp2.y, outerEdgePoint.x, outerEdgePoint.y)
 
         angle += 30;
     }
@@ -108,9 +108,32 @@ function changeMandalaOptions(element) {
 }
 
 function drawQuadLayerOptions(element) {
-    setCircleRadiusOptions(element, ["mandalaOptionRow"]);
+    var innerRadRow = setInnerRadiusOptions(element, ["mandalaOptionRow"]);
+    var outerRadRow = setOuterRadiusOptions(innerRadRow, ["mandalaOptionRow"]);
+    var controlPointRow = setControlPointOptions(outerRadRow, ["mandalaOptionRow"]);
 }
 
 function drawCircleLayerOptions(element) {
     setCircleRadiusOptions(element, ["mandalaOptionRow"]);
+}
+
+function setControlPointOptions(element, classNames) {
+    var row = createRowDiv();
+
+    addClasses(row, classNames);
+
+    var column = createColumnDiv();
+    var controlPointLabel = createLabel("Control Point Distance (px):");
+    var controlPointElement = document.createElement("input");
+    controlPointElement.id = controlPointId;
+    controlPointElement.type = "number";
+    controlPointElement.value = 100;
+
+    column.append(controlPointLabel);
+    column.append(controlPointElement);
+    row.append(column);
+
+    row.insertAfter(element);
+
+    return row;
 }
