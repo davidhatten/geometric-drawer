@@ -13,14 +13,15 @@ function drawMandalaEventListener(event) {
     canvas = this;
     var selectedLayer = $("#layerStyleSelect").val();
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+
+    setLineWidth();
+
     layerStyles[selectedLayer]["draw"](canvas, xyCoords);
 }
 
 function drawCircleLines(canvas, clickCoords) {
     console.log("request to draw circle");
     radius = parseInt(document.getElementById("circleRadius").value);
-
-    setLineWidth();
 
     drawCircle(canvas, clickCoords.x, clickCoords.y);
 }
