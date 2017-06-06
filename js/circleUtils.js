@@ -46,6 +46,27 @@ function setCircleRadiusOptions(element, classNames) {
     return row;
 }
 
+function setInnerRadiusOptions(element, classNames) {
+    var row = createRowDiv();
+
+    addClasses(row, classNames);
+
+    var column = createColumnDiv();
+    var radiusLabel = createLabel("Inner Radius (px):");
+    var radiusElement = document.createElement("input");
+    radiusElement.id = circleRadiusId;
+    radiusElement.type = "number";
+    radiusElement.value = 200;
+
+    column.append(radiusLabel);
+    column.append(radiusElement);
+    row.append(column);
+
+    row.insertAfter(element);
+
+    return row;
+}
+
 function addClasses(element, classNames) {
     if (classNames !== undefined) {
         for (var i = 0; i < classNames.length; i++) {
