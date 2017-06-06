@@ -1,6 +1,8 @@
 # geometric-drawer
 A little single-page javascript app to generate simple geometries and mandalas
 
+https://davidhatten.github.io/geometric-drawer/
+
 ## Types of Shapes
 * Circle Flower - Flower of Life Form
 * Circle Flower - Square Form
