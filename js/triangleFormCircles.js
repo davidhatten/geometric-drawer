@@ -8,9 +8,9 @@ function drawTriangleFormEventListener(event) {
     canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     var iterations = document.getElementById("circleIterations").value;
-    var radius = document.getElementById("circleRadius").value; 
-    var radiusOffset = document.getElementById(radiusOffsetId).value; 
-    var degreeOfCircles = document.getElementById(degreeOfCirclesId).value; 
+    var radius = document.getElementById("circleRadius").value;
+    var radiusOffset = document.getElementById(radiusOffsetId).value;
+    var degreeOfCircles = document.getElementById(degreeOfCirclesId).value;
 
     setLineWidth();
 
@@ -19,7 +19,7 @@ function drawTriangleFormEventListener(event) {
 
 function previewTriangleFormEventListener(event) {
     var iterations = parseInt(document.getElementById("circleIterations").value);
-    var radiusOffset = parseInt(document.getElementById(radiusOffsetId).value); 
+    var radiusOffset = parseInt(document.getElementById(radiusOffsetId).value);
     var multipiler = (iterations+1) * 2;
     calculateVariableRadiusOffsetPreview(event, radiusOffset, multipiler);
 }
@@ -54,13 +54,13 @@ function drawTriangleForm(canvas, x, y, setRadius, iterations, radiusOffset, deg
     }
 
     clearCenters();
-}    
+}
 
 function drawTrianglePetals(innerPetals, radiusOffset) {
     var outerPetals = [];
     for (let i = 0; i < innerPetals.length; i++) {
         for (let j = 0; j < triangleCornerAngles.length; j++) {
-            var sqrX = innerPetals[i].x + (radius+radiusOffset) * Math.cos(Math.PI * triangleCornerAngles[j]);    
+            var sqrX = innerPetals[i].x + (radius+radiusOffset) * Math.cos(Math.PI * triangleCornerAngles[j]);
             var sqrY = innerPetals[i].y + (radius+radiusOffset) * Math.sin(Math.PI * triangleCornerAngles[j]);
 
             var circle = {x:sqrX, y:sqrY};
@@ -90,8 +90,8 @@ function setTriangleFormOptions(element) {
     column.append(degreeText);
     column.append(degreeOfCircles);
     row.append(column);
-    
-    element.appendChild(row);
+
+    row.insertAfter(element);
 
     setRadiusOffsetOptions(element);
 

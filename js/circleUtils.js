@@ -145,11 +145,11 @@ function drawCircle(canvas, x, y) {
     var circle = {x: x, y: y};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);
     var midXY = getPointOnCircle(x, y, radius, 0, 180);
-    console.log(startXY);
 
+    // Draw two half-circle arcs because that's how you have to do it
     var drawnCircle = canvas.path(`M ${startXY.x} ${startXY.y}
-        A ${radius} ${radius} 0 0 1 ${midXY.x} ${midXY.y}
-        A ${radius} ${radius} 0 0 1 ${startXY.x} ${startXY.y}
+        A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
+        A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
     drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0"});
     // Well this is a leaky little bit of info isn't it?
@@ -175,13 +175,16 @@ function drawCrosshairs(ctx, x, y) {
 }
 
 function drawLine(canvas, startX, startY, endX, endY) {
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.lineWidth = lineWidth; //ewwww globals
-    ctx.lineCap = "round";
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
+    var ctx = Snap(canvas);
+    // var ctx = canvas.getContext("2d");
+    // ctx.beginPath();
+    // ctx.lineWidth = lineWidth; //ewwww globals
+    // ctx.lineCap = "round";
+    // ctx.moveTo(startX, startY);
+    // ctx.lineTo(endX, endY);
+    // ctx.stroke();
+    line = ctx.line(startX, startY, endX, endY);
+    line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000"})
 }
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
@@ -240,7 +243,7 @@ function getMousePositionInCanvas(canvas, event, positionOverrides) {
     if (positionOverrides.centerVertical === true) {
         transPoint.y = rect.top + rect.height/2;
     }
-    console.log(transPoint);
+
     return transPoint.matrixTransform(canvas.getScreenCTM().inverse());
 }
 
