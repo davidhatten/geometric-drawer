@@ -140,6 +140,7 @@ function drawCircle(canvas, x, y) {
     // ctx.lineWidth = lineWidth; //ewwww globals
     // ctx.arc(x, y, radius, 0, 2 * Math.PI);
     // ctx.stroke();
+    canvas = Snap(canvas);
 
     var circle = {x: x, y: y};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);

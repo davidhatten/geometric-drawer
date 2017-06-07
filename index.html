@@ -107,6 +107,10 @@
         <script src="lib/jquery/jquery-3.2.1.min.js" />
         <script src="lib/foundation/js/foundation.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+        <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script> 
+        <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+        <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+        <script src="lib/svg/svg_todataurl.js"></script>
         <script src="js/flowerOfLife.js"></script>
         <script src="js/squareFormCircles.js"></script>
         <script src="js/triangleFormCircles.js"></script>
@@ -215,9 +219,18 @@
             }
 
             function exportCanvas() {
-                var canvas = getCanvas();
-                var imgUrl = canvas.toDataURL("image/png");
-                window.open(imgUrl);
+                // var canvas = getCanvas();
+                // var imgUrl = canvas.toDataURL("image/png", {
+                //     callback: function(data){
+                //         window.open(data);
+                //     }
+                // });
+                var tempCanvas = document.createElement("canvas");
+                var ctx = tempCanvas.getContext("2d");
+                var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
+                var img = new Image();
+                img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
+                window.open(img.src);
             }
 
             function getCanvas() {

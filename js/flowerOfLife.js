@@ -9,7 +9,7 @@ function drawFlowerEventListener(event) {
 
     setLineWidth();
 
-    drawFlower(Snap(canvas), xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations));
+    drawFlower(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations));
 }
 
 function previewFlowerEventListener(event) {
