@@ -188,11 +188,11 @@ function drawLine(canvas, startX, startY, endX, endY) {
 }
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(sX, sY);
-    ctx.quadraticCurveTo(cX, cY, eX, eY);
-    ctx.stroke()
+    var ctx = Snap(canvas);
+    var curve = ctx.path(` M ${sX} ${sY}
+            Q ${cX} ${cY} ${eX} ${eY}
+        `);
+    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
 }
 
 function usedCentersContains(centerPoint) {
