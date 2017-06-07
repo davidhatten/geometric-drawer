@@ -171,8 +171,7 @@
                 var selected = selector.value;
                 var canvas = document.getElementById("drawingCanvas");
 
-                canvas.width = dimensions[selected].x
-                canvas.height = dimensions[selected].y
+                canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
             }
 
             function setDrawingSettings(selector) {
