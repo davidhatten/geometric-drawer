@@ -2,7 +2,7 @@
 var canvas;
 
 function drawFlowerEventListener(event) {
-    canvas = this; //Somehow this is the canvas, I kind of get why
+    canvas = document.getElementById("drawingCanvas"); //Somehow this is the canvas, I kind of get why
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     var radius = document.getElementById("circleRadius").value;
     var iterations = document.getElementById(iterateElementId).value;

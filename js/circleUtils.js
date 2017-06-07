@@ -135,13 +135,24 @@ function createLabel(text) {
 
 function drawCircle(canvas, x, y) {
     console.log("drawing circle at " + x + " " + y);
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.lineWidth = lineWidth; //ewwww globals
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.stroke();
+    // var ctx = canvas.getContext("2d");
+    // ctx.beginPath();
+    // ctx.lineWidth = lineWidth; //ewwww globals
+    // ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    // ctx.stroke();
+    canvas = Snap(canvas);
 
     var circle = {x: x, y: y};
+    var startXY = getPointOnCircle(x, y, radius, 0, 0);
+    var midXY = getPointOnCircle(x, y, radius, 0, 180);
+
+    // Draw two half-circle arcs because that's how you have to do it
+    var drawnCircle = canvas.path(`M ${startXY.x} ${startXY.y}
+        A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
+        A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
+        z`);
+    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0"});
+    // Well this is a leaky little bit of info isn't it?
     usedCenters[usedCenters.length] = circle;
 
     // used for testing, viewing centers
@@ -164,21 +175,24 @@ function drawCrosshairs(ctx, x, y) {
 }
 
 function drawLine(canvas, startX, startY, endX, endY) {
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.lineWidth = lineWidth; //ewwww globals
-    ctx.lineCap = "round";
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
+    var ctx = Snap(canvas);
+    // var ctx = canvas.getContext("2d");
+    // ctx.beginPath();
+    // ctx.lineWidth = lineWidth; //ewwww globals
+    // ctx.lineCap = "round";
+    // ctx.moveTo(startX, startY);
+    // ctx.lineTo(endX, endY);
+    // ctx.stroke();
+    line = ctx.line(startX, startY, endX, endY);
+    line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000"})
 }
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
-    var ctx = canvas.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(sX, sY);
-    ctx.quadraticCurveTo(cX, cY, eX, eY);
-    ctx.stroke()
+    var ctx = Snap(canvas);
+    var curve = ctx.path(` M ${sX} ${sY}
+            Q ${cX} ${cY} ${eX} ${eY}
+        `);
+    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
 }
 
 function usedCentersContains(centerPoint) {
@@ -219,18 +233,18 @@ function decimalPlaces(num) {
 function getMousePositionInCanvas(canvas, event, positionOverrides) {
     var xCoord = -1;
     var yCoord = -1;
+    var transPoint = canvas.createSVGPoint();
     var rect = canvas.getBoundingClientRect();
-    scaleOffset = getScaleOffset(canvas);
+    transPoint.x = event.clientX;
+    transPoint.y = event.clientY;
     if (positionOverrides.centerHorizontal === true) {
-        xCoord = (rect.width/2)*scaleOffset.x;
+        transPoint.x = rect.left + rect.width/2;
     }
     if (positionOverrides.centerVertical === true) {
-        yCoord = (rect.height/2)*scaleOffset.y;
+        transPoint.y = rect.top + rect.height/2;
     }
-    return {
-        x: xCoord > 0 ? xCoord : (event.clientX - rect.left)*scaleOffset.x,
-        y: yCoord > 0 ? yCoord : (event.clientY - rect.top)*scaleOffset.y
-    };
+
+    return transPoint.matrixTransform(canvas.getScreenCTM().inverse());
 }
 
 function getScaleOffset(canvas) {
