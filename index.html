@@ -107,7 +107,7 @@
         <script src="lib/jquery/jquery-3.2.1.min.js" />
         <script src="lib/foundation/js/foundation.min.js" ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
-        <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script> 
+        <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
         <script src="lib/svg/svg_todataurl.js"></script>
@@ -225,12 +225,20 @@
                 //         window.open(data);
                 //     }
                 // });
-                var tempCanvas = document.createElement("canvas");
-                var ctx = tempCanvas.getContext("2d");
+
                 var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
                 var img = new Image();
                 img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
-                window.open(img.src);
+                img.onload =function() {
+                    var tempCanvas = document.createElement("canvas");
+                    tempCanvas.width = "2550";
+                    tempCanvas.height = "3300";
+                    var ctx = tempCanvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    window.open(tempCanvas.toDataURL('image/png'));
+
+                }
+                // window.open(img.src);
             }
 
             function getCanvas() {
