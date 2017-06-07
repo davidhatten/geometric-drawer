@@ -219,13 +219,6 @@
             }
 
             function exportCanvas() {
-                // var canvas = getCanvas();
-                // var imgUrl = canvas.toDataURL("image/png", {
-                //     callback: function(data){
-                //         window.open(data);
-                //     }
-                // });
-
                 var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
                 var img = new Image();
                 img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
@@ -235,10 +228,28 @@
                     tempCanvas.height = "3300";
                     var ctx = tempCanvas.getContext("2d");
                     ctx.drawImage(img, 0, 0);
-                    window.open(tempCanvas.toDataURL('image/png'));
 
+                    var sUrl = tempCanvas.toDataURL('image/png');
+                    var link = document.createElement('a');
+                    link.href = sUrl;
+                    link.setAttribute('target','_blank');
+
+                    if (link.download !== undefined) {
+                        //Set HTML5 download attribute. This will prevent file from opening if supported.
+                        var fileName = "geometry.png";
+                        link.download = fileName;
+                    }
+
+                    //Dispatching click event.
+                    if (document.createEvent) {
+                        var e = document.createEvent('MouseEvents');
+                        e.initEvent('click', true, true);
+                        link.dispatchEvent(e);
+                        return true;
+                    }
+                    window.open(sUrl, '_blank');
+                    $(link).remove();
                 }
-                // window.open(img.src);
             }
 
             function getCanvas() {
