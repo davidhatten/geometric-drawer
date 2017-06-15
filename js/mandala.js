@@ -49,6 +49,9 @@ function drawQuadLines(canvas, clickCoords) {
 
         var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
         var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
+        // if you're going to use relative coords, you need an entirely different way of building the path by using t
+        // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
+        // aw crap, which reminds me, I should probably add in the axis options before that.
         drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
         drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
 
