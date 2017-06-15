@@ -1,5 +1,6 @@
 var petalSelectId = "layerStyleselect";
-var controlPointId = "controlPointInput";
+var xControlPointId = "xControlPointInput";
+var yControlPointId = "yControlPointInput";
 var angleOffsetId = "angleOffsetInput";
 var layers = 0;
 var layerStyles = {
@@ -36,17 +37,20 @@ function drawQuadLines(canvas, clickCoords) {
 
     radius = parseInt($("#"+innerRadiusId).val());
     var outerRadius = parseInt($("#"+outerRadiusId).val());
-    var controlPoint = parseInt($("#"+controlPointId).val());
-
+    var xControlPoint = parseInt($("#"+xControlPointId).val());
+    var yControlPoint = parseInt($(`#${yControlPointId}`).val());
     while (angle < 360) {
         var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
         var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
 
-        var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, controlPoint);
-        var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -controlPoint);
+        // var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, controlPoint);
+        // var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -controlPoint);
 
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp1.x, perp1.y, outerEdgePoint.x, outerEdgePoint.y)
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp2.x, perp2.y, outerEdgePoint.x, outerEdgePoint.y)
+
+        var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
+        var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
 
         angle += 30;
     }
@@ -123,16 +127,27 @@ function setControlPointOptions(element, classNames) {
 
     addClasses(row, classNames);
 
-    var column = createColumnDiv();
-    var controlPointLabel = createLabel("Control Point Distance (px):");
-    var controlPointElement = document.createElement("input");
-    controlPointElement.id = controlPointId;
-    controlPointElement.type = "number";
-    controlPointElement.value = 100;
+    var xColumn = createColumnDiv();
+    var xControlPointLabel = createLabel("Control Point X Offset (px):");
+    var xControlPointElement = document.createElement("input");
+    xControlPointElement.id = xControlPointId;
+    xControlPointElement.type = "number";
+    xControlPointElement.value = 100;
 
-    column.append(controlPointLabel);
-    column.append(controlPointElement);
-    row.append(column);
+    xColumn.append(xControlPointLabel);
+    xColumn.append(xControlPointElement);
+    row.append(xColumn);
+
+    var yColumn = createColumnDiv();
+    var yControlPointLabel = createLabel("Control Point Y Offset (px)");
+    var yControlPointElement = document.createElement("input");
+    yControlPointElement.id = yControlPointId;
+    yControlPointElement.type = "number";
+    yControlPointElement.value = 100;
+
+    yColumn.append(yControlPointLabel);
+    yColumn.append(yControlPointElement);
+    row.append(yColumn);
 
     row.insertAfter(element);
 

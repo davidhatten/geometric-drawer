@@ -151,7 +151,7 @@ function drawCircle(canvas, x, y) {
         A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
-    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0"});
+    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: "circle"});
     // Well this is a leaky little bit of info isn't it?
     usedCenters[usedCenters.length] = circle;
 
@@ -190,7 +190,7 @@ function drawLine(canvas, startX, startY, endX, endY) {
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var ctx = Snap(canvas);
     var curve = ctx.path(` M ${sX} ${sY}
-            Q ${cX} ${cY} ${eX} ${eY}
+            q ${cX} ${cY} ${eX} ${eY}
         `);
     curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
 }
