@@ -116,9 +116,8 @@ function changeMandalaOptions(element) {
 }
 
 function drawQuadLayerOptions(element) {
-    var innerRadRow = setInnerRadiusOptions(element, ["mandalaOptionRow"]);
-    var outerRadRow = setOuterRadiusOptions(innerRadRow, ["mandalaOptionRow"]);
-    var controlPointRow = setControlPointOptions(outerRadRow, ["mandalaOptionRow"]);
+    var innerOuterRadRow = setInnerOuterRadiusOptions(element, ["mandalaOptionRow"]);
+    var controlPointRow = setControlPointOptions(innerOuterRadRow, ["mandalaOptionRow"]);
 }
 
 function drawCircleLayerOptions(element) {
@@ -137,6 +136,7 @@ function setControlPointOptions(element, classNames) {
     xControlPointElement.type = "number";
     xControlPointElement.value = 100;
 
+    xColumn.addClass("large-6");
     xColumn.append(xControlPointLabel);
     xColumn.append(xControlPointElement);
     row.append(xColumn);
@@ -148,6 +148,7 @@ function setControlPointOptions(element, classNames) {
     yControlPointElement.type = "number";
     yControlPointElement.value = 100;
 
+    yColumn.addClass("large-6");
     yColumn.append(yControlPointLabel);
     yColumn.append(yControlPointElement);
     row.append(yColumn);
@@ -155,4 +156,43 @@ function setControlPointOptions(element, classNames) {
     row.insertAfter(element);
 
     return row;
+}
+
+function setInnerOuterRadiusOptions(element, classNames) {
+    var row = createRowDiv();
+
+    addClasses(row, classNames);
+
+    var column = createColumnDiv();
+    var radiusLabel = createLabel("Inner Radius (px):");
+    var radiusElement = document.createElement("input");
+    radiusElement.id = innerRadiusId;
+    radiusElement.type = "number";
+    radiusElement.value = 200;
+
+    column.addClass("large-6");
+    column.append(radiusLabel);
+    column.append(radiusElement);
+    row.append(column);
+
+    var outerColumn = createColumnDiv();
+    var outerRadiusLabel = createLabel("Outer Radius (px):");
+    var outerRadiusElement = document.createElement("input");
+    outerRadiusElement.id = outerRadiusId;
+    outerRadiusElement.type = "number";
+    outerRadiusElement.value = 300;
+
+    outerColumn.addClass("large-6");
+    outerColumn.append(outerRadiusLabel);
+    outerColumn.append(outerRadiusElement);
+    row.append(outerColumn);
+
+    row.insertAfter(element);
+
+    return row;
+}
+
+
+function setAxisOptions(element, classNames) {
+
 }
