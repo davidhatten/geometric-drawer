@@ -30,7 +30,6 @@ function drawCircleLines(canvas, clickCoords) {
 function drawQuadLines(canvas, clickCoords) {
     // TODO: axis subdivision options
     // TODO: petal warping options
-    // TODO: outer radius option
     var angle = 0;
     var angleIncrement = 30;
     var x = clickCoords.x;
@@ -46,28 +45,32 @@ function drawQuadLines(canvas, clickCoords) {
     var path = startPath(bootstrapInnerStart.x, bootstrapInnerStart.y);
     var bootstrapXEnd = bootstrapOuterStart.x - bootstrapInnerStart.x;
     var bootstrapYEnd = bootstrapOuterStart.y - bootstrapInnerStart.y;
-    
+    console.log("my path is ", path);
+
     // 0 degrees starts at the x axis, so horizontal
     // This means that the y value for the control point is going in the x direction
     // The x value is going along the positive and negative y directions
-    path = addQuadCurve(yControlPoint, xControlPoint, bootstrapXEnd, bootstrapYEnd);
-    path = addQuadCurve(yControlPoint, -xControlPoint, bootstrapXEnd, bootstrapYEnd);
+    path = addQuadCurve(yControlPoint, xControlPoint, bootstrapXEnd, bootstrapYEnd, path);
+    path = moveTo(bootstrapInnerStart.x, bootstrapInnerStart.y, path);
+    path = addQuadCurve(yControlPoint, -xControlPoint, bootstrapXEnd, bootstrapYEnd, path);
+    console.log("added some curves, my path is now ", path);
     angle += angleIncrement;
 
-    while (angle < 360) {
-        var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
-        var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
+    writePath(path, canvas);
+    // while (angle < 360) {
+    //     var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
+    //     var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
 
-        var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
-        var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
-        // if you're going to use relative coords, you need an entirely different way of building the path by using t
-        // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
-        // aw crap, which reminds me, I should probably add in the axis options before that.
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
+    //     var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
+    //     var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
+    //     // if you're going to use relative coords, you need an entirely different way of building the path by using t
+    //     // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
+    //     // aw crap, which reminds me, I should probably add in the axis options before that.
+    //     drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
+    //     drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
 
-        angle += angleIncrement;
-    }
+    //     angle += angleIncrement;
+    // }
 }
 
 function populateSelectWithMapValue(select, options) {

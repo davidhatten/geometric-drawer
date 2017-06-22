@@ -16,7 +16,7 @@ function addCircle(x, y, radius, path) {
 }
 
 function addQuadCurve(controlX, controlY, endX, endY, path) {
-    return `${path} Q ${controlX} ${controlY} ${endX} ${endY}`
+    return `${path} q ${controlX} ${controlY} ${endX} ${endY}`
 }
 
 function addSmoothCurve(endX, endY, path) {
