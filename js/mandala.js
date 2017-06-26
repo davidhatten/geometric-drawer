@@ -43,17 +43,17 @@ function drawQuadLines(canvas, clickCoords) {
         var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
         var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
 
-        // var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, controlPoint);
-        // var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -controlPoint);
-
+        // This is now in a weird flux state that doesn't accurately reperesent the UX
+        var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, xControlPoint);
+        var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint);
 
         var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
         var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
         // if you're going to use relative coords, you need an entirely different way of building the path by using t
         // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
         // aw crap, which reminds me, I should probably add in the axis options before that.
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp1.x, perp1.y, outerEdgePoint.x, outerEdgePoint.y);
+        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp2.x, perp2.y, outerEdgePoint.x, outerEdgePoint.y);
 
         angle += 30;
     }

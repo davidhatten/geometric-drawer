@@ -149,7 +149,7 @@ function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var ctx = Snap(canvas);
     // Note the lowercase q, this is relative
     var curve = ctx.path(` M ${sX} ${sY}
-            q ${cX} ${cY} ${eX} ${eY}
+            Q ${cX} ${cY} ${eX} ${eY}
         `);
     curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
 }
