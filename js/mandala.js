@@ -32,7 +32,6 @@ function drawQuadLines(canvas, clickCoords) {
     // TODO: petal warping options
     // TODO: outer radius option
     var angle = 0;
-    var angleIncrement = 30;
     var x = clickCoords.x;
     var y = clickCoords.y;
 
@@ -40,23 +39,13 @@ function drawQuadLines(canvas, clickCoords) {
     var outerRadius = parseInt($("#"+outerRadiusId).val());
     var xControlPoint = parseInt($("#"+xControlPointId).val());
     var yControlPoint = parseInt($(`#${yControlPointId}`).val());
-
-    var bootstrapInnerStart = getPointOnCircle(x, y, radius, 0, angle);
-    var bootstrapOuterStart = getPointOnCircle(x, y, outerRadius, 0, angle);
-    var path = startPath(bootstrapInnerStart.x, bootstrapInnerStart.y);
-    var bootstrapXEnd = bootstrapOuterStart.x - bootstrapInnerStart.x;
-    var bootstrapYEnd = bootstrapOuterStart.y - bootstrapInnerStart.y;
-    
-    // 0 degrees starts at the x axis, so horizontal
-    // This means that the y value for the control point is going in the x direction
-    // The x value is going along the positive and negative y directions
-    path = addQuadCurve(yControlPoint, xControlPoint, bootstrapXEnd, bootstrapYEnd);
-    path = addQuadCurve(yControlPoint, -xControlPoint, bootstrapXEnd, bootstrapYEnd);
-    angle += angleIncrement;
-
     while (angle < 360) {
         var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
         var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
+
+        // var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, controlPoint);
+        // var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -controlPoint);
+
 
         var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
         var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
@@ -66,7 +55,7 @@ function drawQuadLines(canvas, clickCoords) {
         drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, xControlPoint, yControlPoint, xEndPoint, yEndPoint);
         drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint, -yControlPoint, xEndPoint, yEndPoint);
 
-        angle += angleIncrement;
+        angle += 30;
     }
 }
 
