@@ -48,48 +48,6 @@ function setCircleRadiusOptions(element, classNames) {
     return row;
 }
 
-function setInnerRadiusOptions(element, classNames) {
-    var row = createRowDiv();
-
-    addClasses(row, classNames);
-
-    var column = createColumnDiv();
-    var radiusLabel = createLabel("Inner Radius (px):");
-    var radiusElement = document.createElement("input");
-    radiusElement.id = innerRadiusId;
-    radiusElement.type = "number";
-    radiusElement.value = 200;
-
-    column.append(radiusLabel);
-    column.append(radiusElement);
-    row.append(column);
-
-    row.insertAfter(element);
-
-    return row;
-}
-
-function setOuterRadiusOptions(element, classNames) {
-    var row = createRowDiv();
-
-    addClasses(row, classNames);
-
-    var column = createColumnDiv();
-    var radiusLabel = createLabel("Outer Radius (px):");
-    var radiusElement = document.createElement("input");
-    radiusElement.id = outerRadiusId;
-    radiusElement.type = "number";
-    radiusElement.value = 300;
-
-    column.append(radiusLabel);
-    column.append(radiusElement);
-    row.append(column);
-
-    row.insertAfter(element);
-
-    return row;
-}
-
 function addClasses(element, classNames) {
     if (classNames !== undefined) {
         for (var i = 0; i < classNames.length; i++) {
@@ -122,7 +80,7 @@ function createRowDiv() {
 }
 
 function createColumnDiv() {
-    var column = $("<div>", {"class": "column"});
+    var column = $("<div>", {"class": "columns"});
     return column;
 }
 
@@ -151,7 +109,7 @@ function drawCircle(canvas, x, y) {
         A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
-    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0"});
+    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: "circle"});
     // Well this is a leaky little bit of info isn't it?
     usedCenters[usedCenters.length] = circle;
 
@@ -189,6 +147,7 @@ function drawLine(canvas, startX, startY, endX, endY) {
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var ctx = Snap(canvas);
+    // Note the lowercase q, this is relative
     var curve = ctx.path(` M ${sX} ${sY}
             Q ${cX} ${cY} ${eX} ${eY}
         `);
