@@ -40,26 +40,18 @@ function drawQuadLines(canvas, clickCoords) {
     var xControlPoint = parseInt($("#"+xControlPointId).val());
     var yControlPoint = parseInt($(`#${yControlPointId}`).val());
     while (angle < 360) {
+        // First get all the points on the 0 angle line (x slope = 0)
         var innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
         var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
 
-        // This is now in a weird flux state that doesn't accurately reperesent the UX
-        var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, xControlPoint);
-        var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint);
+        var leftControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y - xControlPoint};
+        var rightControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y + xControlPoint};
 
-
-
-        var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
-        var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
-        // if you're going to use relative coords, you need an entirely different way of building the path by using t
-        // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
-        // aw crap, which reminds me, I should probably add in the axis options before that.
-
-        var controlPoint = {x: yControlPoint, y: -xControlPoint};
+        // Now rotate all the points to the correct spot and draw it
         drawSinglePetal(canvas,
             rotateAroundPoint(x, y, innerEdgePoint, angle),
-            rotateAroundPoint(x, y, perp1, angle),
-            rotateAroundPoint(x, y, perp2, angle),
+            rotateAroundPoint(x, y, leftControlPoint, angle),
+            rotateAroundPoint(x, y, rightControlPoint, angle),
             rotateAroundPoint(x, y, outerEdgePoint, angle));
 
         angle += 30;
@@ -73,7 +65,6 @@ function drawSinglePetal(canvas, innerEdgePoint, controlPointLeft, controlPointR
 }
 
 function rotateAroundPoint(xCenter, yCenter, rotatePoint, angle) {
-    console.log("rotatePoint is", rotatePoint);
     var sin = sinDeg(angle);
     var cos = cosDeg(angle);
 
@@ -84,7 +75,6 @@ function rotateAroundPoint(xCenter, yCenter, rotatePoint, angle) {
     result.x += xCenter;
     result.y += yCenter;
 
-    console.log("I rotated a point", result);
     return result;
 }
 
@@ -183,7 +173,7 @@ function setControlPointOptions(element, classNames) {
     var yControlPointElement = document.createElement("input");
     yControlPointElement.id = yControlPointId;
     yControlPointElement.type = "number";
-    yControlPointElement.value = 100;
+    yControlPointElement.value = 15;
 
     yColumn.addClass("large-6");
     yColumn.append(yControlPointLabel);
