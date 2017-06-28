@@ -40,23 +40,60 @@ function drawQuadLines(canvas, clickCoords) {
     var xControlPoint = parseInt($("#"+xControlPointId).val());
     var yControlPoint = parseInt($(`#${yControlPointId}`).val());
     while (angle < 360) {
-        var innerEdgePoint = getPointOnCircle(x, y, radius, 0, angle);
-        var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, angle);
+        var innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
+        var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
 
         // This is now in a weird flux state that doesn't accurately reperesent the UX
         var perp1 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, xControlPoint);
         var perp2 = getPerpendicularLine(x, y, innerEdgePoint.x, innerEdgePoint.y, -xControlPoint);
+
+
 
         var xEndPoint = outerEdgePoint.x - innerEdgePoint.x;
         var yEndPoint = outerEdgePoint.y - innerEdgePoint.y;
         // if you're going to use relative coords, you need an entirely different way of building the path by using t
         // probably need to build a stack using a "drawQuadLayer" or something better because naming is getting shitty
         // aw crap, which reminds me, I should probably add in the axis options before that.
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp1.x, perp1.y, outerEdgePoint.x, outerEdgePoint.y);
-        drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, perp2.x, perp2.y, outerEdgePoint.x, outerEdgePoint.y);
+
+        var controlPoint = {x: yControlPoint, y: -xControlPoint};
+        drawSinglePetal(canvas,
+            rotateAroundPoint(x, y, innerEdgePoint, angle),
+            rotateAroundPoint(x, y, perp1, angle),
+            rotateAroundPoint(x, y, perp2, angle),
+            rotateAroundPoint(x, y, outerEdgePoint, angle));
 
         angle += 30;
     }
+}
+
+function drawSinglePetal(canvas, innerEdgePoint, controlPointLeft, controlPointRight, outerEdgePoint) {
+    // take the data and shift it by angle degrees
+    drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, controlPointLeft.x, controlPointLeft.y, outerEdgePoint.x, outerEdgePoint.y);
+    drawQuadCurve(canvas, innerEdgePoint.x, innerEdgePoint.y, controlPointRight.x, controlPointRight.y, outerEdgePoint.x, outerEdgePoint.y);
+}
+
+function rotateAroundPoint(xCenter, yCenter, rotatePoint, angle) {
+    console.log("rotatePoint is", rotatePoint);
+    var sin = sinDeg(angle);
+    var cos = cosDeg(angle);
+
+    rotatePoint.x -= xCenter;
+    rotatePoint.y -= yCenter;
+
+    result = {x: (rotatePoint.x * cos) - (rotatePoint.y * sin), y: (rotatePoint.x * sin) + (rotatePoint.y * cos)};
+    result.x += xCenter;
+    result.y += yCenter;
+
+    console.log("I rotated a point", result);
+    return result;
+}
+
+function sinDeg(angleInDegrees) {
+    return Math.sin(angleInDegrees * (Math.PI / 180));
+}
+
+function cosDeg(angleInDegrees) {
+    return Math.cos(angleInDegrees * (Math.PI / 180));
 }
 
 function populateSelectWithMapValue(select, options) {
