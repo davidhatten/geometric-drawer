@@ -18,3 +18,8 @@ https://davidhatten.github.io/geometric-drawer/
 * Define circle intersect distance
 * Generate in 8.5"x11" or A4
 * Export to PNG
+
+## Mandala Features
+* Circle
+* Quadratic Curve Leaves
+* More to come!
