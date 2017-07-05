@@ -59,7 +59,38 @@ function drawFlower(canvas, x, y, setRadius, iterations) {
 }
 
 function addHistoryRow(drawingName, drawnLines) {
-    $("#historyTable > tbody:last-child").append(`<tr> <td>${drawingName}</td><td>${lineWidth}</td></tr>`);
+    var historyRow = $(`<tr><td>${drawingName}</td><td>${lineWidth}</td></tr>`)
+    historyRow.hover(
+        function(event) {
+            var row = $(this);
+            // Get the data from the td of the row
+            highlightLines(row.find("td")[0].innerHTML);
+        },
+        function(event) {
+            var row = $(this);
+            unhighlightLines(row.find("td")[0].innerHTML);
+        }
+    );
+
+    $("#historyTable > tbody:last-child").append(historyRow);
+
+    historyData[drawingName] = (drawnLines);
+}
+
+function highlightLines(historyKey) {
+    var linesList =  historyData[historyKey];
+    for (var i = 0; i < linesList.length; i++) {
+        var circle = linesList[i];
+        $(`#drawingCanvas #${circle.id}`).css({stroke: "red"});
+    }
+}
+
+function unhighlightLines(historyKey) {
+        var linesList =  historyData[historyKey];
+    for (var i = 0; i < linesList.length; i++) {
+        var circle = linesList[i];
+        $(`#drawingCanvas #${circle.id}`).css({stroke: "black"});
+    }
 }
 
 function drawPetals(canvas, innerPetals) {

@@ -99,7 +99,7 @@ function drawCircle(canvas, x, y) {
     // ctx.arc(x, y, radius, 0, 2 * Math.PI);
     // ctx.stroke();
     canvas = Snap(canvas);
-    var circleId = `circle${x}${y}`
+    var circleId = `circle${Date.now()}`
     var circle = {x: x, y: y, id:circleId};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);
     var midXY = getPointOnCircle(x, y, radius, 0, 180);

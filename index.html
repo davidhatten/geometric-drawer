@@ -133,6 +133,7 @@
         <script src="js/mandala.js"></script>
         <script type="text/javascript">
             var usedCenters = []; //this is a really gross bit of ugly global state too
+            var historyData = {}; // look more ugly global state
             var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
             var drawingSettings = {
                 flowerOfLife: {
@@ -228,7 +229,12 @@
                 $("#drawingCanvas").empty();
 
                 // Clear the history table
+                clearHistory();
+            }
+
+            function clearHistory() {
                 $("#historyTable > tbody").empty();
+                historyData = [];
             }
 
             function exportCanvas() {
