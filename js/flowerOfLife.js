@@ -54,7 +54,12 @@ function drawFlower(canvas, x, y, setRadius, iterations) {
         outerPetals = drawPetals(canvas, outerPetals).unique();
     }
 
+    addHistoryRow(`Flower Of Life-${Date.now()}`, usedCenters);
     clearCenters();
+}
+
+function addHistoryRow(drawingName, drawnLines) {
+    $("#historyTable > tbody:last-child").append(`<tr> <td>${drawingName}</td><td>${lineWidth}</td></tr>`);
 }
 
 function drawPetals(canvas, innerPetals) {

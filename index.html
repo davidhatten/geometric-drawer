@@ -100,7 +100,7 @@
                         </div>
                         <div class="row">
                             <h6>History</h6>
-                            <table class="hover">
+                            <table class="hover" id="historyTable">
                                 <thead>
                                     <tr>
                                         <th>Drawing</th>
@@ -108,7 +108,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -224,10 +224,11 @@
 
 
             function clearCanvas() {
-                // var canvas = document.getElementById("drawingCanvas");
-                // var ctx = canvas.getContext("2d");
-                // ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // clear the canvas itself
                 $("#drawingCanvas").empty();
+
+                // Clear the history table
+                $("#historyTable > tbody").empty();
             }
 
             function exportCanvas() {

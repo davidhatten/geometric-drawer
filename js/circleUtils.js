@@ -99,8 +99,8 @@ function drawCircle(canvas, x, y) {
     // ctx.arc(x, y, radius, 0, 2 * Math.PI);
     // ctx.stroke();
     canvas = Snap(canvas);
-
-    var circle = {x: x, y: y};
+    var circleId = `circle${x}${y}`
+    var circle = {x: x, y: y, id:circleId};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);
     var midXY = getPointOnCircle(x, y, radius, 0, 180);
 
@@ -109,7 +109,7 @@ function drawCircle(canvas, x, y) {
         A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
-    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: "circle"});
+    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: circleId});
     // Well this is a leaky little bit of info isn't it?
     usedCenters[usedCenters.length] = circle;
 
