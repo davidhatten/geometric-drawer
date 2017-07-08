@@ -1,12 +1,12 @@
-var petalSelectId = "layerStyleselect";
-var xControlPointId = "xControlPointInput";
-var yControlPointId = "yControlPointInput";
-var angleOffsetId = "angleOffsetInput";
-var layers = 0;
-var layerStyles = {
+const petalSelectId = "layerStyleselect";
+const xControlPointId = "xControlPointInput";
+const yControlPointId = "yControlPointInput";
+const angleOffsetId = "angleOffsetInput";
+const layerStyles = {
     "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
     "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines}
 };
+const possibleAxes = [1,2,3,4,5,6,8,9,10,12,15,18,20,24,30,36,40,45,60,72,90,120,180,360];
 
 
 function drawMandalaEventListener(event) {
@@ -16,7 +16,6 @@ function drawMandalaEventListener(event) {
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
 
     setLineWidth();
-
     layerStyles[selectedLayer]["draw"](canvas, xyCoords);
 
     history.addHistoryRow(`Mandala-${selectedLayer}-${Date.now()}`,
@@ -92,18 +91,32 @@ function cosDeg(angleInDegrees) {
     return Math.cos(angleInDegrees * (Math.PI / 180));
 }
 
-function populateSelectWithMapValue(select, options) {
+function populateSelectWithMapKeys(select, options) {
     for (var option in options) {
         if (options.hasOwnProperty(option)) {
             var optionElement = document.createElement("option");
             optionElement.value = option;
             optionElement.text = option;
 
-            select.appendChild(optionElement);
+            select.append(optionElement);
         }
     }
 }
 
+function populateSelectWithArrayValues(select, options, selectedOptionValue) {
+    for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
+        const optionElement = $("<option></option>");
+        const option = options[optionIndex];
+        optionElement.val(option);
+        optionElement.text(option);
+
+        select.append(optionElement);
+    }
+
+    if (selectedOptionValue !== undefined) {
+        select.val(selectedOptionValue);
+    }
+}
 
 function previewMandalaEventListener(event) {
     //TODO: This should probably update the size based on your current radius
@@ -113,7 +126,6 @@ function setMandalaOptions(element) {
 
     // Layer style selector
     var layerStylesRow = setLayerSelectionOptions(element);
-    console.log("the row is ", layerStylesRow);
     // We want to insert the options after the select
     // and we default at the circle layer
     drawCircleLayerOptions(layerStylesRow);
@@ -125,10 +137,10 @@ function setLayerSelectionOptions(element) {
     var layerStylesColumn = createColumnDiv();
     var layerSelectText = createLabel("Layer Style:")
     // TODO: convert all creations and lookups to jquery for consistency
-    var layerSelectElement = document.createElement("select");
-    layerSelectElement.id = "layerStyleSelect";
-    layerSelectElement.onchange = changeMandalaOptions;
-    populateSelectWithMapValue(layerSelectElement, layerStyles);
+    var layerSelectElement = $("<select></select>");
+    layerSelectElement.attr("id", "layerStyleSelect");
+    layerSelectElement.change(changeMandalaOptions);
+    populateSelectWithMapKeys(layerSelectElement, layerStyles);
 
     layerStylesColumn.append(layerSelectText);
     layerStylesColumn.append(layerSelectElement);
@@ -139,19 +151,42 @@ function setLayerSelectionOptions(element) {
 }
 
 function changeMandalaOptions(element) {
-    $('.mandalaOptionRow').remove();
-
     var selectedLayer = element.target.value;
+    console.log("selected layer is", selectedLayer);
+
+    $('.mandalaOptionRow').remove();
     layerStyles[selectedLayer]["options"]($("#layerStyleRow"));
 }
 
 function drawQuadLayerOptions(element) {
-    var innerOuterRadRow = setInnerOuterRadiusOptions(element, ["mandalaOptionRow"]);
-    var controlPointRow = setControlPointOptions(innerOuterRadRow, ["mandalaOptionRow"]);
+    const innerOuterRadRow = setInnerOuterRadiusOptions(element, ["mandalaOptionRow"]);
+    const controlPointRow = setControlPointOptions(innerOuterRadRow, ["mandalaOptionRow"]);
+    const axisRow = setAxisOptions(controlPointRow, ["mandalaOptionRow"]);
 }
 
 function drawCircleLayerOptions(element) {
     setCircleRadiusOptions(element, ["mandalaOptionRow"]);
+}
+
+function setAxisOptions(element, classNames) {
+    const row = createRowDiv();
+
+    addClasses(row, classNames);
+
+    const numOfAxesColumn = createColumnDiv();
+    const numOfAxesLabel = createLabel("Number of Axes:");
+    const numOfAxesSelectElement = $("<select></select>");
+    numOfAxesSelectElement.attr("id", "numberOfAxesSelect");
+    populateSelectWithArrayValues(numOfAxesSelectElement, possibleAxes, 12);
+
+    numOfAxesColumn.append(numOfAxesLabel);
+    numOfAxesColumn.append(numOfAxesSelectElement);
+
+    row.append(numOfAxesColumn);
+
+    row.insertAfter(element);
+
+    return row;
 }
 
 function setControlPointOptions(element, classNames) {
@@ -220,9 +255,4 @@ function setInnerOuterRadiusOptions(element, classNames) {
     row.insertAfter(element);
 
     return row;
-}
-
-
-function setAxisOptions(element, classNames) {
-
 }
