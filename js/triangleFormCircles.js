@@ -1,6 +1,5 @@
 // var triangleCornerAngles = [9/6, 1/6, 5/6];
 var triangleCornerAngles = [];
-var radiusOffsetId = "radiusOffset";
 var degreeOfCirclesId = "degreeOfCircles";
 var canvas;
 
@@ -15,6 +14,9 @@ function drawTriangleFormEventListener(event) {
     setLineWidth();
 
     drawTriangleForm(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations), parseInt(radiusOffset), parseInt(degreeOfCircles));
+
+    history.addHistoryRow(`Trangle Form-${Date.now()}`, usedCenters, {});
+    clearCenters();
 }
 
 function previewTriangleFormEventListener(event) {
@@ -52,8 +54,6 @@ function drawTriangleForm(canvas, x, y, setRadius, iterations, radiusOffset, deg
     for (let i = 0; i < iterations; i++) {
         outerPetals = drawTrianglePetals(outerPetals, radiusOffset);
     }
-
-    clearCenters();
 }
 
 function drawTrianglePetals(innerPetals, radiusOffset) {
