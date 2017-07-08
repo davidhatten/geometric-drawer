@@ -2,6 +2,7 @@ const petalSelectId = "layerStyleselect";
 const xControlPointId = "xControlPointInput";
 const yControlPointId = "yControlPointInput";
 const angleOffsetId = "angleOffsetInput";
+const numberOfAxesId = "numberOfAxesSelect";
 const layerStyles = {
     "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
     "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines}
@@ -14,9 +15,10 @@ function drawMandalaEventListener(event) {
     canvas = this;
     var selectedLayer = $("#layerStyleSelect").val();
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    var numOfAxes = $(`#${numberOfAxesId}`).find(":selected").val();
 
     setLineWidth();
-    layerStyles[selectedLayer]["draw"](canvas, xyCoords);
+    layerStyles[selectedLayer]["draw"](canvas, xyCoords, numOfAxes);
 
     history.addHistoryRow(`Mandala-${selectedLayer}-${Date.now()}`,
                             usedCenters,
@@ -26,31 +28,33 @@ function drawMandalaEventListener(event) {
     clearCenters();
 }
 
-function drawCircleLines(canvas, clickCoords) {
+function drawCircleLines(canvas, clickCoords, numOfAxes) {
     radius = parseInt(document.getElementById("circleRadius").value);
 
     drawCircle(canvas, clickCoords.x, clickCoords.y);
 }
 
-function drawQuadLines(canvas, clickCoords) {
+function drawQuadLines(canvas, clickCoords, numOfAxes) {
     // TODO: axis subdivision options
     // TODO: petal warping options
     // TODO: outer radius option
     var angle = 0;
-    var x = clickCoords.x;
-    var y = clickCoords.y;
+    const angleIncrement = 360/parseInt(numOfAxes);
+    console.log("angle increment is", angleIncrement);
+    const x = clickCoords.x;
+    const y = clickCoords.y;
 
     radius = parseInt($("#"+innerRadiusId).val());
-    var outerRadius = parseInt($("#"+outerRadiusId).val());
-    var xControlPoint = parseInt($("#"+xControlPointId).val());
-    var yControlPoint = parseInt($(`#${yControlPointId}`).val());
+    const outerRadius = parseInt($("#"+outerRadiusId).val());
+    const xControlPoint = parseInt($("#"+xControlPointId).val());
+    const yControlPoint = parseInt($(`#${yControlPointId}`).val());
     while (angle < 360) {
         // First get all the points on the 0 angle line (x slope = 0)
-        var innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
-        var outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
+        const innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
+        const outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
 
-        var leftControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y - xControlPoint};
-        var rightControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y + xControlPoint};
+        const leftControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y - xControlPoint};
+        const rightControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y + xControlPoint};
 
         // Now rotate all the points to the correct spot and draw it
         drawSinglePetal(canvas,
@@ -59,7 +63,7 @@ function drawQuadLines(canvas, clickCoords) {
             rotateAroundPoint(x, y, rightControlPoint, angle),
             rotateAroundPoint(x, y, outerEdgePoint, angle));
 
-        angle += 30;
+        angle += angleIncrement;
     }
 }
 
@@ -176,7 +180,7 @@ function setAxisOptions(element, classNames) {
     const numOfAxesColumn = createColumnDiv();
     const numOfAxesLabel = createLabel("Number of Axes:");
     const numOfAxesSelectElement = $("<select></select>");
-    numOfAxesSelectElement.attr("id", "numberOfAxesSelect");
+    numOfAxesSelectElement.attr("id", numberOfAxesId);
     populateSelectWithArrayValues(numOfAxesSelectElement, possibleAxes, 12);
 
     numOfAxesColumn.append(numOfAxesLabel);
