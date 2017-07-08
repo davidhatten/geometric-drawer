@@ -4,13 +4,13 @@ const yControlPointId = "yControlPointInput";
 const angleOffsetId = "angleOffsetInput";
 const numberOfAxesId = "numberOfAxesSelect";
 const axisOffsetId = "axisOffsetInput";
+const dotRadiusId = "dotRadiusInput";
 const layerStyles = {
     "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
     "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines},
     "Dots": {"options": drawDotLayerOptions, "draw": drawDotLines},
 };
 const possibleAxes = [1,2,3,4,5,6,8,9,10,12,15,18,20,24,30,36,40,45,60,72,90,120,180,360];
-
 
 function drawMandalaEventListener(event) {
     // This is effectively a passthrough to the layerStyles data structure
@@ -32,7 +32,7 @@ function drawMandalaEventListener(event) {
 }
 
 function drawDotLines(canvas, clickCoords, numOfAxes, axisOffset) {
-    radius = parseInt($(`#${circleRadiusId}`).val());
+    const radius = parseInt($(`#${circleRadiusId}`).val());
     const dotRadius = parseInt($(`#${dotRadiusId}`).val());
 
     var angle = axisOffset ? parseInt(axisOffset) : 0;
@@ -42,14 +42,16 @@ function drawDotLines(canvas, clickCoords, numOfAxes, axisOffset) {
     while (angle < maxAngle) {
         const drawCenter = getPointOnCircle(clickCoords.x, clickCoords.y, radius, 0, angle);
 
-        drawCircle(drawCenter.x, drawCenter.y)
+        drawCircle(canvas, dotRadius, drawCenter.x, drawCenter.y);
+
+        angle += angleIncrement;
     }
 }
 
 function drawCircleLines(canvas, clickCoords) {
-    radius = parseInt($(`#${circleRadiusId}`).val());
+    const radius = parseInt($(`#${circleRadiusId}`).val());
 
-    drawCircle(canvas, clickCoords.x, clickCoords.y);
+    drawCircle(canvas, radius, clickCoords.x, clickCoords.y);
 }
 
 function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
@@ -62,7 +64,7 @@ function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
     const x = clickCoords.x;
     const y = clickCoords.y;
 
-    radius = parseInt($("#"+innerRadiusId).val());
+    const radius = parseInt($("#"+innerRadiusId).val());
     const outerRadius = parseInt($("#"+outerRadiusId).val());
     const xControlPoint = parseInt($("#"+xControlPointId).val());
     const yControlPoint = parseInt($(`#${yControlPointId}`).val());
@@ -235,7 +237,7 @@ function setDotRadiusOptions(element, classNames) {
     const dotRadiusColumn = createColumnDiv();
     const dotRadiusLabel = createLabel("Dot radius (px):");
     const dotRadiusInput = $("<input>");
-    dotOffsetInput.attr({"type": "number", "id": dotRadiusId, "value": 20});
+    dotRadiusInput.attr({"type": "number", "id": dotRadiusId, "value": 20});
 
     dotRadiusColumn.append(dotRadiusLabel);
     dotRadiusColumn.append(dotRadiusInput);
