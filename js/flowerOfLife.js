@@ -40,7 +40,6 @@ function drawFlower(canvas, radius, x, y, iterations) {
     var innerPetals = [];
     clearCenters();
     //draw one circle
-    console.log(`trying to draw a flower ${radius} ${x} ${y}`);
     var bootstrap1 = drawCircle(canvas, radius, x, y);
 
     //draw second circle, centered anywhere on the first
@@ -48,7 +47,6 @@ function drawFlower(canvas, radius, x, y, iterations) {
     innerPetals[innerPetals.length] = bootstrap2;
 
     var centerPoints = intersection(bootstrap1, bootstrap2);
-    console.log(`center points after intersection are  ${centerPoints.x} ${centerPoints.y}`);
 
     //Every other circle is centered on the intersection of the previous two
     for (let i = 0; i < 5; i++) {
