@@ -2,18 +2,19 @@
 var triangleCornerAngles = [];
 var degreeOfCirclesId = "degreeOfCircles";
 var canvas;
+var radius;
 
 function drawTriangleFormEventListener(event) {
     canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     var iterations = document.getElementById("circleIterations").value;
-    var radius = document.getElementById("circleRadius").value;
     var radiusOffset = document.getElementById(radiusOffsetId).value;
     var degreeOfCircles = document.getElementById(degreeOfCirclesId).value;
+    radius = parseInt($(`#${circleRadiusId}`).val());
 
     setLineWidth();
 
-    drawTriangleForm(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations), parseInt(radiusOffset), parseInt(degreeOfCircles));
+    drawTriangleForm(canvas, xyCoords.x, xyCoords.y, parseInt(iterations), parseInt(radiusOffset), parseInt(degreeOfCircles));
 
     history.addHistoryRow(`Trangle Form-${Date.now()}`, usedCenters, {});
     clearCenters();
@@ -23,12 +24,12 @@ function previewTriangleFormEventListener(event) {
     var iterations = parseInt(document.getElementById("circleIterations").value);
     var radiusOffset = parseInt(document.getElementById(radiusOffsetId).value);
     var multipiler = (iterations+1) * 2;
-    calculateVariableRadiusOffsetPreview(event, radiusOffset, multipiler);
+    radius = parseInt($(`#${circleRadiusId}`).val());
+    calculateVariableRadiusOffsetPreview(event, radius, radiusOffset, multipiler);
 }
 
 
-function drawTriangleForm(canvas, x, y, setRadius, iterations, radiusOffset, degree) {
-    radius = setRadius;
+function drawTriangleForm(canvas, x, y, iterations, radiusOffset, degree) {
     usedCenters = [];
     triangleCornerAngles = [];
     var innerPetals = [];
@@ -65,7 +66,7 @@ function drawTrianglePetals(innerPetals, radiusOffset) {
 
             var circle = {x:sqrX, y:sqrY};
             if (usedCentersContains(circle) === false) {
-                outerPetals.push(drawCircle(canvas, sqrX, sqrY));
+                outerPetals.push(drawCircle(canvas, radius, sqrX, sqrY));
                 usedCenters.push(circle);
             }
         }
