@@ -27,14 +27,15 @@ var goodDesigns = {
     180: [0],
     360: [0]
 }
+var radius;
 
 function drawTorusEventListener(event) {
     var canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radius = parseFloat(document.getElementById("circleRadius").value);
     var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);
     var rotation = Math.abs(parseFloat(document.getElementById(rotationElementId).value));
     var skipFactor = Math.abs(parseInt(document.getElementById(skipElementId).value));
+    radius = parseInt($(`#${circleRadiusId}`).val());
 
     setLineWidth();
 
@@ -50,7 +51,8 @@ function drawTorusEventListener(event) {
 
 function previewTorusEventListener(event) {
     var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);
-    calculateVariableRadiusOffsetPreview(event, radiusOffset, 4);
+    radius = parseInt($(`#${circleRadiusId}`).val());
+    calculateVariableRadiusOffsetPreview(event, radius, radiusOffset, 4);
 }
 
 function updateSkipFactors() {
@@ -123,8 +125,7 @@ function setTorusOptions(element) {
     setCircleRadiusOptions(element);
 }
 
-function drawTorus(canvas, x, y, setRadius, radiusOffset, rotation, skipFactor) {
-    radius = setRadius;
+function drawTorus(canvas, x, y, radius, radiusOffset, rotation, skipFactor) {
     var centerCircle = {x: x, y: y};
 
     var angle = rotation;
@@ -135,7 +136,7 @@ function drawTorus(canvas, x, y, setRadius, radiusOffset, rotation, skipFactor) 
             skipCounter = 0;
         } else {
             var circlePoint = getPointOnCircle(x, y, radius, radiusOffset, angle)
-            drawCircle(canvas, circlePoint.x, circlePoint.y);
+            drawCircle(canvas, radius, circlePoint.x, circlePoint.y);
             skipCounter++;
         }
 

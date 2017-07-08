@@ -1,15 +1,16 @@
 // import * as circleUtil from "circleUtils";
 var canvas;
+var radius;
 
 function drawFlowerEventListener(event) {
     canvas = document.getElementById("drawingCanvas"); //Somehow this is the canvas, I kind of get why
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radius = document.getElementById(circleRadiusId).value;
+    radius = parseInt($(`#${circleRadiusId}`).val());
     var iterations = document.getElementById(iterateElementId).value;
 
     setLineWidth();
 
-    drawFlower(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations));
+    drawFlower(canvas, radius, xyCoords.x, xyCoords.y, parseInt(iterations));
 
     history.addHistoryRow(`Flower Of Life-${Date.now()}`,
                             usedCenters,
@@ -22,7 +23,7 @@ function drawFlowerEventListener(event) {
 
 function previewFlowerEventListener(event) {
     var canvas = document.getElementById("drawingCanvas");
-    var radius = parseInt(document.getElementById(circleRadiusId).value);
+    radius = parseInt($(`#${circleRadiusId}`).val());
     var previewElement = document.getElementById("diameterAnchor");
 
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
@@ -35,22 +36,21 @@ function previewFlowerEventListener(event) {
     previewElement.innerHTML = inchesText;
 }
 
-function drawFlower(canvas, x, y, setRadius, iterations) {
+function drawFlower(canvas, radius, x, y, iterations) {
     var innerPetals = [];
     clearCenters();
-    radius = setRadius;
     //draw one circle
-    var bootstrap1 = drawCircle(canvas, x, y);
+    var bootstrap1 = drawCircle(canvas, radius, x, y);
 
     //draw second circle, centered anywhere on the first
-    var bootstrap2 = drawCircle(canvas, x, y+radius);
+    var bootstrap2 = drawCircle(canvas, radius, x, y+radius);
     innerPetals[innerPetals.length] = bootstrap2;
 
     var centerPoints = intersection(bootstrap1, bootstrap2);
 
     //Every other circle is centered on the intersection of the previous two
     for (let i = 0; i < 5; i++) {
-        var petal = drawCircle(canvas, centerPoints[0].x, centerPoints[0].y);
+        var petal = drawCircle(canvas, radius, centerPoints[0].x, centerPoints[0].y);
         innerPetals[innerPetals.length] = petal;
 
         centerPoints = intersection(bootstrap1, petal);
@@ -89,7 +89,7 @@ function populateIntersection(canvas, centerPoints) {
     if (centerPoints.length > 0){
         for (let i = 0; i < centerPoints.length; i++) {
             if (centerPoints[i] != undefined && usedCentersContains(centerPoints[i]) === false) {
-                var petal = drawCircle(canvas, centerPoints[i].x, centerPoints[i].y);
+                var petal = drawCircle(canvas, radius, centerPoints[i].x, centerPoints[i].y);
                 outerPetals[outerPetals.length] = petal;
             }
         }

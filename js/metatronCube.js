@@ -1,18 +1,19 @@
 var flowerOfLifeElementId = "includeFOL";
 var drawnCenters = [];
+var radius;
 
 function drawMetatronEventListener(event) {
     var canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radius = document.getElementById("circleRadius").value;
     var radiusOffsetElement = document.getElementById(radiusOffsetId);
     var includeFOL = document.getElementById(flowerOfLifeElementId).checked;
     var radiusOffset = includeFOL === true ? 0 : radiusOffsetElement.value;
     drawnCenters = []
+    radius = parseInt($(`#${circleRadiusId}`).val());
 
     setLineWidth();
 
-    drawMetatronCube(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(radiusOffset), Boolean(includeFOL));
+    drawMetatronCube(canvas, xyCoords.x, xyCoords.y, parseInt(radiusOffset), Boolean(includeFOL));
     //This little trick with the drawn centers is because of the way Flower needs to have clear centers
     // That tiny bit of global state is growing ugly, might want to handle soon
     history.addHistoryRow(`Metatron Cube-${Date.now()}`,
@@ -58,9 +59,8 @@ function setMetatronOptions(element) {
     setCircleRadiusOptions(element);
 }
 
-function drawMetatronCube(canvas, x, y, setRadius, radiusOffset, includeFOL) {
-    radius = setRadius;
-    var center = drawCircle(canvas, x, y);
+function drawMetatronCube(canvas, x, y, radiusOffset, includeFOL) {
+    var center = drawCircle(canvas, radius, x, y);
     var degreesSpacing = 60; //spacing between the arms
     var degreesOffset = 30;
     var innerCircles = drawCircleLayer(canvas, x, y, radiusOffset, 1);
@@ -71,7 +71,7 @@ function drawMetatronCube(canvas, x, y, setRadius, radiusOffset, includeFOL) {
     drawnCenters = usedCenters;
 
     if (includeFOL === true) {
-        drawFlower(canvas, x, y, setRadius, 4);
+        drawFlower(canvas, radius, x, y, 4);
     }
 }
 
@@ -82,7 +82,7 @@ function drawCircleLayer(canvas, centerX, centerY, radiusOffset, layer) {
     for (let i = 0; i < 6; i++) {
         var sqrX = centerX + (2*layer*(radius+radiusOffset)) * Math.cos((Math.PI/180) * metatronAngles[i]);
         var sqrY = centerY + (2*layer*(radius+radiusOffset)) * Math.sin((Math.PI/180) * metatronAngles[i]);
-        var circle = drawCircle(canvas, sqrX, sqrY);
+        var circle = drawCircle(canvas, radius, sqrX, sqrY);
         createdCircles.push(circle);
     }
 

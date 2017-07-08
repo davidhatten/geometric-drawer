@@ -4,12 +4,13 @@ const yControlPointId = "yControlPointInput";
 const angleOffsetId = "angleOffsetInput";
 const numberOfAxesId = "numberOfAxesSelect";
 const axisOffsetId = "axisOffsetInput";
+const dotRadiusId = "dotRadiusInput";
 const layerStyles = {
     "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
-    "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines}
+    "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines},
+    "Dots": {"options": drawDotLayerOptions, "draw": drawDotLines},
 };
 const possibleAxes = [1,2,3,4,5,6,8,9,10,12,15,18,20,24,30,36,40,45,60,72,90,120,180,360];
-
 
 function drawMandalaEventListener(event) {
     // This is effectively a passthrough to the layerStyles data structure
@@ -30,10 +31,27 @@ function drawMandalaEventListener(event) {
     clearCenters();
 }
 
-function drawCircleLines(canvas, clickCoords) {
-    radius = parseInt(document.getElementById("circleRadius").value);
+function drawDotLines(canvas, clickCoords, numOfAxes, axisOffset) {
+    const radius = parseInt($(`#${circleRadiusId}`).val());
+    const dotRadius = parseInt($(`#${dotRadiusId}`).val());
 
-    drawCircle(canvas, clickCoords.x, clickCoords.y);
+    var angle = axisOffset ? parseInt(axisOffset) : 0;
+    const angleIncrement = 360/parseInt(numOfAxes);
+    const maxAngle = 360 + angle;
+
+    while (angle < maxAngle) {
+        const drawCenter = getPointOnCircle(clickCoords.x, clickCoords.y, radius, 0, angle);
+
+        drawCircle(canvas, dotRadius, drawCenter.x, drawCenter.y);
+
+        angle += angleIncrement;
+    }
+}
+
+function drawCircleLines(canvas, clickCoords) {
+    const radius = parseInt($(`#${circleRadiusId}`).val());
+
+    drawCircle(canvas, radius, clickCoords.x, clickCoords.y);
 }
 
 function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
@@ -42,13 +60,11 @@ function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
     // TODO: outer radius option
     var angle = axisOffset ? parseInt(axisOffset) : 0;
     const angleIncrement = 360/parseInt(numOfAxes);
-    console.log("offset is ", axisOffset);
     const maxAngle = 360 + angle;
-    console.log("angle increment is", angleIncrement);
     const x = clickCoords.x;
     const y = clickCoords.y;
 
-    radius = parseInt($("#"+innerRadiusId).val());
+    const radius = parseInt($("#"+innerRadiusId).val());
     const outerRadius = parseInt($("#"+outerRadiusId).val());
     const xControlPoint = parseInt($("#"+xControlPointId).val());
     const yControlPoint = parseInt($(`#${yControlPointId}`).val());
@@ -203,6 +219,30 @@ function setAxisOptions(element, classNames) {
     row.append(numOfAxesColumn);
     row.append(axisOffsetColumn)
 
+    row.insertAfter(element);
+
+    return row;
+}
+
+function drawDotLayerOptions(element) {
+    const circleRadiusRow = setCircleRadiusOptions(element, ["mandalaOptionRow"]);
+    const dotRadiusRow = setDotRadiusOptions(circleRadiusRow, ["mandalaOptionRow"]);
+    const axesRow = setAxisOptions(dotRadiusRow, ["mandalaOptionRow"])
+}
+
+function setDotRadiusOptions(element, classNames) {
+    var row = createRowDiv();
+    addClasses(row, classNames);
+
+    const dotRadiusColumn = createColumnDiv();
+    const dotRadiusLabel = createLabel("Dot radius (px):");
+    const dotRadiusInput = $("<input>");
+    dotRadiusInput.attr({"type": "number", "id": dotRadiusId, "value": 20});
+
+    dotRadiusColumn.append(dotRadiusLabel);
+    dotRadiusColumn.append(dotRadiusInput);
+
+    row.append(dotRadiusColumn);
     row.insertAfter(element);
 
     return row;

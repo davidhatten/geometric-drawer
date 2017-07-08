@@ -91,7 +91,8 @@ function createLabel(text) {
 }
 
 
-function drawCircle(canvas, x, y) {
+function drawCircle(canvas, radius, x, y) {
+    console.log(`Drawing radius x y ${radius} ${x} ${y}`);
     canvas = Snap(canvas);
     var circleId = `circle${Date.now()}`
     var circle = {x: x, y: y, id:circleId};
@@ -217,7 +218,7 @@ function getScaleOffset(canvas) {
     return {x:newOffsetY, y:newOffsetY};
 }
 
-function calculateVariableRadiusOffsetPreview(event, radiusOffset, radiusMultiplier) {
+function calculateVariableRadiusOffsetPreview(event, radius, radiusOffset, radiusMultiplier) {
     var canvas = document.getElementById("drawingCanvas");
     var radius = parseInt(document.getElementById("circleRadius").value);
     var previewElement = document.getElementById("diameterAnchor");
