@@ -17,9 +17,10 @@ function drawMandalaEventListener(event) {
     var selectedLayer = $("#layerStyleSelect").val();
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     var numOfAxes = $(`#${numberOfAxesId}`).find(":selected").val();
+    var axisOffset = $(`#${axisOffsetId}`).val();
 
     setLineWidth();
-    layerStyles[selectedLayer]["draw"](canvas, xyCoords, numOfAxes);
+    layerStyles[selectedLayer]["draw"](canvas, xyCoords, numOfAxes, axisOffset);
 
     history.addHistoryRow(`Mandala-${selectedLayer}-${Date.now()}`,
                             usedCenters,
@@ -29,18 +30,20 @@ function drawMandalaEventListener(event) {
     clearCenters();
 }
 
-function drawCircleLines(canvas, clickCoords, numOfAxes) {
+function drawCircleLines(canvas, clickCoords) {
     radius = parseInt(document.getElementById("circleRadius").value);
 
     drawCircle(canvas, clickCoords.x, clickCoords.y);
 }
 
-function drawQuadLines(canvas, clickCoords, numOfAxes) {
+function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
     // TODO: axis subdivision options
     // TODO: petal warping options
     // TODO: outer radius option
-    var angle = 0;
+    var angle = axisOffset ? parseInt(axisOffset) : 0;
     const angleIncrement = 360/parseInt(numOfAxes);
+    console.log("offset is ", axisOffset);
+    const maxAngle = 360 + angle;
     console.log("angle increment is", angleIncrement);
     const x = clickCoords.x;
     const y = clickCoords.y;
@@ -49,7 +52,7 @@ function drawQuadLines(canvas, clickCoords, numOfAxes) {
     const outerRadius = parseInt($("#"+outerRadiusId).val());
     const xControlPoint = parseInt($("#"+xControlPointId).val());
     const yControlPoint = parseInt($(`#${yControlPointId}`).val());
-    while (angle < 360) {
+    while (angle < maxAngle) {
         // First get all the points on the 0 angle line (x slope = 0)
         const innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
         const outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
