@@ -13,11 +13,12 @@ https://davidhatten.github.io/geometric-drawer/
 
 ## Features
 * Define the number of iterations
-* Define line width 
+* Define line width
 * Define circle radius
 * Define circle intersect distance
 * Generate in 8.5"x11" or A4
 * Export to PNG
+* History of your drawings with deletion
 
 ## Mandala Features
 * Circle
