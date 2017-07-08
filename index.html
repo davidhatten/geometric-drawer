@@ -98,6 +98,20 @@
                                 <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
                             </div>
                         </div>
+                        <div class="row">
+                            <h6>History</h6>
+                            <table class="hover" id="historyTable">
+                                <thead>
+                                    <tr>
+                                        <th>Drawing</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -106,11 +120,10 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script src="lib/jquery/jquery-3.2.1.min.js" />
         <script src="lib/foundation/js/foundation.min.js" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+        <script src="lib/snap/snap.svg-min.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
-        <script src="lib/svg/svg_todataurl.js"></script>
         <script src="js/flowerOfLife.js"></script>
         <script src="js/squareFormCircles.js"></script>
         <script src="js/triangleFormCircles.js"></script>
@@ -118,8 +131,10 @@
         <script src="js/circleUtils.js"></script>
         <script src="js/torus.js"></script>
         <script src="js/mandala.js"></script>
+        <script src="js/history.js"></script>
         <script type="text/javascript">
             var usedCenters = []; //this is a really gross bit of ugly global state too
+            const history = new History(); // look more ugly global state
             var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
             var drawingSettings = {
                 flowerOfLife: {
@@ -211,10 +226,11 @@
 
 
             function clearCanvas() {
-                // var canvas = document.getElementById("drawingCanvas");
-                // var ctx = canvas.getContext("2d");
-                // ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // clear the canvas itself
                 $("#drawingCanvas").empty();
+
+                // Clear the history table
+                history.clearHistory();
             }
 
             function exportCanvas() {

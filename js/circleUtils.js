@@ -2,11 +2,11 @@
 //this is just utils. It's... it's just utils.
 //Forgive me.
 
-var iterateElementId = "circleIterations";
-var circleRadiusId = "circleRadius";
-var radiusOffsetId = "radiusOffset";
-var innerRadiusId = "innerRadius";
-var outerRadiusId = "outerRadius";
+const iterateElementId = "circleIterations";
+const circleRadiusId = "circleRadius";
+const radiusOffsetId = "radiusOffset";
+const innerRadiusId = "innerRadius";
+const outerRadiusId = "outerRadius";
 var usedCenters = [];
 var scaleOffset = 1;
 var lineWidth = 1;
@@ -92,15 +92,9 @@ function createLabel(text) {
 
 
 function drawCircle(canvas, x, y) {
-    console.log("drawing circle at " + x + " " + y);
-    // var ctx = canvas.getContext("2d");
-    // ctx.beginPath();
-    // ctx.lineWidth = lineWidth; //ewwww globals
-    // ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    // ctx.stroke();
     canvas = Snap(canvas);
-
-    var circle = {x: x, y: y};
+    var circleId = `circle${Date.now()}`
+    var circle = {x: x, y: y, id:circleId};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);
     var midXY = getPointOnCircle(x, y, radius, 0, 180);
 
@@ -109,9 +103,9 @@ function drawCircle(canvas, x, y) {
         A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
-    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: "circle"});
+    drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: circleId});
     // Well this is a leaky little bit of info isn't it?
-    usedCenters[usedCenters.length] = circle;
+    usedCenters.push(circle);
 
     // used for testing, viewing centers
     //drawCrosshairs(ctx, x, y);
@@ -142,16 +136,26 @@ function drawLine(canvas, startX, startY, endX, endY) {
     // ctx.lineTo(endX, endY);
     // ctx.stroke();
     line = ctx.line(startX, startY, endX, endY);
-    line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000"})
+    const lineId = `line${Date.now()}`;
+    line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", "id":lineId })
+    usedCenters.push({"startX": startX,
+                        "startY": startY,
+                        "endX": endX,
+                        "endY": endY,
+                        "id": lineId });
 }
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var ctx = Snap(canvas);
     // Note the lowercase q, this is relative
+    const curveId = `quadCurve${Date.now()}`;
     var curve = ctx.path(` M ${sX} ${sY}
             Q ${cX} ${cY} ${eX} ${eY}
         `);
-    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
+    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent", "id": curveId})
+
+    // TODO: add the proper metadata here
+    usedCenters.push({"id":curveId});
 }
 
 function usedCentersContains(centerPoint) {

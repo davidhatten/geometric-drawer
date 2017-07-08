@@ -7,17 +7,20 @@ function drawSquareFormEventListener(event) {
     canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     var iterations = document.getElementById("circleIterations").value;
-    var radius = document.getElementById("circleRadius").value; 
-    var radiusOffset = document.getElementById(radiusOffsetId).value; 
+    var radius = document.getElementById("circleRadius").value;
+    var radiusOffset = document.getElementById(radiusOffsetId).value;
 
     setLineWidth();
 
     drawSquareForm(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations), parseInt(radiusOffset));
+
+    history.addHistoryRow(`Square Form-${Date.now()}`, usedCenters, {});
+    clearCenters();
 }
 
 function previewSquareFormEventListener(event) {
     var iterations = parseInt(document.getElementById("circleIterations").value);
-    var radiusOffset = parseInt(document.getElementById(radiusOffsetId).value); 
+    var radiusOffset = parseInt(document.getElementById(radiusOffsetId).value);
     var multipiler = (iterations+1) * 2;
     calculateVariableRadiusOffsetPreview(event, radiusOffset, multipiler);
 }
@@ -33,17 +36,14 @@ function drawSquareForm(canvas, x, y, setRadius, iterations, radiusOffset) {
     for (let i = 0; i < iterations; i++) {
         outerPetals = drawSquarePetals(outerPetals, radiusOffset);
     }
-
-    clearCenters();
-    console.log("Square drawing " + squareIterations);
-}    
+}
 
 function drawSquarePetals(innerPetals, radiusOffset) {
     var outerPetals = [];
     for (let i = 0; i < innerPetals.length; i++) {
         for (let j = 0; j < squareCornerAngles.length; j++) {
             squareIterations++;
-            var sqrX = innerPetals[i].x + (radius+radiusOffset) * Math.cos(Math.PI * squareCornerAngles[j]);    
+            var sqrX = innerPetals[i].x + (radius+radiusOffset) * Math.cos(Math.PI * squareCornerAngles[j]);
             var sqrY = innerPetals[i].y + (radius+radiusOffset) * Math.sin(Math.PI * squareCornerAngles[j]);
 
             if (usedCentersContains({x:sqrX, y:sqrX}) === false) {

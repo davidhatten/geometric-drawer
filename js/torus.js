@@ -31,18 +31,25 @@ var goodDesigns = {
 function drawTorusEventListener(event) {
     var canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radius = parseFloat(document.getElementById("circleRadius").value); 
-    var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value); 
+    var radius = parseFloat(document.getElementById("circleRadius").value);
+    var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);
     var rotation = Math.abs(parseFloat(document.getElementById(rotationElementId).value));
     var skipFactor = Math.abs(parseInt(document.getElementById(skipElementId).value));
 
     setLineWidth();
 
     drawTorus(canvas, xyCoords.x, xyCoords.y, radius, radiusOffset, rotation, skipFactor);
+
+    history.addHistoryRow(`Torus-${Date.now()}`,
+                            usedCenters,
+                            {
+                                circleRadiusId: radius,
+                            });
+    clearCenters();
 }
 
 function previewTorusEventListener(event) {
-    var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);   
+    var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);
     calculateVariableRadiusOffsetPreview(event, radiusOffset, 4);
 }
 
@@ -50,7 +57,7 @@ function updateSkipFactors() {
     var rotation = document.getElementById(rotationElementId)
     var skip = document.getElementById(skipElementId)
     repopulateSkipSelect(rotation, skip);
-    
+
 }
 
 function repopulateSkipSelect(rotationSelect, skipSelect) {
@@ -121,7 +128,7 @@ function drawTorus(canvas, x, y, setRadius, radiusOffset, rotation, skipFactor) 
     var centerCircle = {x: x, y: y};
 
     var angle = rotation;
-    var skipCounter = 0; 
+    var skipCounter = 0;
 
     while (angle <= 360) {
         if (skipFactor != 0 && skipCounter == skipFactor) {
@@ -131,7 +138,7 @@ function drawTorus(canvas, x, y, setRadius, radiusOffset, rotation, skipFactor) 
             drawCircle(canvas, circlePoint.x, circlePoint.y);
             skipCounter++;
         }
-            
+
         angle += rotation;
     }
 }

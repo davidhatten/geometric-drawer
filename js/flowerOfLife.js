@@ -4,17 +4,25 @@ var canvas;
 function drawFlowerEventListener(event) {
     canvas = document.getElementById("drawingCanvas"); //Somehow this is the canvas, I kind of get why
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radius = document.getElementById("circleRadius").value;
+    var radius = document.getElementById(circleRadiusId).value;
     var iterations = document.getElementById(iterateElementId).value;
 
     setLineWidth();
 
     drawFlower(canvas, xyCoords.x, xyCoords.y, parseInt(radius), parseInt(iterations));
+
+    history.addHistoryRow(`Flower Of Life-${Date.now()}`,
+                            usedCenters,
+                            {
+                                circleRadiusId: radius,
+                                iterateElementId: iterations
+                            });
+    clearCenters();
 }
 
 function previewFlowerEventListener(event) {
     var canvas = document.getElementById("drawingCanvas");
-    var radius = parseInt(document.getElementById("circleRadius").value);
+    var radius = parseInt(document.getElementById(circleRadiusId).value);
     var previewElement = document.getElementById("diameterAnchor");
 
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
@@ -29,7 +37,7 @@ function previewFlowerEventListener(event) {
 
 function drawFlower(canvas, x, y, setRadius, iterations) {
     var innerPetals = [];
-    usedCenters = [];
+    clearCenters();
     radius = setRadius;
     //draw one circle
     var bootstrap1 = drawCircle(canvas, x, y);
@@ -53,8 +61,6 @@ function drawFlower(canvas, x, y, setRadius, iterations) {
     for (let i = 0; i < iterations-1; i++) {
         outerPetals = drawPetals(canvas, outerPetals).unique();
     }
-
-    clearCenters();
 }
 
 function drawPetals(canvas, innerPetals) {

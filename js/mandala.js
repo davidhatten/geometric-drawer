@@ -18,10 +18,16 @@ function drawMandalaEventListener(event) {
     setLineWidth();
 
     layerStyles[selectedLayer]["draw"](canvas, xyCoords);
+
+    history.addHistoryRow(`Mandala-${selectedLayer}-${Date.now()}`,
+                            usedCenters,
+                            {
+                                circleRadiusId: radius,
+                            });
+    clearCenters();
 }
 
 function drawCircleLines(canvas, clickCoords) {
-    console.log("request to draw circle");
     radius = parseInt(document.getElementById("circleRadius").value);
 
     drawCircle(canvas, clickCoords.x, clickCoords.y);
@@ -133,9 +139,6 @@ function setLayerSelectionOptions(element) {
 }
 
 function changeMandalaOptions(element) {
-    console.log("Request to change has happened");
-    console.log("My element is" ,element);
-
     $('.mandalaOptionRow').remove();
 
     var selectedLayer = element.target.value;
