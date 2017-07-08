@@ -3,6 +3,7 @@ const xControlPointId = "xControlPointInput";
 const yControlPointId = "yControlPointInput";
 const angleOffsetId = "angleOffsetInput";
 const numberOfAxesId = "numberOfAxesSelect";
+const axisOffsetId = "axisOffsetInput";
 const layerStyles = {
     "Circle": {"options": drawCircleLayerOptions, "draw": drawCircleLines},
     "Quadratic Petal": {"options": drawQuadLayerOptions, "draw": drawQuadLines}
@@ -178,6 +179,7 @@ function setAxisOptions(element, classNames) {
     addClasses(row, classNames);
 
     const numOfAxesColumn = createColumnDiv();
+    numOfAxesColumn.addClass("large-6");
     const numOfAxesLabel = createLabel("Number of Axes:");
     const numOfAxesSelectElement = $("<select></select>");
     numOfAxesSelectElement.attr("id", numberOfAxesId);
@@ -186,7 +188,17 @@ function setAxisOptions(element, classNames) {
     numOfAxesColumn.append(numOfAxesLabel);
     numOfAxesColumn.append(numOfAxesSelectElement);
 
+    const axisOffsetColumn = createColumnDiv();
+    axisOffsetColumn.addClass("large-6")
+    const axisOffsetLabel = createLabel("Axes Offset (degrees):");
+    const axisOffsetInput = $("<input>");
+    axisOffsetInput.attr({"type": "number", "id": axisOffsetId, "value": 0});
+
+    axisOffsetColumn.append(axisOffsetLabel);
+    axisOffsetColumn.append(axisOffsetInput);
+
     row.append(numOfAxesColumn);
+    row.append(axisOffsetColumn)
 
     row.insertAfter(element);
 
