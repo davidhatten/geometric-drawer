@@ -6,7 +6,6 @@ function drawFlowerEventListener(event) {
     canvas = document.getElementById("drawingCanvas"); //Somehow this is the canvas, I kind of get why
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     radius = parseInt($(`#${circleRadiusId}`).val());
-    console.log("my radius is", radius);
     var iterations = document.getElementById(iterateElementId).value;
 
     setLineWidth();
