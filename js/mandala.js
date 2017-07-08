@@ -18,6 +18,13 @@ function drawMandalaEventListener(event) {
     setLineWidth();
 
     layerStyles[selectedLayer]["draw"](canvas, xyCoords);
+
+    history.addHistoryRow(`Mandala-${selectedLayer}-${Date.now()}`,
+                            usedCenters,
+                            {
+                                circleRadiusId: radius,
+                            });
+    clearCenters();
 }
 
 function drawCircleLines(canvas, clickCoords) {

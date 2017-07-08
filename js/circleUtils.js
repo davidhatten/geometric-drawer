@@ -136,7 +136,7 @@ function drawLine(canvas, startX, startY, endX, endY) {
     // ctx.lineTo(endX, endY);
     // ctx.stroke();
     line = ctx.line(startX, startY, endX, endY);
-    lineId = `line${Date.now()}`;
+    const lineId = `line${Date.now()}`;
     line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", "id":lineId })
     usedCenters.push({"startX": startX,
                         "startY": startY,
@@ -148,10 +148,14 @@ function drawLine(canvas, startX, startY, endX, endY) {
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var ctx = Snap(canvas);
     // Note the lowercase q, this is relative
+    const curveId = `quadCurve${Date.now()}`;
     var curve = ctx.path(` M ${sX} ${sY}
             Q ${cX} ${cY} ${eX} ${eY}
         `);
-    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent"})
+    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent", "id": curveId})
+
+    // TODO: add the proper metadata here
+    usedCenters.push({"id":curveId});
 }
 
 function usedCentersContains(centerPoint) {
