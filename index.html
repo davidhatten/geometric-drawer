@@ -5,10 +5,11 @@
         <title>Geometry Generator</title>
     </head>
     <body>
-        <div class="grid-x">
-            <div class="small-12 cell">
-                <h2 align="center">Select a design and click on the canvas!</h2>
-            </div>
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="small-12 cell">
+                    <h2 align="center">Select a design and click on the canvas!</h2>
+                </div>
 
                 <div class="small-6 cell canvasContent">
                     <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
@@ -18,26 +19,26 @@
                 <div class="small-6 cell">
 
 
-                        <ul class="tabs" data-tabs data-active-collapse="true" id="collapsing-tabs">
-                            <li class="tabs-title is-active"><a href="#circleFormFlower">Circle Form Flower</a></li>
-                            <li class="tabs-title"><a href="#metatronsCube">Metatron's Cube</a></li>
-                            <li class="tabs-title"><a href="#torus">Torus</a></li>
-                            <li class="tabs-title"><a href="#mandala">Mandala</a></li>
-                        </ul>
-                        <div class="tabs-content" data-tabs-content="collapsing-tabs">
-                            <div class="tabs-panel is-active" id="circleFormFlower">
-                                <h3>Circle Flower Content</h3>
-                            </div>
-                            <div class="tabs-panel" id="metatronsCube">
-                                <h3>Metatron's Cube</h3>
-                            </div>
-                            <div class="tabs-panel" id="torus">
-                                <h3>Torus content</h3>
-                            </div>
-                            <div class="tabs-panel" id="mandala">
-                                <h3>Mandala content</h3>
-                            </div>
+                    <ul class="tabs" data-tabs data-active-collapse="true" id="collapsing-tabs">
+                        <li class="tabs-title is-active"><a href="#circleFormFlower">Circle Form Flower</a></li>
+                        <li class="tabs-title"><a href="#metatronsCube">Metatron's Cube</a></li>
+                        <li class="tabs-title"><a href="#torus">Torus</a></li>
+                        <li class="tabs-title"><a href="#mandala">Mandala</a></li>
+                    </ul>
+                    <div class="tabs-content" data-tabs-content="collapsing-tabs">
+                        <div class="tabs-panel is-active" id="circleFormFlower">
+                            <h3>Circle Flower Content</h3>
                         </div>
+                        <div class="tabs-panel" id="metatronsCube">
+                            <h3>Metatron's Cube</h3>
+                        </div>
+                        <div class="tabs-panel" id="torus">
+                            <h3>Torus content</h3>
+                        </div>
+                        <div class="tabs-panel" id="mandala">
+                            <h3>Mandala content</h3>
+                        </div>
+                    </div>
                <!-- <form id="options">
                         <div class="row">
                             <div class="small-6 columns">
@@ -119,23 +120,23 @@
                         </div>
                 -->        
                     <!-- </form> -->
-                     <div>
-                            <h6>History</h6>
-                            <table class="hover" id="historyTable">
-                                <thead>
-                                    <tr>
-                                        <th>Drawing</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    <div>
+                        <h6>History</h6>
+                        <table class="hover" id="historyTable">
+                            <thead>
+                                <tr>
+                                    <th>Drawing</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
+
+            </div>
         </div>
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
