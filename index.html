@@ -5,21 +5,40 @@
         <title>Geometry Generator</title>
     </head>
     <body>
-        <div class="content">
-            <div class="row">
-                <div class="small-12 columns">
-                    <h2 align="center">Select a design and click on the canvas!</h2>
-                </div>
+        <div class="grid-x">
+            <div class="small-12 cell">
+                <h2 align="center">Select a design and click on the canvas!</h2>
             </div>
 
-            <div class="row fullWidth">
-                <div class="small-6 columns canvasContent">
+                <div class="small-6 cell canvasContent">
                     <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
 
                     Your browser does not support HTML5 svg</svg>
                 </div>
-                <div class="small-6 columns">
-                    <form id="options">
+                <div class="small-6 cell">
+
+
+                        <ul class="tabs" data-tabs data-active-collapse="true" id="collapsing-tabs">
+                            <li class="tabs-title is-active"><a href="#circleFormFlower">Circle Form Flower</a></li>
+                            <li class="tabs-title"><a href="#metatronsCube">Metatron's Cube</a></li>
+                            <li class="tabs-title"><a href="#torus">Torus</a></li>
+                            <li class="tabs-title"><a href="#mandala">Mandala</a></li>
+                        </ul>
+                        <div class="tabs-content" data-tabs-content="collapsing-tabs">
+                            <div class="tabs-panel is-active" id="circleFormFlower">
+                                <h3>Circle Flower Content</h3>
+                            </div>
+                            <div class="tabs-panel" id="metatronsCube">
+                                <h3>Metatron's Cube</h3>
+                            </div>
+                            <div class="tabs-panel" id="torus">
+                                <h3>Torus content</h3>
+                            </div>
+                            <div class="tabs-panel" id="mandala">
+                                <h3>Mandala content</h3>
+                            </div>
+                        </div>
+               <!-- <form id="options">
                         <div class="row">
                             <div class="small-6 columns">
                                 <label>Design:
@@ -58,11 +77,11 @@
                                     </select>
                                 </label>
                             </div>
-                            <!-- <div class="small-4 columns">
+                            <div class="small-4 columns">
                                 <label>Base Circle Radius (px):
                                     <input type="number" id="circleRadius" value="200" />
                                 </label>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="row">
                             <div class="small-4 columns">
@@ -98,7 +117,9 @@
                                 <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
                             </div>
                         </div>
-                        <div class="row">
+                -->        
+                    <!-- </form> -->
+                     <div>
                             <h6>History</h6>
                             <table class="hover" id="historyTable">
                                 <thead>
@@ -112,14 +133,16 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
-            </div>
         </div>
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="lib/jquery/jquery-3.2.1.min.js" />
-        <script src="lib/foundation/js/foundation.min.js" ></script>
+        <script src="lib/foundation/js/vendor/jquery.js"></script>
+        <script src="lib/foundation/js/vendor/what-input.js"></script>
+        <script src="lib/foundation/js/vendor/foundation.min.js"></script>
+        <script src="lib/foundation/js/app.js"></script>
         <script src="lib/snap/snap.svg-min.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
@@ -133,162 +156,163 @@
         <script src="js/mandala.js"></script>
         <script src="js/history.js"></script>
         <script type="text/javascript">
-            var usedCenters = []; //this is a really gross bit of ugly global state too
-            const history = new History(); // look more ugly global state
-            var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
-            var drawingSettings = {
-                flowerOfLife: {
-                    click: drawFlowerEventListener,
-                    mousemove: previewFlowerEventListener,
-                    options: setFlowerOptions
-                },
-                squareForm: {
-                    click: drawSquareFormEventListener,
-                    mousemove: previewSquareFormEventListener,
-                    options: setSquareFormOptions
-                },
-                triangleForm: {
-                    click: drawTriangleFormEventListener,
-                    mousemove: previewTriangleFormEventListener,
-                    options: setTriangleFormOptions
-                },
-                metatronCube: {
-                    click: drawMetatronEventListener,
-                    mousemove: previewMetatronEventListener,
-                    options: setMetatronOptions
-                },
-                torus: {
-                    click: drawTorusEventListener,
-                    mousemove: previewTorusEventListener,
-                    options: setTorusOptions
-                },
-                mandala: {
-                    click: drawMandalaEventListener,
-                    mousemove: previewMandalaEventListener,
-                    options: setMandalaOptions
-                }
-            };
+                // Foundation.addToJquery($);
+            // var usedCenters = []; //this is a really gross bit of ugly global state too
+            // const history = new History(); // look more ugly global state
+            // var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
+            // var drawingSettings = {
+            //     flowerOfLife: {
+            //         click: drawFlowerEventListener,
+            //         mousemove: previewFlowerEventListener,
+            //         options: setFlowerOptions
+            //     },
+            //     squareForm: {
+            //         click: drawSquareFormEventListener,
+            //         mousemove: previewSquareFormEventListener,
+            //         options: setSquareFormOptions
+            //     },
+            //     triangleForm: {
+            //         click: drawTriangleFormEventListener,
+            //         mousemove: previewTriangleFormEventListener,
+            //         options: setTriangleFormOptions
+            //     },
+            //     metatronCube: {
+            //         click: drawMetatronEventListener,
+            //         mousemove: previewMetatronEventListener,
+            //         options: setMetatronOptions
+            //     },
+            //     torus: {
+            //         click: drawTorusEventListener,
+            //         mousemove: previewTorusEventListener,
+            //         options: setTorusOptions
+            //     },
+            //     mandala: {
+            //         click: drawMandalaEventListener,
+            //         mousemove: previewMandalaEventListener,
+            //         options: setMandalaOptions
+            //     }
+            // };
 
-            Array.prototype.unique = function() {
-                var a = this.concat();
+            // Array.prototype.unique = function() {
+            //     var a = this.concat();
 
-                for(var i=0; i<a.length; ++i) {
-                    for(var j=i+1; j<a.length; ++j) {
-                        if(a[i] === a[j])
-                            a.splice(j--, 1);
-                    }
-                }
+            //     for(var i=0; i<a.length; ++i) {
+            //         for(var j=i+1; j<a.length; ++j) {
+            //             if(a[i] === a[j])
+            //                 a.splice(j--, 1);
+            //         }
+            //     }
 
-                return a;
-            };
+            //     return a;
+            // };
 
-            function setPageLayout(selector) {
-                var selected = selector.value;
-                var canvas = document.getElementById("drawingCanvas");
+            // function setPageLayout(selector) {
+            //     var selected = selector.value;
+            //     var canvas = document.getElementById("drawingCanvas");
 
-                canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
-            }
+            //     canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
+            // }
 
-            function setDrawingSettings(selector) {
-                var selected = selector.value;
-                var settings = drawingSettings[selected];
-                var canvas = document.getElementById("drawingCanvas");
-                var customOptions = $("#customOptionsRowsAnchor");
+            // function setDrawingSettings(selector) {
+            //     var selected = selector.value;
+            //     var settings = drawingSettings[selected];
+            //     var canvas = document.getElementById("drawingCanvas");
+            //     var customOptions = $("#customOptionsRowsAnchor");
 
-                canvas = removeEventListeners(canvas);
-                clearCustomOptions(customOptions);
+            //     canvas = removeEventListeners(canvas);
+            //     clearCustomOptions(customOptions);
 
-                canvas.addEventListener('click', settings.click, false)
-                canvas.addEventListener('mousemove', settings.mousemove, false)
-                settings.options(customOptions);
+            //     canvas.addEventListener('click', settings.click, false)
+            //     canvas.addEventListener('mousemove', settings.mousemove, false)
+            //     settings.options(customOptions);
 
-                return canvas;
-            }
+            //     return canvas;
+            // }
 
-            function removeEventListeners(canvas) {
+            // function removeEventListeners(canvas) {
 
-                canvas.removeEventListener('click', drawFlowerEventListener, false);
-                canvas.removeEventListener('click', drawSquareFormEventListener, false);
-                canvas.removeEventListener('click', drawTriangleFormEventListener, false);
-                canvas.removeEventListener('click', drawMetatronEventListener, false);
-                canvas.removeEventListener('click', drawTorusEventListener, false);
-                canvas.removeEventListener('click', drawMandalaEventListener, false);
+            //     canvas.removeEventListener('click', drawFlowerEventListener, false);
+            //     canvas.removeEventListener('click', drawSquareFormEventListener, false);
+            //     canvas.removeEventListener('click', drawTriangleFormEventListener, false);
+            //     canvas.removeEventListener('click', drawMetatronEventListener, false);
+            //     canvas.removeEventListener('click', drawTorusEventListener, false);
+            //     canvas.removeEventListener('click', drawMandalaEventListener, false);
 
-                canvas.removeEventListener('mousemove', previewMetatronEventListener, false);
-                canvas.removeEventListener('mousemove', previewFlowerEventListener, false)
-                canvas.removeEventListener('mousemove', previewSquareFormEventListener, false)
-                canvas.removeEventListener('mousemove', previewTriangleFormEventListener, false)
-                canvas.removeEventListener('mousemove', previewTorusEventListener, false)
-                canvas.removeEventListener('mousemove', previewMandalaEventListener, false)
+            //     canvas.removeEventListener('mousemove', previewMetatronEventListener, false);
+            //     canvas.removeEventListener('mousemove', previewFlowerEventListener, false)
+            //     canvas.removeEventListener('mousemove', previewSquareFormEventListener, false)
+            //     canvas.removeEventListener('mousemove', previewTriangleFormEventListener, false)
+            //     canvas.removeEventListener('mousemove', previewTorusEventListener, false)
+            //     canvas.removeEventListener('mousemove', previewMandalaEventListener, false)
 
-                return canvas;
-            }
+            //     return canvas;
+            // }
 
 
-            function clearCanvas() {
-                // clear the canvas itself
-                $("#drawingCanvas").empty();
+            // function clearCanvas() {
+            //     // clear the canvas itself
+            //     $("#drawingCanvas").empty();
 
-                // Clear the history table
-                history.clearHistory();
-            }
+            //     // Clear the history table
+            //     history.clearHistory();
+            // }
 
-            function exportCanvas() {
-                var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
-                var img = new Image();
-                img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
-                img.onload =function() {
-                    var tempCanvas = document.createElement("canvas");
-                    tempCanvas.width = "2550";
-                    tempCanvas.height = "3300";
-                    var ctx = tempCanvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0);
+            // function exportCanvas() {
+            //     var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
+            //     var img = new Image();
+            //     img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
+            //     img.onload =function() {
+            //         var tempCanvas = document.createElement("canvas");
+            //         tempCanvas.width = "2550";
+            //         tempCanvas.height = "3300";
+            //         var ctx = tempCanvas.getContext("2d");
+            //         ctx.drawImage(img, 0, 0);
 
-                    var sUrl = tempCanvas.toDataURL('image/png');
-                    var link = document.createElement('a');
-                    link.href = sUrl;
-                    link.setAttribute('target','_blank');
+            //         var sUrl = tempCanvas.toDataURL('image/png');
+            //         var link = document.createElement('a');
+            //         link.href = sUrl;
+            //         link.setAttribute('target','_blank');
 
-                    if (link.download !== undefined) {
-                        //Set HTML5 download attribute. This will prevent file from opening if supported.
-                        var fileName = "geometry.png";
-                        link.download = fileName;
-                    }
+            //         if (link.download !== undefined) {
+            //             //Set HTML5 download attribute. This will prevent file from opening if supported.
+            //             var fileName = "geometry.png";
+            //             link.download = fileName;
+            //         }
 
-                    //Dispatching click event.
-                    if (document.createEvent) {
-                        var e = document.createEvent('MouseEvents');
-                        e.initEvent('click', true, true);
-                        link.dispatchEvent(e);
-                        return true;
-                    }
-                    window.open(sUrl, '_blank');
-                    $(link).remove();
-                }
-            }
+            //         //Dispatching click event.
+            //         if (document.createEvent) {
+            //             var e = document.createEvent('MouseEvents');
+            //             e.initEvent('click', true, true);
+            //             link.dispatchEvent(e);
+            //             return true;
+            //         }
+            //         window.open(sUrl, '_blank');
+            //         $(link).remove();
+            //     }
+            // }
 
-            function getCanvas() {
-                return document.getElementById("drawingCanvas");
-            }
+            // function getCanvas() {
+            //     return document.getElementById("drawingCanvas");
+            // }
 
-            function clearCustomOptions(element) {
-                console.log("All custom options deleted");
-                $(".customOptionRow").remove()
-            }
+            // function clearCustomOptions(element) {
+            //     console.log("All custom options deleted");
+            //     $(".customOptionRow").remove()
+            // }
 
-            $(document).ready(function() {
-                    //Bootstrapping with initial settings
-                    var canvas = document.getElementById("drawingCanvas");
-                    canvas.addEventListener('mousemove', function(event) {
-                        var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-                        var coordsDiv = document.getElementById("coordinatesAnchor");
-                        coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
-                    });
+            // $(document).ready(function() {
+            //         //Bootstrapping with initial settings
+            //         var canvas = document.getElementById("drawingCanvas");
+            //         canvas.addEventListener('mousemove', function(event) {
+            //             var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+            //             var coordsDiv = document.getElementById("coordinatesAnchor");
+            //             coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
+            //         });
 
-                    var selectedDesign = document.getElementById("design");
-                    setDrawingSettings(selectedDesign);
-                }
-            );
+            //         var selectedDesign = document.getElementById("design");
+            //         setDrawingSettings(selectedDesign);
+            //     }
+            // );
 
         </script>
     </body>
