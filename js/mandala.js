@@ -68,14 +68,14 @@ function drawQuadLines(canvas, clickCoords, numOfAxes, axisOffset) {
     const outerRadius = parseInt($("#"+outerRadiusId).val());
     const xControlPoint = parseInt($("#"+xControlPointId).val());
     const yControlPoint = parseInt($(`#${yControlPointId}`).val());
-    while (angle < maxAngle) {
         // First get all the points on the 0 angle line (x slope = 0)
-        const innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
-        const outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
+    const innerEdgePoint = getPointOnCircle(x, y, radius, 0, 0);
+    const outerEdgePoint = getPointOnCircle(x, y, outerRadius, 0, 0);
 
-        const leftControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y - xControlPoint};
-        const rightControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y + xControlPoint};
+    const leftControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y - xControlPoint};
+    const rightControlPoint = {x: innerEdgePoint.x + yControlPoint, y: innerEdgePoint.y + xControlPoint};
 
+    while (angle < maxAngle) {
         // Now rotate all the points to the correct spot and draw it
         drawSinglePetal(canvas,
             rotateAroundPoint(x, y, innerEdgePoint, angle),
@@ -97,10 +97,10 @@ function rotateAroundPoint(xCenter, yCenter, rotatePoint, angle) {
     var sin = sinDeg(angle);
     var cos = cosDeg(angle);
 
-    rotatePoint.x -= xCenter;
-    rotatePoint.y -= yCenter;
+    var baseX = rotatePoint.x - xCenter;
+    var baseY = rotatePoint.y - yCenter;
 
-    result = {x: (rotatePoint.x * cos) - (rotatePoint.y * sin), y: (rotatePoint.x * sin) + (rotatePoint.y * cos)};
+    result = {x: (baseX * cos) - (baseY * sin), y: (baseX * sin) + (baseY * cos)};
     result.x += xCenter;
     result.y += yCenter;
 
