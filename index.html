@@ -17,125 +17,165 @@
                     Your browser does not support HTML5 svg</svg>
                 </div>
                 <div class="small-6 cell">
-
-
-                    <ul class="tabs" data-tabs data-active-collapse="true" id="collapsing-tabs">
-                        <li class="tabs-title is-active"><a href="#circleFormFlower">Circle Form Flower</a></li>
-                        <li class="tabs-title"><a href="#metatronsCube">Metatron's Cube</a></li>
-                        <li class="tabs-title"><a href="#torus">Torus</a></li>
-                        <li class="tabs-title"><a href="#mandala">Mandala</a></li>
-                    </ul>
-                    <div class="tabs-content" data-tabs-content="collapsing-tabs">
-                        <div class="tabs-panel is-active" id="circleFormFlower">
-                            <h3>Circle Flower Content</h3>
-                        </div>
-                        <div class="tabs-panel" id="metatronsCube">
-                            <h3>Metatron's Cube</h3>
-                        </div>
-                        <div class="tabs-panel" id="torus">
-                            <h3>Torus content</h3>
-                        </div>
-                        <div class="tabs-panel" id="mandala">
-                            <h3>Mandala content</h3>
-                        </div>
+                    <div class="callout">
+                        <h3 data-toggle="stylesPanel">Styles</h3>
+                        <div class="callout secondary" id="stylesPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                            <ul class="accordion" data-accordion>
+                                <li class="accordion-item is-active" data-accordion-item>
+                                    <a class="accordion-title" href="#">Circle Form Flower</a>
+                                    <div class="accordion-content" data-tab-content id="circleFormFlower">
+                                        <h3>Circle Flower Options</h3>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item>
+                                    <a class="accordion-title" href="#">Metatron's Cube</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <h3>Accordion Content</h3>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item>
+                                    <a class="accordion-title" href="#">Torus</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <h3>Accordion Content</h3>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item>
+                                    <a class="accordion-title" href="#">Mandala</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <h3>Accordion Content</h3>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>      
                     </div>
-               <!-- <form id="options">
-                        <div class="row">
-                            <div class="small-6 columns">
-                                <label>Design:
-                                    <select id="design" onChange="setDrawingSettings(this);">
-                                        <option value="flowerOfLife">
-                                            Flower of Life
-                                        </option>
-                                        <option value="squareForm">
-                                            Square Form Circle Flower
-                                        </option>
-                                        <option value="triangleForm">
-                                            Triangle Form Circle Flower
-                                        </option>
-                                        <option value="metatronCube">
-                                            Metatron's Cube
-                                        </option>
-                                        <option value="torus">
-                                            Torus
-                                        </option>
-                                        <option value="mandala">
-                                            Mandala
-                                        </option>
-                                    </select>
-                                </label>
+                    <hr />
+                        <form>
+                            <div class="callout">
+                                <h3 data-toggle="panel">General Options</h3>
+                                    <div class="callout secondary" id="panel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                                <label>Page Size:
+                                                    <select id="pageLayout" onChange="setPageLayout(this);">
+                                                        <option value="letter">
+                                                            8.5 x 11 - Letter
+                                                        </option>
+                                                        <option value="A4">
+                                                            A4
+                                                        </option>
+                                                    </select>
+                                                </label>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
+                                        </div>
+                                        <div class="small-8 cell">
+                                            <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
+                                            <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
+                        </form>
+                        <hr />
+                   <!-- <form id="options">
+                            <div class="row">
+                                <div class="small-6 columns">
+                                    <label>Design:
+                                        <select id="design" onChange="setDrawingSettings(this);">
+                                            <option value="flowerOfLife">
+                                                Flower of Life
+                                            </option>
+                                            <option value="squareForm">
+                                                Square Form Circle Flower
+                                            </option>
+                                            <option value="triangleForm">
+                                                Triangle Form Circle Flower
+                                            </option>
+                                            <option value="metatronCube">
+                                                Metatron's Cube
+                                            </option>
+                                            <option value="torus">
+                                                Torus
+                                            </option>
+                                            <option value="mandala">
+                                                Mandala
+                                            </option>
+                                        </select>
+                                    </label>
+                                </div>
 
-                            <div class="small-6 columns">
-                                <label>Page Size:
-                                    <select id="pageLayout" onChange="setPageLayout(this);">
-                                        <option value="letter">
-                                            8.5 x 11 - Letter
-                                        </option>
-                                        <option value="A4">
-                                            A4
-                                        </option>
-                                    </select>
-                                </label>
+                                <div class="small-6 columns">
+                                    <label>Page Size:
+                                        <select id="pageLayout" onChange="setPageLayout(this);">
+                                            <option value="letter">
+                                                8.5 x 11 - Letter
+                                            </option>
+                                            <option value="A4">
+                                                A4
+                                            </option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div class="small-4 columns">
+                                    <label>Base Circle Radius (px):
+                                        <input type="number" id="circleRadius" value="200" />
+                                    </label>
+                                </div>
                             </div>
-                            <div class="small-4 columns">
-                                <label>Base Circle Radius (px):
-                                    <input type="number" id="circleRadius" value="200" />
-                                </label>
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
+                                </div>
+                                <div class="small-8 columns">
+                                    <br />
+                                    <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
+                                    <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
+                                </div>
                             </div>
+                            <div class="row" id="customOptionsRowsAnchor">
+
+                            </div>
+                            <div class="row" id="previewInfo">
+                                <div class="small-6 column info">
+                                    <label id="coordinatesAnchor">Coordinates:
+                                    </label>
+                                </div>
+
+                                <div class="small-6 column info">
+                                    <label id="diameterAnchor">Diameter Of Final Shape:
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-6 columns">
+
+                                    <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
+                                </div>
+                                <div class="small-6 columns">
+
+                                    <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
+                                </div>
+                            </div>
+                    -->        
+                        <!-- </form> -->
+                        <div class="callout">
+                            <h3 data-toggle="historyPanel">History</h3>
+                            <div class="callout secondary" id="historyPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                <table class="hover" id="historyTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Drawing</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>  
                         </div>
-                        <div class="row">
-                            <div class="small-4 columns">
-                                <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
-                            </div>
-                            <div class="small-8 columns">
-                                <br />
-                                <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
-                                <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
-                            </div>
-                        </div>
-                        <div class="row" id="customOptionsRowsAnchor">
-
-                        </div>
-                        <div class="row" id="previewInfo">
-                            <div class="small-6 column info">
-                                <label id="coordinatesAnchor">Coordinates:
-                                </label>
-                            </div>
-
-                            <div class="small-6 column info">
-                                <label id="diameterAnchor">Diameter Of Final Shape:
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="small-6 columns">
-
-                                <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
-                            </div>
-                            <div class="small-6 columns">
-
-                                <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
-                            </div>
-                        </div>
-                -->        
-                    <!-- </form> -->
-                    <div>
-                        <h6>History</h6>
-                        <table class="hover" id="historyTable">
-                            <thead>
-                                <tr>
-                                    <th>Drawing</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-
             </div>
         </div>
 
