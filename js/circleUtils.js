@@ -153,7 +153,7 @@ function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     var curve = ctx.path(` M ${sX} ${sY}
             Q ${cX} ${cY} ${eX} ${eY}
         `);
-    curve.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", fill:"transparent", "id": curveId})
+    curve.attr({strokeWidth: lineWidth, strokeLinejoin: "arcs", strokeLinecap: "round", stroke: "#000", fill:"transparent", "id": curveId})
 
     // TODO: add the proper metadata here
     usedCenters.push({"id":curveId});
