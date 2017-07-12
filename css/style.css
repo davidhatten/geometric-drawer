@@ -30,6 +30,14 @@
 	padding: 8px;
 }
 
+.accordion-title {
+	padding: 10px 6px;
+}
+
+.accordion-content {
+	padding: 8px 8px;
+}
+
 hr {
 	margin: 2px;
 }
