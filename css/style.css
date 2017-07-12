@@ -26,4 +26,14 @@
 
 .callout {
 	border-width: 0px;
+	margin-bottom: 8px;
+	padding: 8px;
+}
+
+hr {
+	margin: 2px;
+}
+
+h3 {
+	margin: 0px;
 }
