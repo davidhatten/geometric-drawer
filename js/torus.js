@@ -55,31 +55,6 @@ function previewTorusEventListener(event) {
     calculateVariableRadiusOffsetPreview(event, radius, radiusOffset, 4);
 }
 
-function updateSkipFactors() {
-    var rotation = document.getElementById(rotationElementId)
-    var skip = document.getElementById(skipElementId)
-    repopulateSkipSelect(rotation, skip);
-
-}
-
-function repopulateSkipSelect(rotationSelect, skipSelect) {
-    var rotation = rotationSelect.value
-    var skipFactors = goodDesigns[rotation];
-
-    while (skipSelect.firstChild) {
-        skipSelect.removeChild(skipSelect.firstChild);
-    }
-
-    for (var i = 0; i < skipFactors.length; i++) {
-        var skipFactor = skipFactors[i]
-        var option = document.createElement("option");
-        option.value = skipFactor;
-        option.text = skipFactor;
-
-        skipSelect.appendChild(option);
-    }
-}
-
 function setTorusOptions(element) {
     var row = createRowDiv();
     var column = createColumnDiv();
@@ -90,15 +65,7 @@ function setTorusOptions(element) {
     rotationSelect.id = rotationElementId;
     rotationSelect.addEventListener('change', updateSkipFactors)
 
-    for (var rotation in goodDesigns) {
-        if (goodDesigns.hasOwnProperty(rotation)) {
-            var option = document.createElement("option");
-            option.value = rotation;
-            option.text = rotation
 
-            rotationSelect.appendChild(option);
-        }
-    }
 
     column.append(rotationText);
     column.append(rotationSelect);

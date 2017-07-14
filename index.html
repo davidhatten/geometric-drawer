@@ -216,91 +216,20 @@
                                             <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
                                         </div>
                                     </div>
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
+                                        </div>
+
+                            </div>
                                 </div>
                             </div>
                         </form>
                         <hr />
-                   <!-- <form id="options">
-                            <div class="row">
-                                <div class="small-6 columns">
-                                    <label>Design:
-                                        <select id="design" onChange="setDrawingSettings(this);">
-                                            <option value="flowerOfLife">
-                                                Flower of Life
-                                            </option>
-                                            <option value="squareForm">
-                                                Square Form Circle Flower
-                                            </option>
-                                            <option value="triangleForm">
-                                                Triangle Form Circle Flower
-                                            </option>
-                                            <option value="metatronCube">
-                                                Metatron's Cube
-                                            </option>
-                                            <option value="torus">
-                                                Torus
-                                            </option>
-                                            <option value="mandala">
-                                                Mandala
-                                            </option>
-                                        </select>
-                                    </label>
-                                </div>
 
-                                <div class="small-6 columns">
-                                    <label>Page Size:
-                                        <select id="pageLayout" onChange="setPageLayout(this);">
-                                            <option value="letter">
-                                                8.5 x 11 - Letter
-                                            </option>
-                                            <option value="A4">
-                                                A4
-                                            </option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <div class="small-4 columns">
-                                    <label>Base Circle Radius (px):
-                                        <input type="number" id="circleRadius" value="200" />
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="small-4 columns">
-                                    <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
-                                </div>
-                                <div class="small-8 columns">
-                                    <br />
-                                    <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
-                                    <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
-                                </div>
-                            </div>
-                            <div class="row" id="customOptionsRowsAnchor">
-
-                            </div>
-                            <div class="row" id="previewInfo">
-                                <div class="small-6 column info">
-                                    <label id="coordinatesAnchor">Coordinates:
-                                    </label>
-                                </div>
-
-                                <div class="small-6 column info">
-                                    <label id="diameterAnchor">Diameter Of Final Shape:
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="small-6 columns">
-
-                                    <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
-                                </div>
-                                <div class="small-6 columns">
-
-                                    <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
-                                </div>
-                            </div>
-                    -->
-                        <!-- </form> -->
                         <div class="callout">
                             <h3 data-toggle="historyPanel">History</h3>
                             <div class="callout secondary" id="historyPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
@@ -339,163 +268,118 @@
         <script src="js/mandala.js"></script>
         <script src="js/history.js"></script>
         <script type="text/javascript">
-                // Foundation.addToJquery($);
-            // var usedCenters = []; //this is a really gross bit of ugly global state too
-            // const history = new History(); // look more ugly global state
-            // var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
-            // var drawingSettings = {
-            //     flowerOfLife: {
-            //         click: drawFlowerEventListener,
-            //         mousemove: previewFlowerEventListener,
-            //         options: setFlowerOptions
-            //     },
-            //     squareForm: {
-            //         click: drawSquareFormEventListener,
-            //         mousemove: previewSquareFormEventListener,
-            //         options: setSquareFormOptions
-            //     },
-            //     triangleForm: {
-            //         click: drawTriangleFormEventListener,
-            //         mousemove: previewTriangleFormEventListener,
-            //         options: setTriangleFormOptions
-            //     },
-            //     metatronCube: {
-            //         click: drawMetatronEventListener,
-            //         mousemove: previewMetatronEventListener,
-            //         options: setMetatronOptions
-            //     },
-            //     torus: {
-            //         click: drawTorusEventListener,
-            //         mousemove: previewTorusEventListener,
-            //         options: setTorusOptions
-            //     },
-            //     mandala: {
-            //         click: drawMandalaEventListener,
-            //         mousemove: previewMandalaEventListener,
-            //         options: setMandalaOptions
-            //     }
-            // };
+            var usedCenters = []; //this is a really gross bit of ugly global state too
+            const history = new History(); // look more ugly global state
+            var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
 
-            // Array.prototype.unique = function() {
-            //     var a = this.concat();
+            Array.prototype.unique = function() {
+                var a = this.concat();
 
-            //     for(var i=0; i<a.length; ++i) {
-            //         for(var j=i+1; j<a.length; ++j) {
-            //             if(a[i] === a[j])
-            //                 a.splice(j--, 1);
-            //         }
-            //     }
+                for(var i=0; i<a.length; ++i) {
+                    for(var j=i+1; j<a.length; ++j) {
+                        if(a[i] === a[j])
+                            a.splice(j--, 1);
+                    }
+                }
 
-            //     return a;
-            // };
+                return a;
+            };
 
-            // function setPageLayout(selector) {
-            //     var selected = selector.value;
-            //     var canvas = document.getElementById("drawingCanvas");
+            function setPageLayout(selector) {
+                var selected = selector.value;
+                var canvas = document.getElementById("drawingCanvas");
 
-            //     canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
-            // }
+                canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
+            }
 
-            // function setDrawingSettings(selector) {
-            //     var selected = selector.value;
-            //     var settings = drawingSettings[selected];
-            //     var canvas = document.getElementById("drawingCanvas");
-            //     var customOptions = $("#customOptionsRowsAnchor");
+            function clearCanvas() {
+                // clear the canvas itself
+                $("#drawingCanvas").empty();
 
-            //     canvas = removeEventListeners(canvas);
-            //     clearCustomOptions(customOptions);
+                // Clear the history table
+                history.clearHistory();
+            }
 
-            //     canvas.addEventListener('click', settings.click, false)
-            //     canvas.addEventListener('mousemove', settings.mousemove, false)
-            //     settings.options(customOptions);
+            function exportCanvas() {
+                var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
+                var img = new Image();
+                img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
+                img.onload =function() {
+                    var tempCanvas = document.createElement("canvas");
+                    tempCanvas.width = "2550";
+                    tempCanvas.height = "3300";
+                    var ctx = tempCanvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
 
-            //     return canvas;
-            // }
+                    var sUrl = tempCanvas.toDataURL('image/png');
+                    var link = document.createElement('a');
+                    link.href = sUrl;
+                    link.setAttribute('target','_blank');
 
-            // function removeEventListeners(canvas) {
+                    if (link.download !== undefined) {
+                        //Set HTML5 download attribute. This will prevent file from opening if supported.
+                        var fileName = "geometry.png";
+                        link.download = fileName;
+                    }
 
-            //     canvas.removeEventListener('click', drawFlowerEventListener, false);
-            //     canvas.removeEventListener('click', drawSquareFormEventListener, false);
-            //     canvas.removeEventListener('click', drawTriangleFormEventListener, false);
-            //     canvas.removeEventListener('click', drawMetatronEventListener, false);
-            //     canvas.removeEventListener('click', drawTorusEventListener, false);
-            //     canvas.removeEventListener('click', drawMandalaEventListener, false);
+                    //Dispatching click event.
+                    if (document.createEvent) {
+                        var e = document.createEvent('MouseEvents');
+                        e.initEvent('click', true, true);
+                        link.dispatchEvent(e);
+                        return true;
+                    }
+                    window.open(sUrl, '_blank');
+                    $(link).remove();
+                }
+            }
 
-            //     canvas.removeEventListener('mousemove', previewMetatronEventListener, false);
-            //     canvas.removeEventListener('mousemove', previewFlowerEventListener, false)
-            //     canvas.removeEventListener('mousemove', previewSquareFormEventListener, false)
-            //     canvas.removeEventListener('mousemove', previewTriangleFormEventListener, false)
-            //     canvas.removeEventListener('mousemove', previewTorusEventListener, false)
-            //     canvas.removeEventListener('mousemove', previewMandalaEventListener, false)
-
-            //     return canvas;
-            // }
+            function getCanvas() {
+                return $(`#drawingCanvas`);
+            }
 
 
-            // function clearCanvas() {
-            //     // clear the canvas itself
-            //     $("#drawingCanvas").empty();
+            function updateSkipFactors() {
+                var rotation = $(`#${rotationElementId}`);
+                var skip = $(`#${skipElementId}`);
+                repopulateSkipSelect(rotation, skip);
+            }
 
-            //     // Clear the history table
-            //     history.clearHistory();
-            // }
+            function repopulateSkipSelect(rotationSelect, skipSelect) {
+                var rotation = rotationSelect.value
+                var skipFactors = torusDesigns[rotation];
 
-            // function exportCanvas() {
-            //     var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
-            //     var img = new Image();
-            //     img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
-            //     img.onload =function() {
-            //         var tempCanvas = document.createElement("canvas");
-            //         tempCanvas.width = "2550";
-            //         tempCanvas.height = "3300";
-            //         var ctx = tempCanvas.getContext("2d");
-            //         ctx.drawImage(img, 0, 0);
+                skipSelect.empty();
 
-            //         var sUrl = tempCanvas.toDataURL('image/png');
-            //         var link = document.createElement('a');
-            //         link.href = sUrl;
-            //         link.setAttribute('target','_blank');
+                for (var i = 0; i < skipFactors.length; i++) {
+                    var skipFactor = skipFactors[i]
+                    var option = $("<option></option>");
+                    option.value = skipFactor;
+                    option.text = skipFactor;
 
-            //         if (link.download !== undefined) {
-            //             //Set HTML5 download attribute. This will prevent file from opening if supported.
-            //             var fileName = "geometry.png";
-            //             link.download = fileName;
-            //         }
+                    skipSelect.append(option);
+                }
+            }
 
-            //         //Dispatching click event.
-            //         if (document.createEvent) {
-            //             var e = document.createEvent('MouseEvents');
-            //             e.initEvent('click', true, true);
-            //             link.dispatchEvent(e);
-            //             return true;
-            //         }
-            //         window.open(sUrl, '_blank');
-            //         $(link).remove();
-            //     }
-            // }
+            $(document).ready(function() {
+                    //Bootstrapping with initial settings
+                    var canvas = getCanvas();
 
-            // function getCanvas() {
-            //     return document.getElementById("drawingCanvas");
-            // }
+                    // populate the torus drop-down here
+                    rotationSelect = $("#torusRotations");
+                    rotationSelect.change(repopulateSkipFactors);
+                    for (var rotation in torusDesigns) {
+                        if (torusDesigns.hasOwnProperty(rotation)) {
+                            var option = $("<option></option>");
+                            option.value = rotation;
+                            option.text = rotation
 
-            // function clearCustomOptions(element) {
-            //     console.log("All custom options deleted");
-            //     $(".customOptionRow").remove()
-            // }
-
-            // $(document).ready(function() {
-            //         //Bootstrapping with initial settings
-            //         var canvas = document.getElementById("drawingCanvas");
-            //         canvas.addEventListener('mousemove', function(event) {
-            //             var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-            //             var coordsDiv = document.getElementById("coordinatesAnchor");
-            //             coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
-            //         });
-
-            //         var selectedDesign = document.getElementById("design");
-            //         setDrawingSettings(selectedDesign);
-            //     }
-            // );
+                            rotationSelect.append(option);
+                        }
+                    }
+                    // Set up preview for the first selected option here
+                }
+            );
 
         </script>
     </body>
