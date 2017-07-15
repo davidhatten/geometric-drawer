@@ -369,15 +369,15 @@
             }
 
             function repopulateSkipSelect(rotationSelect, skipSelect) {
-                var rotation = rotationSelect.val();
-                var skipFactors = torusDesigns[rotation];
+                const rotation = rotationSelect.val();
+                const skipFactors = torusDesigns[rotation];
 
                 skipSelect.empty();
 
-                for (var i = 0; i < skipFactors.length; i++) {
+                for (let i = 0; i < skipFactors.length; i++) {
 
-                    var skipFactor = skipFactors[i]
-                    var option = $("<option></option>");
+                    const skipFactor = skipFactors[i]
+                    const option = $("<option></option>");
                     option.val(skipFactor);
                     option.text(skipFactor);
 
@@ -386,32 +386,46 @@
             }
 
             function updateSkipFactors() {
-                var rotation = $(`#torusRotations`);
-                var skip = $(`#torusSkipFactor`);
+                const rotation = $(`#torusRotations`);
+                const skip = $(`#torusSkipFactor`);
                 repopulateSkipSelect(rotation, skip);
+            }
+
+            function initializeTorus() {
+                const rotationSelect = $("#torusRotations");
+                const skipSelect = $("#torusSkipFactor");
+                rotationSelect.change(updateSkipFactors);
+                for (let rotation in torusDesigns) {
+                    if (torusDesigns.hasOwnProperty(rotation)) {
+                        let option = $("<option></option>");
+                        option.val(rotation);
+                        option.text(rotation);
+
+                        rotationSelect.append(option);
+                    }
+                }
+                rotationSelect.val("10");
+                repopulateSkipSelect(rotationSelect, skipSelect);
+
+                skipSelect.val("10");
             }
 
             $(document).ready(function() {
                     //Bootstrapping with initial settings
-                    var canvas = getCanvas();
+                    const canvas = getCanvas();
 
-                    // populate the torus drop-down here
-                    rotationSelect = $("#torusRotations");
-                    skipSelect = $("#torusSkipFactor");
-                    rotationSelect.change(updateSkipFactors);
-                    for (var rotation in torusDesigns) {
-                        if (torusDesigns.hasOwnProperty(rotation)) {
-                            var option = $("<option></option>");
-                            option.val(rotation);
-                            option.text(rotation);
+                    initializeTorus();
 
-                            rotationSelect.append(option);
+                    $("#stylesPanel").on({
+                        "down.zf.accordion": function(event) {
+                            console.log("accordion opened", event);
+                            const activePanel = $(event.target).find('.is-active')[0];
+                            console.log("active panel ", activePanel);
+                        },
+                        "up.zf.accordion": function(event) {
+                            console.log("accordion closed", event);
                         }
-                    }
-                    rotationSelect.val("10");
-                    repopulateSkipSelect(rotationSelect, skipSelect);
-
-                    skipSelect.val("10");
+                    });
                 }
             );
 
