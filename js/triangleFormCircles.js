@@ -4,6 +4,10 @@ var degreeOfCirclesId = "degreeOfCircles";
 var canvas;
 var radius;
 
+function circleFlowerPreview() {
+    console.log("preview method requested");
+}
+
 function drawTriangleFormEventListener(event) {
     canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
