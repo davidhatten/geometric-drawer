@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="small-6 cell canvasContent">
-                    <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;" onclick="drawsShape()">
+                    <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
 
                     Your browser does not support HTML5 svg</svg>
                 </div>
@@ -27,13 +27,13 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="circleFlowerRadius" value="200" onchange="circleFlowerUpdatePreview()"/>
+                                                    <input type="number" id="circleFlowerRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
 
                                             <div class="small-4 cell">
                                                 <label>Radius Offset (px):
-                                                    <input type="number" id="circleFlowerRadiusOffset" value="0"  onchange="circleFlowerUpdatePreview()"/>
+                                                    <input type="number" id="circleFlowerRadiusOffset" value="0" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -41,13 +41,13 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Iterations:
-                                                    <input type="number" id="circleFlowerIterations" value="3" onchange="circleFlowerUpdatePreview()"/>
+                                                    <input type="number" id="circleFlowerIterations" value="3" class="styleControl"/>
                                                 </label>
                                             </div>
 
                                             <div class="small-4 cell">
                                                 <label>Number of Axes:
-                                                    <select id="cirleFlowerAxes" value="200" onchange="circleFlowerUpdatePreview()">
+                                                    <select id="circleFlowerAxes" value="200" class="styleControl">
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -85,12 +85,12 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="metetronsCubeRadius" value="200" onchange="metatronsCubeUpdatePreview()"/>
+                                                    <input type="number" id="metetronsCubeRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
                                             <div class="small-4 cell">
                                                 <label>Radius Offset (px):
-                                                    <input type="number" id="metatronsCubeRadiusOffset" value="0" onchange="metatronsCubeUpdatePreview()"/>
+                                                    <input type="number" id="metatronsCubeRadiusOffset" value="0" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -102,13 +102,13 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="torusRadius" value="200"  onchange="torusUpdatePreview()"/>
+                                                    <input type="number" id="torusRadius" value="200"  class="styleControl"/>
                                                 </label>
                                             </div>
 
                                             <div class="small-4 cell">
                                                 <label>Radius Offset (px):
-                                                    <input type="number" id="torusRadiusOffset" value="0" onchange="torusUpdatePreview()"/>
+                                                    <input type="number" id="torusRadiusOffset" value="0" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Rotation:
-                                                    <select id="torusRotations" onchange="torusUpdateSkipFactors()">
+                                                    <select id="torusRotations" class="styleControl">
                                                             <!-- Populated in $(document).ready() -->
                                                     </select>
                                                 </label>
@@ -124,7 +124,7 @@
 
                                             <div class="small-4 cell">
                                                 <label>Skip Factor:
-                                                    <select id="torusSkipFactor" onchange="torusUpdatePreview()">
+                                                    <select id="torusSkipFactor" class="styleControl">
                                                             <!-- Populated in $(document).ready() -->
                                                     </select>
                                                 </label>
@@ -139,7 +139,7 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="circleRadius" value="200" onchange="circleUpdatePreview()" />
+                                                    <input type="number" id="circleRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -151,19 +151,19 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Inner Radius (px):
-                                                    <input type="number" id="quadCurveInnerRadius" value="200" onchange="quadCurveUpdatePreview()" />
+                                                    <input type="number" id="quadCurveInnerRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
                                             <div class="small-4 cell">
                                                 <label>Outer Radius (px):
-                                                    <input type="number" id="quadCurveOuterRadius" value="300" onchange="quadCurveUpdatePreview()"/>
+                                                    <input type="number" id="quadCurveOuterRadius" value="300" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Number of Axes:
-                                                    <select id="quadCurveAxes" value="200" onchange="quadCurveUpdatePreview()">
+                                                    <select id="quadCurveAxes" value="200" class="styleControl">
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -193,7 +193,7 @@
                                             </div>
                                             <div class="small-4 cell">
                                                 <label>Axis Offset (px):
-                                                    <input type="number" id="quadCurveAxisOffset" value="300" onchange="quadCurveUpdatePreview()"/>
+                                                    <input type="number" id="quadCurveAxisOffset" value="300" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -205,12 +205,12 @@
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="dotsBaseRadius" value="200" onchange="dotsUpdatePreview()" />
+                                                    <input type="number" id="dotsBaseRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
                                             <div class="small-4 cell">
                                                 <label>Dots Radius (px):
-                                                    <input type="number" id="dotsRadius" value="200" onchange="dotsUpdatePreview()"/>
+                                                    <input type="number" id="dotsRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
         <script src="js/flowerOfLife.js"></script>
         <script src="js/squareFormCircles.js"></script>
-        <script src="js/triangleFormCircles.js"></script>
+        <script src="js/circleFlower.js"></script>
         <script src="js/metatronCube.js"></script>
         <script src="js/circleUtils.js"></script>
         <script src="js/torus.js"></script>
@@ -341,8 +341,8 @@
             };
 
             function setPageLayout(selector) {
-                var selected = selector.value;
-                var canvas = document.getElementById("drawingCanvas");
+                const selected = selector.value;
+                const canvas = getCanvas();
 
                 canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
             }
@@ -390,7 +390,7 @@
             }
 
             function getCanvas() {
-                return $(`#drawingCanvas`);
+                return document.getElementById("drawingCanvas");
             }
 
             function repopulateSkipSelect(rotationSelect, skipSelect) {
@@ -410,11 +410,11 @@
                 }
             }
 
-            function torusUpdateSkipFactors() {
+            function torusUpdateSkipFactors(event) {
                 const rotation = $(`#torusRotations`);
                 const skip = $(`#torusSkipFactor`);
                 repopulateSkipSelect(rotation, skip);
-                torusUpdatePreview();
+                torusUpdatePreview(event);
             }
 
             function initializeTorus() {
@@ -433,17 +433,68 @@
                 repopulateSkipSelect(rotationSelect, skipSelect);
 
                 skipSelect.val("10");
+
+                $("#torus .styleControl").change(function(event) {
+                    torusUpdateSkipFactors(event);
+                });
             }
 
-            function drawsShape() {
+            function initializeCircleFlower() {                
+                $("#circleFlower .styleControl").change(function(event) {
+                    circleFlowerUpdatePreview(event);
+                });
+            }
+
+            function initializeMetatronsCube() {
+                $("#metatronsCube .styleControl").change(function(event) {
+                    metatronsCubeUpdatePreview(event);
+                });
+            }
+
+            function initializeCircle() {                
+                $("#circle .styleControl").change(function(event) {
+                    circleUpdatePreview(event);
+                });
+            }
+
+            function initializeQuadCurve() {                
+                $("#quadCurve .styleControl").change(function(event) {
+                    quadCurveUpdatePreview(event);
+                });
+            }
+
+            function initializeDots() {                
+                $("#dots .styleControl").change(function(event) {
+                    dotsUpdatePreview(event);
+                });
+            }
+
+            function initializeCanvas() {
+                $("#drawingCanvas").click(function(event) {
+                    drawShape(event);
+                });
+
+            }
+
+            function drawShape(event) {
                 console.log("I should be dispatching a shape draw now");
+                const canvas = getCanvas();
+
+                const activeId = $("#stylesPanel .accordion-item.is-active")[0].id;
+                window[`${activeId}Draw`](canvas, event);
             }
 
             $(document).ready(function() {
                     //Bootstrapping with initial settings
-                    const canvas = getCanvas();
 
+                    initializeCircleFlower();
+                    initializeMetatronsCube();
                     initializeTorus();
+                    initializeCircle();
+                    initializeQuadCurve();
+                    initializeDots();
+
+                    initializeCanvas();
 
                     $("#stylesPanel").on({
                         "down.zf.accordion": function(event) {

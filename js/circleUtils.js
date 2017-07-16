@@ -93,14 +93,14 @@ function createLabel(text) {
 
 function drawCircle(canvas, radius, x, y) {
     console.log(`Drawing radius x y ${radius} ${x} ${y}`);
-    canvas = Snap(canvas);
+    ctx = Snap(canvas);
     var circleId = `circle${Date.now()}`
     var circle = {x: x, y: y, id:circleId};
     var startXY = getPointOnCircle(x, y, radius, 0, 0);
     var midXY = getPointOnCircle(x, y, radius, 0, 180);
 
     // Draw two half-circle arcs because that's how you have to do it
-    var drawnCircle = canvas.path(`M ${startXY.x} ${startXY.y}
+    var drawnCircle = ctx.path(`M ${startXY.x} ${startXY.y}
         A ${radius} ${radius} 0 0 0 ${midXY.x} ${midXY.y}
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
