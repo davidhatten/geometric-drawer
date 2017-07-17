@@ -23,7 +23,7 @@ var torusDesigns = {
     120: [0],
     180: [0],
     360: [0]
-}
+};
 var usedCenters = []; //this is a really gross bit of ugly global state too
 const history = new History(); // look more ugly global state
 const dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
@@ -184,9 +184,9 @@ function drawShape(event) {
     window[`${activeId}Draw`](canvas, event);
 }
 
-$(document).ready(function() {
+$(document).ready(
+    function() {
         //Bootstrapping with initial settings
-
         initializeCircleFlower();
         initializeMetatronsCube();
         initializeTorus();
