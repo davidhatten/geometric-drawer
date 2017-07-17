@@ -3,6 +3,10 @@ var skipElementId = "skipFactor";
 var skipGroupElementId = "skipGrouping";
 var radius;
 
+function torusUpdatePreview() {
+
+}
+
 function drawTorusEventListener(event) {
     var canvas = this;
     var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
