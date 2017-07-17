@@ -1,16 +1,20 @@
 // import * as circleUtil from "circleUtils";
-var canvas;
-var radius;
+function flowerOfLifePreview() {
 
-function drawFlowerEventListener(event) {
-    canvas = document.getElementById("drawingCanvas"); //Somehow this is the canvas, I kind of get why
-    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    radius = parseInt($(`#${circleRadiusId}`).val());
-    var iterations = document.getElementById(iterateElementId).value;
+}
+
+function flowerOfLifeUpdatePreview(event) {
+
+}
+
+function flowerOfLifeDraw(canvas, event) {
+    const xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    const radius = parseInt($(`#flowerOfLifeRadius`).val());
+    const iterations = parseInt($(`#flowerOfLifeLayers`).val());
 
     setLineWidth();
 
-    drawFlower(canvas, radius, xyCoords.x, xyCoords.y, parseInt(iterations));
+    drawFlower(canvas, radius, xyCoords.x, xyCoords.y, iterations);
 
     history.addHistoryRow(`Flower Of Life-${Date.now()}`,
                             usedCenters,
@@ -46,44 +50,44 @@ function drawFlower(canvas, radius, x, y, iterations) {
     var bootstrap2 = drawCircle(canvas, radius, x, y+radius);
     innerPetals[innerPetals.length] = bootstrap2;
 
-    var centerPoints = intersection(bootstrap1, bootstrap2);
+    var centerPoints = intersection(bootstrap1, bootstrap2, radius);
 
     //Every other circle is centered on the intersection of the previous two
     for (let i = 0; i < 5; i++) {
         var petal = drawCircle(canvas, radius, centerPoints[0].x, centerPoints[0].y);
         innerPetals[innerPetals.length] = petal;
 
-        centerPoints = intersection(bootstrap1, petal);
+        centerPoints = intersection(bootstrap1, petal, radius);
     }
 
     var outerPetals = innerPetals;
 
     for (let i = 0; i < iterations-1; i++) {
-        outerPetals = drawPetals(canvas, outerPetals).unique();
+        outerPetals = drawPetals(canvas, radius, outerPetals).unique();
     }
 }
 
-function drawPetals(canvas, innerPetals) {
+function drawPetals(canvas, radius, innerPetals) {
     var outerPetals = [];
     for (let i = 0; i < innerPetals.length; i++) {
         for (let j = 0; j < innerPetals.length; j++) {
-            var centerPoints = intersection(innerPetals[i], innerPetals[j]);
-            outerPetals = outerPetals.concat(populateIntersection(canvas, centerPoints));
+            var centerPoints = intersection(innerPetals[i], innerPetals[j], radius);
+            outerPetals = outerPetals.concat(populateIntersection(canvas, radius, centerPoints));
         }
     }
 
     var returnPetals = outerPetals.unique();
     for (let i = 0; i < outerPetals.length; i++) {
         for (let j = 0; j < innerPetals.length; j++) {
-            var centerPoints = intersection(outerPetals[i], innerPetals[j]);
-            returnPetals = returnPetals.concat(populateIntersection(canvas, centerPoints));
+            var centerPoints = intersection(outerPetals[i], innerPetals[j], radius);
+            returnPetals = returnPetals.concat(populateIntersection(canvas, radius, centerPoints));
         }
     }
 
     return returnPetals.unique();
 }
 
-function populateIntersection(canvas, centerPoints) {
+function populateIntersection(canvas, radius, centerPoints) {
     var outerPetals = [];
 
     if (centerPoints.length > 0){
@@ -100,7 +104,7 @@ function populateIntersection(canvas, centerPoints) {
 
 // Lifted from SO because I don't feel like reliving 7th grade math and if I were in Node I would just get a library anyway
 //Should probably optimize this for constant radius...
-function intersection(circle0, circle1) {
+function intersection(circle0, circle1, radius) {
     var a, dx, dy, d, h, rx, ry;
     var x2, y2;
 

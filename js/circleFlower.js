@@ -40,19 +40,19 @@ function drawTriangleForm(canvas, x, y, iterations, radiusOffset, degree) {
     usedCenters = [];
     triangleCornerAngles = [];
     var innerPetals = [];
-    //neglect this for now.... just using it for positioning
-    //var bootstrap1 = drawCircle(canvas, x, y);
+
     innerPetals.push({x: x, y: y});
 
     //split 360, then rotate it by that when you're done
     var degrees = 360/degree;
-    var trackAround = 0
+    var trackAround = 0;
     for (let i = 0; i < degree; i++) {
+        let javascriptRotation;
         if (degree % 2 === 0) {
-            var javascriptRotation = (1/.5*degree);
+            javascriptRotation = (1/.5*degree);
         }
         else {
-            var javascriptRotation = (1/(2*degree));
+            javascriptRotation = (1/(2*degree));
         }
         triangleCornerAngles.push(((trackAround + degrees)/180) + javascriptRotation);
         trackAround = trackAround + degrees;
@@ -72,16 +72,14 @@ function drawTrianglePetals(canvas, innerPetals, radiusOffset) {
             var sqrY = innerPetals[i].y + (radius+radiusOffset) * Math.sin(Math.PI * triangleCornerAngles[j]);
 
             var circle = {x:sqrX, y:sqrY};
-            if (usedCentersContains(circle) === false) {
+            if (arrayContains(outerPetals, circle) === false) {
                 outerPetals.push(drawCircle(canvas, radius, sqrX, sqrY));
-                usedCenters.push(circle);
             }
         }
     }
 
     return outerPetals.unique();
 }
-
 
 
 function setTriangleFormOptions(element) {

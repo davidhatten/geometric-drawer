@@ -169,12 +169,19 @@ function initializeDots() {
     });
 }
 
+function initializeFlowerOfLife() {
+    $("#flowerOfLife .styleControl").change(function(event) {
+        flowerOfLifeUpdatePreview(event);
+    });
+}
+
 function initializeCanvas() {
     $("#drawingCanvas").click(function(event) {
         drawShape(event);
     });
 
 }
+
 
 function drawShape(event) {
     console.log("I should be dispatching a shape draw now");
@@ -188,6 +195,7 @@ $(document).ready(
     function() {
         //Bootstrapping with initial settings
         initializeCircleFlower();
+        initializeFlowerOfLife();
         initializeMetatronsCube();
         initializeTorus();
         initializeCircle();

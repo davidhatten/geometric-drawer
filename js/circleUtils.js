@@ -159,6 +159,17 @@ function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     usedCenters.push({"id":curveId});
 }
 
+function arrayContains(array, centerPoint) {
+    for (let i = 0; i < array.length; i++) {
+        if (roundFloats(usedCenters[i].x, 3) === roundFloats(centerPoint.x, 3) &&
+            roundFloats(array[i].y, 3) === roundFloats(centerPoint.y, 3)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function usedCentersContains(centerPoint) {
     for (let i = 0; i < usedCenters.length; i++) {
         if (roundFloats(usedCenters[i].x, 3) === roundFloats(centerPoint.x, 3) && roundFloats(usedCenters[i].y, 3) === roundFloats(centerPoint.y, 3)) {
