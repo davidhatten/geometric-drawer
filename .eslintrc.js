@@ -5,6 +5,14 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "rules": {
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars" : "all",
+                "varsIgnorePattern": ".+Preview|.+Draw",
+                "args": "all",
+            }
+        ],
         "indent": [
             "error",
             4
@@ -15,7 +23,7 @@ module.exports = {
         ],
         "quotes": [
             "error",
-            "double"
+            "backtick"
         ],
         "semi": [
             "error",

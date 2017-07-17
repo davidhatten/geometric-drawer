@@ -22,7 +22,7 @@ var torusDesigns = {
     90: [0, 1],
     120: [0],
     180: [0],
-    360: [0]
+    360: [0],
 };
 var usedCenters = []; //this is a really gross bit of ugly global state too
 const history = new History(); // look more ugly global state
@@ -44,7 +44,7 @@ function setPageLayout(selector) {
     const selected = selector.value;
     const canvas = getCanvas();
 
-    canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
+    canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`);
 }
 
 function clearCanvas() {
@@ -59,17 +59,17 @@ function exportCanvas() {
     var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
     var img = new Image();
     img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
-    img.onload =function() {
+    img.onload = function() {
         var tempCanvas = document.createElement("canvas");
         tempCanvas.width = "2550";
         tempCanvas.height = "3300";
         var ctx = tempCanvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
 
-        var sUrl = tempCanvas.toDataURL('image/png');
-        var link = document.createElement('a');
+        var sUrl = tempCanvas.toDataURL("image/png");
+        var link = document.createElement("a");
         link.href = sUrl;
-        link.setAttribute('target','_blank');
+        link.setAttribute("target", "_blank");
 
         if (link.download !== undefined) {
             //Set HTML5 download attribute. This will prevent file from opening if supported.
@@ -79,14 +79,14 @@ function exportCanvas() {
 
         //Dispatching click event.
         if (document.createEvent) {
-            var e = document.createEvent('MouseEvents');
-            e.initEvent('click', true, true);
+            var e = document.createEvent("MouseEvents");
+            e.initEvent("click", true, true);
             link.dispatchEvent(e);
             return true;
         }
-        window.open(sUrl, '_blank');
+        window.open(sUrl, "_blank");
         $(link).remove();
-    }
+    };
 }
 
 function getCanvas() {
@@ -101,8 +101,8 @@ function repopulateSkipSelect(rotationSelect, skipSelect) {
 
     for (let i = 0; i < skipFactors.length; i++) {
 
-        const skipFactor = skipFactors[i]
-        const option = $("<option></option>");
+        const skipFactor = skipFactors[i];
+        const option = $(`<option></option>`);
         option.val(skipFactor);
         option.text(skipFactor);
 
@@ -118,8 +118,8 @@ function torusUpdateSkipFactors(event) {
 }
 
 function initializeTorus() {
-    const rotationSelect = $("#torusRotations");
-    const skipSelect = $("#torusSkipFactor");
+    const rotationSelect = $(`#torusRotations`);
+    const skipSelect = $(`#torusSkipFactor`);
     for (let rotation in torusDesigns) {
         if (torusDesigns.hasOwnProperty(rotation)) {
             let option = $("<option></option>");
