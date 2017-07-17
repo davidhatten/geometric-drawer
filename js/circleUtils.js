@@ -161,7 +161,7 @@ function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
 
 function arrayContains(array, centerPoint) {
     for (let i = 0; i < array.length; i++) {
-        if (roundFloats(usedCenters[i].x, 3) === roundFloats(centerPoint.x, 3) &&
+        if (roundFloats(array[i].x, 3) === roundFloats(centerPoint.x, 3) &&
             roundFloats(array[i].y, 3) === roundFloats(centerPoint.y, 3)) {
             return true;
         }

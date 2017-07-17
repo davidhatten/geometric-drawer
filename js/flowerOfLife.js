@@ -41,65 +41,65 @@ function previewFlowerEventListener(event) {
 }
 
 function drawFlower(canvas, radius, x, y, iterations) {
-    var innerPetals = [];
+    const innerPetals = [];
     clearCenters();
     //draw one circle
-    var bootstrap1 = drawCircle(canvas, radius, x, y);
+    const bootstrap1 = drawCircle(canvas, radius, x, y);
 
     //draw second circle, centered anywhere on the first
-    var bootstrap2 = drawCircle(canvas, radius, x, y+radius);
-    innerPetals[innerPetals.length] = bootstrap2;
+    const bootstrap2 = drawCircle(canvas, radius, x, y+radius);
+    innerPetals.push(bootstrap2);
 
-    var centerPoints = intersection(bootstrap1, bootstrap2, radius);
+    let centerPoints = intersection(bootstrap1, bootstrap2, radius);
 
     //Every other circle is centered on the intersection of the previous two
     for (let i = 0; i < 5; i++) {
-        var petal = drawCircle(canvas, radius, centerPoints[0].x, centerPoints[0].y);
-        innerPetals[innerPetals.length] = petal;
+        const petal = drawCircle(canvas, radius, centerPoints[0].x, centerPoints[0].y);
+        innerPetals.push(petal);
 
         centerPoints = intersection(bootstrap1, petal, radius);
     }
 
-    var outerPetals = innerPetals;
+    let outerPetals = innerPetals;
 
     for (let i = 0; i < iterations-1; i++) {
-        outerPetals = drawPetals(canvas, radius, outerPetals).unique();
+        outerPetals = drawPetalRing(canvas, radius, outerPetals).unique();
     }
 }
 
-function drawPetals(canvas, radius, innerPetals) {
-    var outerPetals = [];
+function drawPetalRing(canvas, radius, innerPetals) {
+    let outerPetals = [];
     for (let i = 0; i < innerPetals.length; i++) {
-        for (let j = 0; j < innerPetals.length; j++) {
-            var centerPoints = intersection(innerPetals[i], innerPetals[j], radius);
-            outerPetals = outerPetals.concat(populateIntersection(canvas, radius, centerPoints));
-        }
+        const neighborIndex = i + 1 < innerPetals.length ? i + 1 : 0;
+        // for (let j = 0; j < innerPetals.length; j++) {
+        const centerPoints = intersection(innerPetals[i], innerPetals[neighborIndex], radius);
+        outerPetals.push(populateIntersection(canvas, radius, centerPoints));
+        // }
     }
 
-    var returnPetals = outerPetals.unique();
+    const returnPetals = outerPetals.unique();
     for (let i = 0; i < outerPetals.length; i++) {
-        for (let j = 0; j < innerPetals.length; j++) {
-            var centerPoints = intersection(outerPetals[i], innerPetals[j], radius);
-            returnPetals = returnPetals.concat(populateIntersection(canvas, radius, centerPoints));
-        }
+        const neighborIndex = i + 1 < outerPetals.length ? i + 1 : 0;
+        const centerPoints = intersection(outerPetals[i], innerPetals[neighborIndex], radius);
+        returnPetals.push(populateIntersection(canvas, radius, centerPoints));
     }
 
     return returnPetals.unique();
 }
 
 function populateIntersection(canvas, radius, centerPoints) {
-    var outerPetals = [];
+    let petal;
 
     if (centerPoints.length > 0){
         for (let i = 0; i < centerPoints.length; i++) {
-            if (centerPoints[i] != undefined && usedCentersContains(centerPoints[i]) === false) {
-                var petal = drawCircle(canvas, radius, centerPoints[i].x, centerPoints[i].y);
-                outerPetals[outerPetals.length] = petal;
+            if (centerPoints[i] != undefined) {
+                petal = drawCircle(canvas, radius, centerPoints[i].x, centerPoints[i].y);
+                break;
             }
         }
     }
 
-    return outerPetals;
+    return petal;
 }
 
 // Lifted from SO because I don't feel like reliving 7th grade math and if I were in Node I would just get a library anyway
