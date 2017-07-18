@@ -23,7 +23,6 @@ function flowerOfLifeDraw(canvas, event) {
             circleRadiusId: radius,
             iterateElementId: iterations,
         });
-    clearCenters();
 }
 
 

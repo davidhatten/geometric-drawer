@@ -22,7 +22,6 @@ function offsetGridDraw(canvas, event) {
     const usedCenters = drawOffsetGrid(canvas, radius, radiusOffset, xyCoords.x, xyCoords.y, iterations);
 
     history.addHistoryRow(`Offset Grid-${Date.now()}`, usedCenters, {});
-    clearCenters();
 }
 
 

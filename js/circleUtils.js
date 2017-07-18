@@ -105,8 +105,6 @@ function drawCircle(canvas, radius, x, y) {
         A ${radius} ${radius} 0 0 0 ${startXY.x} ${startXY.y}
         z`);
     drawnCircle.attr({strokeWidth: lineWidth, stroke: "#000", fillOpacity: "0.0", id: circleId});
-    // Well this is a leaky little bit of info isn't it?
-    usedCenters.push(circle);
 
     // used for testing, viewing centers
     //drawCrosshairs(ctx, x, y);
