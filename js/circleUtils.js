@@ -155,7 +155,7 @@ function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
     curve.attr({strokeWidth: lineWidth, strokeLinejoin: "arcs", strokeLinecap: "round", stroke: "#000", fill:"transparent", "id": curveId})
 
     // TODO: add the proper metadata here
-    usedCenters.push({"id":curveId});
+    return {"id":curveId};
 }
 
 function arrayContains(array, centerPoint) {
