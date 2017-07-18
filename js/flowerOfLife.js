@@ -73,26 +73,26 @@ function drawPetalRing(canvas, radius, innerPetals) {
         const neighborIndex = i + 1 < innerPetals.length ? i + 1 : 0;
         // for (let j = 0; j < innerPetals.length; j++) {
         const centerPoints = intersection(innerPetals[i], innerPetals[neighborIndex], radius);
-        outerPetals.push(populateIntersection(canvas, radius, centerPoints));
+        outerPetals.push(populateIntersection(canvas, radius, centerPoints, innerPetals));
         // }
     }
 
     const returnPetals = outerPetals.unique();
     for (let i = 0; i < outerPetals.length; i++) {
         const neighborIndex = i + 1 < outerPetals.length ? i + 1 : 0;
-        const centerPoints = intersection(outerPetals[i], innerPetals[neighborIndex], radius);
-        returnPetals.push(populateIntersection(canvas, radius, centerPoints));
+        const centerPoints = intersection(outerPetals[i], outerPetals[neighborIndex], radius);
+        returnPetals.push(populateIntersection(canvas, radius, centerPoints, innerPetals));
     }
 
     return returnPetals.unique();
 }
 
-function populateIntersection(canvas, radius, centerPoints) {
+function populateIntersection(canvas, radius, centerPoints, excludedPetals) {
     let petal;
 
     if (centerPoints.length > 0){
         for (let i = 0; i < centerPoints.length; i++) {
-            if (centerPoints[i] != undefined) {
+            if (centerPoints[i] !== undefined && arrayContains(excludedPetals, centerPoints[i]) === false) {
                 petal = drawCircle(canvas, radius, centerPoints[i].x, centerPoints[i].y);
                 break;
             }
