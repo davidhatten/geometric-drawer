@@ -14,7 +14,7 @@ function flowerOfLifeDraw(canvas, event) {
 
     setLineWidth();
 
-    drawFlower(canvas, radius, 0, xyCoords.x, xyCoords.y, iterations);
+    const usedCenters = drawFlower(canvas, radius, 0, xyCoords.x, xyCoords.y, iterations);
 
     history.addHistoryRow(`Flower Of Life-${Date.now()}`,
         usedCenters,
@@ -47,6 +47,8 @@ function drawFlower(canvas, radius, radiusOffset, x, y, iterations) {
         outerPetals = drawFlowerPetals(canvas, radius, outerPetals, radiusOffset, triangleCornerAngles, usedPetals);
         usedPetals = usedPetals.concat(outerPetals);
     }
+
+    return usedPetals;
 }
 
 function drawFlowerPetals(canvas, radius, innerPetals, radiusOffset, cornerAngles, usedPetals) {
