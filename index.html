@@ -5,291 +5,337 @@
         <title>Geometry Generator</title>
     </head>
     <body>
-        <div class="content">
-            <div class="row">
-                <div class="small-12 columns">
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="small-12 cell">
                     <h2 align="center">Select a design and click on the canvas!</h2>
                 </div>
-            </div>
 
-            <div class="row fullWidth">
-                <div class="small-6 columns canvasContent">
-                    <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
+                <div class="small-6 cell canvasContent">
+                    <div class="spacer">
+                        <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
 
-                    Your browser does not support HTML5 svg</svg>
+                        Your browser does not support HTML5 svg</svg>
+                    </div>
                 </div>
-                <div class="small-6 columns">
-                    <form id="options">
-                        <div class="row">
-                            <div class="small-6 columns">
-                                <label>Design:
-                                    <select id="design" onChange="setDrawingSettings(this);">
-                                        <option value="flowerOfLife">
-                                            Flower of Life
-                                        </option>
-                                        <option value="squareForm">
-                                            Square Form Circle Flower
-                                        </option>
-                                        <option value="triangleForm">
-                                            Triangle Form Circle Flower
-                                        </option>
-                                        <option value="metatronCube">
-                                            Metatron's Cube
-                                        </option>
-                                        <option value="torus">
-                                            Torus
-                                        </option>
-                                        <option value="mandala">
-                                            Mandala
-                                        </option>
-                                    </select>
-                                </label>
-                            </div>
+                <div class="small-6 cell">
+                    <div class="callout">
+                        <h3 data-toggle="stylesPanel">Styles</h3>
+                        <div class="callout secondary" id="stylesPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                            <ul class="accordion" data-accordion>
+                                <li class="accordion-item is-active" data-accordion-item id="offsetGrid">
+                                    <a class="accordion-title" href="#">Offset Grid</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="offsetGridRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="offsetGridRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Iterations:
+                                                    <input type="number" id="offsetGridIterations" value="3" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="flowerOfLife">
+                                    <a class="accordion-title" href="#">Flower Of Life</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="flowerOfLifeRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="flowerOfLifeRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                             <div class="small-4 cell">
+                                                <label>Number of Layers:
+                                                    <input type="number" id="flowerOfLifeLayers"
+                                                    value="3" class="styleControl" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="metatronsCube">
+                                    <a class="accordion-title" href="#">Metatron's Cube</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="metatronsCubeRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="metatronsCubeRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="torus">
+                                    <a class="accordion-title" href="#">Torus</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="torusRadius" value="200"  class="styleControl"/>
+                                                </label>
+                                            </div>
 
-                            <div class="small-6 columns">
-                                <label>Page Size:
-                                    <select id="pageLayout" onChange="setPageLayout(this);">
-                                        <option value="letter">
-                                            8.5 x 11 - Letter
-                                        </option>
-                                        <option value="A4">
-                                            A4
-                                        </option>
-                                    </select>
-                                </label>
-                            </div>
-                            <!-- <div class="small-4 columns">
-                                <label>Base Circle Radius (px):
-                                    <input type="number" id="circleRadius" value="200" />
-                                </label>
-                            </div> -->
-                        </div>
-                        <div class="row">
-                            <div class="small-4 columns">
-                                <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
-                            </div>
-                            <div class="small-8 columns">
-                                <br />
-                                <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
-                                <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
-                            </div>
-                        </div>
-                        <div class="row" id="customOptionsRowsAnchor">
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="torusRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
 
-                        </div>
-                        <div class="row" id="previewInfo">
-                            <div class="small-6 column info">
-                                <label id="coordinatesAnchor">Coordinates:
-                                </label>
-                            </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Rotation:
+                                                    <select id="torusRotations" class="styleControl">
+                                                            <!-- Populated in $(document).ready() -->
+                                                    </select>
+                                                </label>
+                                            </div>
 
-                            <div class="small-6 column info">
-                                <label id="diameterAnchor">Diameter Of Final Shape:
-                                </label>
+                                            <div class="small-4 cell">
+                                                <label>Skip Factor:
+                                                    <select id="torusSkipFactor" class="styleControl">
+                                                            <!-- Populated in $(document).ready() -->
+                                                    </select>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="circle">
+                                    <a class="accordion-title" href="#">Circle</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="circleRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="quadCurve">
+                                    <a class="accordion-title" href="#">Quad Curve Petals</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Inner Radius (px):
+                                                    <input type="number" id="quadCurveInnerRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Outer Radius (px):
+                                                    <input type="number" id="quadCurveOuterRadius" value="300" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Number of Axes:
+                                                    <select id="quadCurveAxes" value="200" class="styleControl">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option selected>12</option>
+                                                        <option>15</option>
+                                                        <option>18</option>
+                                                        <option>20</option>
+                                                        <option>24</option>
+                                                        <option>30</option>
+                                                        <option>36</option>
+                                                        <option>40</option>
+                                                        <option>45</option>
+                                                        <option>60</option>
+                                                        <option>72</option>
+                                                        <option>90</option>
+                                                        <option>120</option>
+                                                        <option>180</option>
+                                                        <option>360</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Axis Offset (px):
+                                                    <input type="number" id="quadCurveAxisOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Control X Point Offset
+                                                    <input type="number" id="quadCurveXControl" value="100" class="styleControl">
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Control Y Point Offset
+                                                    <input type="number" id="quadCurveYControl" value="25" class="styleControl">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="dots">
+                                    <a class="accordion-title" href="#">Dots</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="dotsBaseRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Dots Radius (px):
+                                                    <input type="number" id="dotsRadius" value="20" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Number of Axes:
+                                                    <select id="dotsAxes" value="200" class="styleControl">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option selected>12</option>
+                                                        <option>15</option>
+                                                        <option>18</option>
+                                                        <option>20</option>
+                                                        <option>24</option>
+                                                        <option>30</option>
+                                                        <option>36</option>
+                                                        <option>40</option>
+                                                        <option>45</option>
+                                                        <option>60</option>
+                                                        <option>72</option>
+                                                        <option>90</option>
+                                                        <option>120</option>
+                                                        <option>180</option>
+                                                        <option>360</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Axis Offset (px):
+                                                    <input type="number" id="dotsAxisOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr />
+                        <form>
+                            <div class="callout">
+                                <h3 data-toggle="panel">General Options</h3>
+                                    <div class="callout secondary" id="panel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                                <label>Page Size:
+                                                    <select id="pageLayout" onChange="setPageLayout(this);">
+                                                        <option value="letter">
+                                                            8.5 x 11 - Letter
+                                                        </option>
+                                                        <option value="A4">
+                                                            A4
+                                                        </option>
+                                                    </select>
+                                                </label>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
+                                        </div>
+                                        <div class="small-8 cell">
+                                            <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
+                                            <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
+                                        </div>
+
+                            </div>
+                                </div>
+                            </div>
+                        </form>
+                        <hr />
+
+                        <div class="callout">
+                            <h3 data-toggle="historyPanel">History</h3>
+                            <div class="callout secondary" id="historyPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                <table class="hover" id="historyTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Drawing</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="small-6 columns">
-
-                                <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
-                            </div>
-                            <div class="small-6 columns">
-
-                                <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h6>History</h6>
-                            <table class="hover" id="historyTable">
-                                <thead>
-                                    <tr>
-                                        <th>Drawing</th>
-                                        <th>Delete</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
 
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="lib/jquery/jquery-3.2.1.min.js" />
-        <script src="lib/foundation/js/foundation.min.js" ></script>
+        <script src="lib/foundation/js/vendor/jquery.js"></script>
+        <script src="lib/foundation/js/vendor/what-input.js"></script>
+        <script src="lib/foundation/js/vendor/foundation.min.js"></script>
+        <script src="lib/foundation/js/app.js"></script>
         <script src="lib/snap/snap.svg-min.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
         <script src="js/flowerOfLife.js"></script>
         <script src="js/squareFormCircles.js"></script>
-        <script src="js/triangleFormCircles.js"></script>
+        <script src="js/offsetGrid.js"></script>
         <script src="js/metatronCube.js"></script>
         <script src="js/circleUtils.js"></script>
         <script src="js/torus.js"></script>
-        <script src="js/mandala.js"></script>
         <script src="js/history.js"></script>
-        <script type="text/javascript">
-            var usedCenters = []; //this is a really gross bit of ugly global state too
-            const history = new History(); // look more ugly global state
-            var dimensions = {A4: {x: 2480, y:3508}, letter:{x: 2550, y: 3300}};
-            var drawingSettings = {
-                flowerOfLife: {
-                    click: drawFlowerEventListener,
-                    mousemove: previewFlowerEventListener,
-                    options: setFlowerOptions
-                },
-                squareForm: {
-                    click: drawSquareFormEventListener,
-                    mousemove: previewSquareFormEventListener,
-                    options: setSquareFormOptions
-                },
-                triangleForm: {
-                    click: drawTriangleFormEventListener,
-                    mousemove: previewTriangleFormEventListener,
-                    options: setTriangleFormOptions
-                },
-                metatronCube: {
-                    click: drawMetatronEventListener,
-                    mousemove: previewMetatronEventListener,
-                    options: setMetatronOptions
-                },
-                torus: {
-                    click: drawTorusEventListener,
-                    mousemove: previewTorusEventListener,
-                    options: setTorusOptions
-                },
-                mandala: {
-                    click: drawMandalaEventListener,
-                    mousemove: previewMandalaEventListener,
-                    options: setMandalaOptions
-                }
-            };
-
-            Array.prototype.unique = function() {
-                var a = this.concat();
-
-                for(var i=0; i<a.length; ++i) {
-                    for(var j=i+1; j<a.length; ++j) {
-                        if(a[i] === a[j])
-                            a.splice(j--, 1);
-                    }
-                }
-
-                return a;
-            };
-
-            function setPageLayout(selector) {
-                var selected = selector.value;
-                var canvas = document.getElementById("drawingCanvas");
-
-                canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`)
-            }
-
-            function setDrawingSettings(selector) {
-                var selected = selector.value;
-                var settings = drawingSettings[selected];
-                var canvas = document.getElementById("drawingCanvas");
-                var customOptions = $("#customOptionsRowsAnchor");
-
-                canvas = removeEventListeners(canvas);
-                clearCustomOptions(customOptions);
-
-                canvas.addEventListener('click', settings.click, false)
-                canvas.addEventListener('mousemove', settings.mousemove, false)
-                settings.options(customOptions);
-
-                return canvas;
-            }
-
-            function removeEventListeners(canvas) {
-
-                canvas.removeEventListener('click', drawFlowerEventListener, false);
-                canvas.removeEventListener('click', drawSquareFormEventListener, false);
-                canvas.removeEventListener('click', drawTriangleFormEventListener, false);
-                canvas.removeEventListener('click', drawMetatronEventListener, false);
-                canvas.removeEventListener('click', drawTorusEventListener, false);
-                canvas.removeEventListener('click', drawMandalaEventListener, false);
-
-                canvas.removeEventListener('mousemove', previewMetatronEventListener, false);
-                canvas.removeEventListener('mousemove', previewFlowerEventListener, false)
-                canvas.removeEventListener('mousemove', previewSquareFormEventListener, false)
-                canvas.removeEventListener('mousemove', previewTriangleFormEventListener, false)
-                canvas.removeEventListener('mousemove', previewTorusEventListener, false)
-                canvas.removeEventListener('mousemove', previewMandalaEventListener, false)
-
-                return canvas;
-            }
-
-
-            function clearCanvas() {
-                // clear the canvas itself
-                $("#drawingCanvas").empty();
-
-                // Clear the history table
-                history.clearHistory();
-            }
-
-            function exportCanvas() {
-                var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
-                var img = new Image();
-                img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
-                img.onload =function() {
-                    var tempCanvas = document.createElement("canvas");
-                    tempCanvas.width = "2550";
-                    tempCanvas.height = "3300";
-                    var ctx = tempCanvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0);
-
-                    var sUrl = tempCanvas.toDataURL('image/png');
-                    var link = document.createElement('a');
-                    link.href = sUrl;
-                    link.setAttribute('target','_blank');
-
-                    if (link.download !== undefined) {
-                        //Set HTML5 download attribute. This will prevent file from opening if supported.
-                        var fileName = "geometry.png";
-                        link.download = fileName;
-                    }
-
-                    //Dispatching click event.
-                    if (document.createEvent) {
-                        var e = document.createEvent('MouseEvents');
-                        e.initEvent('click', true, true);
-                        link.dispatchEvent(e);
-                        return true;
-                    }
-                    window.open(sUrl, '_blank');
-                    $(link).remove();
-                }
-            }
-
-            function getCanvas() {
-                return document.getElementById("drawingCanvas");
-            }
-
-            function clearCustomOptions(element) {
-                console.log("All custom options deleted");
-                $(".customOptionRow").remove()
-            }
-
-            $(document).ready(function() {
-                    //Bootstrapping with initial settings
-                    var canvas = document.getElementById("drawingCanvas");
-                    canvas.addEventListener('mousemove', function(event) {
-                        var coords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-                        var coordsDiv = document.getElementById("coordinatesAnchor");
-                        coordsDiv.innerHTML = "Coordinates: (" + roundFloats(coords.x, 3) + ", " + roundFloats(coords.y, 3) + ")";
-                    });
-
-                    var selectedDesign = document.getElementById("design");
-                    setDrawingSettings(selectedDesign);
-                }
-            );
-
-        </script>
+        <script src="js/circle.js"></script>
+        <script src="js/dots.js"></script>
+        <script src="js/quadCurvePetals.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>

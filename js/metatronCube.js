@@ -1,81 +1,43 @@
-var flowerOfLifeElementId = "includeFOL";
-var drawnCenters = [];
-var radius;
+function metatronsCubePreview() {
 
-function drawMetatronEventListener(event) {
-    var canvas = this;
-    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radiusOffsetElement = document.getElementById(radiusOffsetId);
-    var includeFOL = document.getElementById(flowerOfLifeElementId).checked;
-    var radiusOffset = includeFOL === true ? 0 : radiusOffsetElement.value;
-    drawnCenters = []
-    radius = parseInt($(`#${circleRadiusId}`).val());
+}
+
+function metatronsCubeUpdatePreview() {
+
+}
+
+function metatronsCubeDraw(canvas, event) {
+    const xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    const radiusOffset = parseInt($(`#metatronsCubeRadiusOffset`).val());
+    const radius = parseInt($(`#metatronsCubeRadius`).val());
 
     setLineWidth();
 
-    drawMetatronCube(canvas, xyCoords.x, xyCoords.y, parseInt(radiusOffset), Boolean(includeFOL));
-    //This little trick with the drawn centers is because of the way Flower needs to have clear centers
+    const drawnLines = drawMetatronCube(canvas, radius, radiusOffset, xyCoords.x, xyCoords.y);
     // That tiny bit of global state is growing ugly, might want to handle soon
     history.addHistoryRow(`Metatron Cube-${Date.now()}`,
-                            drawnCenters.concat(usedCenters),
-                            {
-                                circleRadiusId: radius,
-                            });
-    clearCenters();
+        drawnLines,
+        {
+            circleRadiusId: radius,
+        });
 }
 
-function previewMetatronEventListener(event) {
-    calculateVariableRadiusOffsetPreview(event, 0, 10);
+function drawMetatronCube(canvas, radius, radiusOffset, x, y) {
+    var drawnLines = [];
+    drawnLines.push(drawCircle(canvas, radius, x, y));
+
+    var innerCircles = drawCircleLayer(canvas, x, y, radius, radiusOffset, 1);
+    drawnLines = drawnLines.concat(innerCircles);
+    drawnLines = drawnLines.concat(drawPolygonLayer(canvas, innerCircles));
+
+    var outerCircles = drawCircleLayer(canvas, x, y, radius, radiusOffset, 2);
+    drawnLines = drawnLines.concat(outerCircles);
+    drawnLines = drawnLines.concat(drawPolygonLayer(canvas, outerCircles));
+
+    return drawnLines;
 }
 
-function validateOffsetUI() {
-    var radiusOffsetElement = document.getElementById(radiusOffsetId);
-    var FOLValue = document.getElementById(flowerOfLifeElementId).checked;
-    if (FOLValue === true) {
-        radiusOffsetElement.disabled = true;
-    } else {
-        radiusOffsetElement.disabled = false;
-    }
-}
-
-function setMetatronOptions(element) {
-    var row = createRowDiv();
-    var column = createColumnDiv();
-    var flowerOfLifeText = createLabel("Flower Of Life");
-    var flowerOfLifeElement = document.createElement("input");
-    flowerOfLifeElement.id = flowerOfLifeElementId;
-    flowerOfLifeElement.type = "checkbox";
-    flowerOfLifeElement.checked = false;
-    flowerOfLifeElement.onclick = validateOffsetUI;
-    flowerOfLifeText.for = flowerOfLifeElementId;
-
-    column.append(flowerOfLifeElement);
-    column.append(flowerOfLifeText);
-    row.append(column)
-
-    row.insertAfter(element);
-
-    setRadiusOffsetOptions(element);
-    setCircleRadiusOptions(element);
-}
-
-function drawMetatronCube(canvas, x, y, radiusOffset, includeFOL) {
-    var center = drawCircle(canvas, radius, x, y);
-    var degreesSpacing = 60; //spacing between the arms
-    var degreesOffset = 30;
-    var innerCircles = drawCircleLayer(canvas, x, y, radiusOffset, 1);
-    drawPolygonLayer(canvas, innerCircles);
-
-    var outerCircles = drawCircleLayer(canvas, x, y, radiusOffset, 2);
-    drawPolygonLayer(canvas, outerCircles);
-    drawnCenters = usedCenters;
-
-    if (includeFOL === true) {
-        drawFlower(canvas, radius, x, y, 4);
-    }
-}
-
-function drawCircleLayer(canvas, centerX, centerY, radiusOffset, layer) {
+function drawCircleLayer(canvas, centerX, centerY, radius, radiusOffset, layer) {
     var createdCircles = [];
     var metatronAngles = [30, 90, 150, 210, 270, 330];
 
@@ -90,11 +52,14 @@ function drawCircleLayer(canvas, centerX, centerY, radiusOffset, layer) {
 }
 
 function drawPolygonLayer(canvas, circleLayer) {
+    const drawnLines = [];
     for (let i = 0; i < circleLayer.length; i++) {
         for (let j = i; j < circleLayer.length; j++) {
             var start = circleLayer[i];
             var end = circleLayer[j];
-            drawLine(canvas, start.x, start.y, end.x, end.y);
+            drawnLines.push(drawLine(canvas, start.x, start.y, end.x, end.y));
         }
     }
+
+    return drawnLines;
 }

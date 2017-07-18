@@ -23,3 +23,25 @@
 #customOptionsRowsAnchor {
 	visibility: hidden;
 }
+
+.callout {
+	border-width: 0px;
+	margin-bottom: 8px;
+	padding: 8px;
+}
+
+.accordion-title {
+	padding: 10px 6px;
+}
+
+.accordion-content {
+	padding: 8px 8px;
+}
+
+hr {
+	margin: 2px;
+}
+
+h3 {
+	margin: 0px;
+}
