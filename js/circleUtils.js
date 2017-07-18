@@ -134,14 +134,15 @@ function drawLine(canvas, startX, startY, endX, endY) {
     // ctx.moveTo(startX, startY);
     // ctx.lineTo(endX, endY);
     // ctx.stroke();
-    line = ctx.line(startX, startY, endX, endY);
+    const line = ctx.line(startX, startY, endX, endY);
     const lineId = `line${Date.now()}`;
-    line.attr({strokeWidth: lineWidth, strokeLinecap: "round", stroke: "#000", "id":lineId })
-    usedCenters.push({"startX": startX,
-                        "startY": startY,
-                        "endX": endX,
-                        "endY": endY,
-                        "id": lineId });
+    line.attr({strokeWidth: lineWidth, strokeLinecap: `round`, stroke: `#000`, id:lineId });
+    return {startX: startX,
+        startY: startY,
+        endX: endX,
+        endY: endY,
+        id: lineId };
+
 }
 
 function drawQuadCurve(canvas, sX, sY, cX, cY, eX, eY) {
