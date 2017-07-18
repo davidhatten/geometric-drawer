@@ -22,15 +22,15 @@ class History {
             function(event) {
                 var row = $(this);
                 // Get the data from the td of the row
-                self.highlightLines(row.find("td")[0].innerHTML);
+                self.highlightLines(row.find(`td`)[0].innerHTML);
             },
             function(event) {
                 var row = $(this);
-                self.unhighlightLines(row.find("td")[0].innerHTML);
+                self.unhighlightLines(row.find(`td`)[0].innerHTML);
             }
         );
 
-        $("#historyTable > tbody:last-child").append(historyRow);
+        $(`#historyTable > tbody:last-child`).append(historyRow);
 
         self.historyData[drawingName] = new HistoryData(drawnLines, config);
     }
@@ -51,7 +51,7 @@ class History {
         const linesList =  self.historyData[historyKey].lines;
         for (let i = 0; i < linesList.length; i++) {
             const line = linesList[i];
-            $(`#drawingCanvas #${line.id}`).css({stroke: "red"});
+            $(`#drawingCanvas #${line.id}`).css({stroke: `red`});
         }
     }
 
@@ -60,12 +60,12 @@ class History {
         const linesList =  self.historyData[historyKey].lines;
         for (let i = 0; i < linesList.length; i++) {
             const line = linesList[i];
-            $(`#drawingCanvas #${line.id}`).css({stroke: "black"});
+            $(`#drawingCanvas #${line.id}`).css({stroke: `black`});
         }
     }
 
     clearHistory() {
-        $("#historyTable > tbody").empty();
+        $(`#historyTable > tbody`).empty();
         this.historyData = {};
     }
 

@@ -44,12 +44,12 @@ function setPageLayout(selector) {
     const selected = selector.value;
     const canvas = getCanvas();
 
-    canvas.setAttribute("viewBox", `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`);
+    canvas.setAttribute(`viewBox`, `0 0 ${dimensions[selected].x} ${dimensions[selected].y}`);
 }
 
 function clearCanvas() {
     // clear the canvas itself
-    $("#drawingCanvas").empty();
+    $(`#drawingCanvas`).empty();
 
     // Clear the history table
     history.clearHistory();
@@ -58,39 +58,39 @@ function clearCanvas() {
 function exportCanvas() {
     var svg_xml = (new XMLSerializer()).serializeToString(getCanvas());
     var img = new Image();
-    img.src = "data:image/svg+xml;base64,"+btoa(svg_xml);
+    img.src = `data:image/svg+xml;base64,${btoa(svg_xml)}`;
     img.onload = function() {
-        var tempCanvas = document.createElement("canvas");
-        tempCanvas.width = "2550";
-        tempCanvas.height = "3300";
-        var ctx = tempCanvas.getContext("2d");
+        var tempCanvas = document.createElement(`canvas`);
+        tempCanvas.width = `2550`;
+        tempCanvas.height = `3300`;
+        var ctx = tempCanvas.getContext(`2d`);
         ctx.drawImage(img, 0, 0);
 
-        var sUrl = tempCanvas.toDataURL("image/png");
-        var link = document.createElement("a");
+        var sUrl = tempCanvas.toDataURL(`image/png`);
+        var link = document.createElement(`a`);
         link.href = sUrl;
-        link.setAttribute("target", "_blank");
+        link.setAttribute(`target`, `_blank`);
 
         if (link.download !== undefined) {
             //Set HTML5 download attribute. This will prevent file from opening if supported.
-            var fileName = "geometry.png";
+            var fileName = `geometry.png`;
             link.download = fileName;
         }
 
         //Dispatching click event.
         if (document.createEvent) {
-            var e = document.createEvent("MouseEvents");
-            e.initEvent("click", true, true);
+            var e = document.createEvent(`MouseEvents`);
+            e.initEvent(`click`, true, true);
             link.dispatchEvent(e);
             return true;
         }
-        window.open(sUrl, "_blank");
+        window.open(sUrl, `_blank`);
         $(link).remove();
     };
 }
 
 function getCanvas() {
-    return document.getElementById("drawingCanvas");
+    return document.getElementById(`drawingCanvas`);
 }
 
 function repopulateSkipSelect(rotationSelect, skipSelect) {
@@ -122,19 +122,19 @@ function initializeTorus() {
     const skipSelect = $(`#torusSkipFactor`);
     for (let rotation in torusDesigns) {
         if (torusDesigns.hasOwnProperty(rotation)) {
-            let option = $("<option></option>");
+            let option = $(`<option></option>`);
             option.val(rotation);
             option.text(rotation);
 
             rotationSelect.append(option);
         }
     }
-    rotationSelect.val("10");
+    rotationSelect.val(`10`);
     repopulateSkipSelect(rotationSelect, skipSelect);
 
-    skipSelect.val("10");
+    skipSelect.val(`10`);
 
-    $("#torus .styleControl").change(function(event) {
+    $(`#torus .styleControl`).change(function(event) {
         torusUpdateSkipFactors(event);
     });
 }
@@ -146,37 +146,37 @@ function initializeOffsetGrid() {
 }
 
 function initializeMetatronsCube() {
-    $("#metatronsCube .styleControl").change(function(event) {
+    $(`#metatronsCube .styleControl`).change(function(event) {
         metatronsCubeUpdatePreview(event);
     });
 }
 
 function initializeCircle() {
-    $("#circle .styleControl").change(function(event) {
+    $(`#circle .styleControl`).change(function(event) {
         circleUpdatePreview(event);
     });
 }
 
 function initializeQuadCurve() {
-    $("#quadCurve .styleControl").change(function(event) {
+    $(`#quadCurve .styleControl`).change(function(event) {
         quadCurveUpdatePreview(event);
     });
 }
 
 function initializeDots() {
-    $("#dots .styleControl").change(function(event) {
+    $(`#dots .styleControl`).change(function(event) {
         dotsUpdatePreview(event);
     });
 }
 
 function initializeFlowerOfLife() {
-    $("#flowerOfLife .styleControl").change(function(event) {
+    $(`#flowerOfLife .styleControl`).change(function(event) {
         flowerOfLifeUpdatePreview(event);
     });
 }
 
 function initializeCanvas() {
-    $("#drawingCanvas").click(function(event) {
+    $(`#drawingCanvas`).click(function(event) {
         drawShape(event);
     });
 
@@ -184,10 +184,9 @@ function initializeCanvas() {
 
 
 function drawShape(event) {
-    console.log("I should be dispatching a shape draw now");
     const canvas = getCanvas();
 
-    const activeId = $("#stylesPanel .accordion-item.is-active")[0].id;
+    const activeId = $(`#stylesPanel .accordion-item.is-active`)[0].id;
     window[`${activeId}Draw`](canvas, event);
 }
 
@@ -205,18 +204,15 @@ $(document).ready(
 
         initializeCanvas();
 
-        $("#stylesPanel").on({
+        $(`#stylesPanel`).on({
             "down.zf.accordion": function(event) {
-                console.log("accordion opened", event);
-                const activePanel = $(event.target).find('.is-active')[0];
-                console.log("active panel ", activePanel);
+                const activePanel = $(event.target).find(`.is-active`)[0];
                 const currPanelId = activePanel.id;
 
                 window[`${currPanelId}Preview`]();
             },
             "up.zf.accordion": function(event) {
-                console.log("accordion closed", event);
-            }
+            },
         });
     }
 );

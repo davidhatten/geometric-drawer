@@ -1,20 +1,13 @@
-// var triangleCornerAngles = [9/6, 1/6, 5/6];
-var triangleCornerAngles = [];
-var degreeOfCirclesId = "degreeOfCircles";
-
 function offsetGridPreview() {
-    console.log("preview method requested");
 }
 
 function offsetGridUpdatePreview(event) {
-    console.log("update preview called ", event);
 }
 
 function offsetGridDraw(canvas, event) {
     const xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     const iterations = parseInt($(`#offsetGridIterations`).val());
     const radiusOffset = parseInt($(`#offsetGridRadiusOffset`).val());
-    // const degreeOfCircles = parseInt($("#circleFlowerAxes").val());
     const radius = parseInt($(`#offsetGridRadius`).val());
 
     setLineWidth();
@@ -34,7 +27,7 @@ function drawOffsetGrid(canvas, radius, radiusOffset, x, y, iterations) {
     //split 360, then rotate it by that when you're done
     var degrees = 360/degree;
     var trackAround = 0;
-    const  javascriptRotation = (1/(degree));
+    const  javascriptRotation = (1/degree);
     for (let i = 0; i < degree; i++) {
         triangleCornerAngles.push(((trackAround + degrees)/180) + javascriptRotation);
         trackAround = trackAround + degrees;
