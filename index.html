@@ -23,43 +23,25 @@
                         <h3 data-toggle="stylesPanel">Styles</h3>
                         <div class="callout secondary" id="stylesPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
                             <ul class="accordion" data-accordion>
-                                <li class="accordion-item is-active" data-accordion-item id="circleFlower">
-                                    <a class="accordion-title" href="#">Circle Flower</a>
+                                <li class="accordion-item is-active" data-accordion-item id="offsetGrid">
+                                    <a class="accordion-title" href="#">Offset Grid</a>
                                     <div class="accordion-content" data-tab-content>
                                         <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
-                                                    <input type="number" id="circleFlowerRadius" value="200" class="styleControl"/>
+                                                    <input type="number" id="offsetGridRadius" value="200" class="styleControl"/>
                                                 </label>
                                             </div>
-
                                             <div class="small-4 cell">
                                                 <label>Radius Offset (px):
-                                                    <input type="number" id="circleFlowerRadiusOffset" value="0" class="styleControl"/>
+                                                    <input type="number" id="offsetGridRadiusOffset" value="0" class="styleControl"/>
                                                 </label>
                                             </div>
-                                        </div>
-
-                                        <div class="grid-x grid-margin-x">
                                             <div class="small-4 cell">
                                                 <label>Iterations:
-                                                    <input type="number" id="circleFlowerIterations" value="3" class="styleControl"/>
+                                                    <input type="number" id="offsetGridIterations" value="3" class="styleControl"/>
                                                 </label>
                                             </div>
-
-                                            <div class="small-4 cell">
-                                                <label>Number of Axes:
-                                                    <select id="circleFlowerAxes" value="200" class="styleControl">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-
-                                                    </select>
-                                                </label>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </li>
@@ -74,7 +56,7 @@
                                             </div>
                                             <div class="small-4 cell">
                                                 <label>Radius Offset (px):
-                                                    <input type="number" id="flowerOfLifeOffset" value="200" class="styleControl"/>
+                                                    <input type="number" id="flowerOfLifeRadiusOffset" value="0" class="styleControl"/>
                                                 </label>
                                             </div>
                                              <div class="small-4 cell">
@@ -297,7 +279,7 @@
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
         <script src="js/flowerOfLife.js"></script>
         <script src="js/squareFormCircles.js"></script>
-        <script src="js/circleFlower.js"></script>
+        <script src="js/offsetGrid.js"></script>
         <script src="js/metatronCube.js"></script>
         <script src="js/circleUtils.js"></script>
         <script src="js/torus.js"></script>

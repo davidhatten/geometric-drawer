@@ -139,9 +139,9 @@ function initializeTorus() {
     });
 }
 
-function initializeCircleFlower() {
-    $("#circleFlower .styleControl").change(function(event) {
-        circleFlowerUpdatePreview(event);
+function initializeOffsetGrid() {
+    $(`#offsetGrid .styleControl`).change(function(event) {
+        offsetGridUpdatePreview(event);
     });
 }
 
@@ -194,7 +194,7 @@ function drawShape(event) {
 $(document).ready(
     function() {
         //Bootstrapping with initial settings
-        initializeCircleFlower();
+        initializeOffsetGrid();
         initializeFlowerOfLife();
         initializeMetatronsCube();
         initializeTorus();

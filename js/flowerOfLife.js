@@ -11,10 +11,11 @@ function flowerOfLifeDraw(canvas, event) {
     const xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
     const radius = parseInt($(`#flowerOfLifeRadius`).val());
     const iterations = parseInt($(`#flowerOfLifeLayers`).val());
+    const offset = parseInt($(`#flowerOfLifeRadiusOffset`).val());
 
     setLineWidth();
 
-    const usedCenters = drawFlower(canvas, radius, 0, xyCoords.x, xyCoords.y, iterations);
+    const usedCenters = drawFlower(canvas, radius, offset, xyCoords.x, xyCoords.y, iterations);
 
     history.addHistoryRow(`Flower Of Life-${Date.now()}`,
         usedCenters,
@@ -35,7 +36,7 @@ function drawFlower(canvas, radius, radiusOffset, x, y, iterations) {
     //split 360, then rotate it by that when you're done
     var degrees = 360/degree;
     var trackAround = 0;
-    const  javascriptRotation = (1/.5*degree);
+    const  javascriptRotation = (1/degree);
     for (let i = 0; i < degree; i++) {
         triangleCornerAngles.push(((trackAround + degrees)/180) + javascriptRotation);
         trackAround = trackAround + degrees;
