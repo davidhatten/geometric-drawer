@@ -1,19 +1,21 @@
 var rotationElementId = "degreeOfRotation";
 var skipElementId = "skipFactor";
 var skipGroupElementId = "skipGrouping";
-var radius;
 
 function torusUpdatePreview() {
 
 }
 
-function drawTorusEventListener(event) {
-    var canvas = this;
-    var xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
-    var radiusOffset = parseFloat(document.getElementById(radiusOffsetId).value);
-    var rotation = Math.abs(parseFloat(document.getElementById(rotationElementId).value));
-    var skipFactor = Math.abs(parseInt(document.getElementById(skipElementId).value));
-    radius = parseInt($(`#${circleRadiusId}`).val());
+function torusPreview() {
+
+}
+
+function torusDraw(canvas, event) {
+    const xyCoords = getMousePositionInCanvas(canvas, event, getPositionOverrides());
+    const radiusOffset = parseFloat($(`#torusRadiusOffset`).val());
+    const rotation = Math.abs(parseFloat($(`#torusRotations`).val()));
+    const skipFactor = Math.abs(parseInt($(`#torusSkipFactor`).val()));
+    const radius = parseInt($(`#${circleRadiusId}`).val());
 
     setLineWidth();
 
