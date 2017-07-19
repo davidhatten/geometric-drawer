@@ -135,8 +135,12 @@ function initializeTorus() {
     skipSelect.val(`10`);
 
     $(`#torus .styleControl`).change(function(event) {
-        torusUpdateSkipFactors(event);
+        torusUpdatePreview(event);
     });
+
+    rotationSelect.change(function(event) {
+        torusUpdateSkipFactors(event);
+    })
 }
 
 function initializeOffsetGrid() {
