@@ -1,2 +1,8 @@
-.DS_STORE
-/node_modules
+_site
+.sass-cache
+.jekyll-metadata
+public
+node_modules
+_layouts
+_posts
+assets
