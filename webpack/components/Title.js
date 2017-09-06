@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Header, Grid, Image } from 'semantic-ui-react'
 
 class Title extends Component {
     constructor(props) {
@@ -6,9 +7,8 @@ class Title extends Component {
     }
     render() {
         return (
-                <Container text>
-                    <Header as='h2'>Select a style and click the canvas to draw!</Header>
-                </Container>
+            <Header textAlign="center" as="h2">Select a style and click the canvas!</Header>
+
             );
     }
 }
