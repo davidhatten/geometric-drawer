@@ -6,3 +6,5 @@ node_modules
 _layouts
 _posts
 assets
+.DS_Store
+lib
