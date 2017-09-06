@@ -4,19 +4,22 @@
       "repository": "https://github.com/davidhatten/geometric-drawer",
       "author": "davidhatten <david.r.hatten@gmail.com>",
       "license": "MIT",
+      "scripts": {
+            "build": "webpack",
+            "jekyll": "bundle exec jekyll serve"
+      },
       "devDependencies": {
             "babel-core": "^6.26.0",
             "babel-loader": "^7.1.2",
             "babel-plugin-transform-class-properties": "^6.24.1",
             "babel-preset-es2015": "^6.24.1",
             "babel-preset-react": "^6.24.1",
+            "eslint": "^4.6.1",
             "eslint-plugin-react": "^7.3.0",
             "react": "^15.6.1",
             "react-addons-update": "^15.6.0",
             "react-dom": "^15.6.1",
+            "semantic-ui-react": "^0.72.0",
             "webpack": "^3.5.5"
-      },
-      "dependencies": {
-            "semantic-ui-react": "^0.72.0"
       }
 }
