@@ -1,5 +1,5 @@
-const path = require(`path`);
-const semantic = require(`semantic-ui-react`);
+import path from 'path';
+const WDS_PORT = require(`./webpack/config`).WDS_PORT;
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build

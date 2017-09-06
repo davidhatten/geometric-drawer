@@ -28,7 +28,7 @@ theme: minima
 plugins:
   - jekyll-feed
 
-exclude: ['node_modules', 'webpack*', 'Gemfile*', 'yarn*']
+exclude: ['node_modules/', 'webpack/', 'Gemfile*', 'yarn*']
 
 
 # Exclude from processing.
