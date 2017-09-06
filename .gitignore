@@ -3,7 +3,6 @@ _site
 .jekyll-metadata
 public
 node_modules
-_layouts
 _posts
 assets
 .DS_Store
