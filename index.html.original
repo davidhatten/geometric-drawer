@@ -1,0 +1,341 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <link rel="stylesheet" href="lib/foundation/css/foundation.css" />
+        <title>Geometry Generator</title>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="small-12 cell">
+                    <h2 align="center">Select a design and click on the canvas!</h2>
+                </div>
+
+                <div class="small-6 cell canvasContent">
+                    <div class="spacer">
+                        <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
+
+                        Your browser does not support HTML5 svg</svg>
+                    </div>
+                </div>
+                <div class="small-6 cell">
+                    <div class="callout">
+                        <h3 data-toggle="stylesPanel">Styles</h3>
+                        <div class="callout secondary" id="stylesPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                            <ul class="accordion" data-accordion>
+                                <li class="accordion-item is-active" data-accordion-item id="offsetGrid">
+                                    <a class="accordion-title" href="#">Offset Grid</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="offsetGridRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="offsetGridRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Iterations:
+                                                    <input type="number" id="offsetGridIterations" value="3" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="flowerOfLife">
+                                    <a class="accordion-title" href="#">Flower Of Life</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="flowerOfLifeRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="flowerOfLifeRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                             <div class="small-4 cell">
+                                                <label>Number of Layers:
+                                                    <input type="number" id="flowerOfLifeLayers"
+                                                    value="3" class="styleControl" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="metatronsCube">
+                                    <a class="accordion-title" href="#">Metatron's Cube</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="metatronsCubeRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="metatronsCubeRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="torus">
+                                    <a class="accordion-title" href="#">Torus</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="torusRadius" value="200"  class="styleControl"/>
+                                                </label>
+                                            </div>
+
+                                            <div class="small-4 cell">
+                                                <label>Radius Offset (px):
+                                                    <input type="number" id="torusRadiusOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Rotation:
+                                                    <select id="torusRotations" class="styleControl">
+                                                            <!-- Populated in $(document).ready() -->
+                                                    </select>
+                                                </label>
+                                            </div>
+
+                                            <div class="small-4 cell">
+                                                <label>Skip Factor:
+                                                    <select id="torusSkipFactor" class="styleControl">
+                                                            <!-- Populated in $(document).ready() -->
+                                                    </select>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="circle">
+                                    <a class="accordion-title" href="#">Circle</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="circleRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="quadCurve">
+                                    <a class="accordion-title" href="#">Quad Curve Petals</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Inner Radius (px):
+                                                    <input type="number" id="quadCurveInnerRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Outer Radius (px):
+                                                    <input type="number" id="quadCurveOuterRadius" value="300" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Number of Axes:
+                                                    <select id="quadCurveAxes" value="200" class="styleControl">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option selected>12</option>
+                                                        <option>15</option>
+                                                        <option>18</option>
+                                                        <option>20</option>
+                                                        <option>24</option>
+                                                        <option>30</option>
+                                                        <option>36</option>
+                                                        <option>40</option>
+                                                        <option>45</option>
+                                                        <option>60</option>
+                                                        <option>72</option>
+                                                        <option>90</option>
+                                                        <option>120</option>
+                                                        <option>180</option>
+                                                        <option>360</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Axis Offset (px):
+                                                    <input type="number" id="quadCurveAxisOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Control X Point Offset
+                                                    <input type="number" id="quadCurveXControl" value="100" class="styleControl">
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Control Y Point Offset
+                                                    <input type="number" id="quadCurveYControl" value="25" class="styleControl">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="dots">
+                                    <a class="accordion-title" href="#">Dots</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Base Circle Radius (px):
+                                                    <input type="number" id="dotsBaseRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Dots Radius (px):
+                                                    <input type="number" id="dotsRadius" value="20" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Number of Axes:
+                                                    <select id="dotsAxes" value="200" class="styleControl">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option selected>12</option>
+                                                        <option>15</option>
+                                                        <option>18</option>
+                                                        <option>20</option>
+                                                        <option>24</option>
+                                                        <option>30</option>
+                                                        <option>36</option>
+                                                        <option>40</option>
+                                                        <option>45</option>
+                                                        <option>60</option>
+                                                        <option>72</option>
+                                                        <option>90</option>
+                                                        <option>120</option>
+                                                        <option>180</option>
+                                                        <option>360</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class="small-4 cell">
+                                                <label>Axis Offset (px):
+                                                    <input type="number" id="dotsAxisOffset" value="0" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr />
+                        <form>
+                            <div class="callout">
+                                <h3 data-toggle="panel">General Options</h3>
+                                    <div id="panel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                                <label>Page Size:
+                                                    <select id="pageLayout" onChange="setPageLayout(this);">
+                                                        <option value="letter">
+                                                            8.5 x 11 - Letter
+                                                        </option>
+                                                        <option value="A4">
+                                                            A4
+                                                        </option>
+                                                    </select>
+                                                </label>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <label>Line Width (px):<input type="number" id="lineWidth" value="3" /></label>
+                                        </div>
+                                        <div class="small-8 cell">
+                                            <input type="checkbox" id="centerHorizontal" value="Center Horizontal" /> <label for="centerHorizontal">Center Horizontal</label>
+                                            <input type="checkbox" id="centerVertical" value="Center Vertical" /><label for="centerVertical">Center Vertical</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="clearCanvas" onclick="clearCanvas();">Clear Canvas</a>
+                                        </div>
+                                        <div class="small-6 cell">
+                                            <a href="#" class="button" id="export" onclick="exportCanvas();">Export Canvas</a>
+                                        </div>
+
+                            </div>
+                                </div>
+                            </div>
+                        </form>
+                        <hr />
+
+                        <div class="callout">
+                            <h3 data-toggle="historyPanel">History</h3>
+                            <div class="callout secondary" id="historyPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
+                                <table class="hover" id="historyTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Drawing</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="lib/foundation/js/vendor/jquery.js"></script>
+        <script src="lib/foundation/js/vendor/what-input.js"></script>
+        <script src="lib/foundation/js/vendor/foundation.min.js"></script>
+        <script src="lib/foundation/js/app.js"></script>
+        <script src="lib/snap/snap.svg-min.js"></script>
+        <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+        <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+        <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
+        <script src="js/flowerOfLife.js"></script>
+        <script src="js/squareFormCircles.js"></script>
+        <script src="js/offsetGrid.js"></script>
+        <script src="js/metatronCube.js"></script>
+        <script src="js/circleUtils.js"></script>
+        <script src="js/torus.js"></script>
+        <script src="js/history.js"></script>
+        <script src="js/circle.js"></script>
+        <script src="js/dots.js"></script>
+        <script src="js/quadCurvePetals.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
