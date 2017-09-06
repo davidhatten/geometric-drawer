@@ -1,0 +1,41 @@
+{
+  "extends": "eslint:recommended",
+  "plugins": [
+    "flowtype",
+    "compat"
+  ],
+  "rules": {
+    "compat/compat": 2,
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars" : "all",
+        "varsIgnorePattern": ".+Preview|.+Draw",
+        "args": "all",
+      }
+    ],
+    "indent": [
+      "error",
+      4
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "backtick"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+  },
+  "globals": {
+    "$": true
+  }
+}
