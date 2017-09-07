@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Title from './components/Title';
 import Studio from './components/Studio';
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
+import 'antd/dist/antd.css';
 
 class App extends Component {
     render() {
-        const style = {
-            borderBox: 'box-sizing',
-        }
         return (
-                <div style={style}>
-                    <Title />
-                    <Studio />
-                </div>
+                <LocaleProvider locale={enUS}>
+                    <div>
+                        <Title />
+                        <Studio />
+                    </div>
+                </LocaleProvider>
             );
     }
 }
