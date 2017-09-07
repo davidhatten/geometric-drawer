@@ -19,7 +19,11 @@ module.exports = {
             {
               test: /\.css$/,
               loader: `style-loader!css-loader`,
-            }
+              exclude: {
+                    test   : path.resolve(__dirname, "node_modules"),
+                    exclude: path.resolve(__dirname, "node_modules/antd"),
+              },
+            },
         ],
     },
     plugins: [
