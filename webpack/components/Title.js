@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row, Col } from 'antd';
 
 class Title extends Component {
     constructor(props) {
@@ -7,9 +8,15 @@ class Title extends Component {
     render() {
         return (
             <div>
-                <h2>Select a style and click the canvas!</h2>
+                <Row type="flex" justify="center">
+                    <Col>
+                        <h1>
+                            Select a style and click the canvas!
+                        </h1>
+                    </Col>
+                </Row>
             </div>
-            );
+        );
     }
 }
 

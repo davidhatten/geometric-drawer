@@ -4,7 +4,6 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "sourceType": "module",
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules": {
         "no-unused-vars": [
@@ -43,6 +42,7 @@ module.exports = {
         "react"
     ],
     "parserOptions": {
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
         }
