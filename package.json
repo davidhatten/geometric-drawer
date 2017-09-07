@@ -5,8 +5,9 @@
       "author": "davidhatten <david.r.hatten@gmail.com>",
       "license": "MIT",
       "scripts": {
-            "build": "webpack",
-            "jekyll": "bundle exec jekyll serve"
+            "start": "yarn dev:start",
+            "dev:start": "bundle exec jekyll serve --config _config.yml,_config.dev.yml",
+            "dev:wds": "webpack-dev-server --content-base assets/javascripts/ --progress"
       },
       "devDependencies": {
             "babel-core": "^6.26.0",
@@ -23,6 +24,7 @@
             "react-addons-update": "^15.6.0",
             "react-dom": "^15.6.1",
             "semantic-ui-react": "^0.72.0",
+            "source-map": "^0.5.7",
             "webpack": "^3.5.5",
             "webpack-dev-server": "^2.7.1"
       }

@@ -30,6 +30,7 @@ plugins:
 
 exclude: ['node_modules/', 'webpack/', 'Gemfile*', 'yarn*']
 
+assets_base_url: 'assets/javascripts/'
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

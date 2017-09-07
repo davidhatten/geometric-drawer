@@ -1,5 +1,5 @@
 import path from 'path';
-const WDS_PORT = require(`./webpack/config`).WDS_PORT;
+import { WDS_PORT } from './webpack/config';
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -15,11 +15,10 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loader: `babel-loader`,
-                query: {
-                    presets: [`react`, `es2015`],
-                    plugins: [`transform-class-properties`],
-                },
             },
         ],
+    },
+    resolve: {
+        extensions: [`.js`, `.jsx`],
     },
 };
