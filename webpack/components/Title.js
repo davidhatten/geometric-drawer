@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { Container, Header, Grid, Image } from 'semantic-ui-react'
+import { Container, Header, Divider } from 'semantic-ui-react'
 
 class Title extends Component {
     constructor(props) {
         super(props);
     }
     render() {
+        const style = {
+            margin: `10px 0px`,
+        };
         return (
-            <Header textAlign="center" as="h2">Select a style and click the canvas!</Header>
-
+            <div>
+                <Container style={style} textAlign="center">
+                    <Header as="h2">Select a style and click the canvas!</Header>
+                </Container>
+            </div>
             );
     }
 }

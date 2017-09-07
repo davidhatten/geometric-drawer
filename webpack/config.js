@@ -1,1 +1,0 @@
-exports.WDS_PORT = 7000;

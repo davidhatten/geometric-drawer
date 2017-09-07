@@ -1,5 +1,4 @@
 import path from 'path';
-import { WDS_PORT } from './webpack/config';
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -10,7 +9,7 @@ module.exports = {
         filename: `bundle.js`,
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
