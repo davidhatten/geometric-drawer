@@ -16,8 +16,12 @@ class Canvas extends Component {
             height: this.state.svgHeight/elementDimensions.height,
         };
         const newCircle = {
-            x: position.x * posOffset.width, 
-            y: position.y * posOffset.height,
+            cx: position.x * posOffset.width, 
+            cy: position.y * posOffset.height,
+            r:"100",
+            fill:"none",
+            stroke:"black",
+            strokeWidth:"5",
         };
         this.setState({
             circles: this.state.circles.concat(newCircle),
@@ -41,13 +45,10 @@ class Canvas extends Component {
                         You must use a browser that supports HTML5.
                         {
                             this.state.circles.map((circle) => (
-                                <circle 
-                                    cx={circle.x} 
-                                    cy={circle.y} 
-                                    r="100" 
-                                    fill="none" 
-                                    stroke="black" 
-                                    strokeWidth="5"/>
+                                React.createElement(
+                                        'circle',
+                                        circle
+                                    )
                                 )
                             )
                         }
