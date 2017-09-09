@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
+import ReactCursorPosition from 'react-cursor-position';
 
 class Studio extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class Studio extends Component {
             <div>
                 <Row type="flex" justify="space-around">
                     <Col lg={10} md={10} sm={10}>
-                        <Canvas />
+                        <ReactCursorPosition>  
+                            <Canvas />
+                        </ReactCursorPosition>
                     </Col>
                     <Col lg={10} md={10} sm={10}>
                         <Palette />

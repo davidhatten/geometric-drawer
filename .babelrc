@@ -5,10 +5,10 @@
     "stage-0"
   ],
   "plugins": [
+    ["import", { "libraryName": "antd" }],
     "transform-class-properties",
     "transform-decorators",
     "transform-react-constant-elements",
-    "transform-react-inline-elements",
-    ["import", { "libraryName": "antd" }]
+    "transform-react-inline-elements"
   ]
 }
