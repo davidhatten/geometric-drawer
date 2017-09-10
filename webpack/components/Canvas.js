@@ -4,27 +4,34 @@ class Canvas extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            circles: [],
+            shapes: [],
             svgHeight: 3300,
             svgWidth: 2550,
         };
     }
     drawShape = () => {
         const { elementDimensions, position } = this.props;
-        const posOffset = {
-            width: this.state.svgWidth/elementDimensions.width,
-            height: this.state.svgHeight/elementDimensions.height,
+        console.log("Attempting to draw", this.props.shapeConfig);
+        const absPosition = {
+            x: (this.state.svgWidth/elementDimensions.width) * position.x ,
+            y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
-        const newCircle = {
-            cx: position.x * posOffset.width, 
-            cy: position.y * posOffset.height,
-            r:"100",
-            fill:"none",
-            stroke:"black",
-            strokeWidth:"5",
+        const locationProps = this.props.shapeConfig.shapeProps.location(absPosition);
+        console.log("location props are ", locationProps);
+        const newShape = {
+            type: this.props.shapeConfig.type,
+            // cx: position.x * posOffset.x, 
+            // cy: position.y * posOffset.x,
+            // r:"100",
+            shapeProps: {
+                ...locationProps,
+                fill:"none",
+                stroke:"black",
+                strokeWidth:"5",
+            }
         };
         this.setState({
-            circles: this.state.circles.concat(newCircle),
+            shapes: this.state.shapes.concat(newShape),
         });
     }
     render() {
@@ -44,10 +51,10 @@ class Canvas extends Component {
                     onClick={this.drawShape}>
                         You must use a browser that supports HTML5.
                         {
-                            this.state.circles.map((circle) => (
+                            this.state.shapes.map((shape) => (
                                 React.createElement(
-                                        'circle',
-                                        circle
+                                        shape.type,
+                                        shape.shapeProps
                                     )
                                 )
                             )

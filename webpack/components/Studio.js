@@ -7,6 +7,13 @@ import ReactCursorPosition from 'react-cursor-position';
 class Studio extends Component {
     constructor(props) {
         super(props);
+        this.state = {shapeConfig: {}};
+    }
+    updateShapeToDraw = (shapeConfig) => {
+        console.log("Studio - updateShapeToDraw ", shapeConfig);
+        this.setState({
+            shapeConfig: shapeConfig,
+        });
     }
     render() {
         return (
@@ -14,11 +21,14 @@ class Studio extends Component {
                 <Row type="flex" justify="space-around">
                     <Col lg={10} md={10} sm={10}>
                         <ReactCursorPosition>  
-                            <Canvas />
+                            <Canvas 
+                                shapeConfig={this.state.shapeConfig}/>
                         </ReactCursorPosition>
                     </Col>
                     <Col lg={10} md={10} sm={10}>
-                        <Palette />
+                        <Palette 
+                            onShapeChange={this.updateShapeToDraw}
+                            />
                     </Col>
                 </Row>
             </div>
