@@ -23,7 +23,6 @@ class Palette extends Component {
     }
     changeCurrentShape = (key) => {
         console.log("Palette - changeCurrentShape " + key, this.state[key]);
-        console.log("State is ", this.state);
         this.props.onShapeChange({
             type: key,
             shapeProps: this.state[key],
@@ -31,8 +30,8 @@ class Palette extends Component {
     }
     render() {
         return (
-            <Collapse accordion defaultActiveKey="circle" onChange={this.changeCurrentShape}>
-                <Panel header="Circle" key="circle">
+            <Collapse accordion defaultActiveKey="Circle" onChange={this.changeCurrentShape}>
+                <Panel header="Circle" key="Circle">
                     <CircleConfig 
                         onConfigUpdate={this.updateCurrentShapeProps}/>
                 </Panel>
