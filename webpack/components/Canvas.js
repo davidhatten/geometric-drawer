@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Circle from './Circle';
 import Square from './Square';
-import { CIRCLE_NAME, SQUARE_NAME } from './shapeConstants';
+import { CIRCLE_NAME, SQUARE_NAME } from './../shapeConstants';
 
 const shapeTags = {
                     [CIRCLE_NAME]: Circle, 
