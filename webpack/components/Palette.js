@@ -8,7 +8,6 @@ const FormItem = Form.Item;
 class Palette extends Component {
     constructor(props) {
         super(props);
-        this.state = {activeKey: "circle"};
     }
     updateCurrentShapeProps = (key, shapeProps) => {
         console.log("Palette - updateCurrentShapeProps " + key, shapeProps);
