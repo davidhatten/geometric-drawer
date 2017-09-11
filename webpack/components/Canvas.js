@@ -65,7 +65,6 @@ class Canvas extends Component {
                     onClick={this.drawShape}>
                     You must use a browser that supports HTML5.
                     {this.state.shapes}
-                    <Circle r="100" cx="1889.689265536723" cy="1919.8783732421134" fill="none" stroke="black" strokeWidth="5"></Circle>
                 </svg>
             </div>
         );
