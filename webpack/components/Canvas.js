@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
 import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
 
 const shapeTags = {
-                    [CIRCLE_NAME]: Circle, 
-                    [SQUARE_NAME]: Square,
-                    [FOL_NAME]: FlowerOfLife,
-                };
+    [CIRCLE_NAME]: Circle,
+    [SQUARE_NAME]: Square,
+    [FOL_NAME]: FlowerOfLife,
+};
 
 class Canvas extends Component {
     constructor(props) {
@@ -32,19 +33,19 @@ class Canvas extends Component {
             shapeProps: {
                 locationData: locationProps,
                 style: {
-                    fill:"none",
-                    stroke:"black",
-                    strokeWidth:"5",
+                    fill:`none`,
+                    stroke:`black`,
+                    strokeWidth:`5`,
                 },
-            }
+            },
         };
 
         this.setState({
             shapes: this.state.shapes.concat(
-                                        React.createElement(
-                                                shapeTags[newShape.type],
-                                                newShape.shapeProps
-                                            )),
+                React.createElement(
+                    shapeTags[newShape.type],
+                    newShape.shapeProps
+                )),
         });
     }
     render() {
@@ -62,13 +63,17 @@ class Canvas extends Component {
                     height="100%"
                     style={svgStyle}
                     onClick={this.drawShape}>
-                        You must use a browser that supports HTML5.
-                        {this.state.shapes}
-                        <Circle r="100" cx="1889.689265536723" cy="1919.8783732421134" fill="none" stroke="black" strokeWidth="5"></Circle>
+                    You must use a browser that supports HTML5.
+                    {this.state.shapes}
+                    <Circle r="100" cx="1889.689265536723" cy="1919.8783732421134" fill="none" stroke="black" strokeWidth="5"></Circle>
                 </svg>
             </div>
         );
     }
 }
+
+Canvas.propTypes = {
+
+};
 
 export default Canvas;
