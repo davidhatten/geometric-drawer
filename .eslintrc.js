@@ -4,7 +4,9 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": ["plugin:react/recommended"],
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:flowtype/recommended"],
     "rules": {
         "no-unused-vars": [
             "warn",

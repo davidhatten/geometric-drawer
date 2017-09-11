@@ -1,5 +1,6 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
@@ -9,6 +10,11 @@ const shapeTags = {
     [CIRCLE_NAME]: Circle,
     [SQUARE_NAME]: Square,
     [FOL_NAME]: FlowerOfLife,
+};
+
+type Props = {
+    foo: number,
+    bar?: string
 };
 
 class Canvas extends Component {
