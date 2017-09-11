@@ -19,12 +19,12 @@ class Canvas extends Component {
     }
     drawShape = () => {
         const { elementDimensions, position } = this.props;
-
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
         const locationProps = this.props.shapeConfig.shapeProps.location(absPosition);
+        
         const newShape = {
             type: this.props.shapeConfig.type,
             shapeProps: {

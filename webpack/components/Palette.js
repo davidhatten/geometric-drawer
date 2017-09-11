@@ -10,8 +10,9 @@ class Palette extends Component {
     constructor(props) {
         super(props);
     }
-    updateCurrentShapeProps = (key, shapeProps) => {
-        console.log("Palette - updateCurrentShapeProps " + key, shapeProps);
+    initializeShapeProps = (key, shapeProps) => {
+        console.log("Palette - initializeShapeProps " + key, shapeProps);
+        
         this.props.onShapeChange({
                                 type: key,
                                 shapeProps: shapeProps,
@@ -24,6 +25,7 @@ class Palette extends Component {
     }
     changeCurrentShape = (key) => {
         console.log("Palette - changeCurrentShape " + key, this.state[key]);
+
         this.props.onShapeChange({
             type: key,
             shapeProps: this.state[key],
@@ -34,11 +36,11 @@ class Palette extends Component {
             <Collapse accordion defaultActiveKey={CIRCLE_NAME} onChange={this.changeCurrentShape}>
                 <Panel header="Circle" key={CIRCLE_NAME}>
                     <CircleConfig 
-                        onConfigUpdate={this.updateCurrentShapeProps}/>
+                        initializeConfig={this.initializeShapeProps}/>
                 </Panel>
                 <Panel header="Square" key={SQUARE_NAME}>
                     <SquareConfig
-                        onConfigUpdate={this.updateCurrentShapeProps}
+                        initializeConfig={this.initializeShapeProps}
                         height="100"
                         width="100" />
                 </Panel>
