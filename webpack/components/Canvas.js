@@ -30,10 +30,12 @@ class Canvas extends Component {
         const newShape = {
             type: this.props.shapeConfig.type,
             shapeProps: {
-                ...locationProps,
-                fill:"none",
-                stroke:"black",
-                strokeWidth:"5",
+                locationData: locationProps,
+                style: {
+                    fill:"none",
+                    stroke:"black",
+                    strokeWidth:"5",
+                },
             }
         };
 

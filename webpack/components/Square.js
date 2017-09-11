@@ -6,7 +6,7 @@ class Square extends Component {
         console.log("Square - constructor", props);
     }
     render() {
-        return <rect {...this.props}/>;
+        return <rect {...this.props.locationData} {...this.props.style}/>;
     }
 }
 

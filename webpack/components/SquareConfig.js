@@ -8,18 +8,18 @@ class SquareConfig extends Component {
     constructor(props) {
         super(props);
         this.state = {
-                        length: 100,
-                        config: {
-                            location: (position) => {
-                                return {
-                                    x: position.x - (this.state.length/2),
-                                    y: position.y - (this.state.length/2),
-                                    width: this.state.length,
-                                    height: this.state.length,
-                                }
-                            }
-                        }
-                    };
+            length: 100,
+            config: {
+                location: (position) => {
+                    return {
+                        x: position.x - (this.state.length/2),
+                        y: position.y - (this.state.length/2),
+                        width: this.state.length,
+                        height: this.state.length,
+                    }
+                }
+            }
+        };
     }
     componentDidMount() {
         console.log("SquareConfig - componentDidMount");

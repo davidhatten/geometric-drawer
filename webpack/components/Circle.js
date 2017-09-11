@@ -6,7 +6,7 @@ class Circle extends Component {
         console.log("Circle - constructor", props);
     }
     render() {
-        return <circle {...this.props}/>;
+        return <circle {...this.props.locationData} {...this.props.style}/>;
     }
 }
 
