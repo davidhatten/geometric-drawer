@@ -9,7 +9,7 @@ class CircleConfig extends Component {
         this.state = {
             radius: 100,
             config: {
-                location: (position: {x: number, y: number}) => {
+                location: (position) => {
                     return {
                         r: this.state.radius,
                         cx: position.x,

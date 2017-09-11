@@ -38,6 +38,7 @@
       "dependencies": {
             "antd": "^2.13.0",
             "react": "^15.6.1",
-            "react-cursor-position": "^2.2.1"
+            "react-cursor-position": "^2.2.1",
+            "save-svg-as-png": "^1.2.0"
       }
 }
