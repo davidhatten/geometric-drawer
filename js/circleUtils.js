@@ -12,7 +12,7 @@ function drawSquare(canvas, sideLength, x, y) {
     const rect = ctx.rect(x - posAdj, y - posAdj, sideLength, sideLength);
     rect.attr({strokeWidth:lineWidth, stroke: `#000`, fillOpacity: `0.0`, id: rectId});
 
-    return rect;
+    return {id: rectId};
 }
 
 function drawCircle(canvas, radius, x, y) {
