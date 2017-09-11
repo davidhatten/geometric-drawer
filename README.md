@@ -10,6 +10,8 @@ https://davidhatten.github.io/geometric-drawer/
 * Metatron's Cube
 * Quadratic Curve Petal Ring
 * Dot Ring
+* Circle
+* Square
 
 ## Features
 * Define the number of iterations
