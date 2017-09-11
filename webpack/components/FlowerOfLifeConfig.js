@@ -11,6 +11,7 @@ class FlowerOfLifeConfig extends Component {
             config: {
                 location: (position) => {
                     return {
+                        position: position,
                         iterations: this.state.iterations,
                     };
                 },

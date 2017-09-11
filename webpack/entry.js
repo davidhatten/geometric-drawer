@@ -9,14 +9,14 @@ import 'antd/dist/antd.css';
 class App extends Component {
     render() {
         return (
-                <LocaleProvider locale={enUS}>
-                    <div>
-                        <Title />
-                        <Studio />
-                    </div>
-                </LocaleProvider>
-            );
+            <LocaleProvider locale={enUS}>
+                <div>
+                    <Title />
+                    <Studio />
+                </div>
+            </LocaleProvider>
+        );
     }
 }
 
-render(<App />, document.getElementById('root'))
+render(<App />, document.getElementById(`root`));

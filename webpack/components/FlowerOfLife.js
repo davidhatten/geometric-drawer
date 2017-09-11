@@ -6,8 +6,7 @@ class FlowerOfLife extends Component {
     }
     drawFlower = () => {
         const innerPetals = [];
-        const degree = 6;
-        innerPetals.push(<circle {...this.props.locationData} {...this.props.style} />)
+        innerPetals.push(<circle {...this.props.locationData} {...this.props.style} />);
 
         return (<circle cx="100" cy="100" r="100"/>);
     }

@@ -15,7 +15,7 @@ const shapeTags = {
 type Props = {
     elementDimensions: { width: number, height: number},
     position: { x: number, y: number},
-    shapeConfig: { shapeProps: { location: Function}, type: string}
+    shapeConfig: { shapeProps: { location: Function }, type: string}
 };
 
 type State = {

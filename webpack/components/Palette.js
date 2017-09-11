@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col, Collapse, Form, Input } from 'antd';
+import { Collapse } from 'antd';
 import CircleConfig from './CircleConfig';
 import SquareConfig from './SquareConfig';
 import FlowerOfLifeConfig from './FlowerOfLifeConfig';
 import { CIRCLE_NAME, SQUARE_NAME, FOL_NAME } from './../shapeConstants';
 const Panel = Collapse.Panel;
-const FormItem = Form.Item;
 
 class Palette extends Component {
     constructor(props) {
