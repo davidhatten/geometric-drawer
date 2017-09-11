@@ -12,8 +12,8 @@ class SquareConfig extends Component {
                         config: {
                             location: (position) => {
                                 return {
-                                    x: position.x,
-                                    y: position.y,
+                                    x: position.x - (this.state.length/2),
+                                    y: position.y - (this.state.length/2),
                                     width: this.state.length,
                                     height: this.state.length,
                                 }
@@ -23,7 +23,7 @@ class SquareConfig extends Component {
     }
     componentDidMount() {
         console.log("SquareConfig - componentDidMount");
-        
+
         this.props.initializeConfig(SQUARE_NAME, this.state.config);
     }
     updateLength = (event) => {

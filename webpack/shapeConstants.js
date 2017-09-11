@@ -1,4 +1,3 @@
-const CIRCLE_NAME = "Circle";
-const SQUARE_NAME = "Square";
-
-export { CIRCLE_NAME, SQUARE_NAME }
+export const CIRCLE_NAME = "Circle";
+export const SQUARE_NAME = "Square";
+export const FOL_NAME = "Flower of Life";

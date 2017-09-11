@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Circle from './Circle';
 import Square from './Square';
-import { CIRCLE_NAME, SQUARE_NAME } from './../shapeConstants';
+import FlowerOfLife from './FlowerOfLife';
+import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
 
 const shapeTags = {
                     [CIRCLE_NAME]: Circle, 
                     [SQUARE_NAME]: Square,
+                    [FOL_NAME]: FlowerOfLife,
                 };
 
 class Canvas extends Component {
@@ -24,7 +26,7 @@ class Canvas extends Component {
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
         const locationProps = this.props.shapeConfig.shapeProps.location(absPosition);
-        
+
         const newShape = {
             type: this.props.shapeConfig.type,
             shapeProps: {
