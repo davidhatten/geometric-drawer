@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import ReactCursorPosition from 'react-cursor-position';
@@ -15,6 +15,9 @@ class Studio extends Component {
             shapeConfig: shapeConfig,
         });
     }
+    exportCanvas = () => {
+
+    }
     render() {
         return (
             <div>
@@ -28,6 +31,7 @@ class Studio extends Component {
                     <Col lg={10} md={10} sm={10}>
                         <Palette
                             onShapeChange={this.updateShapeToDraw}/>
+                        <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
                     </Col>
                 </Row>
             </div>
