@@ -13,12 +13,19 @@ const shapeTags = {
 };
 
 type Props = {
-    foo: number,
-    bar?: string
+    elementDimensions: { width: number, height: number},
+    position: { x: number, y: number},
+    shapeConfig: { shapeProps: { location: Function}, type: string}
 };
 
-class Canvas extends Component {
-    constructor(props) {
+type State = {
+    shapes: Array<Object>,
+    svgHeight: number,
+    svgWidth: number,
+};
+
+class Canvas extends Component<Props, State> {
+    constructor(props: Props) {
         super(props);
         this.state = {
             shapes: [],
