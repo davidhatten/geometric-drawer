@@ -13,12 +13,12 @@ class FlowerOfLifeConfig extends Component {
                     return {
                         iterations: this.state.iterations,
                     };
-                }
-            }
+                },
+            },
         };
     }
     componentDidMount() {
-        console.log("FlowerOfLifeConfig - componentDidMount");
+        console.log(`FlowerOfLifeConfig - componentDidMount`);
 
         this.props.initializeConfig(FOL_NAME, this.state.config);
     }
@@ -29,16 +29,16 @@ class FlowerOfLifeConfig extends Component {
     }
     render() {
         return (
-                <Form>
-                    <Row type="flex">
-                        <Col span={3}>
-                            <FormItem label="Iterations">
-                                <Input value={this.state.iterations} defaultValue={this.state.iterations} onChange={this.updateIterations}/>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                </Form>
-            );
+            <Form>
+                <Row type="flex">
+                    <Col span={3}>
+                        <FormItem label="Iterations">
+                            <Input value={this.state.iterations} defaultValue={this.state.iterations} onChange={this.updateIterations}/>
+                        </FormItem>
+                    </Col>
+                </Row>
+            </Form>
+        );
     }
 
 }

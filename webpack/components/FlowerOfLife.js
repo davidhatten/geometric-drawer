@@ -16,9 +16,9 @@ class FlowerOfLife extends Component {
             <g>
                 {this.drawFlower()}
             </g>
-            );
+        );
     }
 
 }
 
-export default FlowerOfLife
+export default FlowerOfLife;

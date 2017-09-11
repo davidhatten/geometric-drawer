@@ -10,7 +10,7 @@ class Studio extends Component {
         this.state = {shapeConfig: {}};
     }
     updateShapeToDraw = (shapeConfig) => {
-        console.log("Studio - updateShapeToDraw ", shapeConfig);
+        console.log(`Studio - updateShapeToDraw `, shapeConfig);
         this.setState({
             shapeConfig: shapeConfig,
         });
@@ -20,15 +20,14 @@ class Studio extends Component {
             <div>
                 <Row type="flex" justify="space-around">
                     <Col lg={10} md={10} sm={10}>
-                        <ReactCursorPosition>  
-                            <Canvas 
+                        <ReactCursorPosition>
+                            <Canvas
                                 shapeConfig={this.state.shapeConfig}/>
                         </ReactCursorPosition>
                     </Col>
                     <Col lg={10} md={10} sm={10}>
-                        <Palette 
-                            onShapeChange={this.updateShapeToDraw}
-                            />
+                        <Palette
+                            onShapeChange={this.updateShapeToDraw}/>
                     </Col>
                 </Row>
             </div>

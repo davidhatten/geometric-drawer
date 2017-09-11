@@ -16,13 +16,13 @@ class SquareConfig extends Component {
                         y: position.y - (this.state.length/2),
                         width: this.state.length,
                         height: this.state.length,
-                    }
-                }
-            }
+                    };
+                },
+            },
         };
     }
     componentDidMount() {
-        console.log("SquareConfig - componentDidMount");
+        console.log(`SquareConfig - componentDidMount`);
 
         this.props.initializeConfig(SQUARE_NAME, this.state.config);
     }
@@ -33,16 +33,16 @@ class SquareConfig extends Component {
     }
     render() {
         return (
-                <Form>
-                    <Row type="flex">
-                        <Col span={3}>
-                            <FormItem label="Side Length">
-                                <Input value={this.state.length} defaultValue={this.state.length} onChange={this.updateLength}/>
-                            </FormItem>
-                        </Col>
-                    </Row>
-                </Form>
-                );
+            <Form>
+                <Row type="flex">
+                    <Col span={3}>
+                        <FormItem label="Side Length">
+                            <Input value={this.state.length} defaultValue={this.state.length} onChange={this.updateLength}/>
+                        </FormItem>
+                    </Col>
+                </Row>
+            </Form>
+        );
     }
 }
 

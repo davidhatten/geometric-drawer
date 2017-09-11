@@ -12,25 +12,24 @@ class Palette extends Component {
         super(props);
     }
     initializeShapeProps = (key, shapeProps) => {
-        console.log("Palette - initializeShapeProps " + key, shapeProps);
+        console.log(`Palette - initializeShapeProps ${key}`, shapeProps);
 
         this.props.onShapeChange({
-                                type: key,
-                                shapeProps: shapeProps,
-                            }
-                        );
+            type: key,
+            shapeProps: shapeProps,
+        });
 
         this.setState({
             [key]: shapeProps,
         });
     }
     changeCurrentShape = (key) => {
-        console.log("Palette - changeCurrentShape " + key, this.state[key]);
+        console.log(`Palette - changeCurrentShape ${key}`, this.state[key]);
 
         this.props.onShapeChange({
             type: key,
             shapeProps: this.state[key],
-        })
+        });
     }
     render() {
         return (
@@ -40,7 +39,7 @@ class Palette extends Component {
                         initializeConfig={this.initializeShapeProps}/>
                 </Panel>
                 <Panel header="Circle" key={CIRCLE_NAME}>
-                    <CircleConfig 
+                    <CircleConfig
                         initializeConfig={this.initializeShapeProps}/>
                 </Panel>
                 <Panel header="Square" key={SQUARE_NAME}>
