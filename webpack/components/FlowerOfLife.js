@@ -1,7 +1,14 @@
+// @flow
+
 import React, { Component } from 'react';
 
-class FlowerOfLife extends Component {
-    constructor(props) {
+type Props = {
+    locationData: {},
+    style: {},
+};
+
+class FlowerOfLife extends Component<Props> {
+    constructor(props: Props) {
         super(props);
     }
     drawFlower = () => {

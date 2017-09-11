@@ -1,14 +1,7 @@
-// @flow
-
 import React, { Component } from 'react';
 
-type Props = {
-    locationData: {},
-    style: {}
-};
-
-class Circle extends Component<Props> {
-    constructor(props: Props) {
+class Circle extends Component {
+    constructor(props) {
         super(props);
         console.log(`Circle - constructor`, props);
     }

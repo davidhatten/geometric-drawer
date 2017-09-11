@@ -1,21 +1,10 @@
-// @flow
-
 import React, { Component } from 'react';
 import { Row, Col, Form, Input } from 'antd';
 import { CIRCLE_NAME } from './../shapeConstants';
 const FormItem = Form.Item;
 
-type Props = {
-    initializeConfig: Function,
-};
-
-type State = {
-    radius: number,
-    config: { location: Function }
-};
-
-class CircleConfig extends Component<Props, State> {
-    constructor(props: Props) {
+class CircleConfig extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             radius: 100,
