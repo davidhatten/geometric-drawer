@@ -3,6 +3,7 @@ import { Row, Col, Button } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import ReactCursorPosition from 'react-cursor-position';
+import { saveSvgAsPng } from 'save-svg-as-png';
 
 class Studio extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class Studio extends Component {
         });
     }
     exportCanvas = () => {
-
+        const canvas = document.getElementById("drawingCanvas");
+        saveSvgAsPng(canvas, "geometry.png");
     }
     render() {
         return (

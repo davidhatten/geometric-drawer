@@ -57,6 +57,7 @@ class Canvas extends Component {
         return (
             <div>
                 <svg
+                    id="drawingCanvas"
                     viewBox={`0 0 ${this.state.svgWidth} ${this.state.svgHeight}`}
                     width="100%"
                     height="100%"
