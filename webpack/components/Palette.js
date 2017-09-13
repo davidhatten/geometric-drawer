@@ -35,7 +35,7 @@ class Palette extends Component {
     render() {
         return (
             <Collapse accordion defaultActiveKey={FOL_NAME} onChange={this.changeCurrentShape}>
-                <Panel header=<PaletteHeader name="Flower of Life" img="assets/img/fol.png"/> key={FOL_NAME}>
+                <Panel header=<PaletteHeader name="Flower of Life" img="assets/img/fol_80x80.png"/> key={FOL_NAME}>
                     <FlowerOfLifeConfig
                         initializeConfig={this.initializeShapeProps}/>
                 </Panel>

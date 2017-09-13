@@ -7,7 +7,19 @@ class FlowerOfLife extends Component<Props> {
     }
     drawFlower = () => {
         const innerPetals = [];
+        const petalCount = 6;
+        const degrees = 360/petalCount;
+        const trackDegrees = 0;
+        const jsRotation = 1/petalCount;
+
         innerPetals.push(<circle {...this.props.config} {...this.props.style} />);
+
+        // Splitting the degrees, then rotate it by that after
+        for (let i = 0; i < petalCount; i++) {
+            trackDegrees = trackDegrees + degrees;
+            innerPetals.push(((trackDegrees)/180) + jsRotation);
+        }
+
 
         return (<circle cx="100" cy="100" r="100"/>);
     }
