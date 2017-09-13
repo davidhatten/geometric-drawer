@@ -4,7 +4,6 @@ _site
 public
 node_modules
 _posts
-assets
 .DS_Store
 lib
 .yarnclean

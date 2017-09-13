@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
+import PaletteHeader from './PaletteHeader';
 import CircleConfig from './CircleConfig';
 import SquareConfig from './SquareConfig';
 import FlowerOfLifeConfig from './FlowerOfLifeConfig';
@@ -34,15 +35,15 @@ class Palette extends Component {
     render() {
         return (
             <Collapse accordion defaultActiveKey={FOL_NAME} onChange={this.changeCurrentShape}>
-                <Panel header="Flower of Life" key={FOL_NAME}>
+                <Panel header=<PaletteHeader name="Flower of Life" img="assets/img/fol.png"/> key={FOL_NAME}>
                     <FlowerOfLifeConfig
                         initializeConfig={this.initializeShapeProps}/>
                 </Panel>
-                <Panel header="Circle" key={CIRCLE_NAME}>
+                <Panel header=<PaletteHeader name="Circle" img="assets/img/circle.png"/> key={CIRCLE_NAME}>
                     <CircleConfig
                         initializeConfig={this.initializeShapeProps}/>
                 </Panel>
-                <Panel header="Square" key={SQUARE_NAME}>
+                <Panel header=<PaletteHeader name="Square" img="assets/img/square.png"/> key={SQUARE_NAME}>
                     <SquareConfig
                         initializeConfig={this.initializeShapeProps}
                         height="100"
