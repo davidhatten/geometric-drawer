@@ -1,11 +1,5 @@
-// @flow
-
 import React, { Component } from 'react';
-
-type Props = {
-    locationData: {},
-    style: {},
-};
+import PropTypes from 'prop-types';
 
 class FlowerOfLife extends Component<Props> {
     constructor(props: Props) {
@@ -13,7 +7,7 @@ class FlowerOfLife extends Component<Props> {
     }
     drawFlower = () => {
         const innerPetals = [];
-        innerPetals.push(<circle {...this.props.locationData} {...this.props.style} />);
+        innerPetals.push(<circle {...this.props.config} {...this.props.style} />);
 
         return (<circle cx="100" cy="100" r="100"/>);
     }
@@ -26,5 +20,10 @@ class FlowerOfLife extends Component<Props> {
     }
 
 }
+
+FlowerOfLife.propTypes = {
+    config: PropTypes.object.isRequired,
+    style: PropTypes.object.isRequired,
+};
 
 export default FlowerOfLife;

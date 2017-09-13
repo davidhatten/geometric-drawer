@@ -17,8 +17,8 @@ class Studio extends Component {
         });
     }
     exportCanvas = () => {
-        const canvas = document.getElementById("drawingCanvas");
-        saveSvgAsPng(canvas, "geometry.png");
+        const canvas = document.getElementById(`drawingCanvas`);
+        saveSvgAsPng(canvas, `geometry.png`);
     }
     render() {
         return (

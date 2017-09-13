@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
@@ -21,16 +22,17 @@ class Canvas extends Component {
     }
     drawShape = () => {
         const { elementDimensions, position } = this.props;
+        console.log(this.props.shapeConfig);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
-        const locationProps = this.props.shapeConfig.shapeProps.location(absPosition);
+        const locationProps = this.props.shapeConfig.location(absPosition);
 
         const newShape = {
             type: this.props.shapeConfig.type,
             shapeProps: {
-                locationData: locationProps,
+                config: locationProps,
                 style: {
                     fill:`none`,
                     stroke:`black`,
@@ -72,7 +74,18 @@ class Canvas extends Component {
 }
 
 Canvas.propTypes = {
-
+    elementDimensions: PropTypes.shape({
+        height: PropTypes.number,
+        width: PropTypes.number,
+    }),
+    position: PropTypes.shape({
+        x: PropTypes.number, 
+        y: PropTypes.number,
+    }),
+    shapeConfig: PropTypes.shape({
+        type: PropTypes.string,
+        location: PropTypes.func,
+    }),
 };
 
 export default Canvas;

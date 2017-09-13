@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Form, Input } from 'antd';
 import { SQUARE_NAME } from './../shapeConstants';
 
@@ -9,22 +10,20 @@ class SquareConfig extends Component {
         super(props);
         this.state = {
             length: 100,
-            config: {
-                location: (position) => {
-                    return {
-                        x: position.x - (this.state.length/2),
-                        y: position.y - (this.state.length/2),
-                        width: this.state.length,
-                        height: this.state.length,
-                    };
-                },
+            location: (position) => {
+                return {
+                    x: position.x - (this.state.length/2),
+                    y: position.y - (this.state.length/2),
+                    width: this.state.length,
+                    height: this.state.length,
+                };
             },
         };
     }
     componentDidMount() {
         console.log(`SquareConfig - componentDidMount`);
 
-        this.props.initializeConfig(SQUARE_NAME, this.state.config);
+        this.props.initializeConfig(SQUARE_NAME, this.state.location);
     }
     updateLength = (event) => {
         this.setState({
@@ -45,5 +44,9 @@ class SquareConfig extends Component {
         );
     }
 }
+
+SquareConfig.propTypes = {
+    initializeConfig: PropTypes.func.isRequired,
+};
 
 export default SquareConfig;

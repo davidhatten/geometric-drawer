@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Form, Input } from 'antd';
 import { CIRCLE_NAME } from './../shapeConstants';
 const FormItem = Form.Item;
@@ -8,21 +9,19 @@ class CircleConfig extends Component {
         super(props);
         this.state = {
             radius: 100,
-            config: {
-                location: (position) => {
-                    return {
-                        r: this.state.radius,
-                        cx: position.x,
-                        cy: position.y,
-                    };
-                },
+            location: (position) => {
+                return {
+                    r: this.state.radius,
+                    cx: position.x,
+                    cy: position.y,
+                };
             },
         };
     }
     componentDidMount() {
         console.log(`CircleConfig - componentDidMount`);
 
-        this.props.initializeConfig(CIRCLE_NAME, this.state.config);
+        this.props.initializeConfig(CIRCLE_NAME, this.state.location);
     }
     render() {
         return(
@@ -38,5 +37,9 @@ class CircleConfig extends Component {
         );
     }
 }
+
+CircleConfig.propTypes = {
+    initializeConfig: PropTypes.func.isRequired,
+};
 
 export default CircleConfig;

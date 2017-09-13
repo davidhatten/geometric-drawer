@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 import CircleConfig from './CircleConfig';
 import SquareConfig from './SquareConfig';
@@ -15,7 +16,7 @@ class Palette extends Component {
 
         this.props.onShapeChange({
             type: key,
-            shapeProps: shapeProps,
+            location: shapeProps,
         });
 
         this.setState({
@@ -27,7 +28,7 @@ class Palette extends Component {
 
         this.props.onShapeChange({
             type: key,
-            shapeProps: this.state[key],
+            location: this.state[key],
         });
     }
     render() {
@@ -51,5 +52,9 @@ class Palette extends Component {
         );
     }
 }
+
+Palette.propTypes = {
+    onShapeChange: PropTypes.func.isRequired,
+};
 
 export default Palette;

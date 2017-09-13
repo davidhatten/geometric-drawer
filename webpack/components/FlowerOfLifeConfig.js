@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Form, Input } from 'antd';
 import { FOL_NAME } from './../shapeConstants';
 const FormItem = Form.Item;
@@ -8,20 +9,18 @@ class FlowerOfLifeConfig extends Component {
         super(props);
         this.state = {
             iterations: 3,
-            config: {
-                location: (position) => {
-                    return {
-                        position: position,
-                        iterations: this.state.iterations,
-                    };
-                },
+            location: (position) => {
+                return {
+                    position: position,
+                    iterations: this.state.iterations,
+                };
             },
         };
     }
     componentDidMount() {
         console.log(`FlowerOfLifeConfig - componentDidMount`);
 
-        this.props.initializeConfig(FOL_NAME, this.state.config);
+        this.props.initializeConfig(FOL_NAME, this.state.location);
     }
     updateIterations = (event) => {
         this.setState({
@@ -43,5 +42,9 @@ class FlowerOfLifeConfig extends Component {
     }
 
 }
+
+FlowerOfLifeConfig.propTypes = {
+    initializeConfig: PropTypes.func.isRequired,
+};
 
 export default FlowerOfLifeConfig;

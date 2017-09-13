@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Square extends Component {
     constructor(props) {
@@ -6,8 +7,13 @@ class Square extends Component {
         console.log(`Square - constructor`, props);
     }
     render() {
-        return <rect {...this.props.locationData} {...this.props.style}/>;
+        return <rect {...this.props.config} {...this.props.style}/>;
     }
 }
+
+Square.propTypes = {
+    config: PropTypes.object.isRequired,
+    style: PropTypes.object.isRequired,
+};
 
 export default Square;
