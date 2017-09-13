@@ -5,10 +5,8 @@ module.exports = {
         "node": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "plugin:flowtype/recommended"],
+        "plugin:react/recommended"],
     "rules": {
-        "react/prop-types": [0],
         "no-unused-vars": [
             "warn",
             {
@@ -42,8 +40,7 @@ module.exports = {
         "$": true
     },
     "plugins": [
-        "react",
-        "flowtype"
+        "react"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
