@@ -5,6 +5,7 @@ import Studio from './components/Studio';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
+import './style.less';
 
 class App extends Component {
     render() {

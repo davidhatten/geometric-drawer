@@ -9,7 +9,7 @@ class FlowerOfLife extends Component<Props> {
         const innerPetals = [];
         const petalCount = 6;
         const degrees = 360/petalCount;
-        const trackDegrees = 0;
+        var trackDegrees = 0;
         const jsRotation = 1/petalCount;
 
         innerPetals.push(<circle {...this.props.config} {...this.props.style} />);
