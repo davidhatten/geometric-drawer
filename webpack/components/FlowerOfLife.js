@@ -19,7 +19,7 @@ class FlowerOfLife extends Component<Props> {
         const jsRotation = 1/petalCount;
         console.log(this.props);
 
-        const startCircle = <circle cx={this.props.config.position.x} cy={this.props.config.position.y} r="100" {...this.props.style} />;
+        const startCircle = { x:this.props.config.position.x, y: this.props.config.position.y };
         console.log("Starting circle is ", startCircle);
         innerPetals.push(startCircle);
 
@@ -37,17 +37,21 @@ class FlowerOfLife extends Component<Props> {
         }
 
         console.log(`There are ${usedPetals.length} petals drawn`);
-        this.setState({ petals: usedPetals});
+        const petalElements = [];
+        for (let i = 0; i < usedPetals.length; i++) {
+            petalElements.push(<circle cx={usedPetals[i].x} cy={usedPetals[i].y} r="100" {...this.props.style} />);
+        }
+        this.setState({ petals: petalElements});
     }
     drawPetals = (radius, innerPetals, petalAngles, usedPetals) => {
         let outerPetals = [];
 
         for (let i = 0; i < innerPetals.length; i++) {
             for (let j = 0; j < petalAngles.length; j++) {
-                const sqrX = innerPetals[i].props.cx + radius * Math.cos(Math.PI * petalAngles[j]);
-                const sqrY = innerPetals[i].props.cy + radius * Math.sin(Math.PI * petalAngles[j]);
+                const sqrX = innerPetals[i].x + radius * Math.cos(Math.PI * petalAngles[j]);
+                const sqrY = innerPetals[i].y + radius * Math.sin(Math.PI * petalAngles[j]);
 
-                const circle = <circle cx={sqrX} cy={sqrY} r={radius} {...this.props.style} />;
+                const circle = { x:sqrX, y:sqrY};
                 if (this.arrayContains(outerPetals, circle) === false && 
                     this.arrayContains(usedPetals, circle) === false) {
                     outerPetals.push(circle);
@@ -58,21 +62,21 @@ class FlowerOfLife extends Component<Props> {
 
         return outerPetals;
     }
-    arrayContains = (array, centerPoint) => {
+
+    arrayContains(array, centerPoint) {
         for (let i = 0; i < array.length; i++) {
-            // This can't be very efficient....
-            console.log(`Comparing elements ${reactElementToJSXString(array[i])} and ${reactElementToJSXString(centerPoint)}`)
-            if (reactElementToJSXString(array[i]) === reactElementToJSXString(centerPoint)) {
-                console.log("They are equal");
+            if (this.roundFloats(array[i].x, 3) === this.roundFloats(centerPoint.x, 3) &&
+                this.roundFloats(array[i].y, 3) === this.roundFloats(centerPoint.y, 3)) {
                 return true;
             }
         }
 
         return false;
     }
+
     roundFloats = (float, decimalPoints) => {
         let roundingFactor = Math.pow(10, decimalPoints);
-        if (decimalPlaces(float) > 0) {
+        if (this.decimalPlaces(float) > 0) {
             return Math.round(float * roundingFactor) / roundingFactor;
         }
 
