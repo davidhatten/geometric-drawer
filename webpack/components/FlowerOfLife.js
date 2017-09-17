@@ -20,7 +20,6 @@ class FlowerOfLife extends Component<Props> {
         console.log(this.props);
 
         const startCircle = { x:this.props.config.position.x, y: this.props.config.position.y };
-        console.log("Starting circle is ", startCircle);
         innerPetals.push(startCircle);
 
         // Setting up the angle increment
@@ -33,7 +32,6 @@ class FlowerOfLife extends Component<Props> {
         let usedPetals = innerPetals.slice();
         for (let i = 0; i < this.props.config.iterations; i++) {
             outerPetals = this.drawPetals(`100`, outerPetals, angleDegrees, usedPetals);
-            usedPetals = usedPetals.concat(outerPetals);
         }
 
         console.log(`There are ${usedPetals.length} petals drawn`);
@@ -53,9 +51,9 @@ class FlowerOfLife extends Component<Props> {
 
                 const circle = { x:sqrX, y:sqrY};
 
-                if (this.arrayContains(outerPetals, circle) === false && 
-                    this.arrayContains(usedPetals, circle) === false) {
+                if (this.arrayContains(usedPetals, circle) === false) {
                     outerPetals.push(circle);
+                    usedPetals.push(circle);
                 }
 
             }
