@@ -37,10 +37,10 @@ class FlowerOfLife extends Component<Props> {
         }
 
         console.log(`There are ${usedPetals.length} petals drawn`);
-        const petalElements = [];
-        for (let i = 0; i < usedPetals.length; i++) {
-            petalElements.push(<circle cx={usedPetals[i].x} cy={usedPetals[i].y} r="100" {...this.props.style} />);
-        }
+
+        const petalElements = usedPetals.map((petal) => {
+            return <circle key={`${petal.x}${petal.x}${petal.y}${petal.y}`} cx={petal.x} cy={petal.y} r="100" {...this.props.style} />;
+        });
         this.setState({ petals: petalElements});
     }
     drawPetals = (radius, innerPetals, petalAngles, usedPetals) => {
