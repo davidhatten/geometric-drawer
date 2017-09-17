@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import reactElementToJSXString from 'react-element-to-jsx-string'
+import roundTo from 'round-to';
 
 class FlowerOfLife extends Component<Props> {
     constructor(props: Props) {
@@ -62,35 +62,15 @@ class FlowerOfLife extends Component<Props> {
 
         return outerPetals;
     }
-
-    arrayContains(array, centerPoint) {
+    arrayContains = (array, centerPoint) => {
         for (let i = 0; i < array.length; i++) {
-            if (this.roundFloats(array[i].x, 3) === this.roundFloats(centerPoint.x, 3) &&
-                this.roundFloats(array[i].y, 3) === this.roundFloats(centerPoint.y, 3)) {
+            if (roundTo(array[i].x, 3) === roundTo(centerPoint.x, 3) &&
+                roundTo(array[i].y, 3) === roundTo(centerPoint.y, 3)) {
                 return true;
             }
         }
 
         return false;
-    }
-
-    roundFloats = (float, decimalPoints) => {
-        let roundingFactor = Math.pow(10, decimalPoints);
-        if (this.decimalPlaces(float) > 0) {
-            return Math.round(float * roundingFactor) / roundingFactor;
-        }
-
-        return float;
-    }
-    decimalPlaces(num) {
-        let match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-        if (!match) { return 0; }
-        return Math.max(
-            0,
-            // Number of digits right of decimal point.
-            (match[1] ? match[1].length : 0)
-            // Adjust for scientific notation.
-            - (match[2] ? +match[2] : 0));
     }
     render() {
         return(
