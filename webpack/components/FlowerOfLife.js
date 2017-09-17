@@ -31,17 +31,22 @@ class FlowerOfLife extends Component<Props> {
         let outerPetals = innerPetals.slice();
         let usedPetals = innerPetals.slice();
         for (let i = 0; i < this.props.config.iterations; i++) {
-            outerPetals = this.drawPetals(`100`, outerPetals, angleDegrees, usedPetals);
+            outerPetals = this.drawOuterPetals(`100`, outerPetals, angleDegrees, usedPetals);
         }
 
-        console.log(`There are ${usedPetals.length} petals drawn`);
-
-        const petalElements = usedPetals.map((petal) => {
+        this.setState({ petals: usedPetals.map((petal) => {
             return <circle key={`${petal.x}${petal.x}${petal.y}${petal.y}`} cx={petal.x} cy={petal.y} r="100" {...this.props.style} />;
+        }),
         });
-        this.setState({ petals: petalElements});
     }
-    drawPetals = (radius, innerPetals, petalAngles, usedPetals) => {
+    drawOuterPetals = (radius, innerPetals, petalAngles, usedPetals) => {
+        /*
+            This method keeps track of the outermost layer of petals (circles)
+            and adds to the cumulatie list of petals that will eventually be rendered
+
+            For efficiencies sake, it attempts to track the current drawing edge
+            and only iterate over those petals to draw new ones
+        */
         let outerPetals = [];
 
         for (let i = 0; i < innerPetals.length; i++) {
@@ -62,6 +67,13 @@ class FlowerOfLife extends Component<Props> {
         return outerPetals;
     }
     arrayContains = (array, centerPoint) => {
+        /*
+            This method takes an array and a point and checks to see
+            if that point is already in the array.
+
+            It expects a long float that has been off by a fraction due to some math
+            It rounds off everything to prevent duplicate circles from being drawn
+        */
         const pointsInArray = array.filter(point => (roundTo(point.x, 3) === roundTo(centerPoint.x, 3) 
                                             && roundTo(point.y, 3) === roundTo(centerPoint.y, 3)));
         
