@@ -52,6 +52,7 @@ class FlowerOfLife extends Component<Props> {
                 const sqrY = innerPetals[i].y + radius * Math.sin(Math.PI * petalAngles[j]);
 
                 const circle = { x:sqrX, y:sqrY};
+
                 if (this.arrayContains(outerPetals, circle) === false && 
                     this.arrayContains(usedPetals, circle) === false) {
                     outerPetals.push(circle);
@@ -63,14 +64,10 @@ class FlowerOfLife extends Component<Props> {
         return outerPetals;
     }
     arrayContains = (array, centerPoint) => {
-        for (let i = 0; i < array.length; i++) {
-            if (roundTo(array[i].x, 3) === roundTo(centerPoint.x, 3) &&
-                roundTo(array[i].y, 3) === roundTo(centerPoint.y, 3)) {
-                return true;
-            }
-        }
-
-        return false;
+        const pointsInArray = array.filter(point => (roundTo(point.x, 3) === roundTo(centerPoint.x, 3) 
+                                            && roundTo(point.y, 3) === roundTo(centerPoint.y, 3)));
+        
+        return pointsInArray.length > 0;
     }
     render() {
         return(
