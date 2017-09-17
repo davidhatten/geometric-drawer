@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
+import History from './History';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
@@ -30,9 +31,16 @@ class Studio extends Component {
                                 shapeConfig={this.state.shapeConfig}/>
                         </ReactCursorPosition>
                     </Col>
-                    <Col lg={10} md={10} sm={10}>
-                        <Palette
-                            onShapeChange={this.updateShapeToDraw}/>
+                    <Col lg={13} md={13} sm={13}>
+                        <Row type="flex" justify="space-around">
+                            <Col lg={13} md={13} sm={13}>
+                                <Palette
+                                    onShapeChange={this.updateShapeToDraw}/>
+                            </Col>
+                            <Col lg={10} md={10} sm={10}>
+                                <History />
+                            </Col>                            
+                        </Row>
                         <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
                     </Col>
                 </Row>
