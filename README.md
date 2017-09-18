@@ -21,3 +21,6 @@ https://davidhatten.github.io/geometric-drawer/
 * Generate in 8.5"x11" or A4
 * Export to PNG
 * History of your drawings with deletion
+
+## Coming Soon
+This is being replatformed to ES6 to allow for more robust features. Stay tuned!
