@@ -3,6 +3,8 @@ import { Row, Col, Button } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
+import HelloButton from './HelloButton';
+import Message from './Message';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
@@ -48,6 +50,8 @@ class Studio extends Component {
                             onShapeChange={this.updateShapeToDraw}/>
                         <br />
                         <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                        <HelloButton />
+                        <Message />
                     </Col>
                 </Row>
             </div>
