@@ -13,6 +13,7 @@ class Title extends Component {
                         <h1>
                             Select a style and click the canvas!
                         </h1>
+                        <br />
                     </Col>
                 </Row>
             </div>

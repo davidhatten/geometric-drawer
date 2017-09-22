@@ -34,8 +34,8 @@ class FlowerOfLife extends Component<Props> {
             outerPetals = this.drawOuterPetals(`100`, outerPetals, angleDegrees, usedPetals);
         }
 
-        this.setState({ petals: usedPetals.map((petal) => {
-            return <circle key={`${petal.x}${petal.x}${petal.y}${petal.y}`} cx={petal.x} cy={petal.y} r="100" {...this.props.style} />;
+        this.setState({ petals: usedPetals.map((petal, index) => {
+            return <circle key={index} cx={petal.x} cy={petal.y} r="100" {...this.props.style} />;
         }),
         });
     }
@@ -74,9 +74,9 @@ class FlowerOfLife extends Component<Props> {
             It expects a long float that has been off by a fraction due to some math
             It rounds off everything to prevent duplicate circles from being drawn
         */
-        const pointsInArray = array.filter(point => (roundTo(point.x, 3) === roundTo(centerPoint.x, 3) 
+        const pointsInArray = array.filter(point => (roundTo(point.x, 3) === roundTo(centerPoint.x, 3)
                                             && roundTo(point.y, 3) === roundTo(centerPoint.y, 3)));
-        
+
         return pointsInArray.length > 0;
     }
     render() {
