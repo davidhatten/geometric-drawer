@@ -9,7 +9,8 @@ const consoleWrites = (state = initialState, action) => {
     case WRITE_CONSOLE:
         console.log("Got a thing about writing to a console");
         console.log("My state is ", state);
-        let newstate = {message: "lolololololol"};
+        console.log("My action is ", action);
+        let newstate = {message: action.payload};
         console.log("my newstate is ", newstate)
         return newstate;
     default:
