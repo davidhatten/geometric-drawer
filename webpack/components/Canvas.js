@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
 import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
+import { drawShape } from '../action/drawShape';
 
 const shapeTags = {
     [CIRCLE_NAME]: Circle,
@@ -20,34 +22,35 @@ class Canvas extends Component {
             svgWidth: 2550,
         };
     }
-    drawShape = () => {
+    initiateDraw = () => {
         const { elementDimensions, position } = this.props;
         console.log(this.props.shapeConfig);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
-        const locationProps = this.props.shapeConfig.location(absPosition);
+        this.props.drawShape(absPosition);
+        // const locationProps = this.props.shapeConfig.location(absPosition);
 
-        const newShape = {
-            type: this.props.shapeConfig.type,
-            shapeProps: {
-                config: locationProps,
-                style: {
-                    fill:`none`,
-                    stroke:`black`,
-                    strokeWidth:`5`,
-                },
-            },
-        };
+        // const newShape = {
+        //     type: this.props.shapeConfig.type,
+        //     shapeProps: {
+        //         config: locationProps,
+        //         style: {
+        //             fill:`none`,
+        //             stroke:`black`,
+        //             strokeWidth:`5`,
+        //         },
+        //     },
+        // };
 
-        this.setState({
-            shapes: this.state.shapes.concat(
-                React.createElement(
-                    shapeTags[newShape.type],
-                    newShape.shapeProps
-                )),
-        });
+        // this.setState({
+        //     shapes: this.state.shapes.concat(
+        //         React.createElement(
+        //             shapeTags[newShape.type],
+        //             newShape.shapeProps
+        //         )),
+        // });
     }
     render() {
         const svgStyle = {
@@ -64,7 +67,7 @@ class Canvas extends Component {
                     width="100%"
                     height="100%"
                     style={svgStyle}
-                    onClick={this.drawShape}>
+                    onClick={this.initiateDraw}>
                     You must use a browser that supports HTML5.
                     {this.state.shapes}
                 </svg>
@@ -72,6 +75,14 @@ class Canvas extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    shapeConfig: state[state.selectShape.selectedShape],
+});
+
+const mapDispatchToProps = dispatch => ({
+    drawShape: location => {dispatch(drawShape(location));},
+});
 
 Canvas.propTypes = {
     elementDimensions: PropTypes.shape({
@@ -88,4 +99,4 @@ Canvas.propTypes = {
     }),
 };
 
-export default Canvas;
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas);

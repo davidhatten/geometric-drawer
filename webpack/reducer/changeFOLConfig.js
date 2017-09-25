@@ -6,10 +6,10 @@ const initialState = {
 };
 
 const changeFOLConfig = (state = initialState, action) => {
-    console.log("changeFOLConfig", state);
-    console.log("changeFOLConfig", action);
     switch (action.type) {
     case CHANGE_FOL:
+        console.log("changeFOLConfig", state);
+        console.log("changeFOLConfig", action);
         return {[FOL_CONFIG]: action.payload};
     default:
         return state;
