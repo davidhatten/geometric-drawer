@@ -40,8 +40,8 @@ const mapStateToProps = state => ({
     selectedShape: state.selectShape.selectedShape,
 });
 
-const mapDispactToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     changeCurrentShape: (key) => {dispatch(selectShape(key));},
 });
 
-export default connect(mapStateToProps, mapDispactToProps)(Palette);
+export default connect(mapStateToProps, mapDispatchToProps)(Palette);

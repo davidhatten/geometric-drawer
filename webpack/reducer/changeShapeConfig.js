@@ -5,7 +5,7 @@ const initialState = {
     [FOL_CONFIG]: {iterations: 2},
 };
 
-const changeFOLConfig = (state = initialState, action) => {
+const changeShapeConfig = (state = initialState, action) => {
     switch (action.type) {
     case CHANGE_FOL:
         console.log("changeFOLConfig", state);
@@ -16,4 +16,4 @@ const changeFOLConfig = (state = initialState, action) => {
     }
 };
 
-export default changeFOLConfig;
+export default changeShapeConfig;

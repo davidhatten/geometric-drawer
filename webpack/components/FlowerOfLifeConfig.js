@@ -4,7 +4,7 @@ import { Row, Col, Form, Input } from 'antd';
 import { FOL_CONFIG } from './../shapeConstants';
 import { connect } from 'react-redux';
 
-import { changeFOLConfig } from '../reducer/changeFOLConfig';
+import { changeShapeConfig } from '../reducer/changeShapeConfig';
 
 const FormItem = Form.Item;
 
@@ -31,11 +31,11 @@ class FlowerOfLifeConfig extends Component {
 }
 
 const mapStateToProps = state => ({
-    iterations: state.changeFOLConfig[FOL_CONFIG].iterations,
+    iterations: state.changeShapeConfig[FOL_CONFIG].iterations,
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateIterations: (iterations) => {dispatch(changeFOLConfig({iterations: iterations}));},
+    updateIterations: (iterations) => {dispatch(changeShapeConfig({iterations: iterations}));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlowerOfLifeConfig);

@@ -24,12 +24,13 @@ class Canvas extends Component {
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
-        console.log(this.props.shapeConfig);
+        console.log("canvas - initateDraw", this.props.shapeConfig);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
+            config: this.props.shapeConfig,
         };
-        this.props.drawShape(absPosition);
+        this.props.drawSelectedShape(absPosition);
         // const locationProps = this.props.shapeConfig.location(absPosition);
 
         // const newShape = {
@@ -77,11 +78,11 @@ class Canvas extends Component {
 }
 
 const mapStateToProps = state => ({
-    shapeConfig: state[state.selectShape.selectedShape],
+    shapeConfig: state.changeShapeConfig[state.selectShape.selectedShape],
 });
 
 const mapDispatchToProps = dispatch => ({
-    drawShape: location => {dispatch(drawShape(location));},
+    drawSelectedShape: (location) => {dispatch(drawShape(location));},
 });
 
 Canvas.propTypes = {
