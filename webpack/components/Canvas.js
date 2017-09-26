@@ -28,7 +28,6 @@ class Canvas extends Component {
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
-            config: this.props.shapeConfig,
         };
         this.props.drawSelectedShape(absPosition);
         // const locationProps = this.props.shapeConfig.location(absPosition);
@@ -91,7 +90,7 @@ Canvas.propTypes = {
         width: PropTypes.number,
     }),
     position: PropTypes.shape({
-        x: PropTypes.number, 
+        x: PropTypes.number,
         y: PropTypes.number,
     }),
     shapeConfig: PropTypes.shape({

@@ -1,11 +1,32 @@
 import { DRAW_SHAPE } from '../action/drawShape';
+import React from 'react';
+import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG } from './../shapeConstants';
+import Circle from '../components/Circle';
+import Square from '../components/Square';
+import FlowerOfLife from '../components/FlowerOfLife';
 
-const drawShape = (state = {}, action) => {
+const shapeTags = {
+    [CIRCLE_CONFIG]: Circle,
+    [SQUARE_CONFIG]: Square,
+    [FOL_CONFIG]: FlowerOfLife,
+};
+
+const initialState = {
+    history: [],
+};
+
+const drawShape = (state = initialState, action) => {
     switch(action.type) {
     case DRAW_SHAPE:
         console.log("drawShape - state ", state);
         console.log("drawShape - action", action);
-        return state;
+        const payload = action.payload;
+        console.log("drawShape - shapeTag", shapeTags[payload.shape]);
+        const newShape = React.createElement(shapeTags[payload.shape], {...payload.config, ...payload.style, ...payload.location});
+        console.log("drawShape - newShape ", newShape);
+        return {
+            history: state.history.concat(newShape),
+        };
     default:
         return state;
     }

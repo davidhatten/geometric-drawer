@@ -89,9 +89,4 @@ class FlowerOfLife extends Component<Props> {
 
 }
 
-FlowerOfLife.propTypes = {
-    config: PropTypes.object.isRequired,
-    style: PropTypes.object.isRequired,
-};
-
 export default FlowerOfLife;
