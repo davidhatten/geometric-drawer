@@ -11,7 +11,7 @@ import './style.less';
 import consoleWrites from './reducer/consoleWrites';
 import drinkBeer from './reducer/drinkBeer';
 import selectShape from  './reducer/selectShape';
-import changeShapeConfig from './reducer/changeShapeConfig';
+import shapeConfig from './reducer/shapeConfig';
 import drawShape from './reducer/drawShape';
 
 
@@ -19,7 +19,7 @@ let reducers = combineReducers({
     consoleWrites, 
     drinkBeer, 
     selectShape, 
-    changeShapeConfig,
+    shapeConfig,
     drawShape,
 });
 

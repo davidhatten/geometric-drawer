@@ -78,7 +78,7 @@ class Canvas extends Component {
 }
 
 const mapStateToProps = state => ({
-    shapeConfig: state.changeShapeConfig[state.selectShape.selectedShape],
+    shapeConfig: state.shapeConfig[state.selectShape.selectedShape],
 });
 
 const mapDispatchToProps = dispatch => ({
