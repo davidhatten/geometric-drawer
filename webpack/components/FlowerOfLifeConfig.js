@@ -35,7 +35,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateIterations: (iters) => {dispatch(changeFOLConfig({iterations: iters.target.value}));},
+    updateIterations: (iters) => {dispatch(changeFOLConfig({iterations: parseInt(iters.target.value)}));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlowerOfLifeConfig);
