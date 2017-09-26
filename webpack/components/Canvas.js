@@ -5,7 +5,7 @@ import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
 import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
-import { drawShape } from '../action/drawShape';
+import { triggerDraw } from '../action/triggerDraw';
 
 const shapeTags = {
     [CIRCLE_NAME]: Circle,
@@ -24,7 +24,7 @@ class Canvas extends Component {
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
-        console.log("canvas - initateDraw", this.props.shapeConfig);
+        console.log("canvas - initateDraw", this.props);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    drawSelectedShape: (location) => {dispatch(drawShape(location));},
+    drawSelectedShape: (location) => {dispatch(triggerDraw(location));},
 });
 
 Canvas.propTypes = {
