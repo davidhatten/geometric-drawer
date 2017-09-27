@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Row, Col, Form, Input } from 'antd';
 import { FOL_CONFIG } from './../shapeConstants';
 import { connect } from 'react-redux';
