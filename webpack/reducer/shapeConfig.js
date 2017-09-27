@@ -13,14 +13,18 @@ const shapeConfig = (state = initialState, action) => {
     case CHANGE_FOL:
         console.log("shapeConfig - CHANGE_FOL", state);
         console.log("shapeConfig - CHANGE_FOL", action);
-        return { ...state, [FOL_CONFIG]: {...state[FOL_CONFIG], ...action.payload} };
+        return updateState(state, FOL_CONFIG, action.payload);
     case CHANGE_CIRCLE:
         console.log(`shapeConfig - CHANGE_CIRCLE`, state);
         console.log(`shapeConfig - CHANGE_CIRCLE`, action);
-        return {...state, [CIRCLE_CONFIG]: {...state[CIRCLE_CONFIG], ...action.payload }};
+        return updateState(state, CIRCLE_CONFIG, action.payload);
     default:
         return state;
     }
+};
+
+const updateState = (state, config, payload) => {
+    return {...state, [config]: {...state[config], ...payload}};
 };
 
 export default shapeConfig;

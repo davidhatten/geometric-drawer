@@ -16,11 +16,13 @@ class FlowerOfLifeConfig extends Component {
     render() {
         return (
             <Form>
-                <Row type="flex">
+                <Row type="flex" justify="space-around">
                     <Col span={3}>
                         <FormItem label="Iterations">
                             <Input value={this.props.iterations} onChange={this.props.updateIterations}/>
                         </FormItem>
+                    </Col>
+                    <Col span={3}>
                         <FormItem label="Radius">
                             <Input value={this.props.radius} onChange={this.props.updateRadius} />
                         </FormItem>

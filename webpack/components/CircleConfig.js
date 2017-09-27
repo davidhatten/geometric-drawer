@@ -13,7 +13,7 @@ class CircleConfig extends Component {
         return(
             <Form>
                 <Row type="flex">
-                    <Col span={2}>
+                    <Col span={3}>
                         <FormItem label={`Radius`}>
                             <Input value={this.props.radius} onChange={this.props.updateRadius}/>
                         </FormItem>
@@ -29,7 +29,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateRadius: (event) => {dispatch(changeCircleConfig(parseInt(event.target.value)));},
+    updateRadius: (event) => {dispatch(changeCircleConfig({radius: parseInt(event.target.value)}));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CircleConfig);
