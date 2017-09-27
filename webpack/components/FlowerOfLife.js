@@ -19,7 +19,7 @@ class FlowerOfLife extends Component<Props> {
         const jsRotation = 1/petalCount;
         console.log(this.props);
 
-        const startCircle = { x:this.props.config.position.x, y: this.props.config.position.y };
+        const startCircle = { x:this.props.x, y: this.props.y };
         innerPetals.push(startCircle);
 
         // Setting up the angle increment
@@ -30,7 +30,7 @@ class FlowerOfLife extends Component<Props> {
 
         let outerPetals = innerPetals.slice();
         let usedPetals = innerPetals.slice();
-        for (let i = 0; i < this.props.config.iterations; i++) {
+        for (let i = 0; i < this.props.iterations; i++) {
             outerPetals = this.drawOuterPetals(`100`, outerPetals, angleDegrees, usedPetals);
         }
 

@@ -22,7 +22,7 @@ const drawShape = (state = initialState, action) => {
         console.log("drawShape - action", action);
         const payload = action.payload;
         console.log("drawShape - shapeTag", shapeTags[payload.shape]);
-        const newShape = React.createElement(shapeTags[payload.shape], {...payload.config, ...payload.style, ...payload.location});
+        const newShape = {id: state.history.length, shape: shapeTags[payload.shape], props: {...payload.config, ...payload.location, style: payload.style}};
         console.log("drawShape - newShape ", newShape);
         return {
             history: state.history.concat(newShape),

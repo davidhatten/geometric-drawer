@@ -59,6 +59,9 @@ class Canvas extends Component {
             display: `block`,
             margin: `auto`,
         };
+        const shapes = this.props.shapes.map((shape) =>
+            React.createElement(shape.shape, shape.props)
+        );
         return (
             <div>
                 <svg
@@ -69,7 +72,7 @@ class Canvas extends Component {
                     style={svgStyle}
                     onClick={this.initiateDraw}>
                     You must use a browser that supports HTML5.
-                    {this.state.shapes}
+                    {shapes}
                 </svg>
             </div>
         );
@@ -77,7 +80,7 @@ class Canvas extends Component {
 }
 
 const mapStateToProps = state => ({
-    shapeConfig: state.shapeConfig[state.selectShape.selectedShape],
+    shapes: state.drawShape.history,
 });
 
 const mapDispatchToProps = dispatch => ({
