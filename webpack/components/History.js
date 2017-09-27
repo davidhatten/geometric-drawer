@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Timeline } from 'antd';
+
 const TimeItem = Timeline.Item;
 
 class History extends Component {
@@ -8,15 +9,20 @@ class History extends Component {
         super(props);
     }
     render() {
+        const historyItems = this.props.history.map((shape) =>
+            <TimeItem key={shape.id}>{shape.name}</TimeItem>
+        );
         return (
             <Timeline>
-                <TimeItem>This was the first thing drawn</TimeItem>
-                <TimeItem>This was the second thing drawn</TimeItem>
-                <TimeItem color="red">This is an item that is in preview</TimeItem>
+                {historyItems}
             </Timeline>
         );
     }
 
 }
 
-export default History;
+const mapStateToProps = state => ({
+    history: state.drawShape.history,
+});
+
+export default connect(mapStateToProps)(History);

@@ -1,6 +1,6 @@
 import { DRAW_SHAPE } from '../action/drawShape';
 import React from 'react';
-import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG } from './../shapeConstants';
+import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG, nameFromConfig } from './../shapeConstants';
 import Circle from '../components/Circle';
 import Square from '../components/Square';
 import FlowerOfLife from '../components/FlowerOfLife';
@@ -21,8 +21,7 @@ const drawShape = (state = initialState, action) => {
         console.log("drawShape - state ", state);
         console.log("drawShape - action", action);
         const payload = action.payload;
-        console.log("drawShape - shapeTag", shapeTags[payload.shape]);
-        const newShape = {id: state.history.length, shape: shapeTags[payload.shape], props: {...payload.config, ...payload.location, style: payload.style}};
+        const newShape = {id: state.history.length, name: nameFromConfig(payload.shape), shape: shapeTags[payload.shape], props: {...payload.config, ...payload.location, style: payload.style}};
         console.log("drawShape - newShape ", newShape);
         return {
             history: state.history.concat(newShape),
