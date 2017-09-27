@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import roundTo from 'round-to';
 
 class FlowerOfLife extends Component<Props> {
@@ -18,6 +17,7 @@ class FlowerOfLife extends Component<Props> {
         var trackDegrees = 0;
         const jsRotation = 1/petalCount;
         console.log(this.props);
+        const radius = this.props.radius;
 
         const startCircle = { x:this.props.x, y: this.props.y };
         innerPetals.push(startCircle);
@@ -31,11 +31,11 @@ class FlowerOfLife extends Component<Props> {
         let outerPetals = innerPetals.slice();
         let usedPetals = innerPetals.slice();
         for (let i = 0; i < this.props.iterations; i++) {
-            outerPetals = this.drawOuterPetals(`100`, outerPetals, angleDegrees, usedPetals);
+            outerPetals = this.drawOuterPetals(radius, outerPetals, angleDegrees, usedPetals);
         }
 
         this.setState({ petals: usedPetals.map((petal, index) => {
-            return <circle key={index} cx={petal.x} cy={petal.y} r="100" {...this.props.style} />;
+            return <circle key={index} cx={petal.x} cy={petal.y} r={radius} {...this.props.style} />;
         }),
         });
     }
