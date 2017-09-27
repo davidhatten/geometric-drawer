@@ -19,7 +19,10 @@ class FlowerOfLifeConfig extends Component {
                 <Row type="flex">
                     <Col span={3}>
                         <FormItem label="Iterations">
-                            <Input value={this.props.iterations} defaultValue={this.props.iterations} onChange={this.props.updateIterations}/>
+                            <Input value={this.props.iterations} onChange={this.props.updateIterations}/>
+                        </FormItem>
+                        <FormItem label="Radius">
+                            <Input value={this.props.radius} onChange={this.props.updateRadius} />
                         </FormItem>
                     </Col>
                 </Row>
@@ -31,10 +34,12 @@ class FlowerOfLifeConfig extends Component {
 
 const mapStateToProps = state => ({
     iterations: state.shapeConfig[FOL_CONFIG].iterations,
+    radius: state.shapeConfig[FOL_CONFIG].radius,
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateIterations: (iters) => {dispatch(changeFOLConfig({iterations: parseInt(iters.target.value)}));},
+    updateIterations: (event) => {dispatch(changeFOLConfig({iterations: parseInt(event.target.value)}));},
+    updateRadius: (event) => {dispatch(changeFOLConfig({radius: parseInt(event.target.value)}));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlowerOfLifeConfig);
