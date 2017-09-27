@@ -15,7 +15,7 @@ class CircleConfig extends Component {
                 <Row type="flex">
                     <Col span={2}>
                         <FormItem label={`Radius`}>
-                            <Input defaultValue={this.props.radius}/>
+                            <Input value={this.props.radius} onChange={this.props.updateRadius}/>
                         </FormItem>
                     </Col>
                 </Row>
