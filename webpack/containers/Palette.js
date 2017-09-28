@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
-import PaletteHeader from './PaletteHeader';
+import PaletteHeader from '../components/PaletteHeader';
 import CircleConfig from './CircleConfig';
 import SquareConfig from './SquareConfig';
 import FlowerOfLifeConfig from './FlowerOfLifeConfig';
-import { CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME } from './../shapeConstants';
+import { CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME } from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
 

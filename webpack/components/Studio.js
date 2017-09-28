@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'antd';
-import Palette from './Palette';
-import Canvas from './Canvas';
-import History from './History';
-import GeneralOptions from './GeneralOptions';
+import Palette from '../containers/Palette';
+import Canvas from '../containers/Canvas';
+import History from '../containers/History';
+import GeneralOptions from '../containers/GeneralOptions';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 

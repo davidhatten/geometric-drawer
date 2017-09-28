@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Form, Input } from 'antd';
-import { FOL_CONFIG } from './../shapeConstants';
+import { FOL_CONFIG } from '../shapeConstants';
 import { connect } from 'react-redux';
 
 import { changeFOLConfig } from '../actions/changeFOLConfig';

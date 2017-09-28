@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Timeline } from 'antd';
-import HistoryRow from './HistoryRow';
+import HistoryRow from '../components/HistoryRow';
 
 const TimeItem = Timeline.Item;
 

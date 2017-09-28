@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Circle from './Circle';
-import Square from './Square';
-import FlowerOfLife from './FlowerOfLife';
-import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
+import Circle from '../components/Circle';
+import Square from '../components/Square';
+import FlowerOfLife from '../components/FlowerOfLife';
+import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from '../shapeConstants';
 import { triggerDraw } from '../actions/triggerDraw';
 
 const shapeTags = {
