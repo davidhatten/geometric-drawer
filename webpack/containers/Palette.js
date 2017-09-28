@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 import PaletteHeader from '../components/PaletteHeader';
 import CircleConfig from './CircleConfig';
@@ -15,18 +14,17 @@ const Panel = Collapse.Panel;
 class Palette extends Component {
     constructor(props) {
         super(props);
-        console.log("Palette - props", this.props);
     }
     render() {
         return (
             <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape}>
-                <Panel key={FOL_CONFIG} header=<PaletteHeader name={FOL_NAME} img="assets/img/fol_80x80.png"/>>
+                <Panel key={FOL_CONFIG} header={<PaletteHeader name={FOL_NAME} img="assets/img/fol_80x80.png"/>}>
                     <FlowerOfLifeConfig/>
                 </Panel>
-                <Panel key={CIRCLE_CONFIG} header=<PaletteHeader name={CIRCLE_NAME} img="assets/img/circle.png"/>>
+                <Panel key={CIRCLE_CONFIG} header={<PaletteHeader name={CIRCLE_NAME} img="assets/img/circle.png"/>}>
                     <CircleConfig/>
                 </Panel>
-                <Panel key={SQUARE_CONFIG} header=<PaletteHeader name={SQUARE_NAME} img="assets/img/square.png"/>>
+                <Panel key={SQUARE_CONFIG} header={<PaletteHeader name={SQUARE_NAME} img="assets/img/square.png"/>}>
                     <SquareConfig
                         height="100"
                         width="100" />
