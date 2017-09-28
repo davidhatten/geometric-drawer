@@ -29,8 +29,8 @@ class Canvas extends Component {
             display: `block`,
             margin: `auto`,
         };
-        const shapes = this.props.shapes.map((shape) =>
-            React.createElement(shape.shape, shape.props)
+        const shapes = this.props.shapes.map((shape, index) =>
+            React.createElement(shape.shape, {...shape.props, key: index})
         );
         return (
             <div>
