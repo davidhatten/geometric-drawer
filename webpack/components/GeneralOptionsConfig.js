@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, InputNumber, Row, Col, Slider } from 'antd';
 import { connect } from 'react-redux';
 import { changeGeneralConfig } from '../actions/changeGeneralConfig';
-import SliderInput from "../components/SliderInput";
-import LineWidthInput from "./LineWidthInput";
+import SliderInput from "./SliderInput";
+import LineWidthInput from "../containers/LineWidthInput";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
