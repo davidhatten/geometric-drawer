@@ -10,9 +10,8 @@ const FormItem = Form.Item;
 class FlowerOfLifeConfig extends Component {
     constructor(props) {
         super(props);
-        console.log("FOLConfig - props", this.props);
+        console.log(`FOLConfig - props`, this.props);
     }
-
     render() {
         return (
             <Form>
