@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import App from './components/App';
@@ -13,6 +13,7 @@ import drinkBeer from './reducer/drinkBeer';
 import selectShape from  './reducer/selectShape';
 import shapeConfig from './reducer/shapeConfig';
 import drawShape from './reducer/drawShape';
+import changeGeneralConfig from './reducer/changeGeneralConfig';
 
 
 let reducers = combineReducers({ 
@@ -21,6 +22,7 @@ let reducers = combineReducers({
     selectShape, 
     shapeConfig,
     drawShape,
+    generalConfig: changeGeneralConfig,
 });
 
 let store = createStore(reducers, applyMiddleware(thunk));

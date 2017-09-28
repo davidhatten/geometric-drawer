@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, InputNumber, Row, Col, Slider } from 'antd';
+import { connect } from 'react-redux';
+import { changeGeneralConfig } from '../action/changeGeneralConfig';
 
 const FormItem = Form.Item;
 
@@ -16,10 +18,10 @@ class GeneralOptions extends Component {
                 </Row>
                 <Row type="flex" justify="space=around" align="middle">
                     <Col span={12}>
-                        <Slider min={1} max={100} />
+                        <Slider min={1} max={100} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
                     </Col>
                     <Col span={1}>
-                        <InputNumber size="small" min={0} max={100} />
+                        <InputNumber size="small" min={0} max={100} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
                     </Col>
                 </Row>
             </Form>
@@ -27,4 +29,12 @@ class GeneralOptions extends Component {
     }
 }
 
-export default GeneralOptions;
+const mapStateToProps = state => ({
+    lineWidth: state.generalConfig.lineWidth,
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateLineWidth: (event) => {dispatch(changeGeneralConfig({lineWidth: parseInt(event)}));},
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralOptions);
