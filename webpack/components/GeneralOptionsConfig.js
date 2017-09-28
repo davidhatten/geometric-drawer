@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Form, InputNumber, Row, Col, Slider } from 'antd';
 import { connect } from 'react-redux';
-import { changeGeneralConfig } from '../actions/changeGeneralConfig';
-import SliderInput from "./SliderInput";
+import { Form } from 'antd';
 import LineWidthInput from "../containers/LineWidthInput";
+import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
@@ -13,6 +12,8 @@ class GeneralOptionsConfig extends Component {
         return (
             <Form> 
                 <LineWidthInput min={1} max={1000} />
+                <HorizontalAxisLock />
+
             </Form>
         );
     }

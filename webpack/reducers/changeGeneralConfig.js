@@ -2,6 +2,7 @@ import { CHANGE_GENERAL_CONFIG } from '../actions/changeGeneralConfig';
 
 const initialState = {
     strokeWidth: 10,
+    lockHorizontal: false,
 };
 
 const changeGeneralConfig = (state = initialState, action) => {
