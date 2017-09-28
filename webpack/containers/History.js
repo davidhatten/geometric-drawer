@@ -23,7 +23,7 @@ class History extends Component {
 }
 
 const mapStateToProps = state => ({
-    history: state.drawShape.history,
+    history: state.shapeHistory.history,
 });
 
 export default connect(mapStateToProps)(History);

@@ -15,7 +15,7 @@ const initialState = {
     history: [],
 };
 
-const drawShape = (state = initialState, action) => {
+const changeShapeHistory = (state = initialState, action) => {
     switch(action.type) {
     case DRAW_SHAPE:
         console.log(`drawShape - state `, state);
@@ -31,4 +31,4 @@ const drawShape = (state = initialState, action) => {
     }
 };
 
-export default drawShape;
+export default changeShapeHistory;

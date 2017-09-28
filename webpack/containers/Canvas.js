@@ -50,7 +50,7 @@ class Canvas extends Component {
 }
 
 const mapStateToProps = state => ({
-    shapes: state.drawShape.history,
+    shapes: state.shapeHistory.history,
 });
 
 const mapDispatchToProps = dispatch => ({

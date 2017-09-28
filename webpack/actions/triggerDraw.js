@@ -1,4 +1,4 @@
-import { DRAW_SHAPE } from './/drawShape';
+import { DRAW_SHAPE } from './drawShape';
 
 export const triggerDraw = (location) => {
     return (dispatch, getState) => {
