@@ -1,4 +1,4 @@
-import { DRAW_SHAPE } from './drawShape';
+import { drawShape } from './drawShape';
 
 export const triggerDraw = (location) => {
     return (dispatch, getState) => {
@@ -21,6 +21,6 @@ export const triggerDraw = (location) => {
                 stroke:`black`,
             },
         };
-        dispatch({type: DRAW_SHAPE, payload: payload});
+        dispatch(drawShape(payload));
     };
 };;
