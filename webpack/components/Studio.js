@@ -3,8 +3,7 @@ import { Row, Col, Button } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
-import HelloButton from './HelloButton';
-import Message from './Message';
+import GeneralOptions from './GeneralOptions';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
@@ -43,15 +42,17 @@ class Studio extends Component {
                         </ReactCursorPosition>
                     </Col>
                     <Col lg={6} md={6} sm={6}>
-                        <h2>Drawing Options</h2>
-                        <hr />
-                        <br />
-                        <Palette
-                            onShapeChange={this.updateShapeToDraw}/>
-                        <br />
+                        <Row>
+                            <h2>Drawing Options</h2>
+                        </Row>
+                        <Row>
+                            <Palette
+                                onShapeChange={this.updateShapeToDraw}/>
+                        </Row>
+                        <Row>
+                            <GeneralOptions />
+                        </Row>
                         <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
-                        <HelloButton />
-                        <Message />
                     </Col>
                 </Row>
             </div>
