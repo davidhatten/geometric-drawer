@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, InputNumber, Row, Col, Slider } from 'antd';
 import { connect } from 'react-redux';
-import { changeGeneralConfig } from '../action/changeGeneralConfig';
+import { changeGeneralConfig } from '../actions/changeGeneralConfig';
 
 const FormItem = Form.Item;
 

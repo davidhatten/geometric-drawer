@@ -1,4 +1,4 @@
-import { CHANGE_GENERAL_CONFIG } from '../action/changeGeneralConfig';
+import { CHANGE_GENERAL_CONFIG } from '../actions/changeGeneralConfig';
 
 const initialState = {
     strokeWidth: 10,

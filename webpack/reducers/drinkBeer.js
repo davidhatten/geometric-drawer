@@ -1,4 +1,4 @@
-import { DRINK_BEER } from '../action/drinkBeer';
+import { DRINK_BEER } from '../actions/drinkBeer';
 
 const initialState = {
     beer: `DRINK THE BEER!`,

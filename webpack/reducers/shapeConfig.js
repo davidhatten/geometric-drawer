@@ -1,6 +1,6 @@
-import { CHANGE_FOL } from '../action/changeFOLConfig';
-import { CHANGE_CIRCLE } from '../action/changeCircleConfig';
-import { CHANGE_SQUARE } from '../action/changeSquareConfig';
+import { CHANGE_FOL } from '../actions/changeFOLConfig';
+import { CHANGE_CIRCLE } from '../actions/changeCircleConfig';
+import { CHANGE_SQUARE } from '../actions/changeSquareConfig';
 import { FOL_CONFIG, CIRCLE_CONFIG, SQUARE_CONFIG } from '../shapeConstants';
 
 const initialState = {

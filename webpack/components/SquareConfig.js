@@ -3,7 +3,7 @@ import { Row, Col, Form, Input } from 'antd';
 import { SQUARE_CONFIG } from './../shapeConstants';
 import { connect } from 'react-redux';
 
-import { changeSquareConfig } from '../action/changeSquareConfig';
+import { changeSquareConfig } from '../actions/changeSquareConfig';
 
 const FormItem = Form.Item;
 

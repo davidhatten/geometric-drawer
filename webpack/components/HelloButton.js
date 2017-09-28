@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { writeConsole } from '../action/consoleWrites';
+import { writeConsole } from '../actions/consoleWrites';
 
 const HelloButton = ({ label, handleClick }: Props) =>
     <button onClick={handleClick}>{label}</button>;

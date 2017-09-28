@@ -1,4 +1,4 @@
-import { SELECT_SHAPE } from '../action/selectShape';
+import { SELECT_SHAPE } from '../actions/selectShape';
 import { FOL_CONFIG } from '../shapeConstants';
 
 const initialState = {

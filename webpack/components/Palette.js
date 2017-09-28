@@ -8,7 +8,7 @@ import SquareConfig from './SquareConfig';
 import FlowerOfLifeConfig from './FlowerOfLifeConfig';
 import { CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME } from './../shapeConstants';
 
-import { selectShape } from '../action/selectShape';
+import { selectShape } from '../actions/selectShape';
 
 const Panel = Collapse.Panel;
 

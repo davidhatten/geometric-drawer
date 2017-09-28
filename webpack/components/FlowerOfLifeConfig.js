@@ -3,7 +3,7 @@ import { Row, Col, Form, Input } from 'antd';
 import { FOL_CONFIG } from './../shapeConstants';
 import { connect } from 'react-redux';
 
-import { changeFOLConfig } from '../action/changeFOLConfig';
+import { changeFOLConfig } from '../actions/changeFOLConfig';
 
 const FormItem = Form.Item;
 

@@ -1,4 +1,4 @@
-import { WRITE_CONSOLE } from '../action/consoleWrites';
+import { WRITE_CONSOLE } from '../actions/consoleWrites';
 
 const initialState = {
     message: 'initial message',

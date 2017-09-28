@@ -1,4 +1,4 @@
-import { DRAW_SHAPE } from '../action/drawShape';
+import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG, nameFromConfig } from './../shapeConstants';
 import Circle from '../components/Circle';

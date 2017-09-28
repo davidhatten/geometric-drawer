@@ -5,7 +5,7 @@ import Circle from './Circle';
 import Square from './Square';
 import FlowerOfLife from './FlowerOfLife';
 import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from './../shapeConstants';
-import { triggerDraw } from '../action/triggerDraw';
+import { triggerDraw } from '../actions/triggerDraw';
 
 const shapeTags = {
     [CIRCLE_NAME]: Circle,

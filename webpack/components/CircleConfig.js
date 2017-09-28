@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Form, Input } from 'antd';
 import { CIRCLE_CONFIG } from './../shapeConstants';
-import { changeCircleConfig } from '../action/changeCircleConfig';
+import { changeCircleConfig } from '../actions/changeCircleConfig';
 const FormItem = Form.Item;
 
 class CircleConfig extends Component {
