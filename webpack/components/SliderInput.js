@@ -8,10 +8,10 @@ const SliderInput = (props) => (
         </Row>
         <Row type="flex" justify="space=around" align="middle">
             <Col span={12}>
-                <Slider min={1} max={1000} value={props.lineWidth} onChange={props.updateLineWidth}/>
+                <Slider min={props.min} max={props.max} value={props.lineWidth} onChange={props.updateLineWidth}/>
             </Col>
             <Col span={1}>
-                <InputNumber size="small" min={0} max={1000} value={props.lineWidth} onChange={props.updateLineWidth}/>
+                <InputNumber size="small" min={props.min} max={props.max} value={props.lineWidth} onChange={props.updateLineWidth}/>
             </Col>
         </Row>
     </div>

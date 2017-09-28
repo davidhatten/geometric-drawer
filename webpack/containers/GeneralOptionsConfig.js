@@ -12,7 +12,7 @@ class GeneralOptionsConfig extends Component {
     render() {
         return (
             <Form> 
-                <LineWidthInput />
+                <LineWidthInput min={1} max={1000} />
             </Form>
         );
     }
