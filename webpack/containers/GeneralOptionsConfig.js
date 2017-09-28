@@ -3,9 +3,7 @@ import { Form, InputNumber, Row, Col, Slider } from 'antd';
 import { connect } from 'react-redux';
 import { changeGeneralConfig } from '../actions/changeGeneralConfig';
 
-const FormItem = Form.Item;
-
-class GeneralOptions extends Component {
+class GeneralOptionsConfig extends Component {
     constructor(props) {
         super(props);
     }
@@ -36,4 +34,4 @@ const mapDispatchToProps = dispatch => ({
     updateLineWidth: (event) => {dispatch(changeGeneralConfig({strokeWidth: parseInt(event)}));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralOptionsConfig);

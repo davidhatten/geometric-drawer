@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'antd';
 import Palette from '../containers/Palette';
 import Canvas from '../containers/Canvas';
 import History from '../containers/History';
-import GeneralOptions from '../containers/GeneralOptions';
+import GeneralOptions from '../containers/GeneralOptionsConfig';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 
