@@ -8,17 +8,13 @@ import App from './components/App';
 import 'antd/dist/antd.css';
 import './style.less';
 
-import consoleWrites from './reducers/consoleWrites';
-import drinkBeer from './reducers/drinkBeer';
 import selectShape from './reducers/selectShape';
 import shapeConfig from './reducers/shapeConfig';
 import drawShape from './reducers/drawShape';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
 
 
-let reducers = combineReducers({ 
-    consoleWrites, 
-    drinkBeer, 
+let reducers = combineReducers({
     selectShape, 
     shapeConfig,
     drawShape,

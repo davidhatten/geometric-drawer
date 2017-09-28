@@ -12,8 +12,8 @@ const initialState = {
 const shapeConfig = (state = initialState, action) => {
     switch (action.type) {
     case CHANGE_FOL:
-        console.log("shapeConfig - CHANGE_FOL", state);
-        console.log("shapeConfig - CHANGE_FOL", action);
+        console.log(`shapeConfig - CHANGE_FOL`, state);
+        console.log(`shapeConfig - CHANGE_FOL`, action);
         return updateState(state, FOL_CONFIG, action.payload);
     case CHANGE_CIRCLE:
         console.log(`shapeConfig - CHANGE_CIRCLE`, state);

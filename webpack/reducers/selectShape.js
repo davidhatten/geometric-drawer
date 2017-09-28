@@ -8,8 +8,8 @@ const initialState = {
 const selectShape = (state = initialState, action) => {
     switch (action.type) {
     case SELECT_SHAPE:
-        console.log("selectShape state is ", state);
-        console.log("selectShape action is ", action);
+        console.log(`selectShape state is `, state);
+        console.log(`selectShape action is `, action);
         return {selectedShape: action.payload};
     default:
         return state;
