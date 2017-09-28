@@ -1,56 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Circle from '../components/Circle';
-import Square from '../components/Square';
-import FlowerOfLife from '../components/FlowerOfLife';
-import { CIRCLE_NAME, FOL_NAME, SQUARE_NAME } from '../shapeConstants';
-import { triggerDraw } from '../actions/triggerDraw';
 
-const shapeTags = {
-    [CIRCLE_NAME]: Circle,
-    [SQUARE_NAME]: Square,
-    [FOL_NAME]: FlowerOfLife,
-};
+import { triggerDraw } from '../actions/triggerDraw';
 
 class Canvas extends Component {
     constructor(props) {
         super(props);
+        // TODO: Move this into global state and load into props
         this.state = {
-            shapes: [],
             svgHeight: 3300,
             svgWidth: 2550,
         };
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
-        console.log("canvas - initateDraw", this.props);
+        console.log(`canvas - initateDraw`, this.props);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
         };
+
         this.props.drawSelectedShape(absPosition);
-        // const locationProps = this.props.shapeConfig.location(absPosition);
-
-        // const newShape = {
-        //     type: this.props.shapeConfig.type,
-        //     shapeProps: {
-        //         config: locationProps,
-        //         style: {
-        //             fill:`none`,
-        //             stroke:`black`,
-        //             strokeWidth:`5`,
-        //         },
-        //     },
-        // };
-
-        // this.setState({
-        //     shapes: this.state.shapes.concat(
-        //         React.createElement(
-        //             shapeTags[newShape.type],
-        //             newShape.shapeProps
-        //         )),
-        // });
     }
     render() {
         const svgStyle = {
@@ -86,20 +56,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     drawSelectedShape: (location) => {dispatch(triggerDraw(location));},
 });
-
-Canvas.propTypes = {
-    elementDimensions: PropTypes.shape({
-        height: PropTypes.number,
-        width: PropTypes.number,
-    }),
-    position: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-    }),
-    shapeConfig: PropTypes.shape({
-        type: PropTypes.string,
-        location: PropTypes.func,
-    }),
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
