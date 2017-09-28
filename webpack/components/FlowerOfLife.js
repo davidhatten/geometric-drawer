@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import roundTo from 'round-to';
 
-class FlowerOfLife extends Component<Props> {
-    constructor(props: Props) {
+class FlowerOfLife extends Component {
+    constructor(props) {
         super(props);
         this.state = { petals: [] };
     }
