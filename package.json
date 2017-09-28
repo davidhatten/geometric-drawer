@@ -32,7 +32,7 @@
             "less": "^2.7.2",
             "less-loader": "^4.0.5",
             "react-addons-update": "^15.6.0",
-            "react-dom": "^15.6.1",
+            "react-dom": "^16.0.0",
             "source-map": "^0.5.7",
             "style-loader": "^0.18.2",
             "url-loader": "^0.5.9",
@@ -42,7 +42,7 @@
       "dependencies": {
             "antd": "^2.13.0",
             "prop-types": "^15.5.10",
-            "react": "^15.6.1",
+            "react": "^16.0.0",
             "react-cursor-position": "^2.2.1",
             "react-element-to-jsx-string": "^12.0.0",
             "react-redux": "^5.0.6",
