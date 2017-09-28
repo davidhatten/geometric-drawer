@@ -9,14 +9,14 @@ import 'antd/dist/antd.css';
 import './style.less';
 
 import selectShape from './reducers/selectShape';
-import shapeConfig from './reducers/shapeConfig';
+import changeShapeConfig from './reducers/changeShapeConfig';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
 
 
 let reducers = combineReducers({
     selectShape, 
-    shapeConfig,
+    shapeConfig: changeShapeConfig,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
 });

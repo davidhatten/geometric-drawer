@@ -9,7 +9,7 @@ const initialState = {
     [SQUARE_CONFIG]: {length: 250},
 };
 
-const shapeConfig = (state = initialState, action) => {
+const changeShapeConfig = (state = initialState, action) => {
     switch (action.type) {
     case CHANGE_FOL:
         console.log(`shapeConfig - CHANGE_FOL`, state);
@@ -30,4 +30,4 @@ const updateState = (state, config, payload) => {
     return {...state, [config]: {...state[config], ...payload}};
 };
 
-export default shapeConfig;
+export default changeShapeConfig;
