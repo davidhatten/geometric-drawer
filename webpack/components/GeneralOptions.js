@@ -9,7 +9,6 @@ class GeneralOptions extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <Form> 
@@ -18,10 +17,10 @@ class GeneralOptions extends Component {
                 </Row>
                 <Row type="flex" justify="space=around" align="middle">
                     <Col span={12}>
-                        <Slider min={1} max={100} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
+                        <Slider min={1} max={1000} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
                     </Col>
                     <Col span={1}>
-                        <InputNumber size="small" min={0} max={100} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
+                        <InputNumber size="small" min={0} max={1000} value={this.props.lineWidth} onChange={this.props.updateLineWidth}/>
                     </Col>
                 </Row>
             </Form>
@@ -30,11 +29,11 @@ class GeneralOptions extends Component {
 }
 
 const mapStateToProps = state => ({
-    lineWidth: state.generalConfig.lineWidth,
+    lineWidth: state.generalConfig.strokeWidth,
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateLineWidth: (event) => {dispatch(changeGeneralConfig({lineWidth: parseInt(event)}));},
+    updateLineWidth: (event) => {dispatch(changeGeneralConfig({strokeWidth: parseInt(event)}));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralOptions);

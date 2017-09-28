@@ -1,7 +1,7 @@
 import { CHANGE_GENERAL_CONFIG } from '../action/changeGeneralConfig';
 
 const initialState = {
-    lineWidth: 10,
+    strokeWidth: 10,
 };
 
 const changeGeneralConfig = (state = initialState, action) => {

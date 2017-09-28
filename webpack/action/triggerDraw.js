@@ -7,6 +7,7 @@ export const triggerDraw = (location) => {
         const currentState = getState();
         const shape = currentState.selectShape.selectedShape;
         const config = currentState.shapeConfig[shape];
+        const style = currentState.generalConfig;
 
         // Style will eventually come from state
         // But it will be assembled here
@@ -15,9 +16,9 @@ export const triggerDraw = (location) => {
             config: config,
             location: location,
             style: {
+                ...style,
                 fill:`none`,
                 stroke:`black`,
-                strokeWidth:`10`,
             },
         };
         dispatch({type: DRAW_SHAPE, payload: payload});
