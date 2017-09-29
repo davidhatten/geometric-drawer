@@ -36,6 +36,10 @@ module.exports = {
             "error",
             "always-multiline"
         ],
+        "object-curly-spacing": [
+          "warn",
+          "always"
+        ],
     },
     "globals": {
         "$": true
