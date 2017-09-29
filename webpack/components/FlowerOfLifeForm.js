@@ -1,20 +1,12 @@
 import React from 'react';
 import { Row, Col, Form, Input } from 'antd';
-
-const FormItem = Form.Item;
+import FOLIterations from "../containers/FOLIterations";
 
 const FlowerOfLifeForm = (props) => (
     <Form>
         <Row type="flex" justify="space-around">
-            <Col span={3}>
-                <FormItem label="Iterations">
-                    <Input value={props.iterations} onChange={props.updateIterations}/>
-                </FormItem>
-            </Col>
-            <Col span={3}>
-                <FormItem label="Radius">
-                    <Input value={props.radius} onChange={props.updateRadius} />
-                </FormItem>
+            <Col span={24}>
+                <FOLIterations />
             </Col>
         </Row>
     </Form>
