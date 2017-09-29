@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    updateIterations: (event) => {dispatch(changeFOLConfig({iterations: parseInt(event.target.value)}));},
     updateRadius: (event) => {dispatch(changeFOLConfig({radius: parseInt(event.target.value)}));},
 });
 
