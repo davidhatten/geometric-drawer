@@ -10,13 +10,6 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 class Studio extends Component {
     constructor(props) {
         super(props);
-        this.state = {shapeConfig: {}};
-    }
-    updateShapeToDraw = (shapeConfig) => {
-        console.log(`Studio - updateShapeToDraw `, shapeConfig);
-        this.setState({
-            shapeConfig: shapeConfig,
-        });
     }
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
@@ -37,8 +30,7 @@ class Studio extends Component {
                         <hr />
                         <br />
                         <ReactCursorPosition>
-                            <Canvas
-                                shapeConfig={this.state.shapeConfig}/>
+                            <Canvas />
                         </ReactCursorPosition>
                     </Col>
                     <Col lg={6} md={6} sm={6}>
@@ -46,8 +38,7 @@ class Studio extends Component {
                             <h2>Drawing Options</h2>
                         </Row>
                         <Row>
-                            <Palette
-                                onShapeChange={this.updateShapeToDraw}/>
+                            <Palette />
                         </Row>
                         <Row>
                             <GeneralOptions />
