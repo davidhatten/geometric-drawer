@@ -9,10 +9,30 @@ import Circle from "../components/Circle";
 import Square from "../components/Square";
 import FlowerOfLife from "../components/FlowerOfLife";
 
+// Something very wrong is happening with this object, keep an eye on it
 const shapeTags = {
-    [CIRCLE_CONFIG]: { shape: Circle, form: CircleForm },
-    [SQUARE_CONFIG]: { shape: Square, form: SquareForm },
-    [FOL_CONFIG]: { shape: FlowerOfLife, form: FlowerOfLifeForm },
+    [CIRCLE_CONFIG]: {
+        shape: Circle,
+        form: CircleForm,
+        stateToProps: id => state => ({
+            radius: state.shapeHistory.byId[id].props.radius,
+        }),
+    },
+    [SQUARE_CONFIG]: {
+        shape: Square,
+        form: SquareForm,
+        stateToProps: id => state => ({
+            length: state.shapeHistory.byId[id].props.length,
+        }),
+    },
+    [FOL_CONFIG]: {
+        shape: FlowerOfLife,
+        form: FlowerOfLifeForm,
+        stateToProps: id => state => ({
+            iterations: state.shapeHistory.byId[id].props.iterations,
+            radius: state.shapeHistory.byId[id].props.radius,
+        }),
+    },
 };
 
 
@@ -28,11 +48,13 @@ const changeShapeHistory = (state = initialState, action) => {
         console.log(`drawShape - action`, action);
         const payload = action.payload;
         const id = state.allIds.length;
+        let shapeMetaConfig = shapeTags[payload.shape];
         const newShape = {
             id: id,
             name: nameFromConfig(payload.shape),
-            shapeTag: shapeTags[payload.shape].shape,
-            formTag: shapeTags[payload.shape].form,
+            shapeTag: shapeMetaConfig.shape,
+            formTag: shapeMetaConfig.form,
+            mapStateToProps: shapeMetaConfig.stateToProps(id),
             props: {
                 ...payload.config,
                 ...payload.location,

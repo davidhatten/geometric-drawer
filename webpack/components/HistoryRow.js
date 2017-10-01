@@ -9,15 +9,7 @@ class HistoryRow extends Component {
         console.log("HistoryRow constructor", props);
     }
     render() {
-        const mapStateToProps = state => ({
-            iterations: state.shapeHistory.byId[this.props.shape.id].props.iterations,
-            radius: state.shapeHistory.byId[this.props.shape.id].props.radius,
-        });
-        const mapDispatchtoProps = dispatch => ({
-            updateIterations: (value) => {},
-            updateRadius: (value) => {},
-        });
-        const Content = connect(mapStateToProps, mapDispatchtoProps)(this.props.shape.formTag);
+        const Content = connect(this.props.shape.mapStateToProps)(this.props.shape.formTag);
         return (
             <Row type="flex" justify="space-around">
                 <Col>
