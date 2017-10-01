@@ -1,15 +1,20 @@
 import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG, nameFromConfig } from './../shapeConstants';
-import Circle from '../components/Circle';
-import Square from '../components/Square';
-import FlowerOfLife from '../components/FlowerOfLife';
+
+import CircleForm from "../components/CircleForm";
+import SquareForm from "../components/SquareForm";
+import FlowerOfLifeForm from "../components/FlowerOfLifeForm";
+import Circle from "../components/Circle";
+import Square from "../components/Square";
+import FlowerOfLife from "../components/FlowerOfLife";
 
 const shapeTags = {
-    [CIRCLE_CONFIG]: Circle,
-    [SQUARE_CONFIG]: Square,
-    [FOL_CONFIG]: FlowerOfLife,
+    [CIRCLE_CONFIG]: { shape: Circle, form: CircleForm },
+    [SQUARE_CONFIG]: { shape: Square, form: SquareForm },
+    [FOL_CONFIG]: { shape: FlowerOfLife, form: FlowerOfLifeForm },
 };
+
 
 const initialState = {
     byId: {},
@@ -26,7 +31,8 @@ const changeShapeHistory = (state = initialState, action) => {
         const newShape = {
             id: id,
             name: nameFromConfig(payload.shape),
-            shapeTag: shapeTags[payload.shape],
+            shapeTag: shapeTags[payload.shape].shape,
+            formTag: shapeTags[payload.shape].form,
             props: {
                 ...payload.config,
                 ...payload.location,
@@ -34,7 +40,7 @@ const changeShapeHistory = (state = initialState, action) => {
             },
         };
         console.log(`drawShape - oldState `, state);
-        return { byId: { ...state.byId, [id]: newShape}, allIds: state.allIds.concat(id) };
+        return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
     default:
         return state;
     }

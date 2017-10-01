@@ -7,10 +7,10 @@ const initialState = {
 
 const selectShape = (state = initialState, action) => {
     switch (action.type) {
-        case SELECT_SHAPE:
+    case SELECT_SHAPE:
         console.log(`selectShape state is `, state);
         console.log(`selectShape action is `, action);
-        return {selectedShape: action.payload !== undefined ? action.payload : state.selectedShape};
+        return { selectedShape: action.payload !== undefined ? action.payload : state.selectedShape };
     default:
         return state;
     }
