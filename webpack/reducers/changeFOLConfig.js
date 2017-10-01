@@ -1,4 +1,6 @@
-import { CHANGE_FOL, CHANGE_FOL_ITERATIONS, CHANGE_FOL_RADIUS } from '../actions/changeFOLConfig';
+import { CHANGE_FOL_ITERATIONS, CHANGE_FOL_RADIUS } from '../actions/changeFOLConfig';
+import { updateShapeState } from "../stateUtil";
+import { standardRadius } from "../shapeConstants";
 
 const initialState = {
     iterations: {
@@ -7,27 +9,19 @@ const initialState = {
         max: 10,
         value: 2,
     },
-    radius: {
-        name: `Radius`,
-        min: 1,
-        max: 1000,
-        value: 300,
-    },
+    radius: { ...standardRadius },
 };
 
 const changeFOLConfig = (state = initialState, action) => {
     switch (action.type) {
     case CHANGE_FOL_ITERATIONS:
-        return updateState(state, `iterations`, action.payload.value);
+        return updateShapeState(state, `iterations`, action.payload);
     case CHANGE_FOL_RADIUS:
-        return updateState(state, `radius`, action.payload.value);
+        return updateShapeState(state, `radius`, action.payload);
     default:
         return state;
     }
 };
 
-const updateState = (state, config, payload) => {
-    return { ...state, [config]: { ...state[config], ...payload } };
-};
 
 export default changeFOLConfig;

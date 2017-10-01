@@ -1,3 +1,3 @@
-export const CHANGE_CIRCLE = `CHANGE_CIRCLE`;
+export const CHANGE_CIRCLE_RADIUS = `CHANGE_CIRCLE`;
 
-export const changeCircleConfig = (value) => ({type: CHANGE_CIRCLE, payload: value});
+export const changeRadius = (value) => ({type: CHANGE_CIRCLE_RADIUS, payload: value});
