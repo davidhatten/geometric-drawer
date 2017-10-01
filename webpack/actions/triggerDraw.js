@@ -16,7 +16,7 @@ export const triggerDraw = (location) => {
             config: config,
             location: location,
             style: {
-                ...style,
+                strokeWidth: style.strokeWidth,
                 fill:`none`,
                 stroke:`black`,
             },

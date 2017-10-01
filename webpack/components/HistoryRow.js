@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import { Row, Col, Form, Input, Popover, Button } from 'antd';
+import { connect } from "react-redux";
+import FlowerOfLifeForm from "./FlowerOfLifeForm";
 
 class HistoryRow extends Component {
     constructor(props) {
         super(props);
+        console.log("HistoryRow constructor", props);
     }
     render() {
-        const content = (
-            <div>
-                <p>Content</p>
-            </div>
-        );
         const mapStateToProps = state => ({
-            iterations: state.shapeHistory[this.props.shape.id].iterations,
-            radius: state.shapeHistory[this.props.shape.id].radius,
-        })
+            iterations: state.shapeHistory[this.props.shape.id].props.iterations,
+            radius: state.shapeHistory[this.props.shape.id].props.radius,
+        });
+        const mapDispatchtoProps = dispatch => ({
+            updateIterations: (value) => {},
+            updateRadius: (value) => {},
+        });
+        const Content = connect(mapStateToProps, mapDispatchtoProps)(FlowerOfLifeForm);
         return (
             <Row type="flex" justify="space-around">
                 <Col>
                     {this.props.shape.name}
                 </Col>
                 <Col>
-                    <Popover placement={`left`} title={this.props.name} content={content} trigger={`click`}>
+                    <Popover placement={`bottom`} title={this.props.name} content={<Content />} trigger={`click`}>
                         <Button>Edit</Button>
                     </Popover>
                 </Col>
