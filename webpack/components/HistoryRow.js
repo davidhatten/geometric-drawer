@@ -10,14 +10,14 @@ class HistoryRow extends Component {
     }
     render() {
         const mapStateToProps = state => ({
-            iterations: state.shapeHistory[this.props.shape.id].props.iterations,
-            radius: state.shapeHistory[this.props.shape.id].props.radius,
+            iterations: state.shapeHistory.byId[this.props.shape.id].props.iterations,
+            radius: state.shapeHistory.byId[this.props.shape.id].props.radius,
         });
         const mapDispatchtoProps = dispatch => ({
             updateIterations: (value) => {},
             updateRadius: (value) => {},
         });
-        const Content = connect(mapStateToProps, mapDispatchtoProps)(FlowerOfLifeForm);
+        const Content = connect(mapStateToProps, mapDispatchtoProps)(this.props.shape.formTag);
         return (
             <Row type="flex" justify="space-around">
                 <Col>

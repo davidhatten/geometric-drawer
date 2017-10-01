@@ -27,7 +27,7 @@ const changeShapeHistory = (state = initialState, action) => {
         console.log(`drawShape - state `, state);
         console.log(`drawShape - action`, action);
         const payload = action.payload;
-        const id = state.length;
+        const id = state.allIds.length;
         const newShape = {
             id: id,
             name: nameFromConfig(payload.shape),
