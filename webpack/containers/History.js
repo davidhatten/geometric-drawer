@@ -8,11 +8,27 @@ const TimeItem = Timeline.Item;
 class History extends Component {
     constructor(props) {
         super(props);
+        console.log("History", props);
     }
     render() {
-        const historyItems = this.props.history.map((shape) =>
-            <TimeItem key={shape.id}>
-                <HistoryRow name={shape.name} />
+        const { history } = this.props;
+
+        // const historyItems = [];
+        //
+        // for (let shapeId in history) {
+        //     if(history.hasOwnProperty(shapeId)) {
+        //         historyItems.push(
+        //             <TimeItem key={shapeId}>
+        //                 <HistoryRow shape={history[shapeId]}/>
+        //             </TimeItem>
+        //         );
+        //     }
+        // }
+
+
+        const historyItems = Object.keys(history).map((shapeId, index) =>
+            <TimeItem key={shapeId}>
+                <HistoryRow shape={history[shapeId]} />
             </TimeItem>
         );
         return (
@@ -25,7 +41,7 @@ class History extends Component {
 }
 
 const mapStateToProps = state => ({
-    history: state.shapeHistory.history,
+    history: state.shapeHistory,
 });
 
 export default connect(mapStateToProps)(History);

@@ -12,7 +12,7 @@ const shapeTags = {
 };
 
 const initialState = {
-    history: [],
+
 };
 
 const changeShapeHistory = (state = initialState, action) => {
@@ -21,11 +21,9 @@ const changeShapeHistory = (state = initialState, action) => {
         console.log(`drawShape - state `, state);
         console.log(`drawShape - action`, action);
         const payload = action.payload;
-        const newShape = {id: state.history.length, name: nameFromConfig(payload.shape), shape: shapeTags[payload.shape], props: {...payload.config, ...payload.location, style: payload.style}};
+        const newShape = { id: state.length, name: nameFromConfig(payload.shape), shape: shapeTags[payload.shape], props: { ...payload.config, ...payload.location, style: payload.style } };
         console.log(`drawShape - newShape `, newShape);
-        return {
-            history: state.history.concat(newShape),
-        };
+        return { ...state, [state.length]: newShape };
     default:
         return state;
     }
