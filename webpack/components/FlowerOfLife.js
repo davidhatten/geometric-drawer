@@ -16,7 +16,6 @@ class FlowerOfLife extends Component {
         const degrees = 360/petalCount;
         var trackDegrees = 0;
         const jsRotation = 1/petalCount;
-        console.log(this.props);
         const radius = this.props.radius.value;
 
         const startCircle = { x:this.props.x, y: this.props.y };

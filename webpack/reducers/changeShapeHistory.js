@@ -38,8 +38,19 @@ const changeShapeHistory = (state = initialState, action) => {
         const shape = state.byId[action.payload.id];
         const shapeId = shape.id;
         const oldProps = shape.props;
+
+        // Something is not okay here with these two lines....
         const newProps = { ...oldProps, radius: { ...oldProps.radius, value: action.payload.value } };
-        return { ...state, byId: { ...state.byId, [shapeId]: { ...state.byId[shapeId], props: newProps } } };
+        return {
+            ...state,
+            byId: {
+                ...state.byId,
+                [shapeId]: {
+                    ...state.byId[shapeId],
+                    props: newProps,
+                },
+            },
+        };
     default:
         return state;
     }

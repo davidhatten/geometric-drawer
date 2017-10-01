@@ -2,27 +2,35 @@ import React, { Component } from 'react';
 import { Row, Col, Form, Input, Popover, Button } from 'antd';
 import { connect } from "react-redux";
 import FlowerOfLifeForm from "./FlowerOfLifeForm";
+import HistoryEditPane from "../containers/HistoryEditPane";
 
 class HistoryRow extends Component {
     constructor(props) {
         super(props);
-        console.log("HistoryRow constructor", props);
+        console.log(`HistoryRow constructor`, props);
+    }
+    shouldComponentUpdate(nextProps) {
+        return false;
     }
     render() {
-        const Content = connect(this.props.shape.mapStateToProps, this.props.shape.mapDispatchToProps)(this.props.shape.formTag);
+        console.log(`HistoryRow - render()`);
         return (
             <Row type="flex" justify="space-around">
                 <Col>
-                    {this.props.shape.name}
+                    {this.props.historyData[this.props.shapeId].name}
                 </Col>
                 <Col>
-                    <Popover overlayStyle={{width: `25%`}} placement={`bottom`} title={this.props.name} content={<Content />} trigger={`focus`}>
-                        <Button>Edit</Button>
-                    </Popover>
+                    <HistoryEditPane shapeId={this.props.shapeId} />
                 </Col>
             </Row>
         );
     }
 }
 
-export default HistoryRow;
+const mapStateToProps = state => ({
+    historyData: state.shapeHistory.byId,
+});
+
+
+
+export default connect(mapStateToProps)(HistoryRow);
