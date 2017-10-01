@@ -12,7 +12,8 @@ const shapeTags = {
 };
 
 const initialState = {
-
+    byId: {},
+    allIds: [],
 };
 
 const changeShapeHistory = (state = initialState, action) => {
@@ -21,8 +22,9 @@ const changeShapeHistory = (state = initialState, action) => {
         console.log(`drawShape - state `, state);
         console.log(`drawShape - action`, action);
         const payload = action.payload;
+        const id = state.length;
         const newShape = {
-            id: state.length,
+            id: id,
             name: nameFromConfig(payload.shape),
             shapeTag: shapeTags[payload.shape],
             props: {
@@ -31,8 +33,8 @@ const changeShapeHistory = (state = initialState, action) => {
                 style: payload.style,
             },
         };
-        console.log(`drawShape - newShape `, newShape);
-        return { ...state, [state.length]: newShape };
+        console.log(`drawShape - oldState `, state);
+        return { byId: { ...state.byId, [id]: newShape}, allIds: state.allIds.concat(id) };
     default:
         return state;
     }

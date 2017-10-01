@@ -13,9 +13,9 @@ class History extends Component {
     render() {
         const { history } = this.props;
 
-        const historyItems = Object.keys(history).map((shapeId, index) =>
-            <TimeItem key={shapeId}>
-                <HistoryRow shape={history[shapeId]} />
+        const historyItems = history.map((shapeId, index) =>
+            <TimeItem key={index}>
+                <HistoryRow shape={this.props.historyData[shapeId]} />
             </TimeItem>
         );
         return (
@@ -28,7 +28,8 @@ class History extends Component {
 }
 
 const mapStateToProps = state => ({
-    history: state.shapeHistory,
+    history: state.shapeHistory.allIds,
+    historyData: state.shapeHistory.byId,
 });
 
 export default connect(mapStateToProps)(History);
