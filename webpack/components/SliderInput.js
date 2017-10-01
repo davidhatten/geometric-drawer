@@ -4,13 +4,13 @@ const FormItem = Form.Item;
 
 const SliderInput = (props) => (
     <FormItem label={props.name}>
-        <Col span={10}>
+        <Col span={18}>
             <Slider min={props.min} max={props.max} value={props.value} onChange={props.updateValue}/>
         </Col>
         <Col span={1}>
             {/*Empty spacer*/}
         </Col>
-        <Col span={1}>
+        <Col>
             <InputNumber size="small" min={props.min} max={props.max} value={props.value} onChange={props.updateValue}/>
         </Col>
     </FormItem>

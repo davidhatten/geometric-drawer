@@ -24,7 +24,7 @@ class HistoryRow extends Component {
                     {this.props.shape.name}
                 </Col>
                 <Col>
-                    <Popover overlayStyle={{width: `15%`}} placement={`bottom`} title={this.props.name} content={<Content />} trigger={`click`}>
+                    <Popover overlayStyle={{width: `25%`}} placement={`bottom`} title={this.props.name} content={<Content />} trigger={`click`}>
                         <Button>Edit</Button>
                     </Popover>
                 </Col>
