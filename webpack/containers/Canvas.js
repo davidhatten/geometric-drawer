@@ -31,7 +31,7 @@ class Canvas extends Component {
         };
         const { shapes } = this.props;
         const drawnShapes = Object.keys(this.props.shapes).map((shapeId, index) =>
-            React.createElement(shapes[shapeId].shape, {...shapes[shapeId].props, key: shapeId})
+            React.createElement(shapes[shapeId].shapeTag, {...shapes[shapeId].props, key: shapeId})
         );
         return (
             <div>

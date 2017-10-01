@@ -13,19 +13,6 @@ class History extends Component {
     render() {
         const { history } = this.props;
 
-        // const historyItems = [];
-        //
-        // for (let shapeId in history) {
-        //     if(history.hasOwnProperty(shapeId)) {
-        //         historyItems.push(
-        //             <TimeItem key={shapeId}>
-        //                 <HistoryRow shape={history[shapeId]}/>
-        //             </TimeItem>
-        //         );
-        //     }
-        // }
-
-
         const historyItems = Object.keys(history).map((shapeId, index) =>
             <TimeItem key={shapeId}>
                 <HistoryRow shape={history[shapeId]} />
