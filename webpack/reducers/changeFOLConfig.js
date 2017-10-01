@@ -5,7 +5,7 @@ import { standardRadius } from "../shapeConstants";
 const initialState = {
     iterations: {
         name: `Iterations`,
-        min: 2,
+        min: 1,
         max: 10,
         value: 2,
     },

@@ -11,7 +11,9 @@ class History extends Component {
     }
     render() {
         const historyItems = this.props.history.map((shape) =>
-            <TimeItem key={shape.id}>{shape.name}</TimeItem>
+            <TimeItem key={shape.id}>
+                <HistoryRow name={shape.name} />
+            </TimeItem>
         );
         return (
             <Timeline>

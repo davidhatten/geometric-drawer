@@ -9,6 +9,7 @@ class HistoryRow extends Component {
     render() {
         return (
             <Row type="flex" justify="space-around">
+                {this.props.name}
             </Row>
         );
     }
