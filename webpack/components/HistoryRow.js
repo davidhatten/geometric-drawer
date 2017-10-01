@@ -9,14 +9,14 @@ class HistoryRow extends Component {
         console.log("HistoryRow constructor", props);
     }
     render() {
-        const Content = connect(this.props.shape.mapStateToProps)(this.props.shape.formTag);
+        const Content = connect(this.props.shape.mapStateToProps, this.props.shape.mapDispatchToProps)(this.props.shape.formTag);
         return (
             <Row type="flex" justify="space-around">
                 <Col>
                     {this.props.shape.name}
                 </Col>
                 <Col>
-                    <Popover overlayStyle={{width: `25%`}} placement={`bottom`} title={this.props.name} content={<Content />} trigger={`click`}>
+                    <Popover overlayStyle={{width: `25%`}} placement={`bottom`} title={this.props.name} content={<Content />} trigger={`focus`}>
                         <Button>Edit</Button>
                     </Popover>
                 </Col>
