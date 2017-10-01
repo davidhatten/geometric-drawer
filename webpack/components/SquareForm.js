@@ -1,15 +1,18 @@
 import React from 'react';
-import {Col, Form, Input, Row} from "antd";
-
-const FormItem = Form.Item;
+import { Col, Form, Row } from "antd";
+import SliderInput from "./SliderInput";
 
 const SquareForm = (props) => (
     <Form>
         <Row type="flex">
-            <Col span={3}>
-                <FormItem label="Side Length">
-                    <Input value={props.length} onChange={props.updateLength}/>
-                </FormItem>
+            <Col span={24}>
+                <SliderInput
+                    min={props.length.min}
+                    max={props.length.max}
+                    name={props.length.name}
+                    value={props.length.value}
+                    updateValue={props.updateLength}
+                />
             </Col>
         </Row>
     </Form>

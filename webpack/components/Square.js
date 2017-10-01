@@ -7,7 +7,7 @@ class Square extends Component {
     }
     render() {
         const { x, y, length } = this.props;
-        return <rect x={x - length/2} y={y - length/2} width={length} height={length} {...this.props.style}/>;
+        return <rect x={x - length.value/2} y={y - length.value/2} width={length.value} height={length.value} {...this.props.style}/>;
     }
 }
 

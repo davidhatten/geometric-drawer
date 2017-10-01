@@ -13,6 +13,13 @@ export const standardRadius = {
 
 };
 
+export const standardSquareLength = {
+    value: 400,
+    min: 1,
+    max: 2500,
+    name: `Side Length`,
+};
+
 const configToNameMap = {
     [FOL_CONFIG]: FOL_NAME,
     [CIRCLE_CONFIG]: CIRCLE_NAME,

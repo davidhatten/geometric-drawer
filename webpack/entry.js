@@ -9,19 +9,19 @@ import 'antd/dist/antd.css';
 import './style.less';
 
 import selectShape from './reducers/selectShape';
-import changeShapeConfig from './reducers/changeShapeConfig';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
-import { CIRCLE_CONFIG, FOL_CONFIG } from "./shapeConstants";
+import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG } from "./shapeConstants";
 import changeFOLConfig from "./reducers/changeFOLConfig";
 import changeCircleConfig from "./reducers/changeCircleConfig";
+import changeSquareConfig from "./reducers/changeSquareConfig";
 
 
 let reducers = combineReducers({
     selectShape,
     [FOL_CONFIG]: changeFOLConfig,
     [CIRCLE_CONFIG]: changeCircleConfig,
-    shapeConfig: changeShapeConfig,
+    [SQUARE_CONFIG]: changeSquareConfig,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
 });
