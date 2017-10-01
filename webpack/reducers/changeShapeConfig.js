@@ -4,7 +4,6 @@ import { CHANGE_SQUARE } from '../actions/changeSquareConfig';
 import { FOL_CONFIG, CIRCLE_CONFIG, SQUARE_CONFIG } from '../shapeConstants';
 
 const initialState = {
-    [CIRCLE_CONFIG]: {radius: 300},
     [SQUARE_CONFIG]: {length: 250},
 };
 

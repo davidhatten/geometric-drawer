@@ -12,13 +12,15 @@ import selectShape from './reducers/selectShape';
 import changeShapeConfig from './reducers/changeShapeConfig';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
-import {FOL_CONFIG} from "./shapeConstants";
+import { CIRCLE_CONFIG, FOL_CONFIG } from "./shapeConstants";
 import changeFOLConfig from "./reducers/changeFOLConfig";
+import changeCircleConfig from "./reducers/changeCircleConfig";
 
 
 let reducers = combineReducers({
     selectShape,
     [FOL_CONFIG]: changeFOLConfig,
+    [CIRCLE_CONFIG]: changeCircleConfig,
     shapeConfig: changeShapeConfig,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
