@@ -12,10 +12,13 @@ import selectShape from './reducers/selectShape';
 import changeShapeConfig from './reducers/changeShapeConfig';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
+import {FOL_CONFIG} from "./shapeConstants";
+import changeFOLConfig from "./reducers/changeFOLConfig";
 
 
 let reducers = combineReducers({
-    selectShape, 
+    selectShape,
+    [FOL_CONFIG]: changeFOLConfig,
     shapeConfig: changeShapeConfig,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,

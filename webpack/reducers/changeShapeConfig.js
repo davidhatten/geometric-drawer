@@ -4,17 +4,26 @@ import { CHANGE_SQUARE } from '../actions/changeSquareConfig';
 import { FOL_CONFIG, CIRCLE_CONFIG, SQUARE_CONFIG } from '../shapeConstants';
 
 const initialState = {
-    [FOL_CONFIG]: {iterations: 2, radius: 300, min: 1, max: 10, name: `Iterations`},
+    [FOL_CONFIG]: {
+        iterations: {
+            name: `Iterations`,
+            min: 2,
+            max: 10,
+            value: 2,
+        }, 
+        radius: {
+            name: `Radius`,
+            min: 1,
+            max: 1000,
+            value: 300,
+        },
+    },
     [CIRCLE_CONFIG]: {radius: 300},
     [SQUARE_CONFIG]: {length: 250},
 };
 
 const changeShapeConfig = (state = initialState, action) => {
     switch (action.type) {
-    case CHANGE_FOL:
-        console.log(`shapeConfig - CHANGE_FOL`, state);
-        console.log(`shapeConfig - CHANGE_FOL`, action);
-        return updateState(state, FOL_CONFIG, action.payload);
     case CHANGE_CIRCLE:
         console.log(`shapeConfig - CHANGE_CIRCLE`, state);
         console.log(`shapeConfig - CHANGE_CIRCLE`, action);

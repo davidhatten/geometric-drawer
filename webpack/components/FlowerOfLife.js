@@ -17,7 +17,7 @@ class FlowerOfLife extends Component {
         var trackDegrees = 0;
         const jsRotation = 1/petalCount;
         console.log(this.props);
-        const radius = this.props.radius;
+        const radius = this.props.radius.value;
 
         const startCircle = { x:this.props.x, y: this.props.y };
         innerPetals.push(startCircle);
@@ -30,7 +30,7 @@ class FlowerOfLife extends Component {
 
         let outerPetals = innerPetals.slice();
         let usedPetals = innerPetals.slice();
-        for (let i = 0; i < this.props.iterations; i++) {
+        for (let i = 0; i < this.props.iterations.value; i++) {
             outerPetals = this.drawOuterPetals(radius, outerPetals, angleDegrees, usedPetals);
         }
 

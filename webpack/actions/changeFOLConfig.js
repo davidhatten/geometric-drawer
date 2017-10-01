@@ -1,3 +1,5 @@
-export const CHANGE_FOL = `CHANGE_FOL`;
+export const CHANGE_FOL_ITERATIONS = `CHANGE_FOL_ITERATIONS`;
+export const CHANGE_FOL_RADIUS = `CHANGE_FOL_RADIUS`;
 
-export const changeFOLConfig = value => ({type: CHANGE_FOL, payload: value});
+export const changeIterations = value => ({ type: CHANGE_FOL_ITERATIONS, payload: value });
+export const changeRadius = value => ({ type: CHANGE_FOL_RADIUS, payload: value });

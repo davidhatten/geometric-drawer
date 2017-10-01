@@ -6,7 +6,7 @@ export const triggerDraw = (location) => {
         // Fuck it, just put the whole state in for now
         const currentState = getState();
         const shape = currentState.selectShape.selectedShape;
-        const config = currentState.shapeConfig[shape];
+        const config = currentState[shape];
         const style = currentState.generalConfig;
 
         // Style will eventually come from state

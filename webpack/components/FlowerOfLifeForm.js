@@ -13,13 +13,13 @@ const FlowerOfLifeForm = (props) => (
                     max={props.iterations.max}
                     name={props.iterations.name}
                     value={props.iterations.value}
-                    onChange={props.iterations.updateIterations}/>
+                    updateValue={props.updateIterations}/>
                 <SliderInput
                     min={props.radius.min}
                     max={props.radius.max}
                     name={props.radius.name}
                     value={props.radius.value}
-                    onChange={props.radius.updateRadius} />
+                    updateValue={props.updateRadius} />
             </Col>
         </Row>
     </Form>
