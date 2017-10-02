@@ -33,9 +33,12 @@ const mapStateToProps = state => ({
     historyData: state.shapeHistory.byId,
 });
 
-
+// This feels like a weird antipattern
 const mapDispatchToProps = dispatch => ({
-    openPopover: id => {dispatch(beginEditing(id));},
+    openPopover: id => {
+        dispatch(changeHistoryStyle(id, `stroke`, `red`));
+        dispatch(beginEditing(id));
+    },
     closePopover: id => {
         dispatch(stopEditing(id));
         dispatch(changeHistoryStyle(id, `stroke`, `black`));
