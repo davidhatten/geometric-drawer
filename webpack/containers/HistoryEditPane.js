@@ -36,7 +36,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     openPopover: id => {dispatch(beginEditing(id));},
-    closePopover: id => {dispatch(stopEditing(id));},
+    closePopover: id => {
+        dispatch(stopEditing(id));
+        dispatch(changeHistoryStyle(id, `stroke`, `black`));
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryEditPane);
