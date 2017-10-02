@@ -6,8 +6,6 @@ const generateId = name => {
 
 export const triggerDraw = (location) => {
     return (dispatch, getState) => {
-        console.log(`triggerDraw - state`, getState());
-        // Fuck it, just put the whole state in for now
         const currentState = getState();
         const shape = currentState.selectShape.selectedShape;
         const config = currentState[shape];
