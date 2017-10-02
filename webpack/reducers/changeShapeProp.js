@@ -9,13 +9,9 @@ const initialState = {
 const changeShapeProp = (state = initialState, action) => {
     switch (action.type) {
     case DRAW_SHAPE:
-        console.log(`changeShapeProp - DRAW_SHAPE`, state);
-        console.log(`changeShapeProp - DRAW_SHAPE`, action);
         let id = action.payload.id;
         return { byId: { ...state.byId, [id]: action.payload.props }, allIds: state.allIds.concat(id) };
     case CHANGE_PROP:
-        console.log("changeShapeProp - CHANGE_PROP ", state);
-        console.log("changeShapeProp - CHANGE_PROP ", action);
         id = action.payload.id;
         return { ...state, byId: { ...state.byId, [id]: { ...state.byId[id], [action.payload.prop]: action.payload.value }}};
     default:

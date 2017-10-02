@@ -4,10 +4,6 @@ import roundTo from 'round-to';
 class FlowerOfLife extends Component {
     constructor(props) {
         super(props);
-        this.state = { petals: [] };
-    }
-    componentDidMount() {
-        this.drawFlower();
     }
     drawFlower = () => {
         const innerPetals = [];
@@ -33,9 +29,8 @@ class FlowerOfLife extends Component {
             outerPetals = this.drawOuterPetals(radius, outerPetals, angleDegrees, usedPetals);
         }
 
-        this.setState({ petals: usedPetals.map((petal, index) => {
+        return usedPetals.map((petal, index) => {
             return <circle key={index} cx={petal.x} cy={petal.y} r={radius} {...this.props.style} />;
-        }),
         });
     }
     drawOuterPetals = (radius, innerPetals, petalAngles, usedPetals) => {
@@ -79,9 +74,11 @@ class FlowerOfLife extends Component {
         return pointsInArray.length > 0;
     }
     render() {
+        const petals = this.drawFlower();
+
         return(
             <g>
-                {this.state.petals}
+                {petals}
             </g>
         );
     }
