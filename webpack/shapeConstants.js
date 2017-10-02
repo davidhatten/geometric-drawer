@@ -50,6 +50,9 @@ export const historyConstants = {
         }),
         dispatchToProps: id => dispatch => ({
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
+            highlightShape: () => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
+        }),
+        onEditHover: id => dispatch => ({
         }),
     },
     [SQUARE_CONFIG]: {
@@ -61,6 +64,7 @@ export const historyConstants = {
         dispatchToProps: id => dispatch => ({
             updateLength: (value) => {dispatch(changeHistoryProp(id, `length`, parseInt(value)));},
         }),
+        onEditHover: id => dispatch => ({}),
     },
     [FOL_CONFIG]: {
         shape: FlowerOfLife,
@@ -73,5 +77,6 @@ export const historyConstants = {
             updateIterations: (value) => {dispatch(changeHistoryProp(id, `iterations`, parseInt(value)));},
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
         }),
+        onEditHover: id => dispatch => ({}),
     },
 };

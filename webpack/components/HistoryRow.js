@@ -11,10 +11,11 @@ class HistoryRow extends Component {
     }
     render() {
         console.log(`HistoryRow - render()`);
+        let shape = this.props.historyData[this.props.shapeId];
         return (
             <Row type="flex" justify="space-around">
                 <Col>
-                    {this.props.historyData[this.props.shapeId].name}
+                    {shape.name}
                 </Col>
                 <Col>
                     <HistoryEditPane shapeId={this.props.shapeId} />
