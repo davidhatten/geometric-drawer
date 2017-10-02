@@ -11,15 +11,12 @@ class History extends Component {
         super(props);
         console.log(`History`, props);
     }
-    mouseEnter = () => {
-        console.log(`History - mouseEnter`);
-    }
     render() {
         console.log(`History - render()`);
         const { history } = this.props;
 
         const historyItems = history.map((shapeId, index) =>
-            <TimeItem key={index}>
+            <TimeItem key={index} onMouseEnter={this.props.highlightShape(shapeId)} onMouseLeave={this.props.unhighlightShape(shapeId)}>
                 <HistoryRow shapeId={shapeId} />
             </TimeItem>
         );
@@ -37,8 +34,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    highlightShape: event => {dispatch(changeHistoryStyle(event, `stroke`, `red`));},
-    unhighlightShape: event => {dispatch(changeHistoryStyle(event.target.props.key, `stroke`, `black`));},
+    highlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
+    unhighlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);
