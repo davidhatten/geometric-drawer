@@ -2,7 +2,6 @@ import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { nameFromConfig } from './../shapeConstants';
 import { historyConstants } from "../shapeConstants";
-import { CHANGE_CIRCLE_HISTORY_RADIUS } from "../actions/changeCircleConfig";
 
 const initialState = {
     byId: {},
@@ -26,27 +25,8 @@ const changeShapeHistory = (state = initialState, action) => {
             mapDispatchToProps: shapeMetaConfig.dispatchToProps(id),
             props: id,
         };
-        console.log(`drawShape - oldState `, state);
+        
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
-    case CHANGE_CIRCLE_HISTORY_RADIUS:
-        console.log(`CHANGE_CIRCLE_HISTORY_RADIUS - state `, state);
-        console.log(`CHANGE_CIRCLE_HISTORY_RADIUS - action `, action);
-        const shape = state.byId[action.payload.id];
-        const shapeId = shape.id;
-        const oldProps = shape.props;
-
-        // Something is not okay here with these two lines....
-        const newProps = { ...oldProps, radius: { ...oldProps.radius, value: action.payload.value } };
-        return {
-            ...state,
-            byId: {
-                ...state.byId,
-                [shapeId]: {
-                    ...state.byId[shapeId],
-                    props: newProps,
-                },
-            },
-        };
     default:
         return state;
     }
