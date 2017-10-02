@@ -59,7 +59,7 @@ export const historyConstants = {
             length: state.shapeProps.byId[id].length,
         }),
         dispatchToProps: id => dispatch => ({
-
+            updateLength: (value) => {dispatch(changeHistoryProp(id, `length`, parseInt(value)));},
         }),
     },
     [FOL_CONFIG]: {
@@ -70,7 +70,8 @@ export const historyConstants = {
             radius: state.shapeProps.byId[id].radius,
         }),
         dispatchToProps: id => dispatch => ({
-
+            updateIterations: (value) => {dispatch(changeHistoryProp(id, `iterations`, parseInt(value)));},
+            updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
         }),
     },
 };

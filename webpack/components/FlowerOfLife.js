@@ -29,7 +29,7 @@ class FlowerOfLife extends Component {
 
         let outerPetals = innerPetals.slice();
         let usedPetals = innerPetals.slice();
-        for (let i = 0; i < this.props.iterations.value; i++) {
+        for (let i = 0; i < this.props.iterations; i++) {
             outerPetals = this.drawOuterPetals(radius, outerPetals, angleDegrees, usedPetals);
         }
 

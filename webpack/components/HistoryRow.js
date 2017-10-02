@@ -9,9 +9,6 @@ class HistoryRow extends Component {
         super(props);
         console.log(`HistoryRow constructor`, props);
     }
-    shouldComponentUpdate(nextProps) {
-        return false;
-    }
     render() {
         console.log(`HistoryRow - render()`);
         return (
