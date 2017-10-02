@@ -45,7 +45,7 @@ export const historyConstants = {
         shape: Circle,
         form: CircleForm,
         stateToProps: id => state => ({
-            radius: state.shapeHistory.byId[id].props.radius,
+            radius: state.shapeProps.byId[id].radius,
         }),
         dispatchToProps: id => dispatch => ({
             updateRadius: (value) => {dispatch(changeHistoryRadius(id, parseInt(value)));},
@@ -55,7 +55,7 @@ export const historyConstants = {
         shape: Square,
         form: SquareForm,
         stateToProps: id => state => ({
-            length: state.shapeHistory.byId[id].props.length,
+            length: state.shapeProps.byId[id].length,
         }),
         dispatchToProps: id => dispatch => ({
 
@@ -65,8 +65,8 @@ export const historyConstants = {
         shape: FlowerOfLife,
         form: FlowerOfLifeForm,
         stateToProps: id => state => ({
-            iterations: state.shapeHistory.byId[id].props.iterations,
-            radius: state.shapeHistory.byId[id].props.radius,
+            iterations: state.shapeProps.byId[id].iterations,
+            radius: state.shapeProps.byId[id].radius,
         }),
         dispatchToProps: id => dispatch => ({
 

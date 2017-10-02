@@ -15,7 +15,7 @@ const changeShapeHistory = (state = initialState, action) => {
         console.log(`drawShape - state `, state);
         console.log(`drawShape - action`, action);
         const payload = action.payload;
-        const id = state.allIds.length;
+        const id = action.payload.id;
         let shapeMetaConfig = historyConstants[payload.shape];
         const newShape = {
             id: id,
@@ -24,11 +24,7 @@ const changeShapeHistory = (state = initialState, action) => {
             formTag: shapeMetaConfig.form,
             mapStateToProps: shapeMetaConfig.stateToProps(id),
             mapDispatchToProps: shapeMetaConfig.dispatchToProps(id),
-            props: {
-                ...payload.config,
-                ...payload.location,
-                style: payload.style,
-            },
+            props: id,
         };
         console.log(`drawShape - oldState `, state);
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };

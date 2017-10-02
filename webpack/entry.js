@@ -15,6 +15,7 @@ import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG } from "./shapeConstants";
 import changeFOLConfig from "./reducers/changeFOLConfig";
 import changeCircleConfig from "./reducers/changeCircleConfig";
 import changeSquareConfig from "./reducers/changeSquareConfig";
+import changeShapeProp from "./reducers/changeShapeProp";
 
 
 let reducers = combineReducers({
@@ -22,6 +23,7 @@ let reducers = combineReducers({
     [FOL_CONFIG]: changeFOLConfig,
     [CIRCLE_CONFIG]: changeCircleConfig,
     [SQUARE_CONFIG]: changeSquareConfig,
+    shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
 });

@@ -1,8 +1,12 @@
 import { drawShape } from './drawShape';
 
+const generateId = name => {
+    return `${name}-${Date.now()}`;
+};
+
 export const triggerDraw = (location) => {
     return (dispatch, getState) => {
-        console.log("triggerDraw - state", getState());
+        console.log(`triggerDraw - state`, getState());
         // Fuck it, just put the whole state in for now
         const currentState = getState();
         const shape = currentState.selectShape.selectedShape;
@@ -13,14 +17,17 @@ export const triggerDraw = (location) => {
         // But it will be assembled here
         const payload = {
             shape: shape,
-            config: config,
-            location: location,
-            style: {
-                strokeWidth: style.strokeWidth,
-                fill:`none`,
-                stroke:`black`,
+            props: {
+                ...location,
+                ...config,
+                style: {
+                    strokeWidth: style.strokeWidth,
+                    fill: `none`,
+                    stroke: `black`,
+                },
             },
+            id: generateId(shape),
         };
         dispatch(drawShape(payload));
     };
-};;
+};
