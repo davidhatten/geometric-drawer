@@ -4,7 +4,7 @@ import { CHANGE_CIRCLE_RADIUS } from "../actions/changeCircleConfig";
 import { updateShapeConfigValue } from "../stateUtil";
 
 const initialState = {
-    radius: { ...standardRadius },
+    radius: standardRadius.value,
 };
 
 const changeCircleConfig = (state = initialState, action) => {

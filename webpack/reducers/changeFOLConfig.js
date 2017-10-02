@@ -3,13 +3,8 @@ import { updateShapeConfigValue } from "../stateUtil";
 import { standardRadius } from "../shapeConstants";
 
 const initialState = {
-    iterations: {
-        name: `Iterations`,
-        min: 1,
-        max: 10,
-        value: 2,
-    },
-    radius: { ...standardRadius },
+    iterations: 2,
+    radius: standardRadius.value,
 };
 
 const changeFOLConfig = (state = initialState, action) => {

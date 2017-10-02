@@ -5,6 +5,7 @@ import SquareForm from "./components/SquareForm";
 import FlowerOfLife from "./components/FlowerOfLife";
 import FlowerOfLifeForm from "./components/FlowerOfLifeForm";
 import { changeHistoryRadius, changeRadius } from "./actions/changeCircleConfig";
+import { changeHistoryProp } from "./actions/changeHistoryProp";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -48,7 +49,7 @@ export const historyConstants = {
             radius: state.shapeProps.byId[id].radius,
         }),
         dispatchToProps: id => dispatch => ({
-            updateRadius: (value) => {dispatch(changeHistoryRadius(id, parseInt(value)));},
+            updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
         }),
     },
     [SQUARE_CONFIG]: {

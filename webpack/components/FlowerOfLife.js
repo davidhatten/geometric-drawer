@@ -14,11 +14,11 @@ class FlowerOfLife extends Component {
         const angleDegrees = [];
         const petalCount = 6;
         const degrees = 360/petalCount;
-        var trackDegrees = 0;
+        let trackDegrees = 0;
         const jsRotation = 1/petalCount;
-        const radius = this.props.radius.value;
+        const radius = this.props.radius;
 
-        const startCircle = { x:this.props.x, y: this.props.y };
+        const startCircle = { x: this.props.x, y: this.props.y };
         innerPetals.push(startCircle);
 
         // Setting up the angle increment

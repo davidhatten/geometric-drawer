@@ -3,22 +3,23 @@ import { Row, Col, Form, Input } from 'antd';
 import Iterations from "../containers/inputs/flowerOfLife/Iterations";
 import Radius from "../containers/inputs/flowerOfLife/Radius";
 import SliderInput from "./SliderInput";
+import { standardRadius } from "../shapeConstants";
 
 const FlowerOfLifeForm = (props) => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
                 <SliderInput
-                    min={props.iterations.min}
-                    max={props.iterations.max}
-                    name={props.iterations.name}
-                    value={props.iterations.value}
+                    min={1}
+                    max={10}
+                    name={`Iterations`}
+                    value={props.iterations}
                     updateValue={props.updateIterations}/>
                 <SliderInput
-                    min={props.radius.min}
-                    max={props.radius.max}
-                    name={props.radius.name}
-                    value={props.radius.value}
+                    min={standardRadius.min}
+                    max={standardRadius.max}
+                    name={standardRadius.name}
+                    value={props.radius}
                     updateValue={props.updateRadius} />
             </Col>
         </Row>

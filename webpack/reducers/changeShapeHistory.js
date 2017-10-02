@@ -25,7 +25,7 @@ const changeShapeHistory = (state = initialState, action) => {
             mapDispatchToProps: shapeMetaConfig.dispatchToProps(id),
             props: id,
         };
-        
+
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
     default:
         return state;

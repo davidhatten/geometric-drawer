@@ -3,7 +3,7 @@ import { CHANGE_SQUARE_LENGTH } from "../actions/changeSquareConfig";
 import { updateShapeConfigValue } from "../stateUtil";
 
 const initialState = {
-    length: { ...standardSquareLength },
+    length: standardSquareLength.value,
 };
 
 const changeSquareConfig = (state = initialState, action) => {

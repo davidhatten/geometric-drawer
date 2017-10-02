@@ -1,8 +1,7 @@
 import React from 'react';
 import {Col, Form, Input, Row} from "antd";
 import SliderInput from "./SliderInput";
-
-const FormItem = Form.Item;
+import { standardRadius } from "../shapeConstants";
 
 const CircleForm = (props) => (
 
@@ -11,10 +10,10 @@ const CircleForm = (props) => (
             <Col span={24}>
                 {console.log(props)}
                 <SliderInput
-                    min={props.radius.min}
-                    max={props.radius.max}
-                    value={props.radius.value}
-                    name={props.radius.name}
+                    min={standardRadius.min}
+                    max={standardRadius.max}
+                    name={standardRadius.name}
+                    value={props.radius}
                     updateValue={props.updateRadius}
                 />
             </Col>
