@@ -5,7 +5,7 @@ import SquareForm from "./components/SquareForm";
 import FlowerOfLife from "./components/FlowerOfLife";
 import FlowerOfLifeForm from "./components/FlowerOfLifeForm";
 import { changeHistoryRadius, changeRadius } from "./actions/changeCircleConfig";
-import { changeHistoryProp } from "./actions/changeHistoryProp";
+import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
