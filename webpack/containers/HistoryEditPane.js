@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Popover } from "antd";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
+import { beginEditing, stopEditing } from "../actions/changeEditPopover";
 
 class HistoryEditPane extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class HistoryEditPane extends Component {
     }
     openOrClose = (val) => {
         console.log(`HistoryEditPane - openOrClose`, val);
-        val ? this.props.highlightShape(this.props.shapeId) : this.props.unhighlightShape(this.props.shapeId);
+        val ? this.props.openPopover(this.props.shapeId) : this.props.closePopover(this.props.shapeId);
     }
     render() {
         console.log(`History Edit Pane - render()`);
@@ -34,8 +35,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    highlightShape: id => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
-    unhighlightShape: id => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
+    openPopover: id => {dispatch(beginEditing(id));},
+    closePopover: id => {dispatch(stopEditing(id));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryEditPane);

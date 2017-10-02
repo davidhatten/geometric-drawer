@@ -50,7 +50,7 @@ export const historyConstants = {
         }),
         dispatchToProps: id => dispatch => ({
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
-            highlightShape: () => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
+            openPopover: () => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
         }),
         onEditHover: id => dispatch => ({
         }),

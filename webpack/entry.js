@@ -16,6 +16,8 @@ import changeFOLConfig from "./reducers/changeFOLConfig";
 import changeCircleConfig from "./reducers/changeCircleConfig";
 import changeSquareConfig from "./reducers/changeSquareConfig";
 import changeShapeProp from "./reducers/changeShapeProp";
+import { shapeHighlighting } from "./middleware/shapeHighlighting";
+import changeEditPopover from "./reducers/changeEditPopover";
 
 
 let reducers = combineReducers({
@@ -26,9 +28,10 @@ let reducers = combineReducers({
     shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
+    currentlyEditing: changeEditPopover,
 });
 
-let store = createStore(reducers, applyMiddleware(thunk));
+let store = createStore(reducers, applyMiddleware(thunk, shapeHighlighting));
 
 const wrapApp = AppComponent =>
     <Provider store={store}>
