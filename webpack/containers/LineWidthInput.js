@@ -1,16 +1,13 @@
-import {connect} from "react-redux";
-import SliderInput from "../components/SliderInput";
-import {changeGeneralConfig} from "../actions/changeGeneralConfig";
+import { connect } from "react-redux";
+import { changeGeneralConfig } from "../actions/changeGeneralConfig";
+import HistoryLineWidth from "../components/HistoryLineWidth";
 
 const mapStateToProps = state => ({
-    value: state.generalConfig.strokeWidth,
-    min: 1,
-    max: 1000,
-    name: `Line Width`,
+    lineWidth: state.generalConfig.strokeWidth,
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateValue: (event) => {dispatch(changeGeneralConfig({strokeWidth: parseInt(event)}));},
+    updateLineWidth: (event) => {dispatch(changeGeneralConfig({ strokeWidth: parseInt(event) }));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SliderInput);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryLineWidth);

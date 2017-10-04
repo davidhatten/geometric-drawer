@@ -3,6 +3,7 @@ import { Button, Popover } from "antd";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
+import HistoryLineWidth from "../components/HistoryLineWidth";
 
 class HistoryEditPane extends Component {
     constructor(props) {
@@ -19,9 +20,17 @@ class HistoryEditPane extends Component {
         console.log(`History Edit Pane - render()`);
         let shapeId = this.props.shapeId;
         const shape = this.props.historyData[shapeId];
-        const Content = connect(shape.mapStateToProps, shape.mapDispatchToProps)(shape.formTag);
+        const optionsConnect = connect(shape.mapStateToProps, shape.mapDispatchToProps);
+        const ShapeHistoryOptions = optionsConnect(shape.formTag);
+        const LineWidthOption = optionsConnect(HistoryLineWidth);
+        const ContentForm = () => (
+            <div>
+                <ShapeHistoryOptions />
+                <LineWidthOption />
+            </div>
+        );
         return (
-            <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `25%` }} placement={`bottom`} title={shape.name} content={<Content />} trigger={`click`}>
+            <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `25%` }} placement={`bottom`} title={shape.name} content={<ContentForm />} trigger={`click`}>
                 <Button>Edit</Button>
             </Popover>
         );

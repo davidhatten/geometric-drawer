@@ -28,6 +28,12 @@ export const standardSquareLength = {
     name: `Side Length`,
 };
 
+export const standardLineWidth = {
+    min: 1,
+    max: 500,
+    name: `Line Width`,
+};
+
 const configToNameMap = {
     [FOL_CONFIG]: FOL_NAME,
     [CIRCLE_CONFIG]: CIRCLE_NAME,
@@ -38,6 +44,14 @@ export const nameFromConfig = name => {
     return configToNameMap[name];
 };
 
+const lineWidthState = (state, id) => (
+    state.shapeProps.byId[id].style.strokeWidth
+);
+
+const lineWidthDispatch = (dispatch, id) => (value) => (
+    dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
+);
+
 // Well it's still awful, but at least now it's contained.
 // Maybe need to make an abstract class, or w/e the JS equivalent is
 export const historyConstants = {
@@ -46,9 +60,11 @@ export const historyConstants = {
         form: CircleForm,
         stateToProps: id => state => ({
             radius: state.shapeProps.byId[id].radius,
+            lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
     [SQUARE_CONFIG]: {
@@ -56,9 +72,11 @@ export const historyConstants = {
         form: SquareForm,
         stateToProps: id => state => ({
             length: state.shapeProps.byId[id].length,
+            lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
             updateLength: (value) => {dispatch(changeHistoryProp(id, `length`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
     [FOL_CONFIG]: {
@@ -67,10 +85,12 @@ export const historyConstants = {
         stateToProps: id => state => ({
             iterations: state.shapeProps.byId[id].iterations,
             radius: state.shapeProps.byId[id].radius,
+            lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
             updateIterations: (value) => {dispatch(changeHistoryProp(id, `iterations`, parseInt(value)));},
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
 };
