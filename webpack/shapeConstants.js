@@ -4,7 +4,6 @@ import Square from "./components/Square";
 import SquareForm from "./components/SquareForm";
 import FlowerOfLife from "./components/FlowerOfLife";
 import FlowerOfLifeForm from "./components/FlowerOfLifeForm";
-import { changeHistoryRadius, changeRadius } from "./actions/changeCircleConfig";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 
 export const CIRCLE_NAME = `Circle`;
@@ -50,9 +49,6 @@ export const historyConstants = {
         }),
         dispatchToProps: id => dispatch => ({
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
-            openPopover: () => {dispatch(changeHistoryStyle(id, `stroke`, `red`));},
-        }),
-        onEditHover: id => dispatch => ({
         }),
     },
     [SQUARE_CONFIG]: {
@@ -64,7 +60,6 @@ export const historyConstants = {
         dispatchToProps: id => dispatch => ({
             updateLength: (value) => {dispatch(changeHistoryProp(id, `length`, parseInt(value)));},
         }),
-        onEditHover: id => dispatch => ({}),
     },
     [FOL_CONFIG]: {
         shape: FlowerOfLife,
@@ -77,6 +72,5 @@ export const historyConstants = {
             updateIterations: (value) => {dispatch(changeHistoryProp(id, `iterations`, parseInt(value)));},
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
         }),
-        onEditHover: id => dispatch => ({}),
     },
 };

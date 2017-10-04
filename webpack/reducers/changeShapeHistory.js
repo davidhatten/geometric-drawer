@@ -23,7 +23,6 @@ const changeShapeHistory = (state = initialState, action) => {
             formTag: shapeMetaConfig.form,
             mapStateToProps: shapeMetaConfig.stateToProps(id),
             mapDispatchToProps: shapeMetaConfig.dispatchToProps(id),
-            onEditHover: shapeMetaConfig.onEditHover(id),
             props: id,
         };
 
