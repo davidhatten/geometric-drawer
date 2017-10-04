@@ -6,6 +6,8 @@ import History from '../containers/History';
 import GeneralOptions from './GeneralOptionsConfig';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
+import { connect } from "react-redux";
+import { clearShapeHistory } from "../actions/clearShapeHistory";
 
 class Studio extends Component {
     constructor(props) {
@@ -44,6 +46,7 @@ class Studio extends Component {
                             <GeneralOptions />
                         </Row>
                         <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                        <Button type="danger" onClick={this.props.clearHistory}>Clear Canvas</Button>
                     </Col>
                 </Row>
             </div>
@@ -52,4 +55,8 @@ class Studio extends Component {
 
 }
 
-export default Studio;
+const mapDispatchToProps = dispatch => ({
+    clearHistory: () => {dispatch(clearShapeHistory());},
+});
+
+export default connect(mapDispatchToProps)(Studio);
