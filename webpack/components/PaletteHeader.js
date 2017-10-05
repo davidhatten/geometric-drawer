@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Row, Col } from 'antd';
+import { Avatar, Row, Col, Tooltip } from 'antd';
 
 class PaletteHeader extends Component {
     constructor(props){
@@ -9,14 +9,16 @@ class PaletteHeader extends Component {
 
     render() {
         return(
-            <Row type="flex" justify="right" align="middle">
-                <Col>
-                    <Avatar style={{ backgroundColor: `#FFFFFF`}} size="large" src={this.props.img} />
-                </Col>
-                <Col>
-                    {this.props.name}
-                </Col>
-            </Row>
+            <Tooltip title={this.props.description}>
+                <Row type="flex" justify="right" align="middle">
+                    <Col>
+                        <Avatar style={{ backgroundColor: `#FFFFFF`}} size="large" src={this.props.img} />
+                    </Col>
+                    <Col>
+                        {this.props.name}
+                    </Col>
+                </Row>
+            </Tooltip>
         );
     }
 }

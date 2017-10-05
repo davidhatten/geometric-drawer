@@ -11,12 +11,14 @@ const FlowerOfLifeForm = (props) => (
                     min={1}
                     max={10}
                     name={`Iterations`}
+                    description={`Number of layers to build around the central circle.`}
                     value={props.iterations}
                     updateValue={props.updateIterations}/>
                 <SliderInput
                     min={standardRadius.min}
                     max={standardRadius.max}
                     name={standardRadius.name}
+                    description={`The radius of each circle.`}
                     value={props.radius}
                     updateValue={props.updateRadius} />
             </Col>

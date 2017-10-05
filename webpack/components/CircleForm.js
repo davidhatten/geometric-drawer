@@ -13,6 +13,7 @@ const CircleForm = (props) => (
                     min={standardRadius.min}
                     max={standardRadius.max}
                     name={standardRadius.name}
+                    description={`The radius of the circle.`}
                     value={props.radius}
                     updateValue={props.updateRadius}
                 />

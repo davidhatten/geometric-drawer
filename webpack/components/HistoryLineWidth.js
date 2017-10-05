@@ -10,6 +10,7 @@ const HistoryLineWidth = props => (
                 min={standardLineWidth.min}
                 max={standardLineWidth.max}
                 name={standardLineWidth.name}
+                description={`The width of the drawn lines.`}
                 value={props.lineWidth}
                 updateValue={props.updateLineWidth} />
         </Col>

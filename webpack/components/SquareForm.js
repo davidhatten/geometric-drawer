@@ -11,6 +11,7 @@ const SquareForm = (props) => (
                     min={standardSquareLength.min}
                     max={standardSquareLength.max}
                     name={standardSquareLength.name}
+                    description={`The side length of the sqaure.`}
                     value={props.length}
                     updateValue={props.updateLength}
                 />
