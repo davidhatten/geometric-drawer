@@ -3,6 +3,7 @@ import { Row, Col, Form, Input, Popover, Button } from 'antd';
 import { connect } from "react-redux";
 import FlowerOfLifeForm from "./FlowerOfLifeForm";
 import HistoryEditPane from "../containers/HistoryEditPane";
+import { deleteShape } from "../actions/removeShapes";
 
 class HistoryRow extends Component {
     constructor(props) {
@@ -20,6 +21,9 @@ class HistoryRow extends Component {
                 <Col>
                     <HistoryEditPane shapeId={this.props.shapeId} />
                 </Col>
+                <Col>
+                    <Button type="danger" onClick={this.props.deleteShape(this.props.shapeId)}>Delete</Button>
+                </Col>
             </Row>
         );
     }
@@ -29,6 +33,9 @@ const mapStateToProps = state => ({
     historyData: state.shapeHistory.byId,
 });
 
+const mapDispatchToProps = dispatch => ({
+    deleteShape: (id) => () => {dispatch(deleteShape(id));},
+});
 
 
-export default connect(mapStateToProps)(HistoryRow);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryRow);

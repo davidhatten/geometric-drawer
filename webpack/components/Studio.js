@@ -7,7 +7,7 @@ import GeneralOptions from './GeneralOptionsConfig';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
-import { clearShapeHistory } from "../actions/clearShapeHistory";
+import { clearShapeHistory } from "../actions/removeShapes";
 
 const confirm = Modal.confirm;
 
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
     clearHistory: () => {dispatch(clearShapeHistory());},
 });
 
-export default connect(null, mapDispatchToProps)(Studio);
+export default connect(() => {}, mapDispatchToProps)(Studio);
