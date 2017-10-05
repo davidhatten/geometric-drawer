@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Modal } from 'antd';
 import Palette from '../containers/Palette';
 import Canvas from '../containers/Canvas';
 import History from '../containers/History';
@@ -9,6 +9,8 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/clearShapeHistory";
 
+const confirm = Modal.confirm;
+
 class Studio extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,17 @@ class Studio extends Component {
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
         saveSvgAsPng(canvas, `geometry.png`);
+    }
+    confirmClearHistory = () => {
+        const self = this;
+        confirm({
+            title: `Do you want to delete these items?`,
+            content: `When clicked the OK button, this dialog will be closed after 1 second`,
+            onOk() {
+                self.props.clearHistory();
+            },
+            onCancel() {},
+        });
     }
     render() {
         return (
@@ -45,8 +58,10 @@ class Studio extends Component {
                         <Row>
                             <GeneralOptions />
                         </Row>
-                        <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
-                        <Button type="danger" onClick={this.props.clearHistory}>Clear Canvas</Button>
+                        <Row type="flex" justify="space-around">
+                            <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                            <Button type="danger" onClick={this.confirmClearHistory}>Clear Canvas</Button>
+                        </Row>
                     </Col>
                 </Row>
             </div>
@@ -59,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
     clearHistory: () => {dispatch(clearShapeHistory());},
 });
 
-export default connect(mapDispatchToProps)(Studio);
+export default connect(null, mapDispatchToProps)(Studio);

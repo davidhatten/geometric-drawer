@@ -2,6 +2,7 @@ import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { nameFromConfig } from './../shapeConstants';
 import { historyConstants } from "../shapeConstants";
+import { CLEAR_HISTORY } from "../actions/clearShapeHistory";
 
 const initialState = {
     byId: {},
@@ -27,6 +28,8 @@ const changeShapeHistory = (state = initialState, action) => {
         };
 
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
+    case CLEAR_HISTORY:
+        return { byId: {}, allIds: [] };
     default:
         return state;
     }
