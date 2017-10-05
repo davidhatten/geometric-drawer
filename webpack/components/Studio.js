@@ -22,12 +22,13 @@ class Studio extends Component {
     confirmClearHistory = () => {
         const self = this;
         confirm({
-            title: `Do you want to delete these items?`,
-            content: `When clicked the OK button, this dialog will be closed after 1 second`,
+            title: `Do you want to delete everything on the canvas?`,
+            content: `Every shape on the canvas will be deleted. This cannot be undone. Are you sure?`,
             onOk() {
                 self.props.clearHistory();
             },
             onCancel() {},
+            okText: `Yes`,
         });
     }
     render() {
@@ -36,13 +37,11 @@ class Studio extends Component {
                 <Row type="flex" justify="space-around">
                     <Col lg={6} md={6} sm={6}>
                         <h2>Drawing History</h2>
-                        <hr />
                         <br />
                         <History />
                     </Col>
                     <Col lg={10} md={10} sm={10}>
                         <h2>Drawing Canvas</h2>
-                        <hr />
                         <br />
                         <ReactCursorPosition>
                             <Canvas />
@@ -51,6 +50,7 @@ class Studio extends Component {
                     <Col lg={6} md={6} sm={6}>
                         <Row>
                             <h2>Drawing Options</h2>
+                            <br />
                         </Row>
                         <Row>
                             <Palette />
