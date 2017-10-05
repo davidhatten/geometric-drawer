@@ -74,4 +74,5 @@ const mapDispatchToProps = dispatch => ({
     clearHistory: () => {dispatch(clearShapeHistory());},
 });
 
-export default connect(() => {}, mapDispatchToProps)(Studio);
+
+export default connect((state) => {}, mapDispatchToProps)(Studio);
