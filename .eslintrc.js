@@ -1,10 +1,13 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "plugin:react/recommended"],
     "rules": {
+        "react/prop-types": [0],
         "no-unused-vars": [
             "warn",
             {
@@ -33,8 +36,23 @@ module.exports = {
             "error",
             "always-multiline"
         ],
+        "object-curly-spacing": [
+          "warn",
+          "always"
+        ],
     },
     "globals": {
         "$": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "classes": true,
+            "jsx": true
+        }
     }
 };
