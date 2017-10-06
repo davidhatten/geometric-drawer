@@ -23,7 +23,6 @@ export const standardRadius = {
     min: 1,
     max: 1000,
     name: `Radius`,
-
 };
 
 export const standardSquareLength = {
@@ -102,6 +101,13 @@ export const historyConstants = {
     [ROUNDED_PETAL_CONFIG]: {
         shape: RoundedPetal,
         form: RoundedPetalForm,
+        stateToProps: id => state =>({
+            innerRadius: state.shapeProps.byId[id].innerRadius,
+            outerRadius: state.shapeProps.byId[id].innerRadius,
+            lineWidth: lineWidthState(state, id),
+        }),
+        dispatchToProps: id => dispatch => ({
 
+        }),
     },
 };

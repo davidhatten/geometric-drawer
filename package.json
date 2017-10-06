@@ -42,6 +42,7 @@
       },
       "dependencies": {
             "antd": "^2.13.0",
+            "point-on-circle": "^1.0.4",
             "prop-types": "^15.5.10",
             "react": "^16.0.0",
             "react-cursor-position": "^2.2.1",

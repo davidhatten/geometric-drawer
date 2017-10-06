@@ -11,13 +11,14 @@ import './style.less';
 import selectShape from './reducers/selectShape';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
-import { CIRCLE_CONFIG, FOL_CONFIG, SQUARE_CONFIG } from "./shapeConstants";
+import { CIRCLE_CONFIG, FOL_CONFIG, ROUNDED_PETAL_CONFIG, SQUARE_CONFIG } from "./shapeConstants";
 import changeFOLConfig from "./reducers/changeFOLConfig";
 import changeCircleConfig from "./reducers/changeCircleConfig";
 import changeSquareConfig from "./reducers/changeSquareConfig";
 import changeShapeProp from "./reducers/changeShapeProp";
 import { shapeHighlighting } from "./middleware/shapeHighlighting";
 import changeEditPopover from "./reducers/changeEditPopover";
+import changeRoundedPetalConfig from "./reducers/changeRoundedPetalConfig";
 
 
 let reducers = combineReducers({
@@ -25,6 +26,7 @@ let reducers = combineReducers({
     [FOL_CONFIG]: changeFOLConfig,
     [CIRCLE_CONFIG]: changeCircleConfig,
     [SQUARE_CONFIG]: changeSquareConfig,
+    [ROUNDED_PETAL_CONFIG]: changeRoundedPetalConfig,
     shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,
