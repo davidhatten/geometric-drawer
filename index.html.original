@@ -11,14 +11,14 @@
                     <h2 align="center">Select a design and click on the canvas!</h2>
                 </div>
 
-                <div class="small-6 cell canvasContent">
+                <div class="small-5 cell canvasContent">
                     <div class="spacer">
                         <svg id="drawingCanvas" viewBox="0 0 2550 3300" width="100%" height="100%" style="border:1px solid #d2d2d2;">
 
                         Your browser does not support HTML5 svg</svg>
                     </div>
                 </div>
-                <div class="small-6 cell">
+                <div class="small-4 cell">
                     <div class="callout">
                         <h3 data-toggle="stylesPanel">Styles</h3>
                         <div class="callout secondary" id="stylesPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
@@ -129,6 +129,19 @@
                                             <div class="small-4 cell">
                                                 <label>Base Circle Radius (px):
                                                     <input type="number" id="circleRadius" value="200" class="styleControl"/>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-item" data-accordion-item id="square">
+                                    <a class="accordion-title" href="#">Square</a>
+                                    <div class="accordion-content" data-tab-content>
+                                        <div class="grid-x grid-margin-x">
+                                            <div class="small-4 cell">
+                                                <label>Side Length (px):
+                                                    <input type="number" id="squareSideLength"
+                                                    value="200" class="styleControl" />
                                                 </label>
                                             </div>
                                         </div>
@@ -297,7 +310,10 @@
                         </form>
                         <hr />
 
-                        <div class="callout">
+                       
+                </div>
+                <div class="small-3 cell">
+                    <div class="callout">
                             <h3 data-toggle="historyPanel">History</h3>
                             <div class="callout secondary" id="historyPanel" data-toggler data-animate="hinge-in-from-top hinge-out-from-top">
                                 <table class="hover" id="historyTable">
@@ -327,7 +343,6 @@
         <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
         <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
         <script src="js/flowerOfLife.js"></script>
-        <script src="js/squareFormCircles.js"></script>
         <script src="js/offsetGrid.js"></script>
         <script src="js/metatronCube.js"></script>
         <script src="js/circleUtils.js"></script>
@@ -336,6 +351,7 @@
         <script src="js/circle.js"></script>
         <script src="js/dots.js"></script>
         <script src="js/quadCurvePetals.js"></script>
+        <script src="js/square.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>

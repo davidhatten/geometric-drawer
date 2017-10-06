@@ -5,6 +5,16 @@
 var scaleOffset = 1;
 var lineWidth = 1;
 
+function drawSquare(canvas, sideLength, x, y) {
+    const ctx = Snap(canvas);
+    const posAdj = sideLength/2;
+    const rectId = `square${Date.now()}`;
+    const rect = ctx.rect(x - posAdj, y - posAdj, sideLength, sideLength);
+    rect.attr({strokeWidth:lineWidth, stroke: `#000`, fillOpacity: `0.0`, id: rectId});
+
+    return {id: rectId};
+}
+
 function drawCircle(canvas, radius, x, y) {
     console.log(`Drawing radius x y ${radius} ${x} ${y}`);
     ctx = Snap(canvas);
