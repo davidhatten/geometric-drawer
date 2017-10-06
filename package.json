@@ -42,6 +42,7 @@
       },
       "dependencies": {
             "antd": "^2.13.0",
+            "path-svg": "^0.2.1",
             "point-on-circle": "^1.0.4",
             "prop-types": "^15.5.10",
             "react": "^16.0.0",
@@ -50,6 +51,7 @@
             "redux": "^3.7.2",
             "redux-thunk": "^2.2.0",
             "round-to": "^2.0.0",
-            "save-svg-as-png": "^1.2.0"
+            "save-svg-as-png": "^1.2.0",
+            "twirl": "^0.2.1"
       }
 }
