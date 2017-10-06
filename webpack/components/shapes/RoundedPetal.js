@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import circlePoint from 'point-on-circle';
-import { rotate } from "twirl";
-import SvgPath from 'path-svg';
+import twirl from "twirl";
+import SvgPath from 'path-svg/svg-path';
 
 class RoundedPetal extends Component {
     constructor(props) {
         super(props);
     }
-    drawSinglePetal(innerPoint, outerPoint, leftControlPoint, rightControlPoint) {
+    drawSinglePetal = (innerPoint, outerPoint, leftControlPoint, rightControlPoint) => {
         const path = SvgPath().to(innerPoint)
             .bezier2(leftControlPoint, outerPoint);
 
-        console.log("Drew a path object? ", path)
+        console.log(`RoundedPetal - Drew a path object? `, path);
+        console.log(`RoundedPetal - path string? `, path.str());
     }
     render() {
-        const { axes, innerRadius, outerRadius, x, y} = this.props;
+        console.log(`RoundedPetal - render`, this.props);
+        const { axes, innerRadius, outerRadius, x, y } = this.props;
         // Some of these don't make sense yet.
         // Most of this will be user input
         const yControlPoint = 100;
         const xControlPoint = 150;
         let angle = 0;
         const maxAngle = 360 + angle;
+        const angleIncrement = 360/axes;
         const result = [];
         const angleInRads = (Math.PI/180)*angle;
-        const centerPoint = {x: x, y: y};
+        const centerPoint = { x: x, y: y };
         /*
         This is roundabout enough to be worth explaining.
         The overall algorithm here is to calculate a petal at the 0 angle line,
@@ -35,8 +38,8 @@ class RoundedPetal extends Component {
          */
 
         // Get a point at the 0 degrees line, in JS that's x slope = 0 where positive is to the right
-        const innerPoint = circlePoint({x: x + innerRadius, y: y + innerRadius}, centerPoint, angleInRads);
-        const outerPoint = circlePoint({x: x + outerRadius, y: y + outerRadius}, centerPoint, angleInRads);
+        const innerPoint = circlePoint({ x: x + innerRadius, y: y + innerRadius }, centerPoint, angleInRads);
+        const outerPoint = circlePoint({ x: x + outerRadius, y: y + outerRadius }, centerPoint, angleInRads);
 
         /*
         I didn't properly document this when I originally wrote it.
@@ -45,16 +48,19 @@ class RoundedPetal extends Component {
 
         The strange addition and subtraction is because of the way that JS defines 0 degrees
         */
-        const leftControlPoint = {x: innerPoint.x + yControlPoint, y: innerPoint.y - xControlPoint};
-        const rightControlPoint = {x: innerPoint.x + yControlPoint, y: innerPoint.y + xControlPoint};
+        const leftControlPoint = { x: innerPoint.x + yControlPoint, y: innerPoint.y - xControlPoint };
+        const rightControlPoint = { x: innerPoint.x + yControlPoint, y: innerPoint.y + xControlPoint };
 
         while (angle < maxAngle) {
             result.push(this.drawSinglePetal(
-                rotate(angle, innerPoint),
-                rotate(angle, outerPoint),
-                rotate(angle, leftControlPoint),
-                rotate(angle, rightControlPoint),
+                // You're using rotate wrong, silly
+                twirl.rotate(angle, innerPoint),
+                twirl.rotate(angle, outerPoint),
+                twirl.rotate(angle, leftControlPoint),
+                twirl.rotate(angle, rightControlPoint),
             ));
+
+            angle += angleIncrement;
         }
 
         return (
