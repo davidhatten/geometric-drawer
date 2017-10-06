@@ -5,9 +5,13 @@ import PaletteHeader from '../components/PaletteHeader';
 import CircleConfig from './CircleConfig';
 import SquareConfig from './SquareConfig';
 import FlowerOfLifeConfig from './FlowerOfLifeConfig';
-import { CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME } from '../shapeConstants';
+import {
+    CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME,
+    ROUNDED_PETAL_CONFIG, ROUNDED_PETAL_NAME,
+} from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
+import RoundedPetalConfig from "./RoundedPetalConfig";
 
 const Panel = Collapse.Panel;
 
@@ -34,9 +38,12 @@ class Palette extends Component {
                     name={SQUARE_NAME}
                     img="assets/img/square.png"
                     description="A simple square. Centered on your click."/>}>
-                    <SquareConfig
-                        height="100"
-                        width="100" />
+                    <SquareConfig />
+                </Panel>
+                <Panel key={ROUNDED_PETAL_CONFIG} header={<PaletteHeader
+                    name={ROUNDED_PETAL_NAME}
+                    description="A circle of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'"/>}>
+                    <RoundedPetalConfig />
                 </Panel>
             </Collapse>
         );

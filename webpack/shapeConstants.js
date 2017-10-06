@@ -5,13 +5,18 @@ import SquareForm from "./components/forms/SquareForm";
 import FlowerOfLife from "./components/shapes/FlowerOfLife";
 import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
+import RoundedPetal from "./components/shapes/RoundedPetal";
+import RoundedPetalForm from "./components/forms/RoundedPetalForm";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
+export const ROUNDED_PETAL_NAME = `Rounded Petal`;
+
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
 export const SQUARE_CONFIG = `SQUARE_CONFIG`;
+export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
 
 export const standardRadius = {
     value: 300,
@@ -38,6 +43,7 @@ const configToNameMap = {
     [FOL_CONFIG]: FOL_NAME,
     [CIRCLE_CONFIG]: CIRCLE_NAME,
     [SQUARE_CONFIG]: SQUARE_NAME,
+    [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
 };
 
 export const nameFromConfig = name => {
@@ -92,5 +98,10 @@ export const historyConstants = {
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
+    },
+    [ROUNDED_PETAL_CONFIG]: {
+        shape: RoundedPetal,
+        form: RoundedPetalForm,
+
     },
 };
