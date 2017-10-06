@@ -1,7 +1,7 @@
 import { FOL_CONFIG } from '../shapeConstants';
 import { connect } from 'react-redux';
 import { changeIterations, changeRadius } from '../actions/changeFOLConfig';
-import FlowerOfLifeForm from "../components/FlowerOfLifeForm";
+import FlowerOfLifeForm from "../components/forms/FlowerOfLifeForm";
 
 const mapStateToProps = state => ({
     iterations: state[FOL_CONFIG].iterations,

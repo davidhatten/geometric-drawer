@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Modal } from 'antd';
-import Palette from '../containers/Palette';
-import Canvas from '../containers/Canvas';
-import History from '../containers/History';
-import GeneralOptions from './GeneralOptionsConfig';
+import Palette from './Palette';
+import Canvas from './Canvas';
+import History from './History';
+import GeneralOptions from '../components/GeneralOptionsConfig';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";

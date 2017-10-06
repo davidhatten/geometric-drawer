@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Form, Input, Tooltip } from 'antd';
-import SliderInput from "./SliderInput";
-import { standardRadius } from "../shapeConstants";
+import SliderInput from "../controls/SliderInput";
+import { standardRadius } from "../../shapeConstants";
 
 const FlowerOfLifeForm = (props) => (
     <Form>

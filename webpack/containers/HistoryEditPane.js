@@ -3,7 +3,7 @@ import { Button, Popover } from "antd";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
-import HistoryLineWidth from "../components/HistoryLineWidth";
+import HistoryLineWidth from "../components/controls/HistoryLineWidth";
 
 class HistoryEditPane extends Component {
     constructor(props) {

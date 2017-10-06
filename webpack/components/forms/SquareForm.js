@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Form, Row } from "antd";
-import SliderInput from "./SliderInput";
-import { standardSquareLength } from "../shapeConstants";
+import SliderInput from "../controls/SliderInput";
+import { standardSquareLength } from "../../shapeConstants";
 
 const SquareForm = (props) => (
     <Form>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Form, Input, Popover, Button } from 'antd';
 import { connect } from "react-redux";
-import FlowerOfLifeForm from "./FlowerOfLifeForm";
+import FlowerOfLifeForm from "./forms/FlowerOfLifeForm";
 import HistoryEditPane from "../containers/HistoryEditPane";
 import { deleteShape } from "../actions/removeShapes";
 

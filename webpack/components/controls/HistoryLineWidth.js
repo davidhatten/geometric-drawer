@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Form, Row } from 'antd';
 import SliderInput from "./SliderInput";
-import { standardLineWidth } from "../shapeConstants";
+import { standardLineWidth } from "../../shapeConstants";
 
 const HistoryLineWidth = props => (
     <Row type="flex" justify="space-around">

@@ -1,9 +1,9 @@
-import Circle from "./components/Circle";
-import CircleForm from "./components/CircleForm";
-import Square from "./components/Square";
-import SquareForm from "./components/SquareForm";
-import FlowerOfLife from "./components/FlowerOfLife";
-import FlowerOfLifeForm from "./components/FlowerOfLifeForm";
+import Circle from "./components/shapes/Circle";
+import CircleForm from "./components/forms/CircleForm";
+import Square from "./components/shapes/Square";
+import SquareForm from "./components/forms/SquareForm";
+import FlowerOfLife from "./components/shapes/FlowerOfLife";
+import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 
 export const CIRCLE_NAME = `Circle`;

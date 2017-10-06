@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { changeGeneralConfig } from "../actions/changeGeneralConfig";
-import HistoryLineWidth from "../components/HistoryLineWidth";
+import HistoryLineWidth from "../components/controls/HistoryLineWidth";
 
 const mapStateToProps = state => ({
     lineWidth: state.generalConfig.strokeWidth,

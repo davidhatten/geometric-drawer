@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Title from './Title';
-import Studio from './Studio';
+import Studio from '../containers/Studio';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 

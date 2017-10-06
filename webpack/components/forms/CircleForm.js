@@ -1,7 +1,7 @@
 import React from 'react';
 import {Col, Form, Input, Row} from "antd";
-import SliderInput from "./SliderInput";
-import { standardRadius } from "../shapeConstants";
+import SliderInput from "../controls/SliderInput";
+import { standardRadius } from "../../shapeConstants";
 
 const CircleForm = (props) => (
 
