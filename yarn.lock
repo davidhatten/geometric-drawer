@@ -3581,6 +3581,10 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
+path-svg@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/path-svg/-/path-svg-0.2.1.tgz#1dddbbde61101d914027ece160e6c5442b19bf09"
+
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
@@ -3640,6 +3644,10 @@ pkg-dir@^2.0.0:
 pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
+
+point-on-circle@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/point-on-circle/-/point-on-circle-1.0.4.tgz#b93c83a41d698e8bfdac9f6ec12cf161003153c0"
 
 portfinder@^1.0.9:
   version "1.0.13"
@@ -5168,6 +5176,10 @@ tunnel-agent@^0.6.0:
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
+
+twirl@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/twirl/-/twirl-0.2.1.tgz#5083587bf409c7ae64e2842fe7d0578622127afa"
 
 type-check@~0.3.2:
   version "0.3.2"

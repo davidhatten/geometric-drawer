@@ -1,8 +1,8 @@
 import React  from 'react';
 import { connect } from 'react-redux';
-import { CIRCLE_CONFIG } from '../shapeConstants';
-import { changeRadius } from '../actions/changeCircleConfig';
-import CircleForm from "../components/forms/CircleForm";
+import { CIRCLE_CONFIG } from '../../shapeConstants';
+import { changeRadius } from '../../actions/changeCircleConfig';
+import CircleForm from "../../components/forms/CircleForm";
 
 const mapStateToProps = state => ({
     radius: state[CIRCLE_CONFIG].radius,

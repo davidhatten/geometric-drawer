@@ -14,7 +14,6 @@ class Canvas extends Component {
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
-        console.log(`canvas - initateDraw`, this.props);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
@@ -31,7 +30,10 @@ class Canvas extends Component {
         };
         const { shapeData, shapeProps, shapesIds } = this.props;
         const drawnShapes = shapesIds.map((shapeId, index) =>
-            React.createElement(shapeData[shapeId].shapeTag, {...shapeProps[shapeId], key: index})
+            React.createElement(shapeData[shapeId].shapeTag,
+                { ...shapeProps[shapeId],
+                    key: index }
+            )
         );
         return (
             <div>

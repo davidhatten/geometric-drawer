@@ -13,18 +13,21 @@ export const triggerDraw = (location) => {
 
         // Style will eventually come from state
         // But it will be assembled here
+        const id = generateId(shape);
         const payload = {
             shape: shape,
             props: {
                 ...location,
                 ...config,
-                style: {
-                    strokeWidth: style.strokeWidth,
-                    fill: `none`,
-                    stroke: `black`,
-                },
+                style: id,
             },
-            id: generateId(shape),
+            style: {
+                strokeWidth: style.strokeWidth,
+                fill: `none`,
+                stroke: `black`,
+                strokeLinecap: `round`,
+            },
+            id: id,
         };
         dispatch(drawShape(payload));
     };

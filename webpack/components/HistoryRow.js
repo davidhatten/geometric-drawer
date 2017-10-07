@@ -8,10 +8,8 @@ import { deleteShape } from "../actions/removeShapes";
 class HistoryRow extends Component {
     constructor(props) {
         super(props);
-        console.log(`HistoryRow constructor`, props);
     }
     render() {
-        console.log(`HistoryRow - render()`);
         let shape = this.props.historyData[this.props.shapeId];
         return (
             <Row type="flex" justify="space-around">

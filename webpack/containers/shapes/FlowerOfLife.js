@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import roundTo from 'round-to';
+import { connect } from "react-redux";
 
 class FlowerOfLife extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class FlowerOfLife extends Component {
         }
 
         return usedPetals.map((petal, index) => {
-            return <circle key={index} cx={petal.x} cy={petal.y} r={radius} {...this.props.style} />;
+            return <circle key={index} cx={petal.x} cy={petal.y} r={radius} style={this.props.styleProps[this.props.style]} />;
         });
     }
     drawOuterPetals = (radius, innerPetals, petalAngles, usedPetals) => {
@@ -48,7 +49,7 @@ class FlowerOfLife extends Component {
                 const sqrX = innerPetals[i].x + radius * Math.cos(Math.PI * petalAngles[j]);
                 const sqrY = innerPetals[i].y + radius * Math.sin(Math.PI * petalAngles[j]);
 
-                const circle = { x:sqrX, y:sqrY};
+                const circle = { x:sqrX, y:sqrY };
 
                 if (this.arrayContains(usedPetals, circle) === false) {
                     outerPetals.push(circle);
@@ -85,4 +86,8 @@ class FlowerOfLife extends Component {
 
 }
 
-export default FlowerOfLife;
+const mapStateToProps = state => ({
+    styleProps: state.shapeStyle.byId,
+});
+
+export default connect(mapStateToProps)(FlowerOfLife);

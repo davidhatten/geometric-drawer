@@ -1,5 +1,7 @@
 import { DRAW_SHAPE } from "../actions/drawShape";
 import { CHANGE_PROP, CHANGE_STYLE } from "../actions/changeHistoryProp";
+import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
+import { clearShapeData } from "../stateUtil";
 
 const initialState = {
     byId: {},
@@ -14,10 +16,10 @@ const changeShapeProp = (state = initialState, action) => {
     case CHANGE_PROP:
         id = action.payload.id;
         return { ...state, byId: { ...state.byId, [id]: { ...state.byId[id], [action.payload.prop]: action.payload.value } } };
-    case CHANGE_STYLE:
-        // Normalize this trash yo
-        id = action.payload.id;
-        return { ...state, byId: { ...state.byId, [id]: { ...state.byId[id], style: { ...state.byId[id].style, [action.payload.style]: action.payload.value } } } };
+    case DELETE_SHAPE:
+        return clearShapeData(state.byId, state.allIds, action.payload);
+    case CLEAR_HISTORY:
+        return { byId: {}, allIds: [] };
     default:
         return state;
     }
