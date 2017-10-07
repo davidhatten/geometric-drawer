@@ -18,11 +18,11 @@ export const triggerDraw = (location) => {
             props: {
                 ...location,
                 ...config,
-                style: {
-                    strokeWidth: style.strokeWidth,
-                    fill: `none`,
-                    stroke: `black`,
-                },
+            },
+            style: {
+                strokeWidth: style.strokeWidth,
+                fill: `none`,
+                stroke: `black`,
             },
             id: generateId(shape),
         };

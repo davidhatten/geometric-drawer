@@ -19,6 +19,7 @@ import changeShapeProp from "./reducers/changeShapeProp";
 import { shapeHighlighting } from "./middleware/shapeHighlighting";
 import changeEditPopover from "./reducers/changeEditPopover";
 import changeRoundedPetalConfig from "./reducers/changeRoundedPetalConfig";
+import changeShapeStyle from "./reducers/changeShapeStyle";
 
 
 let reducers = combineReducers({
@@ -27,6 +28,7 @@ let reducers = combineReducers({
     [CIRCLE_CONFIG]: changeCircleConfig,
     [SQUARE_CONFIG]: changeSquareConfig,
     [ROUNDED_PETAL_CONFIG]: changeRoundedPetalConfig,
+    shapeStyle: changeShapeStyle,
     shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,
     generalConfig: changeGeneralConfig,

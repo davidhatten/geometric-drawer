@@ -5,7 +5,14 @@ class FlowerOfLife extends Component {
     constructor(props) {
         super(props);
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(`shouldComponentUpdate - nextProps`, nextProps);
+        console.log(`shouldComponentUpdate - this.props`, this.props);
+        console.log(`shouldComponentUpdate - props equals`, nextProps === this.props);
+        return false;
+    }
     drawFlower = () => {
+        console.log(`FlowerOfLife - Render`);
         const innerPetals = [];
         const angleDegrees = [];
         const petalCount = 6;
@@ -48,7 +55,7 @@ class FlowerOfLife extends Component {
                 const sqrX = innerPetals[i].x + radius * Math.cos(Math.PI * petalAngles[j]);
                 const sqrY = innerPetals[i].y + radius * Math.sin(Math.PI * petalAngles[j]);
 
-                const circle = { x:sqrX, y:sqrY};
+                const circle = { x:sqrX, y:sqrY };
 
                 if (this.arrayContains(usedPetals, circle) === false) {
                     outerPetals.push(circle);
