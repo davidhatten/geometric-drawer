@@ -13,8 +13,6 @@ const initialState = {
 const changeShapeHistory = (state = initialState, action) => {
     switch(action.type) {
     case DRAW_SHAPE:
-        console.log(`drawShape - state `, state);
-        console.log(`drawShape - action`, action);
         const payload = action.payload;
         const id = action.payload.id;
         let shapeMetaConfig = historyConstants[payload.shape];

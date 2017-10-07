@@ -17,7 +17,6 @@ class RoundedPetal extends Component {
         return path.str();
     }
     render() {
-        console.log(`RoundedPetal - render`, this.props);
         const { axes, innerRadius, outerRadius, x, y, xControl, yControl } = this.props;
         // Some of these don't make sense yet.
         // Most of this will be user input

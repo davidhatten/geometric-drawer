@@ -9,10 +9,8 @@ const TimeItem = Timeline.Item;
 class History extends Component {
     constructor(props) {
         super(props);
-        console.log(`History`, props);
     }
     render() {
-        console.log(`History - render()`);
         const { history } = this.props;
 
         const historyItems = history.map((shapeId, index) =>

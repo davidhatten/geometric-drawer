@@ -14,7 +14,6 @@ class Canvas extends Component {
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
-        console.log(`canvas - initateDraw`, this.props);
         const absPosition = {
             x: (this.state.svgWidth/elementDimensions.width) * position.x ,
             y: (this.state.svgHeight/elementDimensions.height) * position.y,
