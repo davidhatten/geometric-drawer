@@ -5,14 +5,14 @@ import {connect} from "react-redux";
 
 const FormItem = Form.Item;
 
-class HorizontalAxisLock extends Component {
+class VerticalAxisLock extends Component {
     constructor(props) {
         super(props);
     }
     render() {
         return(
             <Row type="flex" justify="start" align="middle">
-                <FormItem label="Center Horizontal Axis">
+                <FormItem label="Center Vertical Axis">
                     <Switch checked={this.props.checked} onChange={this.props.toggleHorizontal} />
                 </FormItem>
             </Row>
@@ -22,12 +22,12 @@ class HorizontalAxisLock extends Component {
 
 
 const mapStateToProp = state => ({
-    checked: state.generalConfig.lockHorizontal,
+    checked: state.generalConfig.lockVertical,
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleHorizontal: (checked) => {dispatch(changeGeneralConfig({lockHorizontal: checked}));},
+    toggleHorizontal: (checked) => {dispatch(changeGeneralConfig({lockVertical: checked}));},
 });
 
 
-export default connect(mapStateToProp, mapDispatchToProps)(HorizontalAxisLock);
+export default connect(mapStateToProp, mapDispatchToProps)(VerticalAxisLock);
