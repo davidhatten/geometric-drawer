@@ -11,6 +11,8 @@ const initialState = {
     axes: 6,
     xControl: 150,
     yControl: 50,
+    outerGap: 0,
+    innerGap: 0,
 };
 
 const changeRoundedPetalConfig = (state = initialState, action) => {

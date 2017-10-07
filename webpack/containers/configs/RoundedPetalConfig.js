@@ -3,7 +3,7 @@ import RoundedPetalForm from "../../components/forms/RoundedPetalForm";
 import { connect } from "react-redux";
 import { ROUNDED_PETAL_CONFIG } from "../../shapeConstants";
 import {
-    changeAxes, changeInnerRadius, changeOuterRadius,
+    changeAxes, changeInnerGap, changeInnerRadius, changeOuterGap, changeOuterRadius,
     changeXControl, changeYControl
 } from "../../actions/changeRoundedPetalConfig";
 
@@ -13,6 +13,8 @@ const mapStateToProps = state => ({
     xControl: state[ROUNDED_PETAL_CONFIG].xControl,
     yControl: state[ROUNDED_PETAL_CONFIG].yControl,
     axes: state[ROUNDED_PETAL_CONFIG].axes,
+    innerGap: state[ROUNDED_PETAL_CONFIG].innerGap,
+    outerGap: state[ROUNDED_PETAL_CONFIG].outerGap,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
     updateXControl: value => {dispatch(changeXControl(parseInt(value)));},
     updateYControl: value => {dispatch(changeYControl(parseInt(value)));},
     updateAxes: value => {dispatch(changeAxes(parseInt(value)));},
+    updateInnerGap: value => {dispatch(changeInnerGap(parseInt(value)));},
+    updateOuterGap: value => {dispatch(changeOuterGap(parseInt(value)));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoundedPetalForm);

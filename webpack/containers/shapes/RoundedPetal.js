@@ -17,7 +17,7 @@ class RoundedPetal extends Component {
         return path.str();
     }
     render() {
-        const { axes, innerRadius, outerRadius, x, y, xControl, yControl } = this.props;
+        const { axes, innerRadius, outerRadius, x, y, xControl, yControl, innerGap, outerGap } = this.props;
         // Some of these don't make sense yet.
         // Most of this will be user input
         let angle = 0;
@@ -41,20 +41,25 @@ class RoundedPetal extends Component {
         const innerPoint = { x: x, y: y - innerRadius };
         const outerPoint = { x: x, y: y - outerRadius };
 
+        const innerLeftPoint = { x: innerPoint.x - innerGap, y: innerPoint.y };
+        const innerRightPoint = { x: innerPoint.x + innerGap, y: innerPoint.y };
+        const outerLeftPoint = { x: outerPoint.x - outerGap, y: outerPoint.y };
+        const outerRightPoint = { x: outerPoint.x + outerGap, y: outerPoint.y };
+
         // The strange addition and subtraction is an artifact of how 0, 0 is defined
-        const leftControlPoint = { x: innerPoint.x - xControl, y: innerPoint.y - yControl };
-        const rightControlPoint = { x: innerPoint.x + xControl, y: innerPoint.y - yControl };
+        const leftControlPoint = { x: innerLeftPoint.x - xControl, y: innerLeftPoint.y - yControl };
+        const rightControlPoint = { x: innerRightPoint.x + xControl, y: innerRightPoint.y - yControl };
 
         while (angle < maxAngle) {
             paths.push(this.drawHalfPetal(
-                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerPoint)]),
-                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerLeftPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerLeftPoint)]),
                 twirl.rotateZoom(angle, centerPoint, 1, [Object.values(leftControlPoint)]),
             ));
 
             paths.push(this.drawHalfPetal(
-                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerPoint)]),
-                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerRightPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerRightPoint)]),
                 twirl.rotateZoom(angle, centerPoint, 1, [Object.values(rightControlPoint)]),
             ));
 
