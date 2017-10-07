@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import circlePoint from 'point-on-circle';
 import twirl from "twirl";
 import SvgPath from 'path-svg/svg-path';
+import { connect } from "react-redux";
 
 class RoundedPetal extends Component {
     constructor(props) {
         super(props);
     }
-    drawSinglePetal = (innerPoint, outerPoint, leftControlPoint, rightControlPoint) => {
-        const path = SvgPath().to(innerPoint)
-            .bezier2(leftControlPoint, outerPoint);
+    drawHalfPetal = (innerPoint, outerPoint, controlPoint) => {
+        // This goofy array spreading is because of the rotate library
+        // at least it's confined to here
+        const path = SvgPath().to(...innerPoint[0])
+            .bezier2(...controlPoint[0], ...outerPoint[0]);
 
-        console.log(`RoundedPetal - Drew a path object? `, path);
-        console.log(`RoundedPetal - path string? `, path.str());
+        return path.str();
     }
     render() {
         console.log(`RoundedPetal - render`, this.props);
@@ -24,7 +26,7 @@ class RoundedPetal extends Component {
         let angle = 0;
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
-        const result = [];
+        const paths = [];
         const angleInRads = (Math.PI/180)*angle;
         const centerPoint = { x: x, y: y };
         /*
@@ -49,25 +51,42 @@ class RoundedPetal extends Component {
         The strange addition and subtraction is because of the way that JS defines 0 degrees
         */
         const leftControlPoint = { x: innerPoint.x + yControlPoint, y: innerPoint.y - xControlPoint };
-        const rightControlPoint = { x: innerPoint.x + yControlPoint, y: innerPoint.y + xControlPoint };
+        const rightControlPoint = { x: innerPoint.x - yControlPoint, y: innerPoint.y + xControlPoint };
 
+
+        const centerPointArr = Object.values(centerPoint);
         while (angle < maxAngle) {
-            result.push(this.drawSinglePetal(
-                // You're using rotate wrong, silly
-                twirl.rotate(angle, innerPoint),
-                twirl.rotate(angle, outerPoint),
-                twirl.rotate(angle, leftControlPoint),
-                twirl.rotate(angle, rightControlPoint),
+            paths.push(this.drawHalfPetal(
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(innerPoint)]),
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(leftControlPoint)]),
+            ));
+
+            paths.push(this.drawHalfPetal(
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(innerPoint)]),
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(rightControlPoint)]),
             ));
 
             angle += angleIncrement;
         }
 
+        const drawnResults = paths.map((result, index) =>
+            <path key={index} d={result} {...this.props.styleProps[this.props.style]} />
+        );
+
         return (
-            <circle r="200" cx={this.props.x} cy={this.props.y} {...this.props.style} />
+            <g>
+                { drawnResults }
+            </g>
         );
 
     }
 }
 
-export default RoundedPetal;
+
+const mapStateToProps = state => ({
+    styleProps: state.shapeStyle.byId,
+});
+
+export default connect(mapStateToProps)(RoundedPetal);
