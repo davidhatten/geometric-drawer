@@ -18,17 +18,15 @@ class RoundedPetal extends Component {
     }
     render() {
         console.log(`RoundedPetal - render`, this.props);
-        const { axes, innerRadius, outerRadius, x, y } = this.props;
+        const { axes, innerRadius, outerRadius, x, y, xControl, yControl } = this.props;
         // Some of these don't make sense yet.
         // Most of this will be user input
-        const yControlPoint = 100;
-        const xControlPoint = 150;
         let angle = 0;
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
         const paths = [];
         const angleInRads = (Math.PI/180)*angle;
-        const centerPoint = { x: x, y: y };
+        const centerPoint = [x, y];
         /*
         This is roundabout enough to be worth explaining.
         The overall algorithm here is to calculate a petal at the 0 angle line,
@@ -39,33 +37,27 @@ class RoundedPetal extends Component {
         I do not intend to consider those alternatives until I see a performance problem
          */
 
-        // Get a point at the 0 degrees line, in JS that's x slope = 0 where positive is to the right
-        const innerPoint = circlePoint({ x: x + innerRadius, y: y + innerRadius }, centerPoint, angleInRads);
-        const outerPoint = circlePoint({ x: x + outerRadius, y: y + outerRadius }, centerPoint, angleInRads);
+        // Get a point at the 0 degrees line which I'm defining as vertical, the y axis
+        // HTML canvas is defined with 0, 0 at the top-left corner
+        // and positive direction is down and to the right
+        const innerPoint = { x: x, y: y - innerRadius };
+        const outerPoint = { x: x, y: y - outerRadius };
 
-        /*
-        I didn't properly document this when I originally wrote it.
-        Therefore, I can't explain why the control point inputs are mapped opposite to what they seem they should be
-        But this is correct. Trust it.
+        // The strange addition and subtraction is an artifact of how 0, 0 is defined
+        const leftControlPoint = { x: innerPoint.x - xControl, y: innerPoint.y - yControl };
+        const rightControlPoint = { x: innerPoint.x + xControl, y: innerPoint.y - yControl };
 
-        The strange addition and subtraction is because of the way that JS defines 0 degrees
-        */
-        const leftControlPoint = { x: innerPoint.x + yControlPoint, y: innerPoint.y - xControlPoint };
-        const rightControlPoint = { x: innerPoint.x - yControlPoint, y: innerPoint.y + xControlPoint };
-
-
-        const centerPointArr = Object.values(centerPoint);
         while (angle < maxAngle) {
             paths.push(this.drawHalfPetal(
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(innerPoint)]),
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(outerPoint)]),
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(leftControlPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(leftControlPoint)]),
             ));
 
             paths.push(this.drawHalfPetal(
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(innerPoint)]),
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(outerPoint)]),
-                twirl.rotateZoom(angle, centerPointArr, 1, [Object.values(rightControlPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(innerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(outerPoint)]),
+                twirl.rotateZoom(angle, centerPoint, 1, [Object.values(rightControlPoint)]),
             ));
 
             angle += angleIncrement;

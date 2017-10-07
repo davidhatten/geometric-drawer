@@ -103,11 +103,17 @@ export const historyConstants = {
         form: RoundedPetalForm,
         stateToProps: id => state =>({
             innerRadius: state.shapeProps.byId[id].innerRadius,
-            outerRadius: state.shapeProps.byId[id].innerRadius,
+            outerRadius: state.shapeProps.byId[id].outerRadius,
+            xControl: state.shapeProps.byId[id].xControl,
+            yControl: state.shapeProps.byId[id].yControl,
             lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
-
+            updateInnerRadius: value => {dispatch(changeHistoryProp(id, `innerRadius`, parseInt(value)));},
+            updateOuterRadius: value => {dispatch(changeHistoryProp(id, `outerRadius`, parseInt(value)));},
+            updateXControl: value => {dispatch(changeHistoryProp(id, `xControl`, parseInt(value)));},
+            updateYControl: value => {dispatch(changeHistoryProp(id, `yControl`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
 };

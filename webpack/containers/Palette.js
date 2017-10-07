@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Collapse } from 'antd';
 import PaletteHeader from '../components/PaletteHeader';
-import CircleConfig from './CircleConfig';
-import SquareConfig from './SquareConfig';
-import FlowerOfLifeConfig from './FlowerOfLifeConfig';
+import CircleConfig from './configs/CircleConfig';
+import SquareConfig from './configs/SquareConfig';
+import FlowerOfLifeConfig from './configs/FlowerOfLifeConfig';
 import {
     CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME,
     ROUNDED_PETAL_CONFIG, ROUNDED_PETAL_NAME,
 } from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
-import RoundedPetalConfig from "./RoundedPetalConfig";
+import RoundedPetalConfig from "./configs/RoundedPetalConfig";
 
 const Panel = Collapse.Panel;
 
