@@ -1,24 +1,29 @@
-import Circle from "./components/shapes/Circle";
+import Circle from "./containers/shapes/Circle";
 import CircleForm from "./components/forms/CircleForm";
-import Square from "./components/shapes/Square";
+import Square from "./containers/shapes/Square";
 import SquareForm from "./components/forms/SquareForm";
-import FlowerOfLife from "./components/shapes/FlowerOfLife";
+import FlowerOfLife from "./containers/shapes/FlowerOfLife";
 import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
+import RoundedPetal from "./containers/shapes/RoundedPetal";
+import RoundedPetalForm from "./components/forms/RoundedPetalForm";
+import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/changeRoundedPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
+export const ROUNDED_PETAL_NAME = `Rounded Petals`;
+
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
 export const SQUARE_CONFIG = `SQUARE_CONFIG`;
+export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
 
 export const standardRadius = {
     value: 300,
     min: 1,
     max: 1000,
     name: `Radius`,
-
 };
 
 export const standardSquareLength = {
@@ -38,6 +43,7 @@ const configToNameMap = {
     [FOL_CONFIG]: FOL_NAME,
     [CIRCLE_CONFIG]: CIRCLE_NAME,
     [SQUARE_CONFIG]: SQUARE_NAME,
+    [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
 };
 
 export const nameFromConfig = name => {
@@ -45,7 +51,7 @@ export const nameFromConfig = name => {
 };
 
 const lineWidthState = (state, id) => (
-    state.shapeProps.byId[id].style.strokeWidth
+    state.shapeStyle.byId[id].strokeWidth
 );
 
 const lineWidthDispatch = (dispatch, id) => (value) => (
@@ -90,6 +96,30 @@ export const historyConstants = {
         dispatchToProps: id => dispatch => ({
             updateIterations: (value) => {dispatch(changeHistoryProp(id, `iterations`, parseInt(value)));},
             updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
+        }),
+    },
+    [ROUNDED_PETAL_CONFIG]: {
+        shape: RoundedPetal,
+        form: RoundedPetalForm,
+        stateToProps: id => state =>({
+            innerRadius: state.shapeProps.byId[id].innerRadius,
+            outerRadius: state.shapeProps.byId[id].outerRadius,
+            xControl: state.shapeProps.byId[id].xControl,
+            yControl: state.shapeProps.byId[id].yControl,
+            axes: state.shapeProps.byId[id].axes,
+            innerGap: state.shapeProps.byId[id].innerGap,
+            outerGap: state.shapeProps.byId[id].outerGap,
+            lineWidth: lineWidthState(state, id),
+        }),
+        dispatchToProps: id => dispatch => ({
+            updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, parseInt(value)));},
+            updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, parseInt(value)));},
+            updateXControl: value => {dispatch(changeHistoryProp(id, `xControl`, parseInt(value)));},
+            updateYControl: value => {dispatch(changeHistoryProp(id, `yControl`, parseInt(value)));},
+            updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
+            updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, parseInt(value)));},
+            updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },

@@ -9,15 +9,10 @@ class HistoryEditPane extends Component {
     constructor(props) {
         super(props);
     }
-    mouseEnter = () => {
-        console.log(`HistoryEditPane - mouseEnter`);
-    }
     openOrClose = (val) => {
-        console.log(`HistoryEditPane - openOrClose`, val);
         val ? this.props.openPopover(this.props.shapeId) : this.props.closePopover(this.props.shapeId);
     }
     render() {
-        console.log(`History Edit Pane - render()`);
         let shapeId = this.props.shapeId;
         const shape = this.props.historyData[shapeId];
         const optionsConnect = connect(shape.mapStateToProps, shape.mapDispatchToProps);

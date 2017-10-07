@@ -8,7 +8,6 @@ const CircleForm = (props) => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
-                {console.log(props)}
                 <SliderInput
                     min={standardRadius.min}
                     max={standardRadius.max}
