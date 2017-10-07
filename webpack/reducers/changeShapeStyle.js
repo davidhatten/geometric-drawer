@@ -1,7 +1,6 @@
 import React from 'react';
 import { CHANGE_STYLE } from "../actions/changeHistoryProp";
 import { DRAW_SHAPE } from "../actions/drawShape";
-import { CLEAR_HISTORY } from "../actions/removeShapes";
 
 const initialState = {
     byId: {},
@@ -21,7 +20,7 @@ const changeShapeStyle = (state = initialState, action) => {
             allIds: state.allIds.concat(newId),
         };
     case CHANGE_STYLE:
-        const { id, style, value } = action.payload.id;
+        const { id, style, value } = action.payload;
         return {
             ...state,
             byId: {

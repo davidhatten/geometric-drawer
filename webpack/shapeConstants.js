@@ -1,11 +1,11 @@
-import Circle from "./components/shapes/Circle";
+import Circle from "./containers/shapes/Circle";
 import CircleForm from "./components/forms/CircleForm";
-import Square from "./components/shapes/Square";
+import Square from "./containers/shapes/Square";
 import SquareForm from "./components/forms/SquareForm";
-import FlowerOfLife from "./components/shapes/FlowerOfLife";
+import FlowerOfLife from "./containers/shapes/FlowerOfLife";
 import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
-import RoundedPetal from "./components/shapes/RoundedPetal";
+import RoundedPetal from "./containers/shapes/RoundedPetal";
 import RoundedPetalForm from "./components/forms/RoundedPetalForm";
 
 export const CIRCLE_NAME = `Circle`;
