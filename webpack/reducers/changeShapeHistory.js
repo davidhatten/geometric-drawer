@@ -3,6 +3,7 @@ import React from 'react';
 import { nameFromConfig } from './../shapeConstants';
 import { historyConstants } from "../shapeConstants";
 import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
+import { clearShapeData } from "../stateUtil";
 
 const initialState = {
     byId: {},
@@ -29,18 +30,10 @@ const changeShapeHistory = (state = initialState, action) => {
         };
 
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
+    case DELETE_SHAPE:
+        return clearShapeData(state.byId, state.allIds, action.payload);
     case CLEAR_HISTORY:
         return { byId: {}, allIds: [] };
-    case DELETE_SHAPE:
-        const newById = Object.keys(state.byId).filter(shapeId => shapeId !== action.payload)
-            .reduce((obj, key) => {
-                obj[key] = state.byId[key];
-                return obj;
-            }, {});
-
-        const newAllIds = state.allIds.filter(shapeId => shapeId !== action.payload);
-
-        return { byId: newById, allIds: newAllIds };
     default:
         return state;
     }
