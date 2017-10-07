@@ -12,7 +12,7 @@ import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/ch
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
-export const ROUNDED_PETAL_NAME = `Rounded Petal`;
+export const ROUNDED_PETAL_NAME = `Rounded Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
