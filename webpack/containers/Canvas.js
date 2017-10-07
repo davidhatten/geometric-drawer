@@ -29,11 +29,10 @@ class Canvas extends Component {
             display: `block`,
             margin: `auto`,
         };
-        const { shapeData, shapeProps, shapesIds, shapeStyle } = this.props;
+        const { shapeData, shapeProps, shapesIds } = this.props;
         const drawnShapes = shapesIds.map((shapeId, index) =>
             React.createElement(shapeData[shapeId].shapeTag,
                 { ...shapeProps[shapeId],
-                    style: shapeStyle[shapeId],
                     key: index }
             )
         );
@@ -58,7 +57,6 @@ const mapStateToProps = state => ({
     shapesIds: state.shapeHistory.allIds,
     shapeData: state.shapeHistory.byId,
     shapeProps: state.shapeProps.byId,
-    shapeStyle: state.shapeStyle.byId,
 });
 
 const mapDispatchToProps = dispatch => ({

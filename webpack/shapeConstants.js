@@ -50,7 +50,7 @@ export const nameFromConfig = name => {
 };
 
 const lineWidthState = (state, id) => (
-    state.shapeStyles.byId[id].style.strokeWidth
+    state.shapeStyle.byId[id].strokeWidth
 );
 
 const lineWidthDispatch = (dispatch, id) => (value) => (

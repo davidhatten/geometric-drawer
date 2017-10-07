@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import roundTo from 'round-to';
+import { connect } from "react-redux";
 
 class FlowerOfLife extends Component {
     constructor(props) {
         super(props);
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(`shouldComponentUpdate - nextProps`, nextProps);
-        console.log(`shouldComponentUpdate - this.props`, this.props);
-        console.log(`shouldComponentUpdate - props equals`, nextProps === this.props);
-        return false;
-    }
     drawFlower = () => {
-        console.log(`FlowerOfLife - Render`);
         const innerPetals = [];
         const angleDegrees = [];
         const petalCount = 6;
@@ -37,7 +31,7 @@ class FlowerOfLife extends Component {
         }
 
         return usedPetals.map((petal, index) => {
-            return <circle key={index} cx={petal.x} cy={petal.y} r={radius} {...this.props.style} />;
+            return <circle key={index} cx={petal.x} cy={petal.y} r={radius} style={this.props.styleProps[this.props.style]} />;
         });
     }
     drawOuterPetals = (radius, innerPetals, petalAngles, usedPetals) => {
@@ -92,4 +86,8 @@ class FlowerOfLife extends Component {
 
 }
 
-export default FlowerOfLife;
+const mapStateToProps = state => ({
+    styleProps: state.shapeStyle.byId,
+});
+
+export default connect(mapStateToProps)(FlowerOfLife);
