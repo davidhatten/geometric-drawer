@@ -25,7 +25,6 @@ class RoundedPetal extends Component {
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
         const paths = [];
-        const angleInRads = (Math.PI/180)*angle;
         const centerPoint = [x, y];
         /*
         This is roundabout enough to be worth explaining.
