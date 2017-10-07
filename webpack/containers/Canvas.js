@@ -6,17 +6,12 @@ import { triggerDraw } from '../actions/triggerDraw';
 class Canvas extends Component {
     constructor(props) {
         super(props);
-        // TODO: Move this into global state and load into props
-        this.state = {
-            svgHeight: 3300,
-            svgWidth: 2550,
-        };
     }
     initiateDraw = () => {
         const { elementDimensions, position } = this.props;
         const absPosition = {
-            x: (this.state.svgWidth/elementDimensions.width) * position.x ,
-            y: (this.state.svgHeight/elementDimensions.height) * position.y,
+            x: (this.props.svgWidth/elementDimensions.width) * position.x ,
+            y: (this.props.svgHeight/elementDimensions.height) * position.y,
         };
 
         this.props.drawSelectedShape(absPosition);
@@ -39,7 +34,7 @@ class Canvas extends Component {
             <div>
                 <svg
                     id="drawingCanvas"
-                    viewBox={`0 0 ${this.state.svgWidth} ${this.state.svgHeight}`}
+                    viewBox={`0 0 ${this.props.svgWidth} ${this.props.svgHeight}`}
                     width="100%"
                     height="100%"
                     style={svgStyle}
@@ -56,6 +51,8 @@ const mapStateToProps = state => ({
     shapesIds: state.shapeHistory.allIds,
     shapeData: state.shapeHistory.byId,
     shapeProps: state.shapeProps.byId,
+    svgHeight: state.generalConfig.canvasHeight,
+    svgWidth: state.generalConfig.canvasWidth,
 });
 
 const mapDispatchToProps = dispatch => ({

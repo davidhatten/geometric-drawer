@@ -73,9 +73,13 @@ class Studio extends Component {
 
 }
 
+const mapStateToProps = state => ({
+
+});
+
 const mapDispatchToProps = dispatch => ({
     clearHistory: () => {dispatch(clearShapeHistory());},
 });
 
 
-export default connect((state) => {}, mapDispatchToProps)(Studio);
+export default connect(mapStateToProps, mapDispatchToProps)(Studio);
