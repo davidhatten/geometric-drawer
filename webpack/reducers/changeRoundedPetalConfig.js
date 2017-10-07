@@ -16,13 +16,9 @@ const initialState = {
 const changeRoundedPetalConfig = (state = initialState, action) => {
     switch (action.type) {
     case CHANGE_ROUNDED_PETAL_INNER_RADIUS:
-        const innerRadius = action.payload <= state.outerRadius ? action.payload : state.outerRadius;
-
-        return updateShapeConfigValue(state, `innerRadius`, innerRadius);
+        return updateShapeConfigValue(state, `innerRadius`, action.payload);
     case CHANGE_ROUNDED_PETAL_OUTER_RADIUS:
-        const outerRadius = action.payload >= state.innerRadius ? action.payload : state.outerRadius;
-
-        return updateShapeConfigValue(state, `outerRadius`, outerRadius);
+        return updateShapeConfigValue(state, `outerRadius`, action.payload);
     case CHANGE_ROUNDED_PETAL_X_CONTROL:
         return updateShapeConfigValue(state, `xControl`, action.payload);
     case CHANGE_ROUNDED_PETAL_Y_CONTROL:

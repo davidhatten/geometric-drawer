@@ -7,6 +7,7 @@ import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
 import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 import RoundedPetal from "./containers/shapes/RoundedPetal";
 import RoundedPetalForm from "./components/forms/RoundedPetalForm";
+import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/changeRoundedPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -110,8 +111,8 @@ export const historyConstants = {
             lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
-            updateInnerRadius: value => {dispatch(changeHistoryProp(id, `innerRadius`, parseInt(value)));},
-            updateOuterRadius: value => {dispatch(changeHistoryProp(id, `outerRadius`, parseInt(value)));},
+            updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, parseInt(value)));},
+            updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, parseInt(value)));},
             updateXControl: value => {dispatch(changeHistoryProp(id, `xControl`, parseInt(value)));},
             updateYControl: value => {dispatch(changeHistoryProp(id, `yControl`, parseInt(value)));},
             updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
