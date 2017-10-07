@@ -3,7 +3,7 @@ import { CHANGE_GENERAL_CONFIG } from '../actions/changeGeneralConfig';
 const initialState = {
     strokeWidth: 10,
     lockHorizontal: false,
-    lockVertical: true,
+    lockVertical: false,
     canvasHeight: 3300,
     canvasWidth: 2550,
 };
