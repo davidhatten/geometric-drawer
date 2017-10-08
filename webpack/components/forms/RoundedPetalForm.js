@@ -62,6 +62,14 @@ const RoundedPetalForm = props => (
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
                 />
+                <SliderInput
+                    min={0}
+                    max={360}
+                    name={`Rotation (degrees)`}
+                    description={`Rotate the ring by a set amount of degrees`}
+                    value={props.rotation}
+                    updateValue={props.updateRotation}
+                />
             </Col>
         </Row>
     </Form>

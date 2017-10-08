@@ -8,6 +8,7 @@ export const CHANGE_ROUNDED_PETAL_Y_CONTROL = `CHANGE_ROUNDED_PETAL_Y_CONTROL`;
 export const CHANGE_ROUNDED_PETAL_AXES = `CHANGE_ROUNDED_PETAL_AXES`;
 export const CHANGE_ROUNDED_PETAL_INNER_GAP = `CHANGE_ROUNDED_PETAL_INNER_GAP`
 export const CHANGE_ROUNDED_PETAL_OUTER_GAP = `CHANGE_ROUNDED_PETAL_OUTER_GAP`;
+export const CHANGE_ROUNDED_PETAL_ROTATION = `CHANGE_ROUNDED_PETAL_ROTATION`;
 
 export const changeInnerRadius = value => {
     return (dispatch, getState) => {
@@ -28,8 +29,9 @@ export const changeOuterRadius = value => {
 export const changeXControl = value => ({ type: CHANGE_ROUNDED_PETAL_X_CONTROL, payload: value });
 export const changeYControl = value => ({ type: CHANGE_ROUNDED_PETAL_Y_CONTROL, payload: value });
 export const changeAxes = value => ({ type: CHANGE_ROUNDED_PETAL_AXES, payload: value });
-export const changeInnerGap = value => ({ type: CHANGE_ROUNDED_PETAL_INNER_GAP, payload: value});
-export const changeOuterGap = value => ({ type: CHANGE_ROUNDED_PETAL_OUTER_GAP, payload: value});
+export const changeInnerGap = value => ({ type: CHANGE_ROUNDED_PETAL_INNER_GAP, payload: value });
+export const changeOuterGap = value => ({ type: CHANGE_ROUNDED_PETAL_OUTER_GAP, payload: value });
+export const changeRotation = value => ({ type: CHANGE_ROUNDED_PETAL_ROTATION, payload: value });
 
 export const changeHistoryInnerRadius = (id, value) => {
     return (dispatch, getState) => {

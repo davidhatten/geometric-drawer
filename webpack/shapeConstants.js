@@ -110,6 +110,7 @@ export const historyConstants = {
             axes: state.shapeProps.byId[id].axes,
             innerGap: state.shapeProps.byId[id].innerGap,
             outerGap: state.shapeProps.byId[id].outerGap,
+            rotation: state.shapeProps.byId[id].rotation,
             lineWidth: lineWidthState(state, id),
         }),
         dispatchToProps: id => dispatch => ({
@@ -120,6 +121,7 @@ export const historyConstants = {
             updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
             updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, parseInt(value)));},
             updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, parseInt(value)));},
+            updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },

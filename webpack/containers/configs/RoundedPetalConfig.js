@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
     axes: state[ROUNDED_PETAL_CONFIG].axes,
     innerGap: state[ROUNDED_PETAL_CONFIG].innerGap,
     outerGap: state[ROUNDED_PETAL_CONFIG].outerGap,
+    rotation: state[ROUNDED_PETAL_CONFIG].rotation,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
     updateAxes: value => {dispatch(changeAxes(parseInt(value)));},
     updateInnerGap: value => {dispatch(changeInnerGap(parseInt(value)));},
     updateOuterGap: value => {dispatch(changeOuterGap(parseInt(value)));},
+    updateRotation: value => {dispatch(changeRotation(parseInt(value)));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoundedPetalForm);
