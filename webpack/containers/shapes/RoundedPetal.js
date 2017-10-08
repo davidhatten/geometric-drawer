@@ -17,10 +17,10 @@ class RoundedPetal extends Component {
         return path.str();
     }
     render() {
-        const { axes, innerRadius, outerRadius, x, y, xControl, yControl, innerGap, outerGap } = this.props;
+        const { axes, innerRadius, outerRadius, x, y, xControl, yControl, innerGap, outerGap, rotation } = this.props;
         // Some of these don't make sense yet.
         // Most of this will be user input
-        let angle = 0;
+        let angle = rotation;
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
         const paths = [];

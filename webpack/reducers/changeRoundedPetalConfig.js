@@ -13,6 +13,7 @@ const initialState = {
     yControl: 50,
     outerGap: 0,
     innerGap: 0,
+    rotation: 0,
 };
 
 const changeRoundedPetalConfig = (state = initialState, action) => {
