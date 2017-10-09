@@ -49,6 +49,7 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={CIRCLE_PETAL_CONFIG} header={<PaletteHeader
                     name={CIRCLE_PETAL_NAME}
+                    img="assets/img/circle_petals_80x80.png"
                     description="A circle of petals, each one a small circle."/>}>
                     <CirclePetalConfig />
 
