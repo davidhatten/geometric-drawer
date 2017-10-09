@@ -3,13 +3,14 @@ A little single-page javascript app to generate simple geometries and mandalas
 
 https://davidhatten.github.io/geometric-drawer/
 
-Current version: 1.1.1
+Current version: 1.2.0
 
 ## Types of Shapes
 * Flower of Life
 * Circle
 * Square
 * Rounded Petals (aka: Quadratic curves)
+* Circle Petals
 
 ## Features
 * Define the number of iterations
