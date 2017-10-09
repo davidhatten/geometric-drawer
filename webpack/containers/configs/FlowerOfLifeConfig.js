@@ -1,6 +1,6 @@
 import { FOL_CONFIG } from '../../shapeConstants';
 import { connect } from 'react-redux';
-import { changeIterations, changeRadius } from '../../actions/changeFOLConfig';
+import { changeFOLConfig } from '../../actions/changeFOLConfig';
 import FlowerOfLifeForm from "../../components/forms/FlowerOfLifeForm";
 
 const mapStateToProps = state => ({
@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateIterations: (value) => {dispatch(changeIterations(parseInt(value)));},
-    updateRadius: (value) => {dispatch(changeRadius(parseInt(value)));},
+    updateIterations: (value) => {dispatch(changeFOLConfig(`iterations`, parseInt(value)));},
+    updateRadius: (value) => {dispatch(changeFOLConfig(`radius`, parseInt(value)));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlowerOfLifeForm);

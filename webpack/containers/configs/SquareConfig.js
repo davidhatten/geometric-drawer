@@ -2,7 +2,7 @@ import React  from 'react';
 import { SQUARE_CONFIG } from '../../shapeConstants';
 import { connect } from 'react-redux';
 
-import { changeSideLength } from '../../actions/changeSquareConfig';
+import { changeSquareConfig } from '../../actions/changeSquareConfig';
 import SquareForm from "../../components/forms/SquareForm";
 
 const mapStateToProps = state => ({
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateLength: (value) => {dispatch(changeSideLength(parseInt(value)));},
+    updateLength: (value) => {dispatch(changeSquareConfig(`length`, parseInt(value)));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SquareForm);
