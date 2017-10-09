@@ -13,11 +13,13 @@ export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
 export const ROUNDED_PETAL_NAME = `Rounded Petals`;
+export const CIRCLE_PETAL_NAME = `Circle Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
 export const SQUARE_CONFIG = `SQUARE_CONFIG`;
 export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
+export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
 
 export const standardRadius = {
     value: 300,
