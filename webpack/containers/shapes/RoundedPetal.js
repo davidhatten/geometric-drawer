@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import circlePoint from 'point-on-circle';
 import twirl from "twirl";
 import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
