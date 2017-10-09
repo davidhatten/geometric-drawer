@@ -1,3 +1,3 @@
-export const CHANGE_SQUARE_LENGTH = `CHANGE_SQUARE_LENGTH`;
+export const CHANGE_SQUARE_CONFIG = `CHANGE_SQUARE_CONFIG`;
 
-export const changeSideLength = (value) => ({ type:CHANGE_SQUARE_LENGTH, payload:value });
+export const changeSquareConfig = (key, value) => ({ type:CHANGE_SQUARE_CONFIG, payload: { key: key, value: value }});

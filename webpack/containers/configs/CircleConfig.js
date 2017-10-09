@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import { CIRCLE_CONFIG } from '../../shapeConstants';
-import { changeRadius } from '../../actions/changeCircleConfig';
+import { changeCircleConfig } from '../../actions/changeCircleConfig';
 import CircleForm from "../../components/forms/CircleForm";
 
 const mapStateToProps = state => ({
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateRadius: (value) => {dispatch(changeRadius(parseInt(value)));},
+    updateRadius: (value) => {dispatch(changeCircleConfig(`radius`, parseInt(value)));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CircleForm);

@@ -47,7 +47,7 @@ class Studio extends Component {
                             <Canvas />
                         </ReactCursorPosition>
                         <div>
-                            <h4>Version: 1.1.1</h4>
+                            <h4>Version: 1.2.0</h4>
                         </div>
                     </Col>
                     <Col lg={6} md={6} sm={6}>

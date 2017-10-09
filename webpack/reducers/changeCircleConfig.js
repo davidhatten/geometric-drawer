@@ -1,6 +1,5 @@
-
 import { standardRadius } from "../shapeConstants";
-import { CHANGE_CIRCLE_RADIUS } from "../actions/changeCircleConfig";
+import { CHANGE_CIRCLE_CONFIG } from "../actions/changeCircleConfig";
 import { updateShapeConfigValue } from "../stateUtil";
 
 const initialState = {
@@ -9,8 +8,8 @@ const initialState = {
 
 const changeCircleConfig = (state = initialState, action) => {
     switch (action.type) {
-    case CHANGE_CIRCLE_RADIUS:
-        return updateShapeConfigValue(state, `radius`, action.payload);
+    case CHANGE_CIRCLE_CONFIG:
+        return updateShapeConfigValue(state, action.payload.key, action.payload.value);
     default:
         return state;
     }

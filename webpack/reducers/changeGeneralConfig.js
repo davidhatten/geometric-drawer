@@ -2,8 +2,8 @@ import { CHANGE_GENERAL_CONFIG } from '../actions/changeGeneralConfig';
 
 const initialState = {
     strokeWidth: 10,
-    lockHorizontal: false,
-    lockVertical: false,
+    lockHorizontal: true,
+    lockVertical: true,
     canvasHeight: 3300,
     canvasWidth: 2550,
 };
