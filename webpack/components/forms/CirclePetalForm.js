@@ -12,7 +12,7 @@ const CirclePetalForm = props => (
                     name={`Ring Radius (px)`}
                     description={`Radius of the ring on which the petals are drawn.`}
                     value={props.ringRadius}
-                    updateValue={props.updateBaseRadius} />
+                    updateValue={props.updateRingRadius} />
                 <SliderInput
                     min={1}
                     max={500}

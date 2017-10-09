@@ -8,6 +8,8 @@ import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryPr
 import RoundedPetal from "./containers/shapes/RoundedPetal";
 import RoundedPetalForm from "./components/forms/RoundedPetalForm";
 import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/changeRoundedPetalConfig";
+import CirclePetal from "./containers/shapes/CirclePetal";
+import CirclePetalForm from "./components/forms/CirclePetalForm";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -46,6 +48,7 @@ const configToNameMap = {
     [CIRCLE_CONFIG]: CIRCLE_NAME,
     [SQUARE_CONFIG]: SQUARE_NAME,
     [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
+    [CIRCLE_PETAL_CONFIG]: CIRCLE_PETAL_NAME,
 };
 
 export const nameFromConfig = name => {
@@ -124,6 +127,24 @@ export const historyConstants = {
             updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, parseInt(value)));},
             updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, parseInt(value)));},
             updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
+        }),
+    },
+    [CIRCLE_PETAL_CONFIG]: {
+        shape: CirclePetal,
+        form: CirclePetalForm,
+        stateToProps: id => state => ({
+            ringRadius: state.shapeProps.byId[id].ringRadius,
+            petalRadius: state.shapeProps.byId[id].petalRadius,
+            rotation: state.shapeProps.byId[id].rotation,
+            axes: state.shapeProps.byId[id].axes,
+            lineWidth: lineWidthState(state, id),
+        }),
+        dispatchToProps: id => dispatch => ({
+            updateRingRadius : value => {dispatch(changeHistoryProp(id, `ringRadius`, parseInt(value)));},
+            updatePetalRadius : value => {dispatch(changeHistoryProp(id, `petalRadius`, parseInt(value)));},
+            updateRotation : value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
+            updateAxes : value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
