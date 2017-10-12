@@ -10,18 +10,22 @@ import RoundedPetalForm from "./components/forms/RoundedPetalForm";
 import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/changeRoundedPetalConfig";
 import CirclePetal from "./containers/shapes/CirclePetal";
 import CirclePetalForm from "./components/forms/CirclePetalForm";
+import CurveyPetal from "./containers/shapes/CurveyPetal";
+import CurveyPetalForm from "./components/forms/CurveyPetalForm";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
 export const ROUNDED_PETAL_NAME = `Rounded Petals`;
 export const CIRCLE_PETAL_NAME = `Circle Petals`;
+export const CURVEY_PETAL_NAME = `Curvey Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
 export const SQUARE_CONFIG = `SQUARE_CONFIG`;
 export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
 export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
+export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`
 
 export const standardRadius = {
     value: 300,
@@ -49,6 +53,7 @@ const configToNameMap = {
     [SQUARE_CONFIG]: SQUARE_NAME,
     [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
     [CIRCLE_PETAL_CONFIG]: CIRCLE_PETAL_NAME,
+    [CURVEY_PETAL_CONFIG]: CURVEY_PETAL_NAME,
 };
 
 export const nameFromConfig = name => {
@@ -147,5 +152,11 @@ export const historyConstants = {
             updateAxes : value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
+    },
+    [CURVEY_PETAL_CONFIG]: {
+        shape: CurveyPetal,
+        form: CurveyPetalForm,
+        stateToProps: id => state => ({}),
+        dispatchToProps: id => dispatch => ({}),
     },
 };

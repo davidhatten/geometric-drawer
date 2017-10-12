@@ -25,16 +25,16 @@ const CurveyPetalForm = props => (
                     max={1000}
                     name={`Outer X Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.innerXControl}
-                    updateValue={props.updateXControl}
+                    value={props.outerXControl}
+                    updateValue={props.updateOuterXControl}
                 />
                 <SliderInput
                     min={-1000}
                     max={1000}
                     name={`Outer Y Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.innerYControl}
-                    updateValue={props.updateYControl}
+                    value={props.outerYControl}
+                    updateValue={props.updateOuterYControl}
                 />
                 <SliderInput
                     min={-1000}
@@ -42,7 +42,7 @@ const CurveyPetalForm = props => (
                     name={`Inner X Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the inner control point. The control point is placed relative to the inner starting point of the petal.`}
                     value={props.innerXControl}
-                    updateValue={props.updateXControl}
+                    updateValue={props.updateInnerXControl}
                 />
                 <SliderInput
                     min={-1000}
@@ -50,7 +50,7 @@ const CurveyPetalForm = props => (
                     name={`Inner Y Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the inner control point. The control point is placed relative to the inner starting point of the petal.`}
                     value={props.innerYControl}
-                    updateValue={props.updateYControl}
+                    updateValue={props.updateInnerYControl}
                 />
                 <SliderInput
                     min={0}
