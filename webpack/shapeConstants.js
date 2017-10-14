@@ -12,6 +12,7 @@ import CirclePetal from "./containers/shapes/CirclePetal";
 import CirclePetalForm from "./components/forms/CirclePetalForm";
 import CurveyPetal from "./containers/shapes/CurveyPetal";
 import CurveyPetalForm from "./components/forms/CurveyPetalForm";
+import { changeHistoryCurveyInnerRadius, changeHistoryCurveyOuterRadius } from "./actions/changeCurveyPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -156,7 +157,31 @@ export const historyConstants = {
     [CURVEY_PETAL_CONFIG]: {
         shape: CurveyPetal,
         form: CurveyPetalForm,
-        stateToProps: id => state => ({}),
-        dispatchToProps: id => dispatch => ({}),
+        stateToProps: id => state => ({
+            innerRadius: state.shapeProps.byId[id].innerRadius,
+            outerRadius: state.shapeProps.byId[id].outerRadius,
+            innerXControl: state.shapeProps.byId[id].innerXControl,
+            innerYControl: state.shapeProps.byId[id].innerYControl,
+            outerXControl: state.shapeProps.byId[id].outerXControl,
+            outerYControl: state.shapeProps.byId[id].outerYControl,
+            axes: state.shapeProps.byId[id].axes,
+            innerGap: state.shapeProps.byId[id].innerGap,
+            outerGap: state.shapeProps.byId[id].outerGap,
+            rotation: state.shapeProps.byId[id].rotation,
+            lineWidth: lineWidthState(state, id),
+        }),
+        dispatchToProps: id => dispatch => ({
+            updateInnerRadius: value => {dispatch(changeHistoryCurveyInnerRadius(id, parseInt(value)));},
+            updateOuterRadius: value => {dispatch(changeHistoryCurveyOuterRadius(id, parseInt(value)));},
+            updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, parseInt(value)));},
+            updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, parseInt(value)));},
+            updateOuterXControl: value => {dispatch(changeHistoryProp(id, `outerXControl`, parseInt(value)));},
+            updateOuterYControl: value => {dispatch(changeHistoryProp(id, `outerYControl`, parseInt(value)));},
+            updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
+            updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, parseInt(value)));},
+            updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, parseInt(value)));},
+            updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
+        }),
     },
 };

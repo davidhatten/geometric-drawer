@@ -1,4 +1,5 @@
 import { CURVEY_PETAL_CONFIG } from "../shapeConstants";
+import { changeHistoryProp } from "./changeHistoryProp";
 
 export const CHANGE_CURVEY_PETAL_CONFIG = `CHANGE_CURVEY_PETAL_CONFIG`;
 
@@ -18,6 +19,25 @@ export const changeOuterRadius = value => {
         const innerRadius = state[CURVEY_PETAL_CONFIG].innerRadius;
 
         dispatch(changeCurveyPetalConfig(`outerRadius`, boundOuterRadius(value, innerRadius) ));
+    };
+};
+
+export const changeHistoryCurveyInnerRadius = (id, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state.shapeProps.byId[id].outerRadius;
+
+        dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
+    };
+};
+
+
+export const changeHistoryCurveyOuterRadius = (id, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const innerRadius = state.shapeProps.byId[id].innerRadius;
+
+        dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
     };
 };
 
