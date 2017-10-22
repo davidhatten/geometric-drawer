@@ -10,18 +10,23 @@ import RoundedPetalForm from "./components/forms/RoundedPetalForm";
 import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "./actions/changeRoundedPetalConfig";
 import CirclePetal from "./containers/shapes/CirclePetal";
 import CirclePetalForm from "./components/forms/CirclePetalForm";
+import CurveyPetal from "./containers/shapes/CurveyPetal";
+import CurveyPetalForm from "./components/forms/CurveyPetalForm";
+import { changeHistoryCurveyInnerRadius, changeHistoryCurveyOuterRadius } from "./actions/changeCurveyPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
 export const FOL_NAME = `Flower of Life`;
 export const ROUNDED_PETAL_NAME = `Rounded Petals`;
 export const CIRCLE_PETAL_NAME = `Circle Petals`;
+export const CURVEY_PETAL_NAME = `Curvey Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
 export const SQUARE_CONFIG = `SQUARE_CONFIG`;
 export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
 export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
+export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`
 
 export const standardRadius = {
     value: 300,
@@ -49,6 +54,7 @@ const configToNameMap = {
     [SQUARE_CONFIG]: SQUARE_NAME,
     [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
     [CIRCLE_PETAL_CONFIG]: CIRCLE_PETAL_NAME,
+    [CURVEY_PETAL_CONFIG]: CURVEY_PETAL_NAME,
 };
 
 export const nameFromConfig = name => {
@@ -145,6 +151,36 @@ export const historyConstants = {
             updatePetalRadius : value => {dispatch(changeHistoryProp(id, `petalRadius`, parseInt(value)));},
             updateRotation : value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
             updateAxes : value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
+            updateLineWidth: lineWidthDispatch(dispatch, id),
+        }),
+    },
+    [CURVEY_PETAL_CONFIG]: {
+        shape: CurveyPetal,
+        form: CurveyPetalForm,
+        stateToProps: id => state => ({
+            innerRadius: state.shapeProps.byId[id].innerRadius,
+            outerRadius: state.shapeProps.byId[id].outerRadius,
+            innerXControl: state.shapeProps.byId[id].innerXControl,
+            innerYControl: state.shapeProps.byId[id].innerYControl,
+            outerXControl: state.shapeProps.byId[id].outerXControl,
+            outerYControl: state.shapeProps.byId[id].outerYControl,
+            axes: state.shapeProps.byId[id].axes,
+            innerGap: state.shapeProps.byId[id].innerGap,
+            outerGap: state.shapeProps.byId[id].outerGap,
+            rotation: state.shapeProps.byId[id].rotation,
+            lineWidth: lineWidthState(state, id),
+        }),
+        dispatchToProps: id => dispatch => ({
+            updateInnerRadius: value => {dispatch(changeHistoryCurveyInnerRadius(id, parseInt(value)));},
+            updateOuterRadius: value => {dispatch(changeHistoryCurveyOuterRadius(id, parseInt(value)));},
+            updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, parseInt(value)));},
+            updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, parseInt(value)));},
+            updateOuterXControl: value => {dispatch(changeHistoryProp(id, `outerXControl`, parseInt(value)));},
+            updateOuterYControl: value => {dispatch(changeHistoryProp(id, `outerYControl`, parseInt(value)));},
+            updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, parseInt(value)));},
+            updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, parseInt(value)));},
+            updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, parseInt(value)));},
+            updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, parseInt(value)));},
             updateLineWidth: lineWidthDispatch(dispatch, id),
         }),
     },
