@@ -52,6 +52,7 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={CURVEY_PETAL_CONFIG} header={<PaletteHeader
                     name={CURVEY_PETAL_NAME}
+                    img="assets/img/curvey_petals_80x80.png"
                     description="A ring of petals, each each one rounded out by two control points. For more info, see 'SVG Bezier Curve'"/>}>
                     <CurveyPetalConfig />
                 </Panel>
