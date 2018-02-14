@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import twirl from "twirl";
 import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
+import { getControlPoints, getPetalTipPoints } from "../../petalUtil";
 
 class CurveyPetal extends Component {
     constructor(props) {
@@ -37,19 +38,10 @@ class CurveyPetal extends Component {
         // Get a point at the 0 degrees line which I'm defining as vertical, the y axis
         // HTML canvas is defined with 0, 0 at the top-left corner
         // and positive direction is down and to the right
-        const innerPoint = { x: x, y: y - innerRadius };
-        const outerPoint = { x: x, y: y - outerRadius };
 
-        const innerLeftPoint = { x: innerPoint.x - innerGap, y: innerPoint.y };
-        const innerRightPoint = { x: innerPoint.x + innerGap, y: innerPoint.y };
-        const outerLeftPoint = { x: outerPoint.x - outerGap, y: outerPoint.y };
-        const outerRightPoint = { x: outerPoint.x + outerGap, y: outerPoint.y };
-
-        // The strange addition and subtraction is an artifact of how 0, 0 is defined
-        const innerLeftControlPoint = { x: innerLeftPoint.x - innerXControl, y: innerLeftPoint.y - innerYControl };
-        const innerRightControlPoint = { x: innerRightPoint.x + innerXControl, y: innerRightPoint.y - innerYControl };
-        const outerLeftControlPoint = { x: outerLeftPoint.x - outerXControl, y: outerLeftPoint.y - outerYControl };
-        const outerRightControlPoint = { x: outerRightPoint.x + outerXControl, y: outerRightPoint.y - outerYControl };
+        const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
+        const { leftPoint: innerLeftControlPoint, rightPoint: innerRightControlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
+        const { leftPoint: outerLeftControlPoint, rightPoint: outerRightControlPoint } = getControlPoints(outerLeftPoint, outerRightPoint, outerXControl, outerYControl);
 
         while (angle < maxAngle) {
             paths.push(this.drawHalfPetal(

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import twirl from "twirl";
 import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
+import {getControlPoints, getPetalTipPoints} from "../../petalUtil";
 
 class RoundedPetal extends Component {
     constructor(props) {
@@ -37,17 +38,8 @@ class RoundedPetal extends Component {
         // Get a point at the 0 degrees line which I'm defining as vertical, the y axis
         // HTML canvas is defined with 0, 0 at the top-left corner
         // and positive direction is down and to the right
-        const innerPoint = { x: x, y: y - innerRadius };
-        const outerPoint = { x: x, y: y - outerRadius };
-
-        const innerLeftPoint = { x: innerPoint.x - innerGap, y: innerPoint.y };
-        const innerRightPoint = { x: innerPoint.x + innerGap, y: innerPoint.y };
-        const outerLeftPoint = { x: outerPoint.x - outerGap, y: outerPoint.y };
-        const outerRightPoint = { x: outerPoint.x + outerGap, y: outerPoint.y };
-
-        // The strange addition and subtraction is an artifact of how 0, 0 is defined
-        const leftControlPoint = { x: innerLeftPoint.x - xControl, y: innerLeftPoint.y - yControl };
-        const rightControlPoint = { x: innerRightPoint.x + xControl, y: innerRightPoint.y - yControl };
+        const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
+        const { leftPoint: leftControlPoint, rightPoint: rightControlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, xControl, yControl);
 
         while (angle < maxAngle) {
             paths.push(this.drawHalfPetal(
