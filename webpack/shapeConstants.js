@@ -54,30 +54,22 @@ export const standardLineWidth = {
     name: `Line Width`,
 };
 
-const configToNameMap = {
-    [FOL_CONFIG]: FOL_NAME,
-    [CIRCLE_CONFIG]: CIRCLE_NAME,
-    [SQUARE_CONFIG]: SQUARE_NAME,
-    [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
-    [CIRCLE_PETAL_CONFIG]: CIRCLE_PETAL_NAME,
-    [CURVEY_PETAL_CONFIG]: CURVEY_PETAL_NAME,
+// The part of you that's learning Ruby is laughing and crying right here
+const configMap = {
+    [FOL_CONFIG]: {name: FOL_NAME, history:FlowerOfLifeHistory},
+    [CIRCLE_CONFIG]: {name: CIRCLE_NAME, history: CircleHistory},
+    [SQUARE_CONFIG]: {name: SQUARE_NAME, history: SquareHistory},
+    [ROUNDED_PETAL_CONFIG]: {name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory},
+    [CIRCLE_PETAL_CONFIG]: {name: CIRCLE_PETAL_NAME, history: CirclePetalHistory},
+    [CURVEY_PETAL_CONFIG]: {name: CURVEY_PETAL_NAME, history: CurveyPetalHistory},
 };
 
-const configToClassMap = {
-    [FOL_CONFIG]: FlowerOfLifeHistory,
-    [CIRCLE_CONFIG]: CircleHistory,
-    [SQUARE_CONFIG]: SquareHistory,
-    [ROUNDED_PETAL_CONFIG]: RoundedPetalHistory,
-    [CIRCLE_PETAL_CONFIG]: CirclePetalHistory,
-    [CURVEY_PETAL_CONFIG]: CurveyPetalHistory,
+export const nameFromConfig = config => {
+    return configMap[config].name;
 };
 
-export const nameFromConfig = name => {
-    return configToNameMap[name];
-};
-
-export const classFromConfig = config => {
-    return configToClassMap[config];
+export const historyClassFromConfig = config => {
+    return configMap[config].history;
 };
 
 export const lineWidthState = (state, id) => (
