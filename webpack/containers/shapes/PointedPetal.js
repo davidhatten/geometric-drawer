@@ -11,7 +11,7 @@ class PointedPetal extends Component {
         // This goofy array spreading is because of the rotate library
         // at least it's confined to here
         const path = SvgPath().to(...innerPoint[0])
-            .bezier2(...controlPoint[0], ...outerPoint[0]);
+            .line(...controlPoint[0]).line( ...outerPoint[0]);
 
         return path.str();
     }
