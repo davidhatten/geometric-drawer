@@ -75,4 +75,4 @@ const PointedPetalForm = props => (
     </Form>
 );
 
-export default PointedPetalFomr;
+export default PointedPetalForm;

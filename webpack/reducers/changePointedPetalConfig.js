@@ -1,5 +1,5 @@
 import React from 'react';
-import { CHANGE_ROUNDED_PETAL_CONFIG } from "../actions/changeRoundedPetalConfig";
+import { CHANGE_POINTED_PETAL_CONFIG } from "../actions/changePointedPetalConfig";
 import { updateShapeConfigValue } from "../stateUtil";
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
 
 const changeRoundedPetalConfig = (state = initialState, action) => {
     switch (action.type) {
-    case CHANGE_ROUNDED_PETAL_CONFIG:
+    case CHANGE_POINTED_PETAL_CONFIG:
         return updateShapeConfigValue(state, action.payload.key, action.payload.value);
     default:
         return state;

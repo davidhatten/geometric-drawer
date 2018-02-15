@@ -3,7 +3,7 @@ import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
 import {buildPetals, getControlPoints, getPetalTipPoints} from "../../petalUtil";
 
-class RoundedPetal extends Component {
+class PointedPetal extends Component {
     constructor(props) {
         super(props);
     }
@@ -47,4 +47,4 @@ const mapStateToProps = state => ({
     styleProps: state.shapeStyle.byId,
 });
 
-export default connect(mapStateToProps)(RoundedPetal);
+export default connect(mapStateToProps)(PointedPetal);

@@ -5,6 +5,7 @@ import FlowerOfLifeHistory from "./history/FlowerOfLifeHistory";
 import RoundedPetalHistory from "./history/RoundedPetalHistory";
 import CirclePetalHistory from "./history/CirclePetalHistory";
 import CurveyPetalHistory from "./history/CurveyPetalHistory";
+import PointedPetalHistory from "./history/PointedPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -50,6 +51,7 @@ const configMap = {
     [ROUNDED_PETAL_CONFIG]: {name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory},
     [CIRCLE_PETAL_CONFIG]: {name: CIRCLE_PETAL_NAME, history: CirclePetalHistory},
     [CURVEY_PETAL_CONFIG]: {name: CURVEY_PETAL_NAME, history: CurveyPetalHistory},
+    [POINTED_PETAL_CONFIG]: {name: POINTED_PETAL_NAME, history: PointedPetalHistory},
 };
 
 export const nameFromConfig = config => {
