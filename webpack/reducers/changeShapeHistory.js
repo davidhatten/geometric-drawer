@@ -1,7 +1,8 @@
 import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { nameFromConfig } from './../shapeConstants';
-import { historyConstants } from "../shapeConstants";
+import {classFromConfig, historyConstants} from "../shapeConstants";
+import CircleHistory from "../history/CircleHistory";
 import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
 import { clearShapeData } from "../stateUtil";
 
@@ -15,12 +16,13 @@ const changeShapeHistory = (state = initialState, action) => {
     case DRAW_SHAPE:
         const payload = action.payload;
         const id = action.payload.id;
-        let shapeMetaConfig = historyConstants[payload.shape];
+        const shapeMetaConfigClass = classFromConfig(payload.shape);
+        const shapeMetaConfig = new shapeMetaConfigClass(id);
         const newShape = {
             id: id,
             name: nameFromConfig(payload.shape),
-            shapeTag: shapeMetaConfig.shape,
-            formTag: shapeMetaConfig.form,
+            shapeTag: shapeMetaConfig.shape(),
+            formTag: shapeMetaConfig.form(),
             mapStateToProps: shapeMetaConfig.stateToProps(id),
             mapDispatchToProps: shapeMetaConfig.dispatchToProps(id),
             props: id,

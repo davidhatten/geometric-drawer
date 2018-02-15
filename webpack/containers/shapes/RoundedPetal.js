@@ -28,7 +28,7 @@ class RoundedPetal extends Component {
         const leftPoints = [innerLeftPoint, outerLeftPoint, leftControlPoint];
         const rightPoints = [innerRightPoint, outerRightPoint, rightControlPoint];
 
-        const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints)
+        const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
 
         const drawnResults = paths.map((result, index) =>
             <path key={index} d={result} {...this.props.styleProps[this.props.style]} />
