@@ -13,13 +13,21 @@ export default class AbstractHistory {
         if (this.form === undefined) {
             throw new TypeError(`Must define 'form' parameter with a shape form`);
         }
+
+        if (this.stateToPropsMap === undefined) {
+            throw new TypeError(`Must define 'stateToPropsMap' function that accepts a state and returns a stateToProps map`);
+        }
+
+        if (this.dispatchToPropsMap === undefined) {
+            throw new TypeError(`Must define 'dispatchToPropsMap' function that accepts a dispatch and returns a dispatchToProps map`);
+        }
     }
 
     stateToProps() {
-        return state => (this.stateToPropsMap(state));
+        return state => this.stateToPropsMap(state);
     }
 
     dispatchToProps() {
-        return dispatch => (this.dispatchToPropsMap(dispatch));
+        return dispatch => this.dispatchToPropsMap(dispatch);
     }
 }
