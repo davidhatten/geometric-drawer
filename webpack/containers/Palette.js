@@ -65,7 +65,7 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={POINTED_PETAL_CONFIG} header={<PaletteHeader
                     name={POINTED_PETAL_NAME}
-                    img=""
+                    img="assets/img/pointed_petals_80x80.png"
                     description="A ring of petals, each one with lines meeting at the control points."/>}>
                     <PointedPetalConfig />
                 </Panel>
