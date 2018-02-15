@@ -6,6 +6,7 @@
   "plugins": [
     ["import", { "libraryName": "antd" }],
     "transform-object-rest-spread",
+    "transform-class",
     "transform-class-properties",
     "transform-decorators",
     "transform-react-constant-elements",
