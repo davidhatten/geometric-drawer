@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import UglifyESPlugin from 'uglifyjs-webpack-plugin';
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -40,5 +41,6 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin("styles.css"),
+        new UglifyESPlugin({}),
     ]
 };
