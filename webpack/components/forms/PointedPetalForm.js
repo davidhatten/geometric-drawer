@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const RoundedPetalForm = props => (
+const PointedPetalForm = props => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
@@ -50,7 +50,7 @@ const RoundedPetalForm = props => (
                     min={0}
                     max={500}
                     name={`Outer Gap (px)`}
-                    description={`How far apart the base points of each petal are.`}
+                    description={`How far apart the tip points of each petal are.`}
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
                 />
@@ -75,4 +75,4 @@ const RoundedPetalForm = props => (
     </Form>
 );
 
-export default RoundedPetalForm;
+export default PointedPetalForm;

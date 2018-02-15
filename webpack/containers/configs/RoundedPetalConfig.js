@@ -2,10 +2,7 @@ import React from 'react';
 import RoundedPetalForm from "../../components/forms/RoundedPetalForm";
 import { connect } from "react-redux";
 import { ROUNDED_PETAL_CONFIG } from "../../shapeConstants";
-import {
-    changeAxes, changeInnerGap, changeInnerRadius, changeOuterGap, changeOuterRadius, changeRoundedPetalConfig,
-    changeXControl, changeYControl
-} from "../../actions/changeRoundedPetalConfig";
+import { changeInnerRadius, changeOuterRadius, changeRoundedPetalConfig } from "../../actions/changeRoundedPetalConfig";
 
 const mapStateToProps = state => ({
     innerRadius: state[ROUNDED_PETAL_CONFIG].innerRadius,

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Col, Form, Row } from "antd";
-import SliderInput from "../controls/SliderInput";
-
-const RoundedPetalForm = props => (
+const CurveyPetalForm = props => (
     <Form>
-        <Row type="flex" justify="space-around">
+        <Row align="flex" justify="space-around">
             <Col span={24}>
                 <SliderInput
                     min={1}
@@ -25,26 +23,34 @@ const RoundedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`X Control Point (px)`}
-                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.xControl}
-                    updateValue={props.updateXControl}
+                    name={`Outer X Control Point (px)`}
+                    description={`Offset in pixels of the x coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
+                    value={props.outerXControl}
+                    updateValue={props.updateOuterXControl}
                 />
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`Y Control Point (px)`}
-                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.yControl}
-                    updateValue={props.updateYControl}
+                    name={`Outer Y Control Point (px)`}
+                    description={`Offset in pixels of the y coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
+                    value={props.outerYControl}
+                    updateValue={props.updateOuterYControl}
                 />
                 <SliderInput
-                    min={0}
-                    max={500}
-                    name={`Inner Gap (px)`}
-                    description={`How far apart the base points of each petal are.`}
-                    value={props.innerGap}
-                    updateValue={props.updateInnerGap}
+                    min={-1000}
+                    max={1000}
+                    name={`Inner X Control Point (px)`}
+                    description={`Offset in pixels of the x coordinate of the inner control point. The control point is placed relative to the inner starting point of the petal.`}
+                    value={props.innerXControl}
+                    updateValue={props.updateInnerXControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Inner Y Control Point (px)`}
+                    description={`Offset in pixels of the y coordinate of the inner control point. The control point is placed relative to the inner starting point of the petal.`}
+                    value={props.innerYControl}
+                    updateValue={props.updateInnerYControl}
                 />
                 <SliderInput
                     min={0}
@@ -53,6 +59,14 @@ const RoundedPetalForm = props => (
                     description={`How far apart the base points of each petal are.`}
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
+                />
+                <SliderInput
+                    min={0}
+                    max={500}
+                    name={`Inner Gap (px)`}
+                    description={`How far apart the base points of each petal are.`}
+                    value={props.innerGap}
+                    updateValue={props.updateInnerGap}
                 />
                 <SliderInput
                     min={1}
@@ -75,4 +89,6 @@ const RoundedPetalForm = props => (
     </Form>
 );
 
-export default RoundedPetalForm;
+import SliderInput from "../controls/SliderInput";
+
+export default CurveyPetalForm;
