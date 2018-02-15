@@ -42,7 +42,6 @@
       },
       "dependencies": {
             "antd": "^2.13.0",
-            "babel-plugin-transform-class": "^0.3.0",
             "path-svg": "^0.2.1",
             "point-on-circle": "^1.0.4",
             "prop-types": "^15.5.10",
