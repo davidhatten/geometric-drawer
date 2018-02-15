@@ -2,7 +2,6 @@ import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
 import { nameFromConfig } from './../shapeConstants';
 import {historyClassFromConfig, historyConstants} from "../shapeConstants";
-import CircleHistory from "../history/CircleHistory";
 import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
 import { clearShapeData } from "../stateUtil";
 

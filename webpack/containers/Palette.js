@@ -5,10 +5,11 @@ import PaletteHeader from '../components/PaletteHeader';
 import CircleConfig from './configs/CircleConfig';
 import SquareConfig from './configs/SquareConfig';
 import FlowerOfLifeConfig from './configs/FlowerOfLifeConfig';
+import PointedPetalConfig from './configs/PointedPetalConfig';
 import {
     CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME,
     ROUNDED_PETAL_CONFIG, ROUNDED_PETAL_NAME, CIRCLE_PETAL_CONFIG, CIRCLE_PETAL_NAME, CURVEY_PETAL_CONFIG,
-    CURVEY_PETAL_NAME,
+    CURVEY_PETAL_NAME, POINTED_PETAL_CONFIG, POINTED_PETAL_NAME,
 } from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
@@ -61,6 +62,12 @@ class Palette extends Component {
                     img="assets/img/circle_petals_80x80.png"
                     description="A ring of petals, each one a small circle."/>}>
                     <CirclePetalConfig />
+                </Panel>
+                <Panel key={POINTED_PETAL_CONFIG} header={<PaletteHeader
+                    name={POINTED_PETAL_NAME}
+                    img="assets/img/pointed_petals_80x80.png"
+                    description="A ring of petals, each one with lines meeting at the control points."/>}>
+                    <PointedPetalConfig />
                 </Panel>
             </Collapse>
         );
