@@ -14,6 +14,7 @@ import CurveyPetal from "./containers/shapes/CurveyPetal";
 import CurveyPetalForm from "./components/forms/CurveyPetalForm";
 import { changeHistoryCurveyInnerRadius, changeHistoryCurveyOuterRadius } from "./actions/changeCurveyPetalConfig";
 import CircleHistory from "./history/CircleHistory";
+import SquareHistory from "./history/SquareHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -61,7 +62,7 @@ const configToNameMap = {
 const configToClassMap = {
     [FOL_CONFIG]: FOL_NAME,
     [CIRCLE_CONFIG]: CircleHistory,
-    [SQUARE_CONFIG]: SQUARE_NAME,
+    [SQUARE_CONFIG]: SquareHistory,
     [ROUNDED_PETAL_CONFIG]: ROUNDED_PETAL_NAME,
     [CIRCLE_PETAL_CONFIG]: CIRCLE_PETAL_NAME,
     [CURVEY_PETAL_CONFIG]: CURVEY_PETAL_NAME,
@@ -86,30 +87,6 @@ export const lineWidthDispatch = (dispatch, id) => (value) => (
 // Well it's still awful, but at least now it's contained.
 // Maybe need to make an abstract class, or w/e the JS equivalent is
 export const historyConstants = {
-    [CIRCLE_CONFIG]: {
-        shape: Circle,
-        form: CircleForm,
-        stateToProps: id => state => ({
-            radius: state.shapeProps.byId[id].radius,
-            lineWidth: lineWidthState(state, id),
-        }),
-        dispatchToProps: id => dispatch => ({
-            updateRadius: (value) => {dispatch(changeHistoryProp(id, `radius`, parseInt(value) ));},
-            updateLineWidth: lineWidthDispatch(dispatch, id),
-        }),
-    },
-    [SQUARE_CONFIG]: {
-        shape: Square,
-        form: SquareForm,
-        stateToProps: id => state => ({
-            length: state.shapeProps.byId[id].length,
-            lineWidth: lineWidthState(state, id),
-        }),
-        dispatchToProps: id => dispatch => ({
-            updateLength: (value) => {dispatch(changeHistoryProp(id, `length`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, id),
-        }),
-    },
     [FOL_CONFIG]: {
         shape: FlowerOfLife,
         form: FlowerOfLifeForm,
