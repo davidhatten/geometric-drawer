@@ -41,6 +41,13 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin("styles.css"),
-        new UglifyESPlugin({}),
-    ]
+    ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports.devtool = 'source-map';
+
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new UglifyESPlugin({  }),
+    ]);
+}

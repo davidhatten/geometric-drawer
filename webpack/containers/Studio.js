@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Modal } from 'antd';
+import { Row, Col, Button, Modal, Affix } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
@@ -43,12 +43,11 @@ class Studio extends Component {
                     <Col lg={10} md={10} sm={10}>
                         <h2>Drawing Canvas</h2>
                         <br />
-                        <ReactCursorPosition>
-                            <Canvas />
-                        </ReactCursorPosition>
-                        <div>
-                            <h4>Version: 1.3.0</h4>
-                        </div>
+                        <Affix>
+                            <ReactCursorPosition>
+                                <Canvas />
+                            </ReactCursorPosition>
+                        </Affix>
                     </Col>
                     <Col lg={6} md={6} sm={6}>
                         <Row>
@@ -64,6 +63,11 @@ class Studio extends Component {
                         <Row type="flex" justify="space-around">
                             <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
                             <Button type="danger" onClick={this.confirmClearHistory}>Clear Canvas</Button>
+                        </Row>
+                        <Row>
+                            <div>
+                                <h4>Version: 1.3.0</h4>
+                            </div>
                         </Row>
                     </Col>
                 </Row>
