@@ -6,6 +6,7 @@ import RoundedPetalHistory from "./history/RoundedPetalHistory";
 import CirclePetalHistory from "./history/CirclePetalHistory";
 import CurveyPetalHistory from "./history/CurveyPetalHistory";
 import PointedPetalHistory from "./history/PointedPetalHistory";
+import ClawPetalHistory from "./history/ClawPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -14,6 +15,7 @@ export const ROUNDED_PETAL_NAME = `Rounded Petals`;
 export const CIRCLE_PETAL_NAME = `Circle Petals`;
 export const CURVEY_PETAL_NAME = `Curvey Petals`;
 export const POINTED_PETAL_NAME = `Pointed Petals`;
+export const CLAW_PETAL_NAME = `Claw Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -22,6 +24,7 @@ export const ROUNDED_PETAL_CONFIG = `ROUNDED_PETAL_CONFIG`;
 export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
 export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`;
 export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
+export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
 
 export const standardRadius = {
     value: 300,
@@ -45,13 +48,14 @@ export const standardLineWidth = {
 
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
-    [FOL_CONFIG]: {name: FOL_NAME, history:FlowerOfLifeHistory},
-    [CIRCLE_CONFIG]: {name: CIRCLE_NAME, history: CircleHistory},
-    [SQUARE_CONFIG]: {name: SQUARE_NAME, history: SquareHistory},
-    [ROUNDED_PETAL_CONFIG]: {name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory},
-    [CIRCLE_PETAL_CONFIG]: {name: CIRCLE_PETAL_NAME, history: CirclePetalHistory},
-    [CURVEY_PETAL_CONFIG]: {name: CURVEY_PETAL_NAME, history: CurveyPetalHistory},
-    [POINTED_PETAL_CONFIG]: {name: POINTED_PETAL_NAME, history: PointedPetalHistory},
+    [FOL_CONFIG]: { name: FOL_NAME, history:FlowerOfLifeHistory },
+    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory },
+    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory },
+    [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory },
+    [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory },
+    [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory },
+    [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory },
+    [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory },
 };
 
 export const nameFromConfig = config => {
