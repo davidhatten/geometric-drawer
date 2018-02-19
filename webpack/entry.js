@@ -27,7 +27,7 @@ import changeShapeStyle from "./reducers/changeShapeStyle";
 import changeCirclePetalConfig from "./reducers/changeCirclePetalConfig";
 import changeCurveyPetalConfig from "./reducers/changeCurveyPetalConfig";
 import changePointedPetalConfig from "./reducers/changePointedPetalConfig";
-import changeClawPetalConfig from "./reducers/changeClawConfig";
+import changeClawPetalConfig from "./reducers/changeClawPetalConfig";
 
 
 let reducers = combineReducers({

@@ -4,12 +4,12 @@ import { CHANGE_CLAW_PETAL_CONFIG } from "../actions/changeClawPetalConfig";
 
 const initialState = {
     innerRadius: 300,
-    outerRadius: 500,
+    outerRadius: 660,
     axes: 6,
-    xControl: 150,
-    yControl: 50,
+    xControl: 115,
+    yControl: 125,
     outerGap: 0,
-    innerGap: 50,
+    innerGap: 170,
     rotation: 0,
 };
 
