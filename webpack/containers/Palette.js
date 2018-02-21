@@ -72,7 +72,7 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={CLAW_PETAL_CONFIG} header={<PaletteHeader
                     name={CLAW_PETAL_NAME}
-                    img=""
+                    img="assets/img/claw_petals_80x80.png"
                     description="A ring of petals, each one with lines controlled by a single control point."/>}>
                     <ClawPetalConfig />
                 </Panel>
