@@ -1,23 +1,22 @@
-import React from 'react';
 import { connect } from "react-redux";
-import { ROUNDED_PETAL_CONFIG } from "../../shapeConstants";
-import {changeInnerRadius, changeOuterRadius, changePointedPetalConfig} from "../../actions/changePointedPetalConfig";
+import { changeInnerRadius, changeOuterRadius, POINTED_PETAL_CONFIG } from "../../shapeConstants";
+import {changePointedPetalConfig} from "../../actions/changePointedPetalConfig";
 import PointedPetalForm from "../../components/forms/PointedPetalForm";
 
 const mapStateToProps = state => ({
-    innerRadius: state[ROUNDED_PETAL_CONFIG].innerRadius,
-    outerRadius: state[ROUNDED_PETAL_CONFIG].outerRadius,
-    xControl: state[ROUNDED_PETAL_CONFIG].xControl,
-    yControl: state[ROUNDED_PETAL_CONFIG].yControl,
-    axes: state[ROUNDED_PETAL_CONFIG].axes,
-    innerGap: state[ROUNDED_PETAL_CONFIG].innerGap,
-    outerGap: state[ROUNDED_PETAL_CONFIG].outerGap,
-    rotation: state[ROUNDED_PETAL_CONFIG].rotation,
+    innerRadius: state[POINTED_PETAL_CONFIG].innerRadius,
+    outerRadius: state[POINTED_PETAL_CONFIG].outerRadius,
+    xControl: state[POINTED_PETAL_CONFIG].xControl,
+    yControl: state[POINTED_PETAL_CONFIG].yControl,
+    axes: state[POINTED_PETAL_CONFIG].axes,
+    innerGap: state[POINTED_PETAL_CONFIG].innerGap,
+    outerGap: state[POINTED_PETAL_CONFIG].outerGap,
+    rotation: state[POINTED_PETAL_CONFIG].rotation,
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateInnerRadius: value => {dispatch(changeInnerRadius(parseInt(value)));},
-    updateOuterRadius: value => {dispatch(changeOuterRadius(parseInt(value)));},
+    updateInnerRadius: value => {dispatch(changeInnerRadius(changePointedPetalConfig, parseInt(value)));},
+    updateOuterRadius: value => {dispatch(changeOuterRadius(changePointedPetalConfig, parseInt(value)));},
     updateXControl: value => {dispatch(changePointedPetalConfig(`xControl`, parseInt(value)));},
     updateYControl: value => {dispatch(changePointedPetalConfig(`yControl`, parseInt(value)));},
     updateAxes: value => {dispatch(changePointedPetalConfig(`axes`, parseInt(value)));},

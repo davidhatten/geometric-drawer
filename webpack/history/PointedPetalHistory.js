@@ -1,7 +1,6 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
-import {changeHistoryInnerRadius, changeHistoryOuterRadius} from "../actions/changeRoundedPetalConfig";
+import { changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch, lineWidthState} from "../shapeConstants";
 import PointedPetal from "../containers/shapes/PointedPetal";
 import PointedPetalForm from "../components/forms/PointedPetalForm";
 

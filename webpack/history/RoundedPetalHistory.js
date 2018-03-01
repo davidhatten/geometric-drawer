@@ -1,9 +1,8 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
+import { changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch, lineWidthState } from "../shapeConstants";
 import RoundedPetalForm from "../components/forms/RoundedPetalForm";
 import RoundedPetal from "../containers/shapes/RoundedPetal";
-import {changeHistoryInnerRadius, changeHistoryOuterRadius} from "../actions/changeRoundedPetalConfig";
 
 export default class RoundedPetalHistory extends AbstractHistory {
     constructor(id) {

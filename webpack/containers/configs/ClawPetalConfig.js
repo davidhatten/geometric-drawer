@@ -1,8 +1,7 @@
-import React from 'react';
 import { connect } from "react-redux";
-import { changeClawPetalConfig, changeInnerRadius, changeOuterRadius } from "../../actions/changeClawPetalConfig";
+import { changeClawPetalConfig } from "../../actions/changeClawPetalConfig";
 import ClawPetalForm from "../../components/forms/ClawPetalForm";
-import { CLAW_PETAL_CONFIG } from "../../shapeConstants";
+import { changeInnerRadius, changeOuterRadius, CLAW_PETAL_CONFIG } from "../../shapeConstants";
 
 const mapStateToProps = state => ({
     innerRadius: state[CLAW_PETAL_CONFIG].innerRadius,
@@ -16,8 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateInnerRadius: value => {dispatch(changeInnerRadius(parseInt(value)));},
-    updateOuterRadius: value => {dispatch(changeOuterRadius(parseInt(value)));},
+    updateInnerRadius: value => {dispatch(changeInnerRadius(changeClawPetalConfig, parseInt(value)));},
+    updateOuterRadius: value => {dispatch(changeOuterRadius(changeClawPetalConfig, parseInt(value)));},
     updateXControl: value => {dispatch(changeClawPetalConfig(`xControl`, parseInt(value)));},
     updateYControl: value => {dispatch(changeClawPetalConfig(`yControl`, parseInt(value)));},
     updateAxes: value => {dispatch(changeClawPetalConfig(`axes`, parseInt(value)));},
