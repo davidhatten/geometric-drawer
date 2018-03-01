@@ -16,13 +16,13 @@ class ClawPetal extends Component {
         return path.str();
     }
     render() {
-        const { rotation: angle, axes, innerRadius, outerRadius, x, y, xControl, yControl, innerGap, outerGap } = this.props;
+        const { rotation: angle, axes, innerRadius, outerRadius, x, y, innerXControl, innerYControl, innerGap, outerGap } = this.props;
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
         const centerPoint = [x, y];
 
         const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
-        const { rightPoint: controlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, xControl, yControl);
+        const { rightPoint: controlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
 
         const leftPoints = [innerLeftPoint, outerLeftPoint, controlPoint];
         const rightPoints = [innerRightPoint, outerRightPoint, controlPoint];

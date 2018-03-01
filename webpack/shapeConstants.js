@@ -1,4 +1,4 @@
-import { changeHistoryStyle } from "./actions/changeHistoryProp";
+import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 import CircleHistory from "./history/CircleHistory";
 import SquareHistory from "./history/SquareHistory";
 import FlowerOfLifeHistory from "./history/FlowerOfLifeHistory";
@@ -46,6 +46,44 @@ export const standardLineWidth = {
     name: `Line Width`,
 };
 
+export const basicRingProps = (state, config) => ({
+    innerRadius: state[config].innerRadius,
+    outerRadius: state[config].outerRadius,
+    innerXControl: state[config].innerXControl,
+    innerYControl: state[config].innerYControl,
+    axes: state[config].axes,
+    innerGap: state[config].innerGap,
+    outerGap: state[config].outerGap,
+    rotation: state[config].rotation, 
+});
+
+export const basicRingDispatch = (dispatch, action) => ({
+    updateInnerRadius: value => {dispatch(changeInnerRadius(action, value));},
+    updateOuterRadius: value => {dispatch(changeOuterRadius(action, value));},
+    updateInnerXControl: value => {dispatch(action(`innerXControl`, value));},
+    updateInnerYControl: value => {dispatch(action(`innerYControl`, value));},
+    updateAxes: value => {dispatch(action(`axes`, value));},
+    updateInnerGap: value => {dispatch(action(`innerGap`, value));},
+    updateOuterGap: value => {dispatch(action(`outerGap`, value));},
+    updateRotation: value => {dispatch(action(`rotation`, value));},
+});
+
+export const basicHistoryDispatch = (dispatch, id) => ({
+    ...historyRingDispatchWithNoValidation(dispatch, id),
+    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
+    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
+});
+
+const historyRingDispatchWithNoValidation = (dispatch, id) => ({
+    updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
+    updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
+    updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, value));},
+    updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
+    updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
+    updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
+    updateLineWidth: lineWidthDispatch(dispatch, id),
+});
+
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
     [FOL_CONFIG]: { name: FOL_NAME, history:FlowerOfLifeHistory },
@@ -73,3 +111,39 @@ export const lineWidthState = (state, id) => (
 export const lineWidthDispatch = (dispatch, id) => (value) => (
     dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
 );
+
+export const changeInnerRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
+
+        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
+    };
+};
+
+export const changeOuterRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
+
+        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
+    };
+};
+
+export const changeHistoryInnerRadius = (id, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state.shapeProps.byId[id].outerRadius;
+
+        dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
+    };
+};
+export const changeHistoryOuterRadius = (id, value) => (dispatch, getState) => {
+    const state = getState();
+    const innerRadius = state.shapeProps.byId[id].innerRadius;
+
+    dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
+};
+
+const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
+const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);
