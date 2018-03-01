@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import CurveyPetalForm from "../../components/forms/CurveyPetalForm";
-import { changeCurveyPetalConfig, changeInnerRadius, changeOuterRadius } from "../../actions/changeCurveyPetalConfig";
-import { CURVEY_PETAL_CONFIG } from "../../shapeConstants";
+import { changeCurveyPetalConfig } from "../../actions/changeCurveyPetalConfig";
+import { changeInnerRadius, changeOuterRadius, CURVEY_PETAL_CONFIG } from "../../shapeConstants";
 
 const mapStateToProps = state => ({
     innerRadius: state[CURVEY_PETAL_CONFIG].innerRadius,
@@ -17,8 +17,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateInnerRadius: value => {dispatch(changeInnerRadius(parseInt(value)));},
-    updateOuterRadius: value => {dispatch(changeOuterRadius(parseInt(value)));},
+    updateInnerRadius: value => {dispatch(changeInnerRadius(changeCurveyPetalConfig, parseInt(value)));},
+    updateOuterRadius: value => {dispatch(changeOuterRadius(changeCurveyPetalConfig, parseInt(value)));},
     updateInnerXControl: value => {dispatch(changeCurveyPetalConfig(`innerXControl`, parseInt(value)));},
     updateInnerYControl: value => {dispatch(changeCurveyPetalConfig(`innerYControl`, parseInt(value)));},
     updateOuterXControl: value => {dispatch(changeCurveyPetalConfig(`outerXControl`, parseInt(value)));},

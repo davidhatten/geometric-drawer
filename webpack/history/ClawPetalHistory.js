@@ -1,9 +1,8 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
+import { changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch, lineWidthState } from "../shapeConstants";
 import ClawPetal from "../containers/shapes/ClawPetal";
 import ClawPetalForm from "../components/forms/ClawPetalForm";
-import { changeHistoryInnerRadius, changeHistoryOuterRadius } from "../actions/changeClawPetalConfig";
 
 export default class ClawPetalHistory extends AbstractHistory {
     constructor(id) {

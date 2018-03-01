@@ -1,4 +1,4 @@
-import { changeHistoryStyle } from "./actions/changeHistoryProp";
+import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 import CircleHistory from "./history/CircleHistory";
 import SquareHistory from "./history/SquareHistory";
 import FlowerOfLifeHistory from "./history/FlowerOfLifeHistory";
@@ -73,3 +73,39 @@ export const lineWidthState = (state, id) => (
 export const lineWidthDispatch = (dispatch, id) => (value) => (
     dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
 );
+
+export const changeInnerRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
+
+        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
+    };
+};
+
+export const changeOuterRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
+
+        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
+    };
+};
+
+export const changeHistoryInnerRadius = (id, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state.shapeProps.byId[id].outerRadius;
+
+        dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
+    };
+};
+export const changeHistoryOuterRadius = (id, value) => (dispatch, getState) => {
+    const state = getState();
+    const innerRadius = state.shapeProps.byId[id].innerRadius;
+
+    dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
+};
+
+const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
+const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);
