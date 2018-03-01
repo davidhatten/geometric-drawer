@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import { Col, Form, InputNumber, Row, Slider, Tooltip } from "antd";
+import { connect } from "react-redux";
+
 const FormItem = Form.Item;
-
-const validate = (value) => {
-    if (value === undefined) {
-        return 0;
-    }
-
-    return parseInt(value);
-};
 
 class SliderInput extends Component {
     constructor(props) {
         super(props);
     }
 
+    inputOnChange = (value) => {
+        if (value) {
+            this.props.updateValue(value);
+        } else {
+            this.props.updateValue(this.props.min);
+        }
+    }
+
     render() {
         return (
             <FormItem label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
                 <Col span={18}>
-                    <Slider min={this.props.min} max={this.props.max} value={this.props.value === `` ? this.props.min : this.props.value}
+                    <Slider min={this.props.min} max={this.props.max} value={this.props.value}
                         onChange={this.props.updateValue}/>
                 </Col>
                 <Col span={1}>
@@ -28,7 +30,7 @@ class SliderInput extends Component {
                 <Col>
                     <Tooltip title={this.props.description}>
                         <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
-                            formatter={value => value} parser={validate} onChange={this.props.updateValue}/>
+                            formatter={value => value} onChange={this.inputOnChange}/>
                     </Tooltip>
                 </Col>
             </FormItem>
