@@ -68,6 +68,22 @@ export const basicRingDispatch = (dispatch, action) => ({
     updateRotation: value => {dispatch(action(`rotation`, value));},
 });
 
+export const basicHistoryDispatch = (dispatch, id) => ({
+    ...historyRingDispatchWithNoValidation(dispatch, id),
+    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, parseInt(value)));},
+    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, parseInt(value)));},
+});
+
+const historyRingDispatchWithNoValidation = (dispatch, id) => ({
+    updateXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
+    updateYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
+    updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, value));},
+    updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
+    updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
+    updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
+    updateLineWidth: lineWidthDispatch(dispatch, id),
+});
+
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
     [FOL_CONFIG]: { name: FOL_NAME, history:FlowerOfLifeHistory },

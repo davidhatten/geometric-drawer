@@ -1,6 +1,6 @@
 import AbstractHistory from "./AbstractHistory.js";
-import {changeHistoryProp} from "../actions/changeHistoryProp";
 import {
+    basicHistoryDispatch,
     basicRingProps, changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch,
     lineWidthState
 } from "../shapeConstants";
@@ -21,23 +21,13 @@ export default class PointedPetalHistory extends AbstractHistory {
     }
 
     stateToPropsMap(state) {
-        return ({
+        return {
             ...basicRingProps(state.shapeProps.byId, this.id),
             lineWidth: lineWidthState(state, this.id),
-        });
+        };
     }
 
     dispatchToPropsMap(dispatch) {
-        return {
-            updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(this.id, parseInt(value)));},
-            updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(this.id, parseInt(value)));},
-            updateXControl: value => {dispatch(changeHistoryProp(this.id, `innerXControl`, parseInt(value)));},
-            updateYControl: value => {dispatch(changeHistoryProp(this.id, `innerYControl`, parseInt(value)));},
-            updateAxes: value => {dispatch(changeHistoryProp(this.id, `axes`, parseInt(value)));},
-            updateInnerGap: value => {dispatch(changeHistoryProp(this.id, `innerGap`, parseInt(value)));},
-            updateOuterGap: value => {dispatch(changeHistoryProp(this.id, `outerGap`, parseInt(value)));},
-            updateRotation: value => {dispatch(changeHistoryProp(this.id, `rotation`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
-        };
+        return basicHistoryDispatch(dispatch, this.id);
     }
 }
