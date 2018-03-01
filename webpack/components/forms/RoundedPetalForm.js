@@ -28,7 +28,7 @@ const RoundedPetalForm = props => (
                     name={`X Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerXControl}
-                    updateValue={props.updateXControl}
+                    updateValue={props.updateInnerXControl}
                 />
                 <SliderInput
                     min={-1000}
@@ -36,7 +36,7 @@ const RoundedPetalForm = props => (
                     name={`Y Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerYControl}
-                    updateValue={props.updateYControl}
+                    updateValue={props.updateInnerYControl}
                 />
                 <SliderInput
                     min={0}

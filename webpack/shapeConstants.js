@@ -70,13 +70,13 @@ export const basicRingDispatch = (dispatch, action) => ({
 
 export const basicHistoryDispatch = (dispatch, id) => ({
     ...historyRingDispatchWithNoValidation(dispatch, id),
-    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, parseInt(value)));},
-    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, parseInt(value)));},
+    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
+    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
 });
 
 const historyRingDispatchWithNoValidation = (dispatch, id) => ({
-    updateXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
-    updateYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
+    updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
+    updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
     updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, value));},
     updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
     updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
