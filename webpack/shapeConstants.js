@@ -46,6 +46,28 @@ export const standardLineWidth = {
     name: `Line Width`,
 };
 
+export const basicRingProps = (state, config) => ({
+    innerRadius: state[config].innerRadius,
+    outerRadius: state[config].outerRadius,
+    innerXControl: state[config].innerXControl,
+    innerYControl: state[config].innerYControl,
+    axes: state[config].axes,
+    innerGap: state[config].innerGap,
+    outerGap: state[config].outerGap,
+    rotation: state[config].rotation, 
+});
+
+export const basicRingDispatch = (dispatch, action) => ({
+    updateInnerRadius: value => {dispatch(changeInnerRadius(action, value));},
+    updateOuterRadius: value => {dispatch(changeOuterRadius(action, value));},
+    updateInnerXControl: value => {dispatch(action(`innerXControl`, value));},
+    updateInnerYControl: value => {dispatch(action(`innerYControl`, value));},
+    updateAxes: value => {dispatch(action(`axes`, value));},
+    updateInnerGap: value => {dispatch(action(`innerGap`, value));},
+    updateOuterGap: value => {dispatch(action(`outerGap`, value));},
+    updateRotation: value => {dispatch(action(`rotation`, value));},
+});
+
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
     [FOL_CONFIG]: { name: FOL_NAME, history:FlowerOfLifeHistory },
