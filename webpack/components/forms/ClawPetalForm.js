@@ -28,7 +28,7 @@ const ClawPetalForm = props => (
                     name={`X Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal. There is only one control point that both lines of the petal will arc towards.`}
                     value={props.innerXControl}
-                    updateValue={props.updateXControl}
+                    updateValue={props.updateInnerXControl}
                 />
                 <SliderInput
                     min={-1000}
@@ -36,7 +36,7 @@ const ClawPetalForm = props => (
                     name={`Y Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.  There is only one control point that both lines of the petal will arc towards.`}
                     value={props.innerYControl}
-                    updateValue={props.updateYControl}
+                    updateValue={props.updateInnerYControl}
                 />
                 <SliderInput
                     min={0}
