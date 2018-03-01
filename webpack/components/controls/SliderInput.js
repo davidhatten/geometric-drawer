@@ -9,11 +9,11 @@ class SliderInput extends Component {
         super(props);
     }
 
-    inputOnChange = (value) => {
+    onChange = (value) => {
         if (value) {
-            this.props.updateValue(value);
+            this.props.updateValue(parseInt(value));
         } else {
-            this.props.updateValue(this.props.min);
+            this.props.updateValue(parseInt(this.props.min));
         }
     }
 
@@ -22,7 +22,7 @@ class SliderInput extends Component {
             <FormItem label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
                 <Col span={18}>
                     <Slider min={this.props.min} max={this.props.max} value={this.props.value}
-                        onChange={this.props.updateValue}/>
+                        onChange={this.onChange}/>
                 </Col>
                 <Col span={1}>
                     {/*Empty spacer*/}
@@ -30,7 +30,7 @@ class SliderInput extends Component {
                 <Col>
                     <Tooltip title={this.props.description}>
                         <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
-                            formatter={value => value} onChange={this.inputOnChange}/>
+                            formatter={value => value} onChange={this.onChange}/>
                     </Tooltip>
                 </Col>
             </FormItem>
