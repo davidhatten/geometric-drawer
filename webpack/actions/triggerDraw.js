@@ -12,11 +12,11 @@ export const triggerDraw = (location) => {
         const style = currentState.generalConfig;
 
         if (style.lockHorizontal) {
-            location.x = style.canvasWidth/2;
+            location.x = style.canvasWidth/2 - 1;
         }
 
         if (style.lockVertical) {
-            location.y = style.canvasHeight/2;
+            location.y = style.canvasHeight/2 - 1;
         }
 
         // Style will eventually come from state
