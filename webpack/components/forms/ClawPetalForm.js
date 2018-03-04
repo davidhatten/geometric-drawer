@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const RoundedPetalForm = props => (
+const ClawPetalForm = props => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
@@ -26,7 +26,7 @@ const RoundedPetalForm = props => (
                     min={-1000}
                     max={1000}
                     name={`X Control Point (px)`}
-                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal. There is only one control point that both lines of the petal will arc towards.`}
                     value={props.innerXControl}
                     updateValue={props.updateInnerXControl}
                 />
@@ -34,7 +34,7 @@ const RoundedPetalForm = props => (
                     min={-1000}
                     max={1000}
                     name={`Y Control Point (px)`}
-                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.  There is only one control point that both lines of the petal will arc towards.`}
                     value={props.innerYControl}
                     updateValue={props.updateInnerYControl}
                 />
@@ -75,4 +75,4 @@ const RoundedPetalForm = props => (
     </Form>
 );
 
-export default RoundedPetalForm;
+export default ClawPetalForm;

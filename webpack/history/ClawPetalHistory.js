@@ -1,30 +1,31 @@
 import AbstractHistory from "./AbstractHistory.js";
+import {changeHistoryProp} from "../actions/changeHistoryProp";
 import {
     basicHistoryDispatch,
     basicRingProps, changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch,
     lineWidthState
 } from "../shapeConstants";
-import PointedPetal from "../containers/shapes/PointedPetal";
-import PointedPetalForm from "../components/forms/PointedPetalForm";
+import ClawPetal from "../containers/shapes/ClawPetal";
+import ClawPetalForm from "../components/forms/ClawPetalForm";
 
-export default class PointedPetalHistory extends AbstractHistory {
+export default class ClawPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
     }
 
-    shape() {
-        return PointedPetal;
+    shape(){
+        return ClawPetal;
     }
 
-    form() {
-        return PointedPetalForm;
+    form(){
+        return ClawPetalForm;
     }
 
     stateToPropsMap(state) {
-        return {
+        return ({
             ...basicRingProps(state.shapeProps.byId, this.id),
             lineWidth: lineWidthState(state, this.id),
-        };
+        });
     }
 
     dispatchToPropsMap(dispatch) {

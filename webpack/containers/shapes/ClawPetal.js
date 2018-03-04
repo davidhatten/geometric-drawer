@@ -3,7 +3,7 @@ import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
 import {buildPetals, getControlPoints, getPetalTipPoints} from "../../petalUtil";
 
-class PointedPetal extends Component {
+class ClawPetal extends Component {
     constructor(props) {
         super(props);
     }
@@ -11,7 +11,7 @@ class PointedPetal extends Component {
         // This goofy array spreading is because of the rotate library
         // at least it's confined to here
         const path = SvgPath().to(...innerPoint[0])
-            .line(...controlPoint[0]).line( ...outerPoint[0]);
+            .bezier2(...controlPoint[0], ...outerPoint[0]);
 
         return path.str();
     }
@@ -22,10 +22,10 @@ class PointedPetal extends Component {
         const centerPoint = [x, y];
 
         const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
-        const { leftPoint: leftControlPoint, rightPoint: rightControlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
+        const { rightPoint: controlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
 
-        const leftPoints = [innerLeftPoint, outerLeftPoint, leftControlPoint];
-        const rightPoints = [innerRightPoint, outerRightPoint, rightControlPoint];
+        const leftPoints = [innerLeftPoint, outerLeftPoint, controlPoint];
+        const rightPoints = [innerRightPoint, outerRightPoint, controlPoint];
 
         const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
 
@@ -47,4 +47,4 @@ const mapStateToProps = state => ({
     styleProps: state.shapeStyle.byId,
 });
 
-export default connect(mapStateToProps)(PointedPetal);
+export default connect(mapStateToProps)(ClawPetal);

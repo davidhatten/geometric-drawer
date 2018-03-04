@@ -10,7 +10,7 @@ const PointedPetalForm = props => (
                     min={1}
                     max={3000}
                     name={`Outer Radius (px)`}
-                    description={`Radius of where the petal will terminate.`}
+                    description={`Radius of the point where the petal will terminate.`}
                     value={props.outerRadius}
                     updateValue={props.updateOuterRadius}
                 />
@@ -18,7 +18,7 @@ const PointedPetalForm = props => (
                     min={1}
                     max={1400}
                     name={`Inner Radius (px)`}
-                    description={`Radius of where the petal will originate.`}
+                    description={`Radius of the point where the petal will originate.`}
                     value={props.innerRadius}
                     updateValue={props.updateInnerRadius}
                 />
@@ -26,17 +26,17 @@ const PointedPetalForm = props => (
                     min={-1000}
                     max={1000}
                     name={`X Control Point (px)`}
-                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.xControl}
-                    updateValue={props.updateXControl}
+                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.innerXControl}
+                    updateValue={props.updateInnerXControl}
                 />
                 <SliderInput
                     min={-1000}
                     max={1000}
                     name={`Y Control Point (px)`}
-                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner starting point of the petal.`}
-                    value={props.yControl}
-                    updateValue={props.updateYControl}
+                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.innerYControl}
+                    updateValue={props.updateInnerYControl}
                 />
                 <SliderInput
                     min={0}

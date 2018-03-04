@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Anchor } from 'antd';
 
 import { triggerDraw } from '../actions/triggerDraw';
 
@@ -35,8 +36,8 @@ class Canvas extends Component {
                 <svg
                     id="drawingCanvas"
                     viewBox={`0 0 ${this.props.svgWidth} ${this.props.svgHeight}`}
-                    width="100%"
-                    height="100%"
+                    width="95%"
+                    height="95%"
                     style={svgStyle}
                     onClick={this.initiateDraw}>
                     You must use a browser that supports HTML5.

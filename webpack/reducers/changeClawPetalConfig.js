@@ -1,25 +1,25 @@
 import React from 'react';
-import { CHANGE_POINTED_PETAL_CONFIG } from "../actions/changePointedPetalConfig";
 import { updateShapeConfigValue } from "../stateUtil";
+import { CHANGE_CLAW_PETAL_CONFIG } from "../actions/changeClawPetalConfig";
 
 const initialState = {
     innerRadius: 300,
-    outerRadius: 500,
+    outerRadius: 660,
     axes: 6,
-    innerXControl: 150,
-    innerYControl: 50,
+    innerXControl: 115,
+    innerYControl: 125,
     outerGap: 0,
-    innerGap: 0,
+    innerGap: 170,
     rotation: 0,
 };
 
-const changeRoundedPetalConfig = (state = initialState, action) => {
+const changeClawPetalConfig = (state = initialState, action) => {
     switch (action.type) {
-    case CHANGE_POINTED_PETAL_CONFIG:
+    case CHANGE_CLAW_PETAL_CONFIG:
         return updateShapeConfigValue(state, action.payload.key, action.payload.value);
     default:
         return state;
     }
 };
 
-export default changeRoundedPetalConfig;
+export default changeClawPetalConfig;
