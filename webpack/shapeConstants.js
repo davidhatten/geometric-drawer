@@ -7,6 +7,7 @@ import CirclePetalHistory from "./history/CirclePetalHistory";
 import CurveyPetalHistory from "./history/CurveyPetalHistory";
 import PointedPetalHistory from "./history/PointedPetalHistory";
 import ClawPetalHistory from "./history/ClawPetalHistory";
+import PrismPetalHistory from "./history/PrismPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -16,6 +17,7 @@ export const CIRCLE_PETAL_NAME = `Circle Petals`;
 export const CURVEY_PETAL_NAME = `Curvey Petals`;
 export const POINTED_PETAL_NAME = `Pointed Petals`;
 export const CLAW_PETAL_NAME = `Claw Petals`;
+export const PRISM_PETAL_NAME = `Prism Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -25,6 +27,7 @@ export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
 export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`;
 export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
 export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
+export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
 
 export const standardRadius = {
     value: 300,
@@ -54,7 +57,7 @@ export const basicRingProps = (state, config) => ({
     axes: state[config].axes,
     innerGap: state[config].innerGap,
     outerGap: state[config].outerGap,
-    rotation: state[config].rotation, 
+    rotation: state[config].rotation,
 });
 
 export const basicRingDispatch = (dispatch, action) => ({
@@ -94,6 +97,7 @@ const configMap = {
     [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory },
     [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory },
     [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory },
+    [PRISM_PETAL_CONFIG]: { name: PRISM_PETAL_NAME, history: PrismPetalHistory },
 };
 
 export const nameFromConfig = config => {
