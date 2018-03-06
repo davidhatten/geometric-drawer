@@ -122,7 +122,7 @@ export const xPosState = (state, id) => (
 );
 
 export const xPosDispatch = (dispatch, id) => (value) => (
-    dispatch(changeHistoryStyle(id, `x`, parseInt(value)))
+    dispatch(changeHistoryProp(id, `x`, parseInt(value)))
 );
 
 export const changeInnerRadius = (action, value) => {
