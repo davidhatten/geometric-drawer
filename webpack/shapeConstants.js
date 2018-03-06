@@ -85,6 +85,7 @@ const historyRingDispatchWithNoValidation = (dispatch, id) => ({
     updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
     updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
     updateLineWidth: lineWidthDispatch(dispatch, id),
+    updateXPos: xPosDispatch(dispatch, id),
 });
 
 // The part of you that's learning Ruby is laughing and crying right here
@@ -114,6 +115,14 @@ export const lineWidthState = (state, id) => (
 
 export const lineWidthDispatch = (dispatch, id) => (value) => (
     dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
+);
+
+export const xPosState = (state, id) => (
+    state.shapeProps.byId[id].x
+);
+
+export const xPosDispatch = (dispatch, id) => (value) => (
+    dispatch(changeHistoryStyle(id, `x`, parseInt(value)))
 );
 
 export const changeInnerRadius = (action, value) => {

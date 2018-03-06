@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
 import HistoryLineWidth from "../components/controls/HistoryLineWidth";
+import HistoryXPos from "../components/controls/HistoryXPos";
 
 class HistoryEditPane extends Component {
     constructor(props) {
@@ -18,10 +19,12 @@ class HistoryEditPane extends Component {
         const optionsConnect = connect(shape.mapStateToProps, shape.mapDispatchToProps);
         const ShapeHistoryOptions = optionsConnect(shape.formTag);
         const LineWidthOption = optionsConnect(HistoryLineWidth);
+        const XPosOption = optionsConnect(HistoryXPos);
         const ContentForm = () => (
             <div>
                 <ShapeHistoryOptions />
                 <LineWidthOption />
+                <XPosOption />
             </div>
         );
         return (
