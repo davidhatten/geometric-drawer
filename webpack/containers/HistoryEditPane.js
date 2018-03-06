@@ -5,6 +5,7 @@ import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
 import HistoryLineWidth from "../components/controls/HistoryLineWidth";
 import HistoryXPos from "../components/controls/HistoryXPos";
+import HistoryYPos from "../components/controls/HistoryYPos";
 
 class HistoryEditPane extends Component {
     constructor(props) {
@@ -20,11 +21,13 @@ class HistoryEditPane extends Component {
         const ShapeHistoryOptions = optionsConnect(shape.formTag);
         const LineWidthOption = optionsConnect(HistoryLineWidth);
         const XPosOption = optionsConnect(HistoryXPos);
+        const YPosOption = optionsConnect(HistoryYPos);
         const ContentForm = () => (
             <div>
                 <ShapeHistoryOptions />
                 <LineWidthOption />
                 <XPosOption />
+                <YPosOption />
             </div>
         );
         return (

@@ -2,18 +2,18 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import SliderInput from "./SliderInput";
 
-const HistoryXPos = props => (
+const HistoryYPos = props => (
     <Row type="flex" justify="space-around">
         <Col span={24}>
             <SliderInput
                 min={0}
                 max={2550}
-                name="X Position"
-                description={`The X position of the shape.`}
-                value={props.x}
-                updateValue={props.updateXPos} />
+                name="Y Position"
+                description={`The Y position of the shape.`}
+                value={props.y}
+                updateValue={props.updateYPos} />
         </Col>
     </Row>
 );
 
-export default HistoryXPos;
+export default HistoryYPos;
