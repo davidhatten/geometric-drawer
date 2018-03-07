@@ -21,7 +21,7 @@ export default class FlowerOfLifeHistory extends AbstractHistory {
         return {
             iterations: state.shapeProps.byId[this.id].iterations,
             radius: state.shapeProps.byId[this.id].radius,
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
@@ -29,7 +29,7 @@ export default class FlowerOfLifeHistory extends AbstractHistory {
         return {
             updateIterations: (value) => {dispatch(changeHistoryProp(this.id, `iterations`, parseInt(value)));},
             updateRadius: (value) => {dispatch(changeHistoryProp(this.id, `radius`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
         };
     }
 }
