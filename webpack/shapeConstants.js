@@ -83,7 +83,6 @@ export const historyPositionDispatch = (dispatch, id) => ({
 
 export const basicHistoryDispatch = (dispatch, id) => ({
     ...historyRingDispatchWithNoValidation(dispatch, id),
-    ...historyPositionDispatch(dispatch, id),
     updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
     updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
 });
@@ -95,7 +94,6 @@ const historyRingDispatchWithNoValidation = (dispatch, id) => ({
     updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
     updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
     updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
-    updateLineWidth: lineWidthDispatch(dispatch, id),
 });
 
 // The part of you that's learning Ruby is laughing and crying right here

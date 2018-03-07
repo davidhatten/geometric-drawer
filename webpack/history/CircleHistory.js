@@ -20,14 +20,14 @@ export default class CircleHistory extends AbstractHistory {
     stateToPropsMap(state) {
         return {
             radius: state.shapeProps.byId[this.id].radius,
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
     dispatchToPropsMap(dispatch) {
         return {
             updateRadius: (value) => {dispatch(changeHistoryProp(this.id, `radius`, parseInt(value) ));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
         };
     }
 }

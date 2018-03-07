@@ -1,3 +1,5 @@
+import {historyPositionDispatch, lineWidthDispatch, lineWidthState, positionProps} from "../shapeConstants";
+
 export default class AbstractHistory {
     constructor (id){
         this.id = id;
@@ -29,5 +31,19 @@ export default class AbstractHistory {
 
     dispatchToProps() {
         return dispatch => this.dispatchToPropsMap(dispatch);
+    }
+
+    universalProps(state) {
+        return {
+            lineWidth: lineWidthState(state, this.id),
+            ...positionProps(state.shapeProps.byId, this.id),
+        };
+    }
+
+    universalDispatch(dispatch) {
+        return {
+            ...historyPositionDispatch(dispatch, this.id),
+            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+        };
     }
 }
