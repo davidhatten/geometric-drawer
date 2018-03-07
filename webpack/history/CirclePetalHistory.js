@@ -23,7 +23,7 @@ export default class CirclePetalHistory extends AbstractHistory {
             petalRadius: state.shapeProps.byId[this.id].petalRadius,
             rotation: state.shapeProps.byId[this.id].rotation,
             axes: state.shapeProps.byId[this.id].axes,
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
@@ -33,7 +33,7 @@ export default class CirclePetalHistory extends AbstractHistory {
             updatePetalRadius : value => {dispatch(changeHistoryProp(this.id, `petalRadius`, parseInt(value)));},
             updateRotation : value => {dispatch(changeHistoryProp(this.id, `rotation`, parseInt(value)));},
             updateAxes : value => {dispatch(changeHistoryProp(this.id, `axes`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
         };
     }
 }

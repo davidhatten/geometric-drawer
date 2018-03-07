@@ -22,7 +22,7 @@ export default class PrismPetalHistory extends AbstractHistory {
             ...basicRingProps(state.shapeProps.byId, this.id),
             outerXControl: state.shapeProps.byId[this.id].outerXControl,
             outerYControl: state.shapeProps.byId[this.id].outerYControl,
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
@@ -31,7 +31,7 @@ export default class PrismPetalHistory extends AbstractHistory {
             ...basicHistoryDispatch(dispatch, this.id),
             updateOuterXControl: value => {dispatch(changeHistoryProp(this.id, `outerXControl`, parseInt(value)));},
             updateOuterYControl: value => {dispatch(changeHistoryProp(this.id, `outerYControl`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
         };
     }
 }

@@ -60,6 +60,11 @@ export const basicRingProps = (state, config) => ({
     rotation: state[config].rotation,
 });
 
+export const positionProps = (state, config) => ({
+    x: xPosState(state, config),
+    y: yPosState(state, config),
+});
+
 export const basicRingDispatch = (dispatch, action) => ({
     updateInnerRadius: value => {dispatch(changeInnerRadius(action, value));},
     updateOuterRadius: value => {dispatch(changeOuterRadius(action, value));},
@@ -69,6 +74,11 @@ export const basicRingDispatch = (dispatch, action) => ({
     updateInnerGap: value => {dispatch(action(`innerGap`, value));},
     updateOuterGap: value => {dispatch(action(`outerGap`, value));},
     updateRotation: value => {dispatch(action(`rotation`, value));},
+});
+
+export const historyPositionDispatch = (dispatch, id) => ({
+    updateXPos: value => {dispatch(changeHistoryProp(id, `x`, parseInt(value)));},
+    updateYPos: value => {dispatch(changeHistoryProp(id, `y`, parseInt(value)));},
 });
 
 export const basicHistoryDispatch = (dispatch, id) => ({
@@ -84,7 +94,6 @@ const historyRingDispatchWithNoValidation = (dispatch, id) => ({
     updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
     updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
     updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
-    updateLineWidth: lineWidthDispatch(dispatch, id),
 });
 
 // The part of you that's learning Ruby is laughing and crying right here
@@ -114,6 +123,14 @@ export const lineWidthState = (state, id) => (
 
 export const lineWidthDispatch = (dispatch, id) => (value) => (
     dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
+);
+
+export const xPosState = (state, id) => (
+    state[id].x
+);
+
+export const yPosState = (state, id) => (
+    state[id].y
 );
 
 export const changeInnerRadius = (action, value) => {
