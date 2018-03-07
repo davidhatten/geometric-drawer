@@ -20,14 +20,14 @@ export default class SquareHistory extends AbstractHistory {
     stateToPropsMap(state) {
         return {
             length: state.shapeProps.byId[this.id].length,
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
     dispatchToPropsMap(dispatch) {
         return {
             updateLength: (value) => {dispatch(changeHistoryProp(this.id, `length`, parseInt(value)));},
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
         };
     }
 }

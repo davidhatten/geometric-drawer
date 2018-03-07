@@ -19,12 +19,14 @@ export default class RoundedPetalHistory extends AbstractHistory {
     stateToPropsMap(state) {
         return {
             ...basicRingProps(state.shapeProps.byId, this.id),
-            ...positionProps(state.shapeProps.byId, this.id),
-            lineWidth: lineWidthState(state, this.id),
+            ...this.universalProps(state),
         };
     }
 
     dispatchToPropsMap(dispatch) {
-        return basicHistoryDispatch(dispatch, this.id);
+        return {
+            ...basicHistoryDispatch(dispatch, this.id),
+            ...this.universalDispatch(dispatch),
+        };
     }
 }
