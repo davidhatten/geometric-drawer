@@ -3,8 +3,31 @@ import { connect } from 'react-redux';
 import { Timeline } from 'antd';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
+import { DropTarget } from 'react-dnd';
 
 const TimeItem = Timeline.Item;
+
+const historyCardTarget = {
+    canDrop(props, monitor) {
+
+    },
+    hover(props, monitor, component) {
+
+    },
+    drop(props, monitor, component) {
+
+    },
+};
+
+function collect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        isOverCurrent: monitor.isOver({ shallow: true }),
+        canDrop: monitor.canDrop(),
+        itemType: monitor.getItemType(),
+    }
+}
 
 class History extends Component {
     constructor(props) {
@@ -18,7 +41,7 @@ class History extends Component {
                 <HistoryRow shapeId={shapeId} />
             </TimeItem>
         );
-        return (
+        return this.props.connectDropTarget(
             <Timeline>
                 {historyItems}
             </Timeline>
@@ -36,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
     unhighlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(History);
+export default DropTarget(HistoryRow.Types.HISTORY_CARD, historyCardTarget, collect)(connect(mapStateToProps, mapDispatchToProps)(History));
