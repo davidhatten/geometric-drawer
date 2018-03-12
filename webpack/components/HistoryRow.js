@@ -6,17 +6,21 @@ import { deleteShape } from "../actions/removeShapes";
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import { DragTypes } from "../shapeConstants";
+import {changeHistoryOrder} from "../actions/changeHistoryOrder";
 
 const cardSource = {
     beginDrag(props) {
         console.log(`I am beginning to drag`, props);
-        return { id: props.shapeId, originalIndex: props.historyData[props.shapeId] };
+        return {
+            id: props.shapeId,
+            originalIndex: props.historyData[props.shapeId] };
     },
     endDrag(props, monitor) {
         const didDrop = monitor.didDrop();
         console.log(`The card was dropped`, props);
 
         //Call the action here
+        props.orderShape(props.shapeId, 0);
     },
 };
 
@@ -80,6 +84,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     deleteShape: (id) => () => {dispatch(deleteShape(id));},
+    orderShape: (id, index) => {dispatch(changeHistoryOrder(id, index));},
 });
 
 
