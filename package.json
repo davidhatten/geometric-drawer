@@ -43,18 +43,22 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "antd": "^2.13.0",
+    "antd": "^3.3.0",
     "path-svg": "^0.2.1",
     "point-on-circle": "^1.0.4",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-cursor-position": "^2.2.1",
+    "react-dnd": "^2.5.4",
+    "react-dnd-html5-backend": "^2.5.4",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "round-to": "^2.0.0",
     "save-svg-as-png": "^1.2.0",
-    "twirl": "^0.2.1"
+    "twirl": "^0.2.1",
+    "uglify-es": "^3.3.9",
+    "uglify-js": "^3.3.14"
   },
   "pre-push": []
 }
