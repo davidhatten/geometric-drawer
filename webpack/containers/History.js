@@ -3,30 +3,19 @@ import { connect } from 'react-redux';
 import { Timeline } from 'antd';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
+import {DragTypes} from "../shapeConstants";
 import { DropTarget } from 'react-dnd';
 
 const TimeItem = Timeline.Item;
 
-const historyCardTarget = {
-    canDrop(props, monitor) {
-
-    },
-    hover(props, monitor, component) {
-
-    },
-    drop(props, monitor, component) {
-
-    },
+const cardTarget = {
+    drop() {},
 };
 
-function collect(connect, monitor) {
+function cardConnect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
-        isOverCurrent: monitor.isOver({ shallow: true }),
-        canDrop: monitor.canDrop(),
-        itemType: monitor.getItemType(),
-    }
+    };
 }
 
 class History extends Component {
@@ -41,10 +30,13 @@ class History extends Component {
                 <HistoryRow shapeId={shapeId} />
             </TimeItem>
         );
+
         return this.props.connectDropTarget(
-            <Timeline>
-                {historyItems}
-            </Timeline>
+            <div>
+                <Timeline>
+                    {historyItems}
+                </Timeline>
+            </div>
         );
     }
 
@@ -59,4 +51,4 @@ const mapDispatchToProps = dispatch => ({
     unhighlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
 });
 
-export default DropTarget(HistoryRow.Types.HISTORY_CARD, historyCardTarget, collect)(connect(mapStateToProps, mapDispatchToProps)(History));
+export default connect(mapStateToProps, mapDispatchToProps)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, cardConnect)(History));

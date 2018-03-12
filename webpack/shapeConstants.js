@@ -29,6 +29,10 @@ export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
 export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
 export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
 
+export const DragTypes = {
+    HISTORY_CARD: `historyCard`,
+};
+
 export const standardRadius = {
     value: 300,
     min: 1,
