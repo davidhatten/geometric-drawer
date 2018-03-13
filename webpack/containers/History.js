@@ -5,6 +5,7 @@ import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import {DragTypes} from "../shapeConstants";
 import { DropTarget } from 'react-dnd';
+import './History.css';
 
 const TimeItem = Timeline.Item;
 
@@ -26,13 +27,13 @@ class History extends Component {
         const { history } = this.props;
 
         const historyItems = history.map((shapeId, index) =>
-            <TimeItem key={index} onMouseEnter={this.props.highlightShape(shapeId)} onMouseLeave={this.props.unhighlightShape(shapeId)}>
+            <TimeItem className="historyRow" key={index} onMouseEnter={this.props.highlightShape(shapeId)} onMouseLeave={this.props.unhighlightShape(shapeId)}>
                 <HistoryRow shapeId={shapeId} />
             </TimeItem>
         );
 
         return this.props.connectDropTarget(
-            <div>
+            <div className="History">
                 <Timeline>
                     {historyItems}
                 </Timeline>
