@@ -25,6 +25,7 @@ const changeShapeHistory = (state = initialState, action) => {
             formTag: shapeHistory.form(),
             mapStateToProps: shapeHistory.stateToProps(),
             mapDispatchToProps: shapeHistory.dispatchToProps(),
+            config: payload.shape,
             props: id,
             style: id,
         };
