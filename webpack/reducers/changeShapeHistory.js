@@ -13,7 +13,7 @@ const initialState = {
 
 const changeShapeHistory = (state = initialState, action) => {
     switch(action.type) {
-    case DRAW_SHAPE:
+    case DRAW_SHAPE: {
         const payload = action.payload;
         const id = action.payload.id;
         const shapeHistoryClass = historyClassFromConfig(payload.shape);
@@ -31,15 +31,25 @@ const changeShapeHistory = (state = initialState, action) => {
         };
 
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
-    case CHANGE_ORDER:
+    }
+    case CHANGE_ORDER: {
         console.log(`Request to change order has been recieved with payload `, action.payload);
-        return state;
-    case DELETE_SHAPE:
+        const { id, index } = action.payload;
+
+        const newIds = state.allIds.filter((shape_id) => (shape_id !== id));
+        newIds.splice(index, 0, id);
+
+        return { ...state, allIds: newIds };
+    }
+    case DELETE_SHAPE: {
         return clearShapeData(state.byId, state.allIds, action.payload);
-    case CLEAR_HISTORY:
+    }
+    case CLEAR_HISTORY: {
         return { byId: {}, allIds: [] };
-    default:
+    }
+    default: {
         return state;
+    }
     }
 };
 

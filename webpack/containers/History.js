@@ -27,9 +27,11 @@ class History extends Component {
 
 
         return this.props.connectDropTarget(
-            <div className="History">
+            <div  className="History">
                 <List locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={history} renderItem={item => (
-                    <HistoryRow shapeId={item} />
+                    <div onMouseEnter={this.props.highlightShape(item)} onMouseLeave={this.props.unhighlightShape(item)}>
+                        <HistoryRow shapeId={item} />
+                    </div>
                 )}>
                 </List>
             </div>
