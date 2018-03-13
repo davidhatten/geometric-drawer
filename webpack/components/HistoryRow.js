@@ -12,7 +12,6 @@ const ListItem = List.Item;
 
 const cardSource = {
     beginDrag(props) {
-        console.log(`I am beginning to drag`, props);
         return {
             id: props.shapeId,
             originalIndex: props.historyIds.indexOf(props.shapeId),
@@ -23,7 +22,6 @@ const cardSource = {
         const didDrop = monitor.didDrop();
 
         if (!didDrop) {
-            console.log(`The card was dropped outside the proper area I think`, props);
             props.orderShape(droppedId, originalIndex);
         }
     },
@@ -38,11 +36,9 @@ const cardTarget = {
         const { shapeId: overId } = props;
 
         if (draggedId !== overId) {
-            console.log(`draggedId ${draggedId} does not equal ${overId}`);
             const overIndex = props.historyIds.indexOf(overId);
             props.orderShape(draggedId, overIndex);
         }
-
     },
 };
 
