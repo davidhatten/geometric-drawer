@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Row, Col, Form, Input, Popover, Button } from 'antd';
+import { Row, Col, Button, List } from 'antd';
 import { connect } from "react-redux";
 import HistoryEditPane from "../containers/HistoryEditPane";
 import { deleteShape } from "../actions/removeShapes";
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
-import { DragTypes } from "../shapeConstants";
-import {changeHistoryOrder} from "../actions/changeHistoryOrder";
+import { DragTypes, imgFromConfig } from "../shapeConstants";
+import { changeHistoryOrder } from "../actions/changeHistoryOrder";
+
+const ListItem = List.Item;
 
 const cardSource = {
     beginDrag(props) {
@@ -62,17 +64,19 @@ class HistoryRow extends Component {
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <Row type="flex" justify="space-around">
-                        <Col>
-                            {shape.name}
-                        </Col>
-                        <Col>
-                            <HistoryEditPane shapeId={this.props.shapeId} />
-                        </Col>
-                        <Col>
-                            <Button type="danger" onClick={this.props.deleteShape(this.props.shapeId)}>Delete</Button>
-                        </Col>
-                    </Row>
+                    <ListItem className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
+                        <Row type="flex" justify="space-around" align="middle">
+                            <Col span={12}>
+                                {shape.name}
+                            </Col>
+                            <Col span={6}>
+                                <HistoryEditPane shapeId={this.props.shapeId} />
+                            </Col>
+                            <Col span={6}>
+                                <Button type="danger" onClick={this.props.deleteShape(this.props.shapeId)}>Delete</Button>
+                            </Col>
+                        </Row>
+                    </ListItem>
                 </div>
             ));
     }

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Timeline } from 'antd';
+import { List } from 'antd';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
-import {DragTypes} from "../shapeConstants";
+import { DragTypes } from "../shapeConstants";
 import { DropTarget } from 'react-dnd';
 import './History.css';
 
-const TimeItem = Timeline.Item;
 
 const cardTarget = {
     drop() {},
@@ -26,17 +25,13 @@ class History extends Component {
     render() {
         const { history } = this.props;
 
-        const historyItems = history.map((shapeId, index) =>
-            <TimeItem className="historyRow" key={index} onMouseEnter={this.props.highlightShape(shapeId)} onMouseLeave={this.props.unhighlightShape(shapeId)}>
-                <HistoryRow shapeId={shapeId} />
-            </TimeItem>
-        );
 
         return this.props.connectDropTarget(
             <div className="History">
-                <Timeline>
-                    {historyItems}
-                </Timeline>
+                <List locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={history} renderItem={item => (
+                    <HistoryRow shapeId={item} />
+                )}>
+                </List>
             </div>
         );
     }
