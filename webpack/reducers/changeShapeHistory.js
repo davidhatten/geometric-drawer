@@ -33,7 +33,6 @@ const changeShapeHistory = (state = initialState, action) => {
         return { byId: { ...state.byId, [id]: newShape }, allIds: state.allIds.concat(id) };
     }
     case CHANGE_ORDER: {
-        console.log(`Request to change order has been recieved with payload `, action.payload);
         const { id, index } = action.payload;
 
         const newIds = state.allIds.filter((shape_id) => (shape_id !== id));
