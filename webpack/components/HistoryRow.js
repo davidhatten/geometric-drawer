@@ -15,14 +15,17 @@ const cardSource = {
         console.log(`I am beginning to drag`, props);
         return {
             id: props.shapeId,
-            originalIndex: props.historyData[props.shapeId] };
+            originalIndex: props.historyIds.indexOf(props.shapeId),
+        };
     },
     endDrag(props, monitor) {
+        const { id: droppedId, originalIndex } = monitor.getItem();
         const didDrop = monitor.didDrop();
-        console.log(`The card was dropped`, props);
 
-        //Call the action here
-        props.orderShape(props.shapeId, 0);
+        if (!didDrop) {
+            console.log(`The card was dropped outside the proper area I think`, props);
+            props.orderShape(droppedId, originalIndex);
+        }
     },
 };
 
@@ -31,10 +34,15 @@ const cardTarget = {
         return false;
     },
     hover(props, monitor, component) {
-        console.log(`I'm hovering`);
+        const { id: draggedId } = monitor.getItem();
+        const { shapeId: overId } = props;
 
-        // Lots of shit goes here
-        // call an action to move the card around if it didn't drop I guess
+        if (draggedId !== overId) {
+            console.log(`draggedId ${draggedId} does not equal ${overId}`);
+            const overIndex = props.historyIds.indexOf(overId);
+            props.orderShape(draggedId, overIndex);
+        }
+
     },
 };
 
@@ -84,6 +92,7 @@ class HistoryRow extends Component {
 
 const mapStateToProps = state => ({
     historyData: state.shapeHistory.byId,
+    historyIds: state.shapeHistory.allIds,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -92,4 +101,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(HistoryRow)));
+export default connect(mapStateToProps, mapDispatchToProps)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(HistoryRow)));
