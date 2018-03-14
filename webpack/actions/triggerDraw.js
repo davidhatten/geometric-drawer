@@ -31,7 +31,7 @@ export const triggerDraw = (location) => {
             },
             style: {
                 strokeWidth: style.strokeWidth,
-                fill: `none`,
+                fill: style.fillShape ? `white` : `none`,
                 stroke: `black`,
                 strokeLinecap: `round`,
             },

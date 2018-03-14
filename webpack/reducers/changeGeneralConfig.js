@@ -4,6 +4,7 @@ const initialState = {
     strokeWidth: 10,
     lockHorizontal: true,
     lockVertical: true,
+    fillShape: false,
     canvasHeight: 3300,
     canvasWidth: 2550,
 };
