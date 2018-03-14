@@ -3,6 +3,7 @@ import { Form } from 'antd';
 import LineWidthInput from "../containers/LineWidthInput";
 import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 import VerticalAxisLock from "../containers/VerticalAxisLock";
+import FillShapeInput from "../containers/FillShapeInput";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
@@ -12,9 +13,9 @@ class GeneralOptionsConfig extends Component {
         return (
             <Form> 
                 <LineWidthInput />
+                <FillShapeInput />
                 <HorizontalAxisLock />
                 <VerticalAxisLock />
-
             </Form>
         );
     }

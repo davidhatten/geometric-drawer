@@ -1,4 +1,5 @@
 import {historyPositionDispatch, lineWidthDispatch, lineWidthState, positionProps} from "../shapeConstants";
+import { changeHistoryStyle } from "../actions/changeHistoryProp";
 
 export default class AbstractHistory {
     constructor (id){
@@ -36,6 +37,7 @@ export default class AbstractHistory {
     universalProps(state) {
         return {
             lineWidth: lineWidthState(state, this.id),
+            fillShape: state.shapeStyle.byId[this.id].fill !== `none`,
             ...positionProps(state.shapeProps.byId, this.id),
         };
     }
@@ -44,6 +46,7 @@ export default class AbstractHistory {
         return {
             ...historyPositionDispatch(dispatch, this.id),
             updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            toggleFillShape: (checked) => (dispatch(changeHistoryStyle(this.id, `fill`, checked ? `white` : `none`))),
         };
     }
 }
