@@ -12,8 +12,8 @@ class VerticalAxisLock extends Component {
     render() {
         return(
             <Row type="flex" justify="start" align="middle">
-                <FormItem label="Center Vertical Axis">
-                    <Switch checked={this.props.checked} onChange={this.props.toggleHorizontal} />
+                <FormItem labelCol={{ span: 20 }} wrapperCol={{ span: 2 }} label="Center Vertical Axis">
+                    <Switch size="small" checked={this.props.checked} onChange={this.props.toggleHorizontal} />
                 </FormItem>
             </Row>
         );
