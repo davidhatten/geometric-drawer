@@ -20,6 +20,7 @@ import CurveyPetalForm from "../components/forms/CurveyPetalForm";
 import CurveyPetalConfig from "./configs/CurveyPetalConfig";
 import ClawPetalConfig from "./configs/ClawPetalConfig";
 import PrismPetalConfig from "./configs/PrismPetalConfig";
+import './Palette.css';
 
 const Panel = Collapse.Panel;
 

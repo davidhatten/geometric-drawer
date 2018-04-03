@@ -2,6 +2,11 @@ import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import UglifyESPlugin from 'uglifyjs-webpack-plugin';
+import lessToJs from 'less-vars-to-js';
+import fs from 'fs';
+
+const themeVars = lessToJs(fs.readFileSync(path.join(__dirname, './webpack/style.less'), 'utf8'));
+console.log("$$$$$$$$ themeVars are ", themeVars);
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -11,12 +16,20 @@ module.exports = {
         path: path.resolve(__dirname, `assets/javascripts`),
         filename: `bundle.js`,
     },
+    devServer: {
+        contentBase: path.resolve(__dirname, `webpack`),
+    },
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loader: `babel-loader`,
+                options: {
+                    plugins: [
+                        ['import', { libraryName: "antd", style: true }],
+                    ],
+                },
             },
             {
               test: /\.css$/,
@@ -28,13 +41,15 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: [{
-                    loader: "style-loader" // creates style nodes from JS strings
-                }, {
-                    loader: "css-loader" // translates CSS into CommonJS
-                }, {
-                    loader: "less-loader" // compiles Less to CSS
-                }],
+                use: [
+                    {loader: "style-loader"}, // creates style nodes from JS strings
+                    {loader: "css-loader"}, // translates CSS into CommonJS
+                    {loader: "less-loader",
+                        options: {
+                            modifyVars: themeVars,
+                        }, // compiles Less to CSS
+                    },
+                ],
            },
         ],
     },
