@@ -6,7 +6,6 @@ import lessToJs from 'less-vars-to-js';
 import fs from 'fs';
 
 const themeVars = lessToJs(fs.readFileSync(path.join(__dirname, './webpack/style.less'), 'utf8'));
-console.log("$$$$$$$$ themeVars are ", themeVars);
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
