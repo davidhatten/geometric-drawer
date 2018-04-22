@@ -16,11 +16,9 @@ import {
 import { selectShape } from '../actions/selectShape';
 import RoundedPetalConfig from "./configs/RoundedPetalConfig";
 import CirclePetalConfig from "./configs/CirclePetalConfig";
-import CurveyPetalForm from "../components/forms/CurveyPetalForm";
 import CurveyPetalConfig from "./configs/CurveyPetalConfig";
 import ClawPetalConfig from "./configs/ClawPetalConfig";
 import PrismPetalConfig from "./configs/PrismPetalConfig";
-import './Palette.css';
 
 const Panel = Collapse.Panel;
 
