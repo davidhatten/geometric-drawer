@@ -19,13 +19,13 @@ class SliderInput extends Component {
 
     render() {
         return (
-            <FormItem labelCol={{ span: 7 }} wrapperCol={{ span: 15, offset: 1 }} label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
+            <FormItem labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
                 <Row>
-                    <Col span={14}>
+                    <Col span={12}>
                         <Slider min={this.props.min} max={this.props.max} value={this.props.value}
                             onChange={this.onChange}/>
                     </Col>
-                    <Col span={3}>
+                    <Col span={1}>
                         <Tooltip title={this.props.description}>
                             <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
                                 formatter={value => value} onChange={this.onChange}/>
