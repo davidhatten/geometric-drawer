@@ -38,7 +38,6 @@ export default class AbstractHistory {
         return state => {
             try {
                 return this.stateToPropsMap(state);
-
             } catch (error) {
                 return {};
             }
