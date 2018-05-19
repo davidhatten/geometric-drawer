@@ -27,7 +27,15 @@ export default class AbstractHistory {
     }
 
     stateToProps() {
-        return state => this.stateToPropsMap(state);
+        return state => {
+            try {
+                return this.stateToPropsMap(state);
+
+            } catch (error) {
+                return {};
+            }
+        };
+
     }
 
     dispatchToProps() {
