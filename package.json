@@ -45,7 +45,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "antd": "git://github.com/ant-design/ant-design.git#feature-3.5.0",
+    "antd": "^3.5.0",
     "path-svg": "^0.2.1",
     "point-on-circle": "^1.0.4",
     "prop-types": "^15.5.10",
