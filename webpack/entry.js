@@ -53,7 +53,6 @@ let reducers = combineReducers({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk, shapeHighlighting)));
 
-
 const wrapApp = AppComponent =>
     <Provider store={store}>
         <AppComponent />
