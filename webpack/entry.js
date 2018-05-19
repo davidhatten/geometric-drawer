@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import App from './components/App';
@@ -50,7 +50,9 @@ let reducers = combineReducers({
     currentlyEditing: changeEditPopover,
 });
 
-let store = createStore(reducers, applyMiddleware(thunk, shapeHighlighting));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+let store = createStore(reducers, composeEnhancers(applyMiddleware(thunk, shapeHighlighting)));
+
 
 const wrapApp = AppComponent =>
     <Provider store={store}>
