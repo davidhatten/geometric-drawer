@@ -74,7 +74,7 @@ class HistoryRow extends Component {
                                 {shape.name}
                             </Col>
                             <Col span={6}>
-                                <HistoryEditPane shapeId={this.props.shapeId} />
+                                <HistoryEditPane shapeId={shape.id} />
                             </Col>
                             <Col span={6}>
                                 <Button type="danger" onClick={this.props.deleteShape(this.props.shapeId)}>Delete</Button>
