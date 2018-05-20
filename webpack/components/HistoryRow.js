@@ -77,7 +77,7 @@ class HistoryRow extends Component {
                                 <HistoryEditPane shapeId={shape.id} />
                             </Col>
                             <Col span={6}>
-                                <Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} />
+                                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
                             </Col>
                         </Row>
                     </ListItem>

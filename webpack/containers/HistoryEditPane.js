@@ -35,7 +35,7 @@ class HistoryEditPane extends Component {
         );
         return (
             <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `28%` }} placement={`bottom`} title={shape.name} content={<ContentForm />} trigger={`click`}>
-                <Button size={`large`} icon={`edit`} />
+                <span title={`Edit`}><Button size={`large`} icon={`edit`} /></span>
             </Popover>
         );
     }
