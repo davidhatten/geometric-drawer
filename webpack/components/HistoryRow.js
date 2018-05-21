@@ -68,7 +68,7 @@ class HistoryRow extends Component {
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <ListItem className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
+                    <ListItem style={{ padding: 0, margin: 0 }} className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
                         <Row type="flex" justify="space-around" align="middle">
                             <Col span={12}>
                                 {shape.name}
@@ -77,7 +77,7 @@ class HistoryRow extends Component {
                                 <HistoryEditPane shapeId={shape.id} />
                             </Col>
                             <Col span={6}>
-                                <Button type="danger" onClick={this.props.deleteShape(this.props.shapeId)}>Delete</Button>
+                                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
                             </Col>
                         </Row>
                     </ListItem>

@@ -49,7 +49,7 @@ class Studio extends Component {
                             </ReactCursorPosition>
                         </Affix>
                     </Col>
-                    <Col lg={6} md={6} sm={6}>
+                    <Col lg={7} md={7} sm={7}>
                         <Row>
                             <h2>Drawing Options</h2>
                             <br />

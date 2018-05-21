@@ -5,8 +5,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import App from './components/App';
-import 'antd/dist/antd.css';
-import './style.less';
 
 import selectShape from './reducers/selectShape';
 import changeShapeHistory from './reducers/changeShapeHistory';

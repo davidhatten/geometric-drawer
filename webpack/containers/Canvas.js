@@ -23,6 +23,7 @@ class Canvas extends Component {
             borderStyle: `solid`,
             display: `block`,
             margin: `auto`,
+            backgroundColor: `white`,
         };
         const { shapeData, shapeProps, shapesIds } = this.props;
         const drawnShapes = shapesIds.map((shapeId, index) =>
