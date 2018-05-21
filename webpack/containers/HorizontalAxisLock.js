@@ -11,9 +11,9 @@ class HorizontalAxisLock extends Component {
     }
     render() {
         return(
-            <Row type="flex" justify="start" align="middle">
-                <FormItem label="Center Horizontal Axis">
-                    <Switch checked={this.props.checked} onChange={this.props.toggleHorizontal} />
+            <Row type="flex" justify="center" align="middle">
+                <FormItem labelCol={{ span: 20 }} wrapperCol={{ span: 2 }} label="Center Horizontal Axis">
+                    <Switch size="small" checked={this.props.checked} onChange={this.props.toggleHorizontal} />
                 </FormItem>
             </Row>
         );

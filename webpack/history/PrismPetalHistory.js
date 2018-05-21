@@ -1,24 +1,20 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {
-    basicHistoryDispatch,
-    basicRingProps, changeHistoryInnerRadius, changeHistoryOuterRadius, CURVEY_PETAL_CONFIG, lineWidthDispatch,
-    lineWidthState
-} from "../shapeConstants";
-import CurveyPetal from "../containers/shapes/CurveyPetal";
-import CurveyPetalForm from "../components/forms/CurveyPetalForm";
+import { basicHistoryDispatch, basicRingProps, lineWidthDispatch, lineWidthState } from "../shapeConstants";
+import PrismPetal from "../containers/shapes/PrismPetal";
+import PrismPetalForm from "../components/forms/PrismPetalForm";
 
-export default class CurveyPetalHistory extends AbstractHistory {
+export default class PrismPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
     }
 
     shape() {
-        return CurveyPetal;
+        return PrismPetal;
     }
 
     form() {
-        return CurveyPetalForm;
+        return PrismPetalForm;
     }
 
     stateToPropsMap(state) {

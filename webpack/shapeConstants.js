@@ -7,6 +7,7 @@ import CirclePetalHistory from "./history/CirclePetalHistory";
 import CurveyPetalHistory from "./history/CurveyPetalHistory";
 import PointedPetalHistory from "./history/PointedPetalHistory";
 import ClawPetalHistory from "./history/ClawPetalHistory";
+import PrismPetalHistory from "./history/PrismPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -16,6 +17,7 @@ export const CIRCLE_PETAL_NAME = `Circle Petals`;
 export const CURVEY_PETAL_NAME = `Curvey Petals`;
 export const POINTED_PETAL_NAME = `Pointed Petals`;
 export const CLAW_PETAL_NAME = `Claw Petals`;
+export const PRISM_PETAL_NAME = `Prism Petals`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -25,6 +27,11 @@ export const CIRCLE_PETAL_CONFIG = `CIRCLE_PETAL_CONFIG`;
 export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`;
 export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
 export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
+export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
+
+export const DragTypes = {
+    HISTORY_CARD: `historyCard`,
+};
 
 export const standardRadius = {
     value: 300,
@@ -54,7 +61,12 @@ export const basicRingProps = (state, config) => ({
     axes: state[config].axes,
     innerGap: state[config].innerGap,
     outerGap: state[config].outerGap,
-    rotation: state[config].rotation, 
+    rotation: state[config].rotation,
+});
+
+export const positionProps = (state, config) => ({
+    x: xPosState(state, config),
+    y: yPosState(state, config),
 });
 
 export const basicRingDispatch = (dispatch, action) => ({
@@ -66,6 +78,11 @@ export const basicRingDispatch = (dispatch, action) => ({
     updateInnerGap: value => {dispatch(action(`innerGap`, value));},
     updateOuterGap: value => {dispatch(action(`outerGap`, value));},
     updateRotation: value => {dispatch(action(`rotation`, value));},
+});
+
+export const historyPositionDispatch = (dispatch, id) => ({
+    updateXPos: value => {dispatch(changeHistoryProp(id, `x`, parseInt(value)));},
+    updateYPos: value => {dispatch(changeHistoryProp(id, `y`, parseInt(value)));},
 });
 
 export const basicHistoryDispatch = (dispatch, id) => ({
@@ -81,19 +98,19 @@ const historyRingDispatchWithNoValidation = (dispatch, id) => ({
     updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
     updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
     updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
-    updateLineWidth: lineWidthDispatch(dispatch, id),
 });
 
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
-    [FOL_CONFIG]: { name: FOL_NAME, history:FlowerOfLifeHistory },
-    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory },
-    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory },
-    [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory },
-    [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory },
-    [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory },
-    [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory },
-    [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory },
+    [FOL_CONFIG]: { name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
+    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle.png` },
+    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square.png` },
+    [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
+    [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
+    [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
+    [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
+    [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
+    [PRISM_PETAL_CONFIG]: { name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
 };
 
 export const nameFromConfig = config => {
@@ -104,12 +121,24 @@ export const historyClassFromConfig = config => {
     return configMap[config].history;
 };
 
+export const imgFromConfig = config => {
+    return configMap[config].img;
+}
+
 export const lineWidthState = (state, id) => (
     state.shapeStyle.byId[id].strokeWidth
 );
 
 export const lineWidthDispatch = (dispatch, id) => (value) => (
     dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
+);
+
+export const xPosState = (state, id) => (
+    state[id].x
+);
+
+export const yPosState = (state, id) => (
+    state[id].y
 );
 
 export const changeInnerRadius = (action, value) => {

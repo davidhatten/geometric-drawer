@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Form, InputNumber, Row, Slider, Tooltip } from "antd";
-import { connect } from "react-redux";
+import './SliderInput.css';
 
 const FormItem = Form.Item;
 
@@ -19,20 +19,19 @@ class SliderInput extends Component {
 
     render() {
         return (
-            <FormItem label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
-                <Col span={18}>
-                    <Slider min={this.props.min} max={this.props.max} value={this.props.value}
-                        onChange={this.onChange}/>
-                </Col>
-                <Col span={1}>
-                    {/*Empty spacer*/}
-                </Col>
-                <Col>
-                    <Tooltip title={this.props.description}>
-                        <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
-                            formatter={value => value} onChange={this.onChange}/>
-                    </Tooltip>
-                </Col>
+            <FormItem labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
+                <Row>
+                    <Col span={12}>
+                        <Slider min={this.props.min} max={this.props.max} value={this.props.value}
+                            onChange={this.onChange}/>
+                    </Col>
+                    <Col span={1}>
+                        <Tooltip title={this.props.description}>
+                            <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
+                                formatter={value => value} onChange={this.onChange}/>
+                        </Tooltip>
+                    </Col>
+                </Row>
             </FormItem>
         );
     }

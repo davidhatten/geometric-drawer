@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Timeline } from 'antd';
+import { List } from 'antd';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
+import { DragTypes } from "../shapeConstants";
+import { DropTarget } from 'react-dnd';
+import './History.css';
 
-const TimeItem = Timeline.Item;
+
+const cardTarget = {
+    drop() {},
+};
+
+function cardConnect(connect, monitor) {
+    return {
+        connectDropTarget: connect.dropTarget(),
+    };
+}
 
 class History extends Component {
     constructor(props) {
@@ -13,15 +25,15 @@ class History extends Component {
     render() {
         const { history } = this.props;
 
-        const historyItems = history.map((shapeId, index) =>
-            <TimeItem key={index} onMouseEnter={this.props.highlightShape(shapeId)} onMouseLeave={this.props.unhighlightShape(shapeId)}>
-                <HistoryRow shapeId={shapeId} />
-            </TimeItem>
-        );
-        return (
-            <Timeline>
-                {historyItems}
-            </Timeline>
+        return this.props.connectDropTarget(
+            <div  className="History">
+                <List style={{ padding: 0, margin: 0 }} size="small" locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={[...history].reverse()} renderItem={item => (
+                    <div onMouseEnter={this.props.highlightShape(item)} onMouseLeave={this.props.unhighlightShape(item)}>
+                        <HistoryRow shapeId={item} />
+                    </div>
+                )}>
+                </List>
+            </div>
         );
     }
 
@@ -36,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
     unhighlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(History);
+export default connect(mapStateToProps, mapDispatchToProps)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, cardConnect)(History));
