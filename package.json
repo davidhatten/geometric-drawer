@@ -8,7 +8,7 @@
     "start": "yarn dev:start",
     "dev:start": "bundle exec jekyll serve --config _config.yml,_config.dev.yml",
     "dev:wds": "webpack-dev-server --content-base assets/javascripts/ --progress --inline --hot --mode 'development'",
-    "prod:build": "NODE_ENV='production' webpack --progress",
+    "prod:build": "webpack --mode=production --progress",
     "test": "eslint webpack",
     "webpack-defaults": "webpack-defaults"
   },
