@@ -35,10 +35,9 @@ export const buildPetals = (drawHalfPetal, startAngle, angleIncrement, maxAngle,
     I do not intend to consider those alternatives until I see a performance problem
      */
 
-    const paths = [];
+    let paths = [];
     while (startAngle < maxAngle) {
-        paths.push(buildPetalHalf(drawHalfPetal, leftPoints, startAngle, centerPoint));
-        paths.push(buildPetalHalf(drawHalfPetal, rightPoints, startAngle, centerPoint));
+        paths = paths.concat(buildPetalHalf(drawHalfPetal, leftPoints, startAngle, centerPoint, rightPoints));
 
         startAngle += angleIncrement;
     }
@@ -46,8 +45,11 @@ export const buildPetals = (drawHalfPetal, startAngle, angleIncrement, maxAngle,
     return paths;
 };
 
-const buildPetalHalf = (drawHalfPetal, points, angle, centerPoint) => {
+const buildPetalHalf = (drawHalfPetal, points, angle, centerPoint, rightPoints) => {
     const pointValues = points.map(point => [Object.values(point)]);
     const twirls = pointValues.map(values => twirl.rotateZoom(angle, centerPoint, 1, values));
-    return drawHalfPetal(...twirls);
+
+    const returnPointValues = rightPoints.map(point => [Object.values(point)]);
+    const returnTwirls = returnPointValues.map(values => twirl.rotateZoom(angle, centerPoint, 1, values));
+    return drawHalfPetal(...twirls, ...returnTwirls);
 };

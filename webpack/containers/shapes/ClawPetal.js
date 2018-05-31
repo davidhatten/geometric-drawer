@@ -6,12 +6,22 @@ import {buildPetals, getControlPoints, getPetalTipPoints} from "../../petalUtil"
 class ClawPetal extends Component {
     constructor(props) {
         super(props);
+        this.firstPetalDrawn = false;
     }
-    drawHalfPetal = (innerPoint, outerPoint, controlPoint) => {
+    drawPetal = (innerPoint, outerPoint, controlPoint, returnInnerPoint, returnOuterPoint, returnControlPoint) => {
         // This goofy array spreading is because of the rotate library
         // at least it's confined to here
-        const path = SvgPath().to(...innerPoint[0])
-            .bezier2(...controlPoint[0], ...outerPoint[0]);
+        let path = null;
+        if (this.firstPetalDrawn) {
+            path = SvgPath().line(...innerPoint[0]);
+
+        } else {
+            path = SvgPath().to(...innerPoint[0]);
+            this.firstPetalDrawn = true;
+        }
+
+        path.bezier2(...controlPoint[0], ...outerPoint[0])
+            .line(...returnOuterPoint[0]).bezier2(...returnControlPoint[0], ...returnInnerPoint[0]);
 
         return path.str();
     }
@@ -26,16 +36,11 @@ class ClawPetal extends Component {
 
         const leftPoints = [innerLeftPoint, outerLeftPoint, controlPoint];
         const rightPoints = [innerRightPoint, outerRightPoint, controlPoint];
-
-        const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
-
-        const drawnResults = paths.map((result, index) =>
-            <path key={index} d={result} {...this.props.styleProps[this.props.style]} />
-        );
+        const paths = buildPetals(this.drawPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
 
         return (
             <g>
-                { drawnResults }
+                <path d={paths.join(` `)} {...this.props.styleProps[this.props.style]} />
             </g>
         );
 
