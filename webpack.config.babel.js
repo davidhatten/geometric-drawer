@@ -17,6 +17,7 @@ module.exports = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, `webpack`),
+        port: 8081,
     },
     module: {
         rules: [
