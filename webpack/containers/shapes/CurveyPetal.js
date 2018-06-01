@@ -26,7 +26,7 @@ class CurveyPetal extends AbstractPetal {
 
         return (
             <g>
-                <path d={paths.join(` `) + ` Z`} {...this.props.styleProps[this.props.style]} />
+                <path d={paths.join(` `)} {...this.props.styleProps[this.props.style]} />
             </g>
         );
     }
