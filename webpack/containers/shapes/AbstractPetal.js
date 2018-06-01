@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SvgPath from "path-svg/svg-path";
 import {buildPetals, getControlPoints, getPetalTipPoints} from "../../petalUtil";
 
 export default class AbstractPetal extends Component {
@@ -44,7 +43,6 @@ export default class AbstractPetal extends Component {
         const rightPoints = [innerRightPoint, outerRightPoint, rightControlPoint];
 
         return buildPetals(this.drawPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
-
     }
 
     doubleControlPointsForEachPetalArmAlgorithm() {
