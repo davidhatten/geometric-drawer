@@ -24,7 +24,7 @@ export const getControlPoints = (leftPoint, rightPoint, xControlPoint, yControlP
     return { leftPoint: leftControlPoint, rightPoint: rightControlPoint };
 };
 
-export const buildPetals = (drawHalfPetal, startAngle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints) => {
+export const buildPetals = (drawPetal, startAngle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints) => {
     /*
     This is roundabout enough to be worth explaining.
     The overall algorithm here is to calculate a petal at the 0 angle line,
@@ -37,7 +37,7 @@ export const buildPetals = (drawHalfPetal, startAngle, angleIncrement, maxAngle,
 
     let paths = [];
     while (startAngle < maxAngle) {
-        paths = paths.concat(buildPetalHalf(drawHalfPetal, leftPoints, startAngle, centerPoint, rightPoints));
+        paths.push(calculatePetalPoints(drawPetal, leftPoints, startAngle, centerPoint, rightPoints));
 
         startAngle += angleIncrement;
     }
@@ -45,11 +45,11 @@ export const buildPetals = (drawHalfPetal, startAngle, angleIncrement, maxAngle,
     return paths;
 };
 
-const buildPetalHalf = (drawHalfPetal, points, angle, centerPoint, rightPoints) => {
+const calculatePetalPoints = (drawPetal, points, angle, centerPoint, rightPoints) => {
     const pointValues = points.map(point => [Object.values(point)]);
     const twirls = pointValues.map(values => twirl.rotateZoom(angle, centerPoint, 1, values));
 
     const returnPointValues = rightPoints.map(point => [Object.values(point)]);
     const returnTwirls = returnPointValues.map(values => twirl.rotateZoom(angle, centerPoint, 1, values));
-    return drawHalfPetal(...twirls, ...returnTwirls);
+    return drawPetal(...twirls, ...returnTwirls);
 };
