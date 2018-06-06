@@ -3,7 +3,7 @@ A little single-page javascript app to generate simple geometries and mandalas
 
 https://davidhatten.github.io/geometric-drawer/
 
-Current version: 1.5.1
+Current version: 1.5.3
 
 ## Types of Shapes
 * Flower of Life
