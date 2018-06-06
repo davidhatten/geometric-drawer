@@ -66,7 +66,7 @@ class Studio extends Component {
                         </Row>
                         <Row>
                             <div>
-                                <h4>Version: 1.5.1</h4>
+                                <h4>Version: 1.5.3</h4>
                             </div>
                         </Row>
                     </Col>
