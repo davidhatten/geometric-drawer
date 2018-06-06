@@ -1,41 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
-import {buildPetals, getControlPoints, getPetalTipPoints} from "../../petalUtil";
+import AbstractPetal from "./AbstractPetal";
 
-class RoundedPetal extends Component {
+class RoundedPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
-    drawHalfPetal = (innerPoint, outerPoint, controlPoint) => {
+    drawPetal(startInnerPoint, startOuterPoint, startControlPoint,
+        returnInnerPoint, returnOuterPoint, returnControlPoint) {
         // This goofy array spreading is because of the rotate library
-        // at least it's confined to here
-        const path = SvgPath().to(...innerPoint[0])
-            .bezier2(...controlPoint[0], ...outerPoint[0]);
+        const path = SvgPath()
+            .to(...startInnerPoint[0])
+            .bezier2(...startControlPoint[0], ...startOuterPoint[0])
+            .line(...returnOuterPoint[0])
+            .bezier2(...returnControlPoint[0], ...returnInnerPoint[0])
+            .close();
 
         return path.str();
     }
     render() {
-        const { rotation: angle, axes, innerRadius, outerRadius, x, y, innerXControl, innerYControl, innerGap, outerGap } = this.props;
-        const maxAngle = 360 + angle;
-        const angleIncrement = 360/axes;
-        const centerPoint = [x, y];
-
-        const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
-        const { leftPoint: leftControlPoint, rightPoint: rightControlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
-
-        const leftPoints = [innerLeftPoint, outerLeftPoint, leftControlPoint];
-        const rightPoints = [innerRightPoint, outerRightPoint, rightControlPoint];
-
-        const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
-
-        const drawnResults = paths.map((result, index) =>
-            <path key={index} d={result} {...this.props.styleProps[this.props.style]} />
-        );
+        const paths = this.singleControlPointForEachPetalArmAlgorithm();
 
         return (
             <g>
-                { drawnResults }
+                <path d={paths.join(` `)} {...this.props.styleProps[this.props.style]} />
             </g>
         );
 

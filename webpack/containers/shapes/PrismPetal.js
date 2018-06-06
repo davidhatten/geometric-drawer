@@ -1,43 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SvgPath from 'path-svg/svg-path';
 import { connect } from "react-redux";
-import { buildPetals, getControlPoints, getPetalTipPoints } from "../../petalUtil";
+import AbstractPetal from "./AbstractPetal";
 
-class PrismPetal extends Component {
+class PrismPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
-    drawHalfPetal = (innerPoint, outerPoint, innerControlPoint, outerControlPoint) => {
+    drawPetal(startInnerPoint, startOuterPoint, startInnerControlPoint, startOuterControlPoint,
+        returnInnerPoint, returnOuterPoint, returnInnerControlPoint, returnOuterControlPoint) {
         // This goofy array spreading is because of the rotate library
-        // at least it's confined to here
-        // except it isn't any sufficiently complex petal will use this
-        // maybe wrap this in a call to petalUtil?
-        const path = SvgPath().to(...innerPoint[0])
-            .line(...innerControlPoint[0]).line(...outerControlPoint[0]).line(...outerPoint[0]);
+        const path = SvgPath().to(...startInnerPoint[0])
+            .line(...startInnerControlPoint[0])
+            .line(...startOuterControlPoint[0])
+            .line(...startOuterPoint[0])
+            .line(...returnOuterPoint[0])
+            .line(...returnOuterControlPoint[0])
+            .line(...returnInnerControlPoint[0])
+            .line(...returnInnerPoint[0])
+            .close();
 
         return path.str();
     }
     render() {
-        const { rotation: angle, axes, innerRadius, outerRadius, x, y, innerXControl, innerYControl, outerXControl, outerYControl, innerGap, outerGap } = this.props;
-        const maxAngle = 360 + angle;
-        const angleIncrement = 360/axes;
-        const centerPoint = [x, y];
+        const paths = this.doubleControlPointsForEachPetalArmAlgorithm();
 
-        const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } = getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
-        const { leftPoint: innerLeftControlPoint, rightPoint: innerRightControlPoint } = getControlPoints(innerLeftPoint, innerRightPoint, innerXControl, innerYControl);
-        const { leftPoint: outerLeftControlPoint, rightPoint: outerRightControlPoint } = getControlPoints(outerLeftPoint, outerRightPoint, outerXControl, outerYControl);
-
-        const leftPoints = [innerLeftPoint, outerLeftPoint, innerLeftControlPoint, outerLeftControlPoint];
-        const rightPoints = [innerRightPoint, outerRightPoint, innerRightControlPoint, outerRightControlPoint];
-
-        const paths = buildPetals(this.drawHalfPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
-
-        const drawnResults = paths.map((result, index) =>
-            <path key={index} d={result} {...this.props.styleProps[this.props.style]} />
-        );
         return (
             <g>
-                {drawnResults}
+                <path d={paths.join(` `)} {...this.props.styleProps[this.props.style]} />
             </g>
         );
     }
