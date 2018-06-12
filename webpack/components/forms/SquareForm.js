@@ -11,9 +11,17 @@ const SquareForm = (props) => (
                     min={standardSquareLength.min}
                     max={standardSquareLength.max}
                     name={standardSquareLength.name}
-                    description={`The side length of the sqaure.`}
+                    description={`The side length of the square.`}
                     value={props.length}
                     updateValue={props.updateLength}
+                />
+                <SliderInput
+                    min={0}
+                    max={360}
+                    name={`Rotation`}
+                    description={`The rotation of the square.`}
+                    value={props.rotation}
+                    updateValue={props.updateRotation}
                 />
             </Col>
         </Row>
