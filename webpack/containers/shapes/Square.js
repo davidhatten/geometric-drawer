@@ -6,11 +6,11 @@ class Square extends Component {
         super(props);
     }
     render() {
-        const { x, y, length } = this.props;
+        const { x, y, length, rotation } = this.props;
         // Rect wants to draw the square with the top-left corner positioned on the cursor
         // I want to draw the square with the center positioned on the cursor
         // hence the length math
-        return <rect x={x - length/2} y={y - length/2} width={length} height={length} style={this.props.styleProps[this.props.style]}/>;
+        return <rect transform={`rotate(${rotation} ${x} ${y})`} x={x - length/2} y={y - length/2} width={length} height={length} style={this.props.styleProps[this.props.style]}/>;
     }
 }
 
