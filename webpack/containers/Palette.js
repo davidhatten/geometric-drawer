@@ -4,13 +4,14 @@ import { Collapse } from 'antd';
 import PaletteHeader from '../components/PaletteHeader';
 import CircleConfig from './configs/CircleConfig';
 import SquareConfig from './configs/SquareConfig';
+import RectangleConfig from './configs/RectangleConfig';
 import FlowerOfLifeConfig from './configs/FlowerOfLifeConfig';
 import PointedPetalConfig from './configs/PointedPetalConfig';
 import {
     CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME,
     ROUNDED_PETAL_CONFIG, ROUNDED_PETAL_NAME, CIRCLE_PETAL_CONFIG, CIRCLE_PETAL_NAME, CURVEY_PETAL_CONFIG,
     CURVEY_PETAL_NAME, POINTED_PETAL_CONFIG, POINTED_PETAL_NAME, CLAW_PETAL_CONFIG, CLAW_PETAL_NAME, PRISM_PETAL_CONFIG,
-    PRISM_PETAL_NAME,
+    PRISM_PETAL_NAME, RECTANGLE_CONFIG, RECTANGLE_NAME, imgFromConfig,
 } from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
@@ -40,6 +41,12 @@ class Palette extends Component {
                     img="assets/img/circle.png"
                     description="A simple circle. Centered on your click."/>}>
                     <CircleConfig/>
+                </Panel>
+                <Panel key={RECTANGLE_CONFIG} header={<PaletteHeader
+                    name={RECTANGLE_NAME}
+                    img={imgFromConfig(RECTANGLE_CONFIG)}
+                    description="A simple rectangle. Centered on your click."/>}>
+                    <RectangleConfig/>
                 </Panel>
                 <Panel key={SQUARE_CONFIG} header={<PaletteHeader
                     name={SQUARE_NAME}
