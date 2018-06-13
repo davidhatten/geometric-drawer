@@ -8,6 +8,7 @@ import CurveyPetalHistory from "./history/CurveyPetalHistory";
 import PointedPetalHistory from "./history/PointedPetalHistory";
 import ClawPetalHistory from "./history/ClawPetalHistory";
 import PrismPetalHistory from "./history/PrismPetalHistory";
+import RectangleHistory from "./history/RectangleHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -18,6 +19,7 @@ export const CURVEY_PETAL_NAME = `Curvey Petals`;
 export const POINTED_PETAL_NAME = `Pointed Petals`;
 export const CLAW_PETAL_NAME = `Claw Petals`;
 export const PRISM_PETAL_NAME = `Prism Petals`;
+export const RECTANGLE_NAME = `Rectangle`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -28,6 +30,7 @@ export const CURVEY_PETAL_CONFIG = `CURVEY_PETAL_CONFIG`;
 export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
 export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
 export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
+export const RECTANGLE_CONFIG = `RECTANGLE_CONFIG`;
 
 export const DragTypes = {
     HISTORY_CARD: `historyCard`,
@@ -105,6 +108,7 @@ const configMap = {
     [FOL_CONFIG]: { name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
     [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle.png` },
     [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square.png` },
+    [RECTANGLE_CONFIG]: { name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
     [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
     [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
     [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },

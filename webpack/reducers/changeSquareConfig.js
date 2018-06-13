@@ -4,6 +4,7 @@ import { updateShapeConfigValue } from "../stateUtil";
 
 const initialState = {
     length: standardSquareLength.value,
+    rotation: 0,
 };
 
 const changeSquareConfig = (state = initialState, action) => {

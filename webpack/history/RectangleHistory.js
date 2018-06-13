@@ -1,25 +1,25 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
-import Square from "../containers/shapes/Square";
-import SquareForm from "../components/forms/SquareForm";
+import RectangleForm from "../components/forms/RectangleForm";
+import Rectangle from "../containers/shapes/Rectangle";
 
-export default class SquareHistory extends AbstractHistory {
+export default class RectangleHistory extends AbstractHistory {
     constructor(id) {
         super(id);
     }
 
     shape() {
-        return Square;
+        return Rectangle;
     }
 
     form() {
-        return SquareForm;
+        return RectangleForm;
     }
 
     stateToPropsMap(state) {
         return {
-            length: state.shapeProps.byId[this.id].length,
+            height: state.shapeProps.byId[this.id].height,
+            width: state.shapeProps.byId[this.id].width,
             rotation: state.shapeProps.byId[this.id].rotation,
             ...this.universalProps(state),
         };
@@ -27,7 +27,8 @@ export default class SquareHistory extends AbstractHistory {
 
     dispatchToPropsMap(dispatch) {
         return {
-            updateLength: (value) => {dispatch(changeHistoryProp(this.id, `length`, parseInt(value)));},
+            updateHeight: (value) => {dispatch(changeHistoryProp(this.id, `height`, parseInt(value)));},
+            updateWidth: (value) => {dispatch(changeHistoryProp(this.id, `width`, parseInt(value)));},
             updateRotation: (value) => {dispatch(changeHistoryProp(this.id, `rotation`, parseInt(value)));},
             ...this.universalDispatch(dispatch),
         };
