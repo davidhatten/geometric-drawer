@@ -164,7 +164,7 @@ const configMap = {
     [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
     [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
     [PRISM_PETAL_CONFIG]: { name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
-    [MANUAL_ROUNDED_PETAL_CONFIG]: { name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: ``},
+    [MANUAL_ROUNDED_PETAL_CONFIG]: { name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
 };
 
 export const nameFromConfig = config => {
@@ -177,7 +177,7 @@ export const historyClassFromConfig = config => {
 
 export const imgFromConfig = config => {
     return configMap[config].img;
-}
+};
 
 export const lineWidthState = (state, id) => (
     state.shapeStyle.byId[id].strokeWidth

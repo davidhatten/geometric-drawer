@@ -82,7 +82,7 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={MANUAL_ROUNDED_PETAL_CONFIG} header={<PaletteHeader
                     name={MANUAL_ROUNDED_PETAL_NAME}
-                    img=""
+                    img={imgFromConfig(MANUAL_ROUNDED_PETAL_CONFIG)}
                     description="A ring of petals, each rounded out by gravitating towards a control point. Each arm has its own distinct control point. For more info, see 'SVG Quadratic Path'"/>}>
                     <ManualRoundedPetalConfig />
                 </Panel>
