@@ -57,6 +57,11 @@ export default class AbstractPetal extends Component {
     }
 
     singleControlPointIndependentForEachPetalArmAlgorithm() {
+        /*
+        This algorithm describes math for a petal that uses a single independent control point for each petal arm
+        So, both petal arms are completely distinct and can be independently controlled
+        Visually this results in a set of petals that have the potential to have zero symmetry 
+         */
         const { rotation: angle, axes, innerRadius, outerRadius, x, y, innerXLeftControl, innerXRightControl,
             innerYLeftControl, innerYRightControl, innerGap, outerGap } = this.props;
         const maxAngle = 360 + angle;
