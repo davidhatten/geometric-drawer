@@ -23,7 +23,7 @@ class PrismPetal extends AbstractPetal {
         return path.str();
     }
     render() {
-        const paths = this.doubleControlPointsForEachPetalArmAlgorithm();
+        const paths = this.doubleControlPointsMirroredForEachPetalArmAlgorithm();
 
         return (
             <g>

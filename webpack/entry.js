@@ -10,8 +10,15 @@ import selectShape from './reducers/selectShape';
 import changeShapeHistory from './reducers/changeShapeHistory';
 import changeGeneralConfig from './reducers/changeGeneralConfig';
 import {
-    CIRCLE_CONFIG, CIRCLE_PETAL_CONFIG, CLAW_PETAL_CONFIG, CURVEY_PETAL_CONFIG, FOL_CONFIG, POINTED_PETAL_CONFIG,
-    PRISM_PETAL_CONFIG, RECTANGLE_CONFIG,
+    CIRCLE_CONFIG,
+    CIRCLE_PETAL_CONFIG,
+    CLAW_PETAL_CONFIG,
+    CURVEY_PETAL_CONFIG,
+    FOL_CONFIG,
+    MANUAL_ROUNDED_PETAL_CONFIG,
+    POINTED_PETAL_CONFIG,
+    PRISM_PETAL_CONFIG,
+    RECTANGLE_CONFIG,
     ROUNDED_PETAL_CONFIG,
     SQUARE_CONFIG,
 } from "./shapeConstants";
@@ -29,6 +36,7 @@ import changePointedPetalConfig from "./reducers/changePointedPetalConfig";
 import changeClawPetalConfig from "./reducers/changeClawPetalConfig";
 import changePrismPetalConfig from "./reducers/changePrismPetalConfig";
 import changeRectangleConfig from "./reducers/changeRectangleConfig";
+import changeManualRoundedPetalConfig from "./reducers/changeManualRoundedPetalConfig";
 
 
 let reducers = combineReducers({
@@ -43,6 +51,7 @@ let reducers = combineReducers({
     [CLAW_PETAL_CONFIG]: changeClawPetalConfig,
     [PRISM_PETAL_CONFIG]: changePrismPetalConfig,
     [RECTANGLE_CONFIG]: changeRectangleConfig,
+    [MANUAL_ROUNDED_PETAL_CONFIG]: changeManualRoundedPetalConfig,
     shapeStyle: changeShapeStyle,
     shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,

@@ -8,10 +8,29 @@ import RectangleConfig from './configs/RectangleConfig';
 import FlowerOfLifeConfig from './configs/FlowerOfLifeConfig';
 import PointedPetalConfig from './configs/PointedPetalConfig';
 import {
-    CIRCLE_CONFIG, SQUARE_CONFIG, FOL_CONFIG, FOL_NAME, CIRCLE_NAME, SQUARE_NAME,
-    ROUNDED_PETAL_CONFIG, ROUNDED_PETAL_NAME, CIRCLE_PETAL_CONFIG, CIRCLE_PETAL_NAME, CURVEY_PETAL_CONFIG,
-    CURVEY_PETAL_NAME, POINTED_PETAL_CONFIG, POINTED_PETAL_NAME, CLAW_PETAL_CONFIG, CLAW_PETAL_NAME, PRISM_PETAL_CONFIG,
-    PRISM_PETAL_NAME, RECTANGLE_CONFIG, RECTANGLE_NAME, imgFromConfig,
+    CIRCLE_CONFIG,
+    SQUARE_CONFIG,
+    FOL_CONFIG,
+    FOL_NAME,
+    CIRCLE_NAME,
+    SQUARE_NAME,
+    ROUNDED_PETAL_CONFIG,
+    ROUNDED_PETAL_NAME,
+    CIRCLE_PETAL_CONFIG,
+    CIRCLE_PETAL_NAME,
+    CURVEY_PETAL_CONFIG,
+    CURVEY_PETAL_NAME,
+    POINTED_PETAL_CONFIG,
+    POINTED_PETAL_NAME,
+    CLAW_PETAL_CONFIG,
+    CLAW_PETAL_NAME,
+    PRISM_PETAL_CONFIG,
+    PRISM_PETAL_NAME,
+    RECTANGLE_CONFIG,
+    RECTANGLE_NAME,
+    imgFromConfig,
+    MANUAL_ROUNDED_PETAL_CONFIG,
+    MANUAL_ROUNDED_PETAL_NAME,
 } from '../shapeConstants';
 
 import { selectShape } from '../actions/selectShape';
@@ -20,6 +39,7 @@ import CirclePetalConfig from "./configs/CirclePetalConfig";
 import CurveyPetalConfig from "./configs/CurveyPetalConfig";
 import ClawPetalConfig from "./configs/ClawPetalConfig";
 import PrismPetalConfig from "./configs/PrismPetalConfig";
+import ManualRoundedPetalConfig from "./configs/ManualRoundedPetalConfig";
 
 const Panel = Collapse.Panel;
 
@@ -59,6 +79,12 @@ class Palette extends Component {
                     img="assets/img/rounded_petals_80x80.png"
                     description="A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'"/>}>
                     <RoundedPetalConfig />
+                </Panel>
+                <Panel key={MANUAL_ROUNDED_PETAL_CONFIG} header={<PaletteHeader
+                    name={MANUAL_ROUNDED_PETAL_NAME}
+                    img={imgFromConfig(MANUAL_ROUNDED_PETAL_CONFIG)}
+                    description="A ring of petals, each rounded out by gravitating towards a control point. Each arm has its own distinct control point. For more info, see 'SVG Quadratic Path'"/>}>
+                    <ManualRoundedPetalConfig />
                 </Panel>
                 <Panel key={CURVEY_PETAL_CONFIG} header={<PaletteHeader
                     name={CURVEY_PETAL_NAME}

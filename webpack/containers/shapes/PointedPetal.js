@@ -21,7 +21,7 @@ class PointedPetal extends AbstractPetal {
         return path.str();
     }
     render() {
-        const paths = this.singleControlPointForEachPetalArmAlgorithm();
+        const paths = this.singleControlPointMirroredForEachPetalArmAlgorithm();
 
         return (
             <g>

@@ -1,4 +1,5 @@
 import twirl from "twirl";
+import SvgPath from "path-svg/svg-path";
 
 export const getPetalTipPoints = (x, y, innerRadius, outerRadius, innerGap, outerGap) => {
     /*
@@ -17,9 +18,13 @@ export const getPetalTipPoints = (x, y, innerRadius, outerRadius, innerGap, oute
     return { innerLeftPoint: innerLeftPoint, innerRightPoint: innerRightPoint, outerLeftPoint: outerLeftPoint, outerRightPoint: outerRightPoint };
 };
 
-export const getControlPoints = (leftPoint, rightPoint, xControlPoint, yControlPoint) => {
-    const leftControlPoint = { x: leftPoint.x - xControlPoint, y: leftPoint.y - yControlPoint };
-    const rightControlPoint = { x: rightPoint.x + xControlPoint, y: rightPoint.y - yControlPoint };
+export const getMirroredControlPoints = (leftPoint, rightPoint, xControlPoint, yControlPoint) => {
+    return getIndependentControlPoints(leftPoint, rightPoint, xControlPoint, xControlPoint, yControlPoint, yControlPoint);
+};
+
+export const getIndependentControlPoints = (leftPoint, rightPoint, xLeftControlPoint, xRightControlPoint, yLeftControlPoint, yRightControlPoint) => {
+    const leftControlPoint = { x: leftPoint.x - xLeftControlPoint, y: leftPoint.y - yLeftControlPoint };
+    const rightControlPoint = { x: rightPoint.x + xRightControlPoint, y: rightPoint.y - yRightControlPoint };
 
     return { leftPoint: leftControlPoint, rightPoint: rightControlPoint };
 };
@@ -43,6 +48,19 @@ export const buildPetals = (drawPetal, startAngle, angleIncrement, maxAngle, cen
     }
 
     return paths;
+};
+
+export const drawRoundedPetal = (startInnerPoint, startOuterPoint, startControlPoint,
+    returnInnerPoint, returnOuterPoint, returnControlPoint) => {
+    // This goofy array spreading is because of the rotate library
+    const path = SvgPath()
+        .to(...startInnerPoint[0])
+        .bezier2(...startControlPoint[0], ...startOuterPoint[0])
+        .line(...returnOuterPoint[0])
+        .bezier2(...returnControlPoint[0], ...returnInnerPoint[0])
+        .close();
+
+    return path.str();
 };
 
 const calculatePetalPoints = (drawPetal, points, angle, centerPoint, rightPoints) => {
