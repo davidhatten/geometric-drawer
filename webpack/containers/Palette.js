@@ -52,13 +52,13 @@ class Palette extends Component {
             <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape}>
                 <Panel key={FOL_CONFIG} header={<PaletteHeader
                     name={FOL_NAME}
-                    img="assets/img/fol_80x80.png"
+                    img={imgFromConfig(FOL_CONFIG)}
                     description="A circle drawn, centered where you click, followed by layers of intersecting circles to form a flower."/>}>
                     <FlowerOfLifeConfig/>
                 </Panel>
                 <Panel key={CIRCLE_CONFIG} header={<PaletteHeader
                     name={CIRCLE_NAME}
-                    img="assets/img/circle.png"
+                    img={imgFromConfig(CIRCLE_CONFIG)}
                     description="A simple circle. Centered on your click."/>}>
                     <CircleConfig/>
                 </Panel>
@@ -70,13 +70,13 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={SQUARE_CONFIG} header={<PaletteHeader
                     name={SQUARE_NAME}
-                    img="assets/img/square.png"
+                    img={imgFromConfig(SQUARE_CONFIG)}
                     description="A simple square. Centered on your click."/>}>
                     <SquareConfig />
                 </Panel>
                 <Panel key={ROUNDED_PETAL_CONFIG} header={<PaletteHeader
                     name={ROUNDED_PETAL_NAME}
-                    img="assets/img/rounded_petals_80x80.png"
+                    img={imgFromConfig(ROUNDED_PETAL_CONFIG)}
                     description="A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'"/>}>
                     <RoundedPetalConfig />
                 </Panel>
@@ -88,31 +88,31 @@ class Palette extends Component {
                 </Panel>
                 <Panel key={CURVEY_PETAL_CONFIG} header={<PaletteHeader
                     name={CURVEY_PETAL_NAME}
-                    img="assets/img/curvey_petals_80x80.png"
+                    img={imgFromConfig(CURVEY_PETAL_CONFIG)}
                     description="A ring of petals, each each one rounded out by two control points. For more info, see 'SVG Bezier Curve'"/>}>
                     <CurveyPetalConfig />
                 </Panel>
                 <Panel key={CIRCLE_PETAL_CONFIG} header={<PaletteHeader
                     name={CIRCLE_PETAL_NAME}
-                    img="assets/img/circle_petals_80x80.png"
+                    img={imgFromConfig(CIRCLE_PETAL_CONFIG)}
                     description="A ring of petals, each one a small circle."/>}>
                     <CirclePetalConfig />
                 </Panel>
                 <Panel key={POINTED_PETAL_CONFIG} header={<PaletteHeader
                     name={POINTED_PETAL_NAME}
-                    img="assets/img/pointed_petals_80x80.png"
+                    img={imgFromConfig(POINTED_PETAL_CONFIG)}
                     description="A ring of petals, each one with lines meeting at the control points."/>}>
                     <PointedPetalConfig />
                 </Panel>
                 <Panel key={PRISM_PETAL_CONFIG} header={<PaletteHeader
                     name={PRISM_PETAL_NAME}
-                    img="assets/img/prism_petals_80x80.png"
+                    img={imgFromConfig(PRISM_PETAL_CONFIG)}
                     description="A ring of petals, each one with lines controlled by two control points."/>}>
                     <PrismPetalConfig />
                 </Panel>
                 <Panel key={CLAW_PETAL_CONFIG} header={<PaletteHeader
                     name={CLAW_PETAL_NAME}
-                    img="assets/img/claw_petals_80x80.png"
+                    img={imgFromConfig(CLAW_PETAL_CONFIG)}
                     description="A ring of petals, each one with lines controlled by a single control point."/>}>
                     <ClawPetalConfig />
                 </Panel>
