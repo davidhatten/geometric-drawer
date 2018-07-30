@@ -82,10 +82,6 @@ export const noControlBasicRingProps = (state, config) => ({
     rotation: state[config].rotation,
 });
 
-export const positionProps = (state, config) => ({
-    x: xPosState(state, config),
-    y: yPosState(state, config),
-});
 
 export const basicRingDispatch = (dispatch, action) => ({
     ...noControlBasicRingDispatch(dispatch, action),
@@ -109,6 +105,24 @@ export const noControlBasicRingDispatch = (dispatch, action) => ({
     updateOuterGap: value => {dispatch(action(`outerGap`, value));},
     updateRotation: value => {dispatch(action(`rotation`, value));},
 });
+
+const changeInnerRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
+
+        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
+    };
+};
+
+const changeOuterRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
+
+        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
+    };
+};
 
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
@@ -137,54 +151,5 @@ export const imgFromConfig = config => {
     return configMap[config].img;
 };
 
-export const lineWidthState = (state, id) => (
-    state.shapeStyle.byId[id].strokeWidth
-);
-
-export const lineWidthDispatch = (dispatch, id) => (value) => (
-    dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
-);
-
-export const xPosState = (state, id) => (
-    state[id].x
-);
-
-export const yPosState = (state, id) => (
-    state[id].y
-);
-
-export const changeInnerRadius = (action, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
-
-        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
-    };
-};
-
-export const changeOuterRadius = (action, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
-
-        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
-    };
-};
-
-export const changeHistoryInnerRadius = (id, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const outerRadius = state.shapeProps.byId[id].outerRadius;
-
-        dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
-    };
-};
-export const changeHistoryOuterRadius = (id, value) => (dispatch, getState) => {
-    const state = getState();
-    const innerRadius = state.shapeProps.byId[id].innerRadius;
-
-    dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
-};
-
-const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
-const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);
+export const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
+export const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);

@@ -1,9 +1,6 @@
 import {
-    changeHistoryInnerRadius,
-    changeHistoryOuterRadius,
-    lineWidthDispatch,
-    lineWidthState,
-    positionProps,
+    boundInnerRadius,
+    boundOuterRadius,
 } from "../shapeConstants";
 import { changeHistoryProp, changeHistoryStyle } from "../actions/changeHistoryProp";
 
@@ -56,16 +53,16 @@ export default class AbstractHistory {
 
     universalProps(state) {
         return {
-            lineWidth: lineWidthState(state, this.id),
+            lineWidth: this.lineWidthState(state, this.id),
             fillShape: state.shapeStyle.byId[this.id].fill !== `none`,
-            ...positionProps(state.shapeProps.byId, this.id),
+            ...this.positionProps(state.shapeProps.byId, this.id),
         };
     }
 
     universalDispatch(dispatch) {
         return {
             ...this.historyPositionDispatch(dispatch, this.id),
-            updateLineWidth: lineWidthDispatch(dispatch, this.id),
+            updateLineWidth: this.lineWidthDispatch(dispatch, this.id),
             toggleFillShape: (checked) => (dispatch(changeHistoryStyle(this.id, `fill`, checked ? `white` : `none`))),
         };
     }
@@ -81,10 +78,10 @@ export default class AbstractHistory {
         return {
             ...this.historyRingDispatchWithNoValidation(dispatch, id),
             updateInnerRadius: value => {
-                dispatch(changeHistoryInnerRadius(id, value));
+                dispatch(this.changeHistoryInnerRadius(id, value));
             },
             updateOuterRadius: value => {
-                dispatch(changeHistoryOuterRadius(id, value));
+                dispatch(this.changeHistoryOuterRadius(id, value));
             },
         };
     }
@@ -134,11 +131,55 @@ export default class AbstractHistory {
                 dispatch(changeHistoryProp(id, `rotation`, value));
             },
             updateInnerRadius: value => {
-                dispatch(changeHistoryInnerRadius(id, value));
+                dispatch(this.changeHistoryInnerRadius(id, value));
             },
             updateOuterRadius: value => {
-                dispatch(changeHistoryOuterRadius(id, value));
+                dispatch(this.changeHistoryOuterRadius(id, value));
             },
         };
+    }
+
+    changeHistoryInnerRadius(id, value) {
+        return (dispatch, getState) => {
+            const state = getState();
+            const outerRadius = state.shapeProps.byId[id].outerRadius;
+
+            dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
+        };
+    };
+
+    changeHistoryOuterRadius(id, value) {
+        return (dispatch, getState) => {
+            const state = getState();
+            const innerRadius = state.shapeProps.byId[id].innerRadius;
+
+            dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
+        };
+    }
+
+    positionProps(state, config) {
+        return {
+            x: this.xPosState(state, config),
+            y: this.yPosState(state, config),
+        };
+    }
+
+    xPosState(state, id) {
+        return state[id].x;
+    }
+
+    yPosState(state, id) {
+        return state[id].y;
+    }
+
+
+    lineWidthState(state, id) {
+        return state.shapeStyle.byId[id].strokeWidth;
+    }
+
+    lineWidthDispatch(dispatch, id) {
+        return (value) => (
+            dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
+        );
     }
 }
