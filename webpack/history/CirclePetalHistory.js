@@ -1,6 +1,5 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
 import CirclePetalForm from "../components/forms/CirclePetalForm";
 import CirclePetal from "../containers/shapes/CirclePetal";
 

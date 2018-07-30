@@ -87,10 +87,6 @@ export const positionProps = (state, config) => ({
     y: yPosState(state, config),
 });
 
-/*
-    Hell begins here
- */
-
 export const basicRingDispatch = (dispatch, action) => ({
     ...noControlBasicRingDispatch(dispatch, action),
     updateInnerXControl: value => {dispatch(action(`innerXControl`, value));},
@@ -113,44 +109,6 @@ export const noControlBasicRingDispatch = (dispatch, action) => ({
     updateOuterGap: value => {dispatch(action(`outerGap`, value));},
     updateRotation: value => {dispatch(action(`rotation`, value));},
 });
-
-export const historyPositionDispatch = (dispatch, id) => ({
-    updateXPos: value => {dispatch(changeHistoryProp(id, `x`, parseInt(value)));},
-    updateYPos: value => {dispatch(changeHistoryProp(id, `y`, parseInt(value)));},
-});
-
-export const basicHistoryDispatch = (dispatch, id) => ({
-    ...historyRingDispatchWithNoValidation(dispatch, id),
-    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
-    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
-});
-
-export const manualHistorySingleControlPointRingDispatch = (dispatch, id) => ({
-    ...noControlBasicHistoryRingDispatch(dispatch, id),
-    updateInnerXLeftControl: value => {dispatch(changeHistoryProp(id, `innerXLeftControl`, value));},
-    updateInnerXRightControl: value => {dispatch(changeHistoryProp(id, `innerXRightControl`, value));},
-    updateInnerYLeftControl: value => {dispatch(changeHistoryProp(id, `innerYLeftControl`, value));},
-    updateInnerYRightControl: value => {dispatch(changeHistoryProp(id, `innerYRightControl`, value));},
-});
-
-const historyRingDispatchWithNoValidation = (dispatch, id) => ({
-    updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
-    updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
-    ...noControlBasicHistoryRingDispatch(dispatch, id),
-});
-
-const noControlBasicHistoryRingDispatch = (dispatch, id) => ({
-    updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, value));},
-    updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
-    updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
-    updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
-    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
-    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
-});
-
-/*
-    Hell ends here
- */
 
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {

@@ -1,10 +1,5 @@
 import AbstractHistory from "./AbstractHistory.js";
-import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {
-    basicHistoryDispatch,
-    basicRingProps, changeHistoryInnerRadius, changeHistoryOuterRadius, lineWidthDispatch,
-    lineWidthState
-} from "../shapeConstants";
+import { basicRingProps } from "../shapeConstants";
 import ClawPetal from "../containers/shapes/ClawPetal";
 import ClawPetalForm from "../components/forms/ClawPetalForm";
 
@@ -30,7 +25,7 @@ export default class ClawPetalHistory extends AbstractHistory {
 
     dispatchToPropsMap(dispatch) {
         return {
-            ...basicHistoryDispatch(dispatch, this.id),
+            ...this.basicHistoryDispatch(dispatch, this.id),
             ...this.universalDispatch(dispatch),
         };
     }

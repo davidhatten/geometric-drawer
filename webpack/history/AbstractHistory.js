@@ -1,5 +1,11 @@
-import {historyPositionDispatch, lineWidthDispatch, lineWidthState, positionProps} from "../shapeConstants";
-import { changeHistoryStyle } from "../actions/changeHistoryProp";
+import {
+    changeHistoryInnerRadius,
+    changeHistoryOuterRadius,
+    lineWidthDispatch,
+    lineWidthState,
+    positionProps,
+} from "../shapeConstants";
+import { changeHistoryProp, changeHistoryStyle } from "../actions/changeHistoryProp";
 
 export default class AbstractHistory {
     constructor (id){
@@ -58,9 +64,81 @@ export default class AbstractHistory {
 
     universalDispatch(dispatch) {
         return {
-            ...historyPositionDispatch(dispatch, this.id),
+            ...this.historyPositionDispatch(dispatch, this.id),
             updateLineWidth: lineWidthDispatch(dispatch, this.id),
             toggleFillShape: (checked) => (dispatch(changeHistoryStyle(this.id, `fill`, checked ? `white` : `none`))),
+        };
+    }
+
+    historyPositionDispatch(dispatch, id) {
+        return {
+            updateXPos: value => {dispatch(changeHistoryProp(id, `x`, parseInt(value)));},
+            updateYPos: value => {dispatch(changeHistoryProp(id, `y`, parseInt(value)));},
+        };
+    }
+
+    basicHistoryDispatch(dispatch, id) {
+        return {
+            ...this.historyRingDispatchWithNoValidation(dispatch, id),
+            updateInnerRadius: value => {
+                dispatch(changeHistoryInnerRadius(id, value));
+            },
+            updateOuterRadius: value => {
+                dispatch(changeHistoryOuterRadius(id, value));
+            },
+        };
+    }
+
+    manualHistorySingleControlPointRingDispatch(dispatch, id) {
+        return {
+            ...this.noControlBasicHistoryRingDispatch(dispatch, id),
+            updateInnerXLeftControl: value => {
+                dispatch(changeHistoryProp(id, `innerXLeftControl`, value));
+            },
+            updateInnerXRightControl: value => {
+                dispatch(changeHistoryProp(id, `innerXRightControl`, value));
+            },
+            updateInnerYLeftControl: value => {
+                dispatch(changeHistoryProp(id, `innerYLeftControl`, value));
+            },
+            updateInnerYRightControl: value => {
+                dispatch(changeHistoryProp(id, `innerYRightControl`, value));
+            },
+        };
+    }
+
+    historyRingDispatchWithNoValidation(dispatch, id) {
+        return {
+            updateInnerXControl: value => {
+                dispatch(changeHistoryProp(id, `innerXControl`, value));
+            },
+            updateInnerYControl: value => {
+                dispatch(changeHistoryProp(id, `innerYControl`, value));
+            },
+            ...this.noControlBasicHistoryRingDispatch(dispatch, id),
+        };
+    }
+
+    noControlBasicHistoryRingDispatch(dispatch, id) {
+        return {
+            updateAxes: value => {
+                dispatch(changeHistoryProp(id, `axes`, value));
+            },
+            updateInnerGap: value => {
+                dispatch(changeHistoryProp(id, `innerGap`, value));
+            },
+            updateOuterGap: value => {
+                dispatch(changeHistoryProp(id, `outerGap`, value));
+            },
+            updateRotation: value => {
+                dispatch(changeHistoryProp(id, `rotation`, value));
+            },
+            updateInnerRadius: value => {
+                dispatch(changeHistoryInnerRadius(id, value));
+            },
+            updateOuterRadius: value => {
+                dispatch(changeHistoryOuterRadius(id, value));
+            },
         };
     }
 }

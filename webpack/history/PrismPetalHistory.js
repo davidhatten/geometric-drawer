@@ -1,6 +1,6 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import { basicHistoryDispatch, basicRingProps, lineWidthDispatch, lineWidthState } from "../shapeConstants";
+import { basicRingProps } from "../shapeConstants";
 import PrismPetal from "../containers/shapes/PrismPetal";
 import PrismPetalForm from "../components/forms/PrismPetalForm";
 
@@ -28,7 +28,7 @@ export default class PrismPetalHistory extends AbstractHistory {
 
     dispatchToPropsMap(dispatch) {
         return {
-            ...basicHistoryDispatch(dispatch, this.id),
+            ...this.basicHistoryDispatch(dispatch, this.id),
             updateOuterXControl: value => {dispatch(changeHistoryProp(this.id, `outerXControl`, parseInt(value)));},
             updateOuterYControl: value => {dispatch(changeHistoryProp(this.id, `outerYControl`, parseInt(value)));},
             ...this.universalDispatch(dispatch),
