@@ -127,8 +127,8 @@ const changeOuterRadius = (action, value) => {
 // The part of you that's learning Ruby is laughing and crying right here
 const configMap = {
     [FOL_CONFIG]: { name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
-    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle.png` },
-    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square.png` },
+    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
+    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
     [RECTANGLE_CONFIG]: { name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
     [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
     [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
