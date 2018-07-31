@@ -53,7 +53,6 @@ function sourceConnect(connect, monitor) {
 function targetConnect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget(),
-
     };
 }
 
@@ -68,7 +67,7 @@ class HistoryRow extends Component {
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <ListItem style={{ padding: 0, margin: 0 }} className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
+                    <ListItem style={{ padding: `4px` }} className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
                         <Row type="flex" justify="space-around" align="middle">
                             <Col span={12}>
                                 {shape.name}

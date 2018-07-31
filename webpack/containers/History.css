@@ -6,3 +6,7 @@
 .historyRow {
     cursor: move;
 }
+
+.ant-list-vertical .ant-list-item-content {
+    margin: 0px;
+}
