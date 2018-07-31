@@ -19,7 +19,7 @@ class Canvas extends Component {
     }
     render() {
         const svgStyle = {
-            borderWidth: `1px`,
+            borderWidth: `3px`,
             borderStyle: `solid`,
             borderRadius: `4px`,
             display: `block`,

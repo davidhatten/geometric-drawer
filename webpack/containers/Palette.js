@@ -49,7 +49,7 @@ class Palette extends Component {
     }
     render() {
         return (
-            <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape} style={{border: `1px solid #000000`}}>
+            <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape} style={ {border: `3px solid`} }>
                 <Panel key={FOL_CONFIG} header={<PaletteHeader
                     name={FOL_NAME}
                     img={imgFromConfig(FOL_CONFIG)}

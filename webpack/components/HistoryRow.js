@@ -70,7 +70,7 @@ class HistoryRow extends Component {
                     <ListItem style={{ padding: `4px` }} className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
                         <Row type="flex" justify="space-around" align="middle">
                             <Col span={12}>
-                                {shape.name}
+                                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
                             </Col>
                             <Col span={6}>
                                 <HistoryEditPane shapeId={shape.id} />
