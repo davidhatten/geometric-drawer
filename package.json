@@ -13,6 +13,7 @@
     "webpack-defaults": "webpack-defaults"
   },
   "devDependencies": {
+    "antd-scss-theme-plugin": "^1.0.7",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -36,6 +37,7 @@
     "less-loader": "^4.0.5",
     "less-vars-to-js": "^1.2.1",
     "react-dom": "^16.0.0",
+    "sass-loader": "^7.0.3",
     "source-map": "^0.5.7",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "https://github.com/Nckcol/uglify-es-webpack-plugin.git",

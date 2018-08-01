@@ -2,10 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import UglifyESPlugin from 'uglifyjs-webpack-plugin';
-import lessToJs from 'less-vars-to-js';
-import fs from 'fs';
-
-const themeVars = lessToJs(fs.readFileSync(path.join(__dirname, './webpack/style.less'), 'utf8'));
+import AntdScssThemePlugin from 'antd-scss-theme-plugin';
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -32,30 +29,49 @@ module.exports = {
                 },
             },
             {
-              test: /\.css$/,
-              loader: `style-loader!css-loader`,
-              exclude: {
-                    test   : path.resolve(__dirname, "node_modules"),
-                    exclude: path.resolve(__dirname, "node_modules/antd"),
-              },
+                test: /\.css$/,
+                loader: `style-loader!css-loader`,
+                exclude: path.resolve(__dirname, "node_modules"),
             },
             {
                 test: /\.less$/,
                 use: [
                     {loader: "style-loader"}, // creates style nodes from JS strings
-                    {loader: "css-loader"}, // translates CSS into CommonJS
-                    {loader: "less-loader",
+                    {
+                        loader: "css-loader",
                         options: {
-                            modifyVars: themeVars,
-                        }, // compiles Less to CSS
-                    },
+                            importLoaders: 1,
+                        },
+                    }, // translates CSS into CommonJS
+                    AntdScssThemePlugin.themify({
+                        loader: "less-loader",
+                    }),
                 ],
-           },
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                        },
+                    },
+                    AntdScssThemePlugin.themify({
+                        loader: `sass-loader`,
+                        exclude: path.resolve(__dirname, "node_modules"),
+                    }),
+                ],
+            },
         ],
     },
     devtool: 'source-map',
     plugins: [
         new ExtractTextPlugin("styles.css"),
+        new AntdScssThemePlugin(path.join(__dirname, 'theme.scss')),
     ],
 };
 
