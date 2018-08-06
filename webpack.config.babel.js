@@ -19,7 +19,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 loader: `babel-loader`,
                 options: {
@@ -29,9 +29,22 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,
-                loader: `style-loader!css-loader`,
-                exclude: path.resolve(__dirname, "node_modules"),
+                test: /\.scss$/,
+                exclude: '/node_modules/',
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                            camelCase: true,
+                        },
+                    },
+                    AntdScssThemePlugin.themify(`sass-loader`),
+                ],
             },
             {
                 test: /\.less$/,
@@ -43,27 +56,7 @@ module.exports = {
                             importLoaders: 1,
                         },
                     }, // translates CSS into CommonJS
-                    AntdScssThemePlugin.themify({
-                        loader: "less-loader",
-                    }),
-                ],
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        },
-                    },
-                    AntdScssThemePlugin.themify({
-                        loader: `sass-loader`,
-                        exclude: path.resolve(__dirname, "node_modules"),
-                    }),
+                    AntdScssThemePlugin.themify("less-loader"),
                 ],
             },
         ],

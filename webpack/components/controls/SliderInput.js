@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Form, InputNumber, Row, Slider, Tooltip } from "antd";
-import './SliderInput.css';
+import './SliderInput.scss';
 
 const FormItem = Form.Item;
 
