@@ -20,7 +20,7 @@ class Canvas extends Component {
     render() {
         const svgStyle = {
             borderWidth: `3px`,
-            borderStyle: `solid`,
+            borderStyle: `transparent`,
             borderRadius: `4px`,
             display: `block`,
             margin: `auto`,

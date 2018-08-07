@@ -41,6 +41,7 @@ module.exports = {
                             importLoaders: 1,
                             modules: true,
                             camelCase: true,
+                            localIdentName: '[local]',
                         },
                     },
                     AntdScssThemePlugin.themify(`sass-loader`),
