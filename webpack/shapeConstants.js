@@ -10,6 +10,17 @@ import ClawPetalHistory from "./history/ClawPetalHistory";
 import PrismPetalHistory from "./history/PrismPetalHistory";
 import RectangleHistory from "./history/RectangleHistory";
 import ManualRoundedPetalHistory from "./history/ManualRoundedPetalHistory";
+import FlowerOfLifeConfig from "./containers/configs/FlowerOfLifeConfig";
+import CircleConfig from "./containers/configs/CircleConfig";
+import SquareConfig from "./containers/configs/SquareConfig";
+import RectangleConfig from "./containers/configs/RectangleConfig";
+import RoundedPetalConfig from "./containers/configs/RoundedPetalConfig";
+import CirclePetalConfig from "./containers/configs/CirclePetalConfig";
+import CurveyPetalConfig from "./containers/configs/CurveyPetalConfig";
+import PointedPetalConfig from "./containers/configs/PointedPetalConfig";
+import ClawPetalConfig from "./containers/configs/ClawPetalConfig";
+import PrismPetalConfig from "./containers/configs/PrismPetalConfig";
+import ManualRoundedPetalConfig from "./containers/configs/ManualRoundedPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -125,18 +136,18 @@ const changeOuterRadius = (action, value) => {
 };
 
 // The part of you that's learning Ruby is laughing and crying right here
-const configMap = {
-    [FOL_CONFIG]: { name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
-    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
-    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
-    [RECTANGLE_CONFIG]: { name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
-    [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
-    [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
-    [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
-    [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
-    [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
-    [PRISM_PETAL_CONFIG]: { name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
-    [MANUAL_ROUNDED_PETAL_CONFIG]: { name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
+export const configMap = {
+    [FOL_CONFIG]: { config: FlowerOfLifeConfig, name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
+    [CIRCLE_CONFIG]: { config: CircleConfig, name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
+    [SQUARE_CONFIG]: { config: SquareConfig, name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
+    [RECTANGLE_CONFIG]: { config: RectangleConfig, name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
+    [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
+    [CIRCLE_PETAL_CONFIG]: { config: CirclePetalConfig, name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
+    [CURVEY_PETAL_CONFIG]: { config: CurveyPetalConfig, name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
+    [POINTED_PETAL_CONFIG]: { config: PointedPetalConfig, name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
+    [CLAW_PETAL_CONFIG]: { config: ClawPetalConfig, name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
+    [PRISM_PETAL_CONFIG]: { config: PrismPetalConfig, name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
+    [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
 };
 
 export const nameFromConfig = config => {
