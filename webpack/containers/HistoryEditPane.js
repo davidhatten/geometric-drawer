@@ -7,6 +7,7 @@ import HistoryLineWidth from "../components/controls/HistoryLineWidth";
 import HistoryXPos from "../components/controls/HistoryXPos";
 import HistoryYPos from "../components/controls/HistoryYPos";
 import HistoryFillShape from "../components/controls/HistoryFillShape";
+import './HistoryEditPane.scss';
 
 class HistoryEditPane extends Component {
     constructor(props) {
