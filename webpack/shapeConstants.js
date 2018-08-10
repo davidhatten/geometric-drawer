@@ -138,16 +138,16 @@ const changeOuterRadius = (action, value) => {
 // The part of you that's learning Ruby is laughing and crying right here
 export const configMap = {
     [FOL_CONFIG]: { config: FlowerOfLifeConfig, name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
-    [CIRCLE_CONFIG]: { config: CircleConfig, name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
     [SQUARE_CONFIG]: { config: SquareConfig, name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
     [RECTANGLE_CONFIG]: { config: RectangleConfig, name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
-    [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
+    [CIRCLE_CONFIG]: { config: CircleConfig, name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
     [CIRCLE_PETAL_CONFIG]: { config: CirclePetalConfig, name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
+    [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
+    [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
     [CURVEY_PETAL_CONFIG]: { config: CurveyPetalConfig, name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
     [POINTED_PETAL_CONFIG]: { config: PointedPetalConfig, name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
     [CLAW_PETAL_CONFIG]: { config: ClawPetalConfig, name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
     [PRISM_PETAL_CONFIG]: { config: PrismPetalConfig, name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
-    [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
 };
 
 export const nameFromConfig = config => {

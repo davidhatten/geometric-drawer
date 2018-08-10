@@ -1,4 +1,6 @@
-$body-background: #f8f7fb;
+$body-background: white;
+$collapse-header-bg: $body-background;
+$collapse-content-bg: lightsteelblue;
 
 $collapse-content-padding: 0px 2px;
 $collapse-header-padding: 0px 6px;
@@ -10,4 +12,9 @@ $form-item-margin-bottom: 0px;
 $input-height-base: 10px;
 $line-height-base: 10px;
 
-$primary-color: #b37feb;
+$primary-color: #1d39c4;
+//$label-color: #fafafa;
+
+$font-size-base: 14px;
+
+$border-width-base: 0px;

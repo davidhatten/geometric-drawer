@@ -11,7 +11,7 @@ class GeneralOptionsConfig extends Component {
     }
     render() {
         return (
-            <Form> 
+            <Form>
                 <LineWidthInput />
                 <FillShapeInput />
                 <HorizontalAxisLock />

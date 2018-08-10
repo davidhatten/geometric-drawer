@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Collapse } from 'antd';
 import PaletteHeader from '../components/PaletteHeader';
 import { imgFromConfig, nameFromConfig, configMap } from '../shapeConstants';
-
 import { selectShape } from '../actions/selectShape';
+import styles from './Palette.scss';
+import GeneralOptions from '../components/GeneralOptionsConfig';
+
 
 const Panel = Collapse.Panel;
 
@@ -15,11 +17,12 @@ class Palette extends Component {
     }
     generatePanel = (config, description, ConfigComponent) => {
         return (
-            <Panel style={{backgroundColor: '#f8f7fb'}} showArrow={false} key={config} header={<PaletteHeader
+            <Panel className={styles.palettePanel} showArrow={false} key={config} header={<PaletteHeader
                 name={nameFromConfig(config)}
                 img={imgFromConfig(config)}
                 description={description}/>}>
                 <ConfigComponent/>
+                <GeneralOptions />
             </Panel>
         );
     }
