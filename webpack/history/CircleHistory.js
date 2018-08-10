@@ -2,7 +2,6 @@ import AbstractHistory from "./AbstractHistory.js";
 import Circle from "../containers/shapes/Circle";
 import CircleForm from "../components/forms/CircleForm";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
 
 export default class CircleHistory extends AbstractHistory {
     constructor(id) {

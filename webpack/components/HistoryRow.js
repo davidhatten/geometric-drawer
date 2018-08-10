@@ -7,6 +7,7 @@ import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import { DragTypes, imgFromConfig } from "../shapeConstants";
 import { changeHistoryOrder } from "../actions/changeHistoryOrder";
+import styles from './HistoryRow.scss';
 
 const ListItem = List.Item;
 
@@ -53,7 +54,6 @@ function sourceConnect(connect, monitor) {
 function targetConnect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget(),
-
     };
 }
 
@@ -68,10 +68,10 @@ class HistoryRow extends Component {
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <ListItem style={{ padding: 0, margin: 0 }} className="historyRow" extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
+                    <ListItem style={{ padding: `4px` }} className={styles.historyRow} extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
                         <Row type="flex" justify="space-around" align="middle">
                             <Col span={12}>
-                                {shape.name}
+                                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
                             </Col>
                             <Col span={6}>
                                 <HistoryEditPane shapeId={shape.id} />

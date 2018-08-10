@@ -1,6 +1,5 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
 import FlowerOfLife from "../containers/shapes/FlowerOfLife";
 import FlowerOfLifeForm from "../components/forms/FlowerOfLifeForm";
 

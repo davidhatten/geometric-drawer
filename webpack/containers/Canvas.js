@@ -21,6 +21,8 @@ class Canvas extends Component {
         const svgStyle = {
             borderWidth: `1px`,
             borderStyle: `solid`,
+            borderRadius: `10px`,
+            borderColor: 'lightsteelblue',
             display: `block`,
             margin: `auto`,
             backgroundColor: `white`,

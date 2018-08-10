@@ -17,7 +17,9 @@ class Studio extends Component {
     }
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
+        canvas.style.backgroundColor = `transparent`;
         saveSvgAsPng(canvas, `geometry.png`);
+        canvas.style.backgroundColor = `white`;
     }
     confirmClearHistory = () => {
         const self = this;
@@ -64,9 +66,7 @@ class Studio extends Component {
                         <Row>
                             <Palette />
                         </Row>
-                        <Row>
-                            <GeneralOptions />
-                        </Row>
+
                         <Row type="flex" justify="space-around" style={{ padding: `12px` }}>
                             <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
                             <Button type="danger" onClick={this.confirmClearHistory}>Clear Canvas</Button>

@@ -10,6 +10,17 @@ import ClawPetalHistory from "./history/ClawPetalHistory";
 import PrismPetalHistory from "./history/PrismPetalHistory";
 import RectangleHistory from "./history/RectangleHistory";
 import ManualRoundedPetalHistory from "./history/ManualRoundedPetalHistory";
+import FlowerOfLifeConfig from "./containers/configs/FlowerOfLifeConfig";
+import CircleConfig from "./containers/configs/CircleConfig";
+import SquareConfig from "./containers/configs/SquareConfig";
+import RectangleConfig from "./containers/configs/RectangleConfig";
+import RoundedPetalConfig from "./containers/configs/RoundedPetalConfig";
+import CirclePetalConfig from "./containers/configs/CirclePetalConfig";
+import CurveyPetalConfig from "./containers/configs/CurveyPetalConfig";
+import PointedPetalConfig from "./containers/configs/PointedPetalConfig";
+import ClawPetalConfig from "./containers/configs/ClawPetalConfig";
+import PrismPetalConfig from "./containers/configs/PrismPetalConfig";
+import ManualRoundedPetalConfig from "./containers/configs/ManualRoundedPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -82,14 +93,6 @@ export const noControlBasicRingProps = (state, config) => ({
     rotation: state[config].rotation,
 });
 
-export const positionProps = (state, config) => ({
-    x: xPosState(state, config),
-    y: yPosState(state, config),
-});
-
-/*
-    Hell begins here
- */
 
 export const basicRingDispatch = (dispatch, action) => ({
     ...noControlBasicRingDispatch(dispatch, action),
@@ -114,57 +117,37 @@ export const noControlBasicRingDispatch = (dispatch, action) => ({
     updateRotation: value => {dispatch(action(`rotation`, value));},
 });
 
-export const historyPositionDispatch = (dispatch, id) => ({
-    updateXPos: value => {dispatch(changeHistoryProp(id, `x`, parseInt(value)));},
-    updateYPos: value => {dispatch(changeHistoryProp(id, `y`, parseInt(value)));},
-});
+const changeInnerRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
 
-export const basicHistoryDispatch = (dispatch, id) => ({
-    ...historyRingDispatchWithNoValidation(dispatch, id),
-    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
-    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
-});
+        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
+    };
+};
 
-export const manualHistorySingleControlPointRingDispatch = (dispatch, id) => ({
-    ...noControlBasicHistoryRingDispatch(dispatch, id),
-    updateInnerXLeftControl: value => {dispatch(changeHistoryProp(id, `innerXLeftControl`, value));},
-    updateInnerXRightControl: value => {dispatch(changeHistoryProp(id, `innerXRightControl`, value));},
-    updateInnerYLeftControl: value => {dispatch(changeHistoryProp(id, `innerYLeftControl`, value));},
-    updateInnerYRightControl: value => {dispatch(changeHistoryProp(id, `innerYRightControl`, value));},
-});
+const changeOuterRadius = (action, value) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
 
-const historyRingDispatchWithNoValidation = (dispatch, id) => ({
-    updateInnerXControl: value => {dispatch(changeHistoryProp(id, `innerXControl`, value));},
-    updateInnerYControl: value => {dispatch(changeHistoryProp(id, `innerYControl`, value));},
-    ...noControlBasicHistoryRingDispatch(dispatch, id),
-});
-
-const noControlBasicHistoryRingDispatch = (dispatch, id) => ({
-    updateAxes: value => {dispatch(changeHistoryProp(id, `axes`, value));},
-    updateInnerGap: value => {dispatch(changeHistoryProp(id, `innerGap`, value));},
-    updateOuterGap: value => {dispatch(changeHistoryProp(id, `outerGap`, value));},
-    updateRotation: value => {dispatch(changeHistoryProp(id, `rotation`, value));},
-    updateInnerRadius: value => {dispatch(changeHistoryInnerRadius(id, value));},
-    updateOuterRadius: value => {dispatch(changeHistoryOuterRadius(id, value));},
-});
-
-/*
-    Hell ends here
- */
+        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
+    };
+};
 
 // The part of you that's learning Ruby is laughing and crying right here
-const configMap = {
-    [FOL_CONFIG]: { name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
-    [CIRCLE_CONFIG]: { name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle.png` },
-    [SQUARE_CONFIG]: { name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square.png` },
-    [RECTANGLE_CONFIG]: { name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
-    [ROUNDED_PETAL_CONFIG]: { name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
-    [CIRCLE_PETAL_CONFIG]: { name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
-    [CURVEY_PETAL_CONFIG]: { name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
-    [POINTED_PETAL_CONFIG]: { name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
-    [CLAW_PETAL_CONFIG]: { name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
-    [PRISM_PETAL_CONFIG]: { name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
-    [MANUAL_ROUNDED_PETAL_CONFIG]: { name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
+export const configMap = {
+    [FOL_CONFIG]: { config: FlowerOfLifeConfig, name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
+    [SQUARE_CONFIG]: { config: SquareConfig, name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
+    [RECTANGLE_CONFIG]: { config: RectangleConfig, name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
+    [CIRCLE_CONFIG]: { config: CircleConfig, name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
+    [CIRCLE_PETAL_CONFIG]: { config: CirclePetalConfig, name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
+    [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
+    [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
+    [CURVEY_PETAL_CONFIG]: { config: CurveyPetalConfig, name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
+    [POINTED_PETAL_CONFIG]: { config: PointedPetalConfig, name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
+    [CLAW_PETAL_CONFIG]: { config: ClawPetalConfig, name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
+    [PRISM_PETAL_CONFIG]: { config: PrismPetalConfig, name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
 };
 
 export const nameFromConfig = config => {
@@ -179,54 +162,5 @@ export const imgFromConfig = config => {
     return configMap[config].img;
 };
 
-export const lineWidthState = (state, id) => (
-    state.shapeStyle.byId[id].strokeWidth
-);
-
-export const lineWidthDispatch = (dispatch, id) => (value) => (
-    dispatch(changeHistoryStyle(id, `strokeWidth`, parseInt(value)))
-);
-
-export const xPosState = (state, id) => (
-    state[id].x
-);
-
-export const yPosState = (state, id) => (
-    state[id].y
-);
-
-export const changeInnerRadius = (action, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
-
-        dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
-    };
-};
-
-export const changeOuterRadius = (action, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
-
-        dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
-    };
-};
-
-export const changeHistoryInnerRadius = (id, value) => {
-    return (dispatch, getState) => {
-        const state = getState();
-        const outerRadius = state.shapeProps.byId[id].outerRadius;
-
-        dispatch(changeHistoryProp(id, `innerRadius`, boundInnerRadius(value, outerRadius)));
-    };
-};
-export const changeHistoryOuterRadius = (id, value) => (dispatch, getState) => {
-    const state = getState();
-    const innerRadius = state.shapeProps.byId[id].innerRadius;
-
-    dispatch(changeHistoryProp(id, `outerRadius`, boundOuterRadius(value, innerRadius)));
-};
-
-const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
-const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);
+export const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);
+export const boundOuterRadius = (value, innerRadius) => (value > innerRadius ? value : innerRadius + 1);
