@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Collapse } from 'antd';
 import PaletteHeader from '../components/PaletteHeader';
-import { imgFromConfig, nameFromConfig, configMap } from '../shapeConstants';
+import { configMap } from '../shapeConstants';
 import { selectShape } from '../actions/selectShape';
 import styles from './Palette.scss';
 import GeneralOptions from '../components/GeneralOptionsConfig';
@@ -13,15 +13,16 @@ const Panel = Collapse.Panel;
 class Palette extends Component {
     constructor(props) {
         super(props);
-        console.log(configMap);
     }
-    generatePanel = (config, description, ConfigComponent) => {
+    generatePanel = (config) => {
+        const configInfo = configMap[config];
+        const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
         return (
             <Panel className={styles.palettePanel} showArrow={false} key={config} header={<PaletteHeader
-                name={nameFromConfig(config)}
-                img={imgFromConfig(config)}
-                description={description}/>}>
-                <ConfigComponent/>
+                name={configInfo.name}
+                img={configInfo.img}
+                description={configInfo.description}/>}>
+                <ShapeOptions />
                 <GeneralOptions />
             </Panel>
         );
@@ -29,7 +30,7 @@ class Palette extends Component {
     render() {
         const panels = [];
         for (let configKey in configMap) {
-            panels.push(this.generatePanel(configKey, "lol", configMap[configKey].config));
+            panels.push(this.generatePanel(configKey));
         }
         return (
             <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape} style={ {border: `3px transparent`} }>

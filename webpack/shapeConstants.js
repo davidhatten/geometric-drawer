@@ -1,4 +1,3 @@
-import { changeHistoryProp, changeHistoryStyle } from "./actions/changeHistoryProp";
 import CircleHistory from "./history/CircleHistory";
 import SquareHistory from "./history/SquareHistory";
 import FlowerOfLifeHistory from "./history/FlowerOfLifeHistory";
@@ -10,18 +9,31 @@ import ClawPetalHistory from "./history/ClawPetalHistory";
 import PrismPetalHistory from "./history/PrismPetalHistory";
 import RectangleHistory from "./history/RectangleHistory";
 import ManualRoundedPetalHistory from "./history/ManualRoundedPetalHistory";
-import FlowerOfLifeConfig from "./containers/configs/FlowerOfLifeConfig";
-import CircleConfig from "./containers/configs/CircleConfig";
-import SquareConfig from "./containers/configs/SquareConfig";
-import RectangleConfig from "./containers/configs/RectangleConfig";
-import RoundedPetalConfig from "./containers/configs/RoundedPetalConfig";
-import CirclePetalConfig from "./containers/configs/CirclePetalConfig";
-import CurveyPetalConfig from "./containers/configs/CurveyPetalConfig";
-import PointedPetalConfig from "./containers/configs/PointedPetalConfig";
-import ClawPetalConfig from "./containers/configs/ClawPetalConfig";
-import PrismPetalConfig from "./containers/configs/PrismPetalConfig";
-import ManualRoundedPetalConfig from "./containers/configs/ManualRoundedPetalConfig";
 import ManualCurveyPetalHistory from "./history/ManualCurveyPetalHistory";
+import {changeFOLConfig} from "./actions/changeFOLConfig";
+import FlowerOfLifeForm from "./components/forms/FlowerOfLifeForm";
+import SquareForm from "./components/forms/SquareForm";
+import {changeSquareConfig} from "./actions/changeSquareConfig";
+import RectangleForm from "./components/forms/RectangleForm";
+import {changeRectangleConfig} from "./actions/changeRectangleConfig";
+import CircleForm from "./components/forms/CircleForm";
+import {changeCircleConfig} from "./actions/changeCircleConfig";
+import CirclePetalForm from "./components/forms/CirclePetalForm";
+import {changeCirclePetalConfig} from "./actions/changeCirclePetalConfig";
+import RoundedPetalForm from "./components/forms/RoundedPetalForm";
+import {changeRoundedPetalConfig} from "./actions/changeRoundedPetalConfig";
+import ManualRoundedPetalForm from "./components/forms/ManualRoundedPetalForm";
+import {changeManualRoundedPetalConfig} from "./actions/changeManualRoundedPetalConfig";
+import CurveyPetalForm from "./components/forms/CurveyPetalForm";
+import {changeCurveyPetalConfig} from "./actions/changeCurveyPetalConfig";
+import ManualCurveyPetalForm from "./components/forms/ManualCurveyPetalForm";
+import {changeManualCurveyPetalConfig} from "./actions/changeManualCurveyPetalConfig";
+import PointedPetalForm from "./components/forms/PointedPetalForm";
+import {changePointedPetalConfig} from "./actions/changePointedPetalConfig";
+import ClawPetalForm from "./components/forms/ClawPetalForm";
+import {changeClawPetalConfig} from "./actions/changeClawPetalConfig";
+import PrismPetalForm from "./components/forms/PrismPetalForm";
+import {changePrismPetalConfig} from "./actions/changePrismPetalConfig";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -156,18 +168,176 @@ const changeOuterRadius = (action, value) => {
 
 // The part of you that's learning Ruby is laughing and crying right here
 export const configMap = {
-    [FOL_CONFIG]: { config: FlowerOfLifeConfig, name: FOL_NAME, history: FlowerOfLifeHistory, img: `assets/img/fol_80x80.png` },
-    [SQUARE_CONFIG]: { config: SquareConfig, name: SQUARE_NAME, history: SquareHistory, img: `assets/img/square_80x80.png` },
-    [RECTANGLE_CONFIG]: { config: RectangleConfig, name: RECTANGLE_NAME, history: RectangleHistory, img: `assets/img/rectangle_80x80.png`},
-    [CIRCLE_CONFIG]: { config: CircleConfig, name: CIRCLE_NAME, history: CircleHistory, img: `assets/img/circle_80x80.png` },
-    [CIRCLE_PETAL_CONFIG]: { config: CirclePetalConfig, name: CIRCLE_PETAL_NAME, history: CirclePetalHistory, img: `assets/img/circle_petals_80x80.png` },
-    [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
-    [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
-    [CURVEY_PETAL_CONFIG]: { config: CurveyPetalConfig, name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
-    [MANUAL_CURVEY_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_CURVEY_PETAL_NAME, history: ManualCurveyPetalHistory, img: `` },
-    [POINTED_PETAL_CONFIG]: { config: PointedPetalConfig, name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
-    [CLAW_PETAL_CONFIG]: { config: ClawPetalConfig, name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
-    [PRISM_PETAL_CONFIG]: { config: PrismPetalConfig, name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },
+    [FOL_CONFIG]: {
+        name: FOL_NAME,
+        history: FlowerOfLifeHistory,
+        img: `assets/img/fol_80x80.png`,
+        paletteStateToProps: state => ({
+            iterations: state[FOL_CONFIG].iterations,
+            radius: state[FOL_CONFIG].radius,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            updateIterations: (value) => {
+                dispatch(changeFOLConfig(`iterations`, parseInt(value)));
+            },
+            updateRadius: (value) => {
+                dispatch(changeFOLConfig(`radius`, parseInt(value)));
+            },
+        }),
+        form: FlowerOfLifeForm,
+        description: ``,
+    },
+    [SQUARE_CONFIG]: {
+        name: SQUARE_NAME,
+        history: SquareHistory,
+        img: `assets/img/square_80x80.png`,
+        form: SquareForm,
+        paletteStateToProps: state => ({
+            length: state[SQUARE_CONFIG].length,
+            rotation: state[SQUARE_CONFIG].rotation,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            updateLength: (value) => {dispatch(changeSquareConfig(`length`, parseInt(value)));},
+            updateRotation: (value) => {dispatch(changeSquareConfig(`rotation`, parseInt(value)));},
+        }),
+        description: ``,
+    },
+    [RECTANGLE_CONFIG]: {
+        name: RECTANGLE_NAME,
+        history: RectangleHistory,
+        img: `assets/img/rectangle_80x80.png`,
+        form: RectangleForm,
+        paletteStateToProps: state => ({
+            height: state[RECTANGLE_CONFIG].height,
+            width: state[RECTANGLE_CONFIG].width,
+            rotation: state[RECTANGLE_CONFIG].rotation,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            updateHeight: (value) => {dispatch(changeRectangleConfig(`height`, parseInt(value)));},
+            updateWidth: (value) => {dispatch(changeRectangleConfig(`width`, parseInt(value)));},
+            updateRotation: (value) => {dispatch(changeRectangleConfig(`rotation`, parseInt(value)));},
+        }),
+        description: ``,
+    },
+    [CIRCLE_CONFIG]: {
+        name: CIRCLE_NAME,
+        history: CircleHistory,
+        img: `assets/img/circle_80x80.png`,
+        form: CircleForm,
+        paletteStateToProps: state => ({
+            radius: state[CIRCLE_CONFIG].radius,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            updateRadius: (value) => {dispatch(changeCircleConfig(`radius`, parseInt(value)));},
+        }),
+        description: ``,
+    },
+    [CIRCLE_PETAL_CONFIG]: {
+        name: CIRCLE_PETAL_NAME,
+        history: CirclePetalHistory,
+        img: `assets/img/circle_petals_80x80.png`,
+        form: CirclePetalForm,
+        paletteStateToProps: state => ({
+            ringRadius: state[CIRCLE_PETAL_CONFIG].ringRadius,
+            petalRadius: state[CIRCLE_PETAL_CONFIG].petalRadius,
+            rotation: state[CIRCLE_PETAL_CONFIG].rotation,
+            axes: state[CIRCLE_PETAL_CONFIG].axes,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            updateRingRadius: value => {dispatch(changeCirclePetalConfig(`ringRadius`, parseInt(value)));},
+            updatePetalRadius: value => {dispatch(changeCirclePetalConfig(`petalRadius`, parseInt(value)));},
+            updateRotation: value => {dispatch(changeCirclePetalConfig(`rotation`, parseInt(value)));},
+            updateAxes: value => {dispatch(changeCirclePetalConfig(`axes`, parseInt(value)));},
+        }),
+        description: ``,
+    },
+    [ROUNDED_PETAL_CONFIG]: {
+        name: ROUNDED_PETAL_NAME,
+        history: RoundedPetalHistory,
+        img: `assets/img/rounded_petals_80x80.png`,
+        form: RoundedPetalForm,
+        paletteStateToProps: state => (basicRingProps(state, ROUNDED_PETAL_CONFIG)),
+        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeRoundedPetalConfig)),
+        description: ``,
+    },
+    [MANUAL_ROUNDED_PETAL_CONFIG]: {
+        name: MANUAL_ROUNDED_PETAL_NAME,
+        history: ManualRoundedPetalHistory,
+        img: `assets/img/manual_rounded_petals_80x80.png`,
+        form: ManualRoundedPetalForm,
+        paletteStateToProps: state => ({
+            ...manualSingleControlPointRingProps(state, MANUAL_ROUNDED_PETAL_CONFIG),
+        }),
+        paletteDispatchToProps: dispatch => ({
+            ...manualSingleControlPointRingDispatch(dispatch, changeManualRoundedPetalConfig),
+        }),
+        description: ``,
+    },
+    [CURVEY_PETAL_CONFIG]: {
+        name: CURVEY_PETAL_NAME,
+        history: CurveyPetalHistory,
+        img: `assets/img/curvey_petals_80x80.png`,
+        form: CurveyPetalForm,
+        paletteStateToProps: state => ({
+            ...basicRingProps(state, CURVEY_PETAL_CONFIG),
+            outerXControl: state[CURVEY_PETAL_CONFIG].outerXControl,
+            outerYControl: state[CURVEY_PETAL_CONFIG].outerYControl,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            ...basicRingDispatch(dispatch, changeCurveyPetalConfig),
+            updateOuterXControl: value => {dispatch(changeCurveyPetalConfig(`outerXControl`, value));},
+            updateOuterYControl: value => {dispatch(changeCurveyPetalConfig(`outerYControl`, value));},
+        }),
+        description: ``,
+    },
+    [MANUAL_CURVEY_PETAL_CONFIG]: {
+        name: MANUAL_CURVEY_PETAL_NAME,
+        history: ManualCurveyPetalHistory,
+        img: ``,
+        form: ManualCurveyPetalForm,
+        paletteStateToProps: state => ({
+            ...manualDoubleControlPointRingProps(state, MANUAL_CURVEY_PETAL_CONFIG),
+        }),
+        paletteDispatchToProps: dispatch => ({
+            ...manualDoubleControlPointRingDispatch(dispatch, changeManualCurveyPetalConfig),
+        }),
+        description: ``,
+    },
+    [POINTED_PETAL_CONFIG]: {
+        name: POINTED_PETAL_NAME,
+        history: PointedPetalHistory,
+        img: `assets/img/pointed_petals_80x80.png`,
+        form: PointedPetalForm,
+        paletteStateToProps: state => (basicRingProps(state, POINTED_PETAL_CONFIG)),
+        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changePointedPetalConfig)),
+        description: ``,
+    },
+    [CLAW_PETAL_CONFIG]: {
+        name: CLAW_PETAL_NAME,
+        history: ClawPetalHistory,
+        img: `assets/img/claw_petals_80x80.png`,
+        form: ClawPetalForm,
+        paletteStateToProps: state => (basicRingProps(state, CLAW_PETAL_CONFIG)),
+        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
+        description: ``,
+    },
+    [PRISM_PETAL_CONFIG]: {
+        name: PRISM_PETAL_NAME,
+        history: PrismPetalHistory,
+        img: `assets/img/prism_petals_80x80.png`,
+        form: PrismPetalForm,
+        paletteStateToProps: state => ({
+            ...basicRingProps(state, CURVEY_PETAL_CONFIG),
+            outerXControl: state[CURVEY_PETAL_CONFIG].outerXControl,
+            outerYControl: state[CURVEY_PETAL_CONFIG].outerYControl,
+        }),
+        paletteDispatchToProps: dispatch => ({
+            ...basicRingDispatch(dispatch, changePrismPetalConfig),
+            updateOuterXControl: value => {dispatch(changePrismPetalConfig(`outerXControl`, value));},
+            updateOuterYControl: value => {dispatch(changePrismPetalConfig(`outerYControl`, value));},
+        }),
+        description: ``,
+    },
 };
 
 export const nameFromConfig = config => {
