@@ -104,6 +104,24 @@ export default class AbstractHistory {
         };
     }
 
+    manualHistoryDoubleControlPointRingDispatch(dispatch, id) {
+        return {
+            ...this.manualHistorySingleControlPointRingDispatch(dispatch, id),
+            updateInnerXLeftControl: value => {
+                dispatch(changeHistoryProp(id, `outerXLeftControl`, value));
+            },
+            updateInnerXRightControl: value => {
+                dispatch(changeHistoryProp(id, `outerXRightControl`, value));
+            },
+            updateInnerYLeftControl: value => {
+                dispatch(changeHistoryProp(id, `outerYLeftControl`, value));
+            },
+            updateInnerYRightControl: value => {
+                dispatch(changeHistoryProp(id, `outerYRightControl`, value));
+            },
+        };
+    }
+
     historyRingDispatchWithNoValidation(dispatch, id) {
         return {
             updateInnerXControl: value => {

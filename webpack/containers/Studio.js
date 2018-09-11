@@ -17,9 +17,7 @@ class Studio extends Component {
     }
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
-        canvas.style.backgroundColor = `transparent`;
-        saveSvgAsPng(canvas, `geometry.png`);
-        canvas.style.backgroundColor = `white`;
+        saveSvgAsPng(canvas, `geometry.png`, { backgroundColor: `transparent` });
     }
     confirmClearHistory = () => {
         const self = this;

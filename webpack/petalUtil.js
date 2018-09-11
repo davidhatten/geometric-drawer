@@ -63,6 +63,18 @@ export const drawRoundedPetal = (startInnerPoint, startOuterPoint, startControlP
     return path.str();
 };
 
+export const drawCurveyPetal = (startInnerPoint, startOuterPoint, startInnerControlPoint, startOuterControlPoint,
+    returnInnerPoint, returnOuterPoint, returnInnerControlPoint, returnOuterControlPoint) => {
+    const path = SvgPath()
+        .to(...startInnerPoint[0])
+        .bezier3(...startInnerControlPoint[0], ...startOuterControlPoint[0], ...startOuterPoint[0])
+        .line(...returnOuterPoint[0])
+        .bezier3(...returnOuterControlPoint[0], ...returnInnerControlPoint[0], ...returnInnerPoint[0])
+        .close();
+
+    return path.str();
+};
+
 const calculatePetalPoints = (drawPetal, points, angle, centerPoint, rightPoints) => {
     const pointValues = points.map(point => [Object.values(point)]);
     const twirls = pointValues.map(values => twirl.rotateZoom(angle, centerPoint, 1, values));

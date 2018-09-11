@@ -1,17 +1,17 @@
 import React from 'react';
-import { connect } from "react-redux";
 import AbstractPetal from "./AbstractPetal";
-import {drawCurveyPetal} from "../../petalUtil";
+import { drawCurveyPetal } from "../../petalUtil";
+import { connect } from "react-redux";
 
-class CurveyPetal extends AbstractPetal {
+class ManualCurveyPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
-    drawPetal() { // now this is the height of bullshit
+    drawPetal() {
         return drawCurveyPetal(...arguments);
     }
     render() {
-        const paths = this.doubleControlPointsMirroredForEachPetalArmAlgorithm();
+        const paths = this.doubleControlPointIndependentForEachPetalArmAlgorithm();
 
         return (
             <g>
@@ -25,5 +25,4 @@ const mapStateToProps = state => ({
     styleProps: state.shapeStyle.byId,
 });
 
-export default connect(mapStateToProps)(CurveyPetal);
-
+export default connect(mapStateToProps)(ManualCurveyPetal);

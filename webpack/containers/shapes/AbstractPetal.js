@@ -101,4 +101,30 @@ export default class AbstractPetal extends Component {
 
         return buildPetals(this.drawPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
     }
+
+    doubleControlPointIndependentForEachPetalArmAlgorithm() {
+        /*
+        This algorithm describes math for a petal that uses a 2 independent control points for each petal arm
+        So, both petal arms are completely distinct and all control points can be independently modified
+        Visually this results in a set of petals that has the potential to have 0 symmetry
+         */
+        const { rotation: angle, axes, innerRadius, outerRadius, x, y, innerXLeftControl, innerXRightControl,
+            innerYLeftControl, innerYRightControl, outerXLeftControl, outerXRightControl,
+            outerYLeftControl, outerYRightControl, innerGap, outerGap } = this.props;
+        const maxAngle = 360 + angle;
+        const angleIncrement = 360/axes;
+        const centerPoint = [x, y];
+
+        const { innerLeftPoint, innerRightPoint, outerLeftPoint, outerRightPoint } =
+            getPetalTipPoints(x, y, innerRadius, outerRadius, innerGap, outerGap);
+        const { leftPoint: innerLeftControlPoint, rightPoint: innerRightControlPoint } =
+            getIndependentControlPoints(innerLeftPoint, innerRightPoint, innerXLeftControl, innerXRightControl, innerYLeftControl, innerYRightControl);
+        const {leftPoint: outerLeftControlPoint, rightPoint: outerRightControlPoint } =
+            getIndependentControlPoints(outerLeftPoint, outerLeftPoint, outerXLeftControl, outerXRightControl, outerYLeftControl, outerYRightControl);
+
+        const leftPoints = [innerLeftPoint, outerLeftPoint, innerLeftControlPoint, outerLeftControlPoint];
+        const rightPoints = [innerRightPoint, outerRightPoint, innerRightControlPoint, outerRightControlPoint];
+
+        return buildPetals(this.drawPetal, angle, angleIncrement, maxAngle, centerPoint, leftPoints, rightPoints);
+    }
 }

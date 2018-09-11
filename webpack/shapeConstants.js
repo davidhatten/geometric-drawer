@@ -21,6 +21,7 @@ import PointedPetalConfig from "./containers/configs/PointedPetalConfig";
 import ClawPetalConfig from "./containers/configs/ClawPetalConfig";
 import PrismPetalConfig from "./containers/configs/PrismPetalConfig";
 import ManualRoundedPetalConfig from "./containers/configs/ManualRoundedPetalConfig";
+import ManualCurveyPetalHistory from "./history/ManualCurveyPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -32,7 +33,8 @@ export const POINTED_PETAL_NAME = `Pointed Petals`;
 export const CLAW_PETAL_NAME = `Claw Petals`;
 export const PRISM_PETAL_NAME = `Prism Petals`;
 export const RECTANGLE_NAME = `Rectangle`;
-export const MANUAL_ROUNDED_PETAL_NAME = `Manual Rounded Petals`;
+export const MANUAL_ROUNDED_PETAL_NAME = `Manual ${ROUNDED_PETAL_NAME}`;
+export const MANUAL_CURVEY_PETAL_NAME = `Manual ${CURVEY_PETAL_NAME}`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -44,7 +46,8 @@ export const POINTED_PETAL_CONFIG = `POINTED_PETAL_CONFIG`;
 export const CLAW_PETAL_CONFIG = `CLAW_PETAL_CONFIG`;
 export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
 export const RECTANGLE_CONFIG = `RECTANGLE_CONFIG`;
-export const MANUAL_ROUNDED_PETAL_CONFIG = `MANUAL_ROUNDED_PETAL_CONFIG`;
+export const MANUAL_ROUNDED_PETAL_CONFIG = `MANUAL_${ROUNDED_PETAL_CONFIG}`;
+export const MANUAL_CURVEY_PETAL_CONFIG = `MANUAL_${CURVEY_PETAL_CONFIG}`;
 
 export const DragTypes = {
     HISTORY_CARD: `historyCard`,
@@ -84,6 +87,14 @@ export const manualSingleControlPointRingProps = (state, config) => ({
     ...noControlBasicRingProps(state, config),
 });
 
+export const manualDoubleControlPointRingProps = (state, config) => ({
+    outerXLeftControl: state[config].outerXLeftControl,
+    outerXRightControl: state[config].outerXRightControl,
+    outerYLeftControl: state[config].outerYLeftControl,
+    outerYRightControl: state[config].outerYRightControl,
+    ...manualSingleControlPointRingProps(state, config),
+});
+
 export const noControlBasicRingProps = (state, config) => ({
     innerRadius: state[config].innerRadius,
     outerRadius: state[config].outerRadius,
@@ -106,6 +117,14 @@ export const manualSingleControlPointRingDispatch = (dispatch, action) => ({
     updateInnerXRightControl: value => {dispatch(action(`innerXRightControl`, value));},
     updateInnerYLeftControl: value => {dispatch(action(`innerYleftControl`, value));},
     updateInnerYRightControl: value => {dispatch(action(`innerYRightControl`, value));},
+});
+
+export const manualDoubleControlPointRingDispatch = (dispatch, action) => ({
+    ...manualSingleControlPointRingDispatch(dispatch, action),
+    updateOuterXLeftControl: value => {dispatch(action(`outerXleftControl`, value));},
+    updateOuterXRightControl: value => {dispatch(action(`outerXRightControl`, value));},
+    updateOuterYLeftControl: value => {dispatch(action(`outerYleftControl`, value));},
+    updateOuterYRightControl: value => {dispatch(action(`outerYRightControl`, value));},
 });
 
 export const noControlBasicRingDispatch = (dispatch, action) => ({
@@ -145,6 +164,7 @@ export const configMap = {
     [ROUNDED_PETAL_CONFIG]: { config: RoundedPetalConfig, name: ROUNDED_PETAL_NAME, history: RoundedPetalHistory, img: `assets/img/rounded_petals_80x80.png` },
     [MANUAL_ROUNDED_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_ROUNDED_PETAL_NAME, history: ManualRoundedPetalHistory, img: `assets/img/manual_rounded_petals_80x80.png` },
     [CURVEY_PETAL_CONFIG]: { config: CurveyPetalConfig, name: CURVEY_PETAL_NAME, history: CurveyPetalHistory, img: `assets/img/curvey_petals_80x80.png` },
+    [MANUAL_CURVEY_PETAL_CONFIG]: { config: ManualRoundedPetalConfig, name: MANUAL_CURVEY_PETAL_NAME, history: ManualCurveyPetalHistory, img: `` },
     [POINTED_PETAL_CONFIG]: { config: PointedPetalConfig, name: POINTED_PETAL_NAME, history: PointedPetalHistory, img: `assets/img/pointed_petals_80x80.png` },
     [CLAW_PETAL_CONFIG]: { config: ClawPetalConfig, name: CLAW_PETAL_NAME, history: ClawPetalHistory, img: `assets/img/claw_petals_80x80.png` },
     [PRISM_PETAL_CONFIG]: { config: PrismPetalConfig, name: PRISM_PETAL_NAME, history: PrismPetalHistory, img: `assets/img/prism_petals_80x80.png` },

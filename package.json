@@ -59,7 +59,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "round-to": "^2.0.0",
-    "save-svg-as-png": "^1.2.0",
+    "save-svg-as-png": "^1.4.6",
     "twirl": "^0.2.1"
   },
   "pre-push": []
