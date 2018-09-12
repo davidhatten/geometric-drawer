@@ -163,6 +163,7 @@ export const noControlBasicRingDispatch = (dispatch, action) => ({
 const changeInnerRadius = (action, value) => {
     return (dispatch, getState) => {
         const state = getState();
+        //TODO FIX THIS HARD CODED CONFIG THIS SHOULDN"T BE HARD CODED TO CLAW PETAL
         const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
 
         dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
@@ -172,6 +173,7 @@ const changeInnerRadius = (action, value) => {
 const changeOuterRadius = (action, value) => {
     return (dispatch, getState) => {
         const state = getState();
+        //TODO SEE ABOVE
         const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
 
         dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));

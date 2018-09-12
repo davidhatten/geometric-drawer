@@ -1,19 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
-import Circle from "../containers/shapes/Circle";
-import CircleForm from "../components/forms/CircleForm";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
 
 export default class CircleHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return Circle;
-    }
-
-    form() {
-        return CircleForm;
     }
 
     stateToPropsMap(state) {

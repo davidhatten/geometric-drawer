@@ -1,6 +1,6 @@
 import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
-import {configMap, nameFromConfig} from './../shapeConstants';
+import {configMap} from './../shapeConstants';
 import { historyClassFromConfig } from "../shapeConstants";
 import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
 import { clearShapeData } from "../stateUtil";

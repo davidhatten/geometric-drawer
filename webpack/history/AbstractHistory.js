@@ -12,14 +12,6 @@ export default class AbstractHistory {
             throw new TypeError(`Cannot create an abstract history directly.`);
         }
 
-        if (this.shape === undefined) {
-            throw new TypeError(`Must define 'shape' parameter with a name constant`);
-        }
-
-        if (this.form === undefined) {
-            throw new TypeError(`Must define 'form' parameter with a shape form`);
-        }
-
         if (this.stateToPropsMap === undefined) {
             throw new TypeError(`Must define 'stateToPropsMap' function that accepts a state and returns a stateToProps map`);
         }

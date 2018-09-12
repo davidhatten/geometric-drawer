@@ -1,19 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
 import { basicRingProps } from "../shapeConstants";
-import ClawPetal from "../containers/shapes/ClawPetal";
-import ClawPetalForm from "../components/forms/ClawPetalForm";
 
 export default class ClawPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape(){
-        return ClawPetal;
-    }
-
-    form(){
-        return ClawPetalForm;
     }
 
     stateToPropsMap(state) {

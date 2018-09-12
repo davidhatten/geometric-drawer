@@ -1,20 +1,10 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
 import { basicRingProps } from "../shapeConstants";
-import PrismPetal from "../containers/shapes/PrismPetal";
-import PrismPetalForm from "../components/forms/PrismPetalForm";
 
 export default class PrismPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return PrismPetal;
-    }
-
-    form() {
-        return PrismPetalForm;
     }
 
     stateToPropsMap(state) {

@@ -1,19 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import RectangleForm from "../components/forms/RectangleForm";
-import Rectangle from "../containers/shapes/Rectangle";
 
 export default class RectangleHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return Rectangle;
-    }
-
-    form() {
-        return RectangleForm;
     }
 
     stateToPropsMap(state) {
