@@ -34,6 +34,18 @@ import ClawPetalForm from "./components/forms/ClawPetalForm";
 import {changeClawPetalConfig} from "./actions/changeClawPetalConfig";
 import PrismPetalForm from "./components/forms/PrismPetalForm";
 import {changePrismPetalConfig} from "./actions/changePrismPetalConfig";
+import FlowerOfLife from "./containers/shapes/FlowerOfLife";
+import Square from "./containers/shapes/Square";
+import Rectangle from "./containers/shapes/Rectangle";
+import Circle from "./containers/shapes/Circle";
+import CirclePetal from "./containers/shapes/CirclePetal";
+import RoundedPetal from "./containers/shapes/RoundedPetal";
+import ManualRoundedPetal from "./containers/shapes/ManualRoundedPetal";
+import CurveyPetal from "./containers/shapes/CurveyPetal";
+import ManualCurveyPetal from "./containers/shapes/ManualCurveyPetal";
+import PointedPetal from "./containers/shapes/PointedPetal";
+import ClawPetal from "./containers/shapes/ClawPetal";
+import PrismPetal from "./containers/shapes/PrismPetal";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -186,6 +198,7 @@ export const configMap = {
         }),
         form: FlowerOfLifeForm,
         description: `A circle drawn, centered where you click, followed by layers of intersecting circles to form a flower.`,
+        shape: FlowerOfLife,
     },
     [SQUARE_CONFIG]: {
         name: SQUARE_NAME,
@@ -201,6 +214,7 @@ export const configMap = {
             updateRotation: (value) => {dispatch(changeSquareConfig(`rotation`, parseInt(value)));},
         }),
         description: `A simple square, centered on your click.`,
+        shape: Square,
     },
     [RECTANGLE_CONFIG]: {
         name: RECTANGLE_NAME,
@@ -218,6 +232,7 @@ export const configMap = {
             updateRotation: (value) => {dispatch(changeRectangleConfig(`rotation`, parseInt(value)));},
         }),
         description: `A simple rectangle, centered on your click.`,
+        shape: Rectangle,
     },
     [CIRCLE_CONFIG]: {
         name: CIRCLE_NAME,
@@ -231,6 +246,7 @@ export const configMap = {
             updateRadius: (value) => {dispatch(changeCircleConfig(`radius`, parseInt(value)));},
         }),
         description: `A simple circle, centered on your click.`,
+        shape: Circle,
     },
     [CIRCLE_PETAL_CONFIG]: {
         name: CIRCLE_PETAL_NAME,
@@ -250,6 +266,7 @@ export const configMap = {
             updateAxes: value => {dispatch(changeCirclePetalConfig(`axes`, parseInt(value)));},
         }),
         description: `A ring of petals, each one a small circle, centered on your click.`,
+        shape: CirclePetal,
     },
     [ROUNDED_PETAL_CONFIG]: {
         name: ROUNDED_PETAL_NAME,
@@ -259,6 +276,7 @@ export const configMap = {
         paletteStateToProps: state => (basicRingProps(state, ROUNDED_PETAL_CONFIG)),
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeRoundedPetalConfig)),
         description: `A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'.`,
+        shape: RoundedPetal,
     },
     [MANUAL_ROUNDED_PETAL_CONFIG]: {
         name: MANUAL_ROUNDED_PETAL_NAME,
@@ -272,6 +290,7 @@ export const configMap = {
             ...manualSingleControlPointRingDispatch(dispatch, changeManualRoundedPetalConfig),
         }),
         description: `A ring of petals, each rounded out by gravitating towards a control point. Each arm has its own distinct control point. For more info, see 'SVG Quadratic Path'`,
+        shape: ManualRoundedPetal,
     },
     [CURVEY_PETAL_CONFIG]: {
         name: CURVEY_PETAL_NAME,
@@ -289,6 +308,7 @@ export const configMap = {
             updateOuterYControl: value => {dispatch(changeCurveyPetalConfig(`outerYControl`, value));},
         }),
         description: `A ring of petals, each each one rounded out by two control points. For more info, see 'SVG Bezier Curve'.`,
+        shape: CurveyPetal,
     },
     [MANUAL_CURVEY_PETAL_CONFIG]: {
         name: MANUAL_CURVEY_PETAL_NAME,
@@ -302,6 +322,7 @@ export const configMap = {
             ...manualDoubleControlPointRingDispatch(dispatch, changeManualCurveyPetalConfig),
         }),
         description: `A ring of petals, each each one rounded out by two control points. Each arm has its own set of distinct control points. For more info, see 'SVG Bezier Curve'.`,
+        shape: ManualCurveyPetal,
     },
     [POINTED_PETAL_CONFIG]: {
         name: POINTED_PETAL_NAME,
@@ -311,6 +332,7 @@ export const configMap = {
         paletteStateToProps: state => (basicRingProps(state, POINTED_PETAL_CONFIG)),
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changePointedPetalConfig)),
         description: `A ring of petals, each one with lines meeting at the control points.`,
+        shape: PointedPetal,
     },
     [CLAW_PETAL_CONFIG]: {
         name: CLAW_PETAL_NAME,
@@ -320,6 +342,7 @@ export const configMap = {
         paletteStateToProps: state => (basicRingProps(state, CLAW_PETAL_CONFIG)),
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
         description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
+        shape: ClawPetal,
     },
     [PRISM_PETAL_CONFIG]: {
         name: PRISM_PETAL_NAME,
@@ -337,6 +360,7 @@ export const configMap = {
             updateOuterYControl: value => {dispatch(changePrismPetalConfig(`outerYControl`, value));},
         }),
         description: `A ring of petals, each one with lines controlled by two control points.`,
+        shape: PrismPetal,
     },
 };
 
