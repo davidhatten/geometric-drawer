@@ -99,16 +99,16 @@ export default class AbstractHistory {
     manualHistoryDoubleControlPointRingDispatch(dispatch, id) {
         return {
             ...this.manualHistorySingleControlPointRingDispatch(dispatch, id),
-            updateInnerXLeftControl: value => {
+            updateOuterXLeftControl: value => {
                 dispatch(changeHistoryProp(id, `outerXLeftControl`, value));
             },
-            updateInnerXRightControl: value => {
+            updateOuterXRightControl: value => {
                 dispatch(changeHistoryProp(id, `outerXRightControl`, value));
             },
-            updateInnerYLeftControl: value => {
+            updateOuterYLeftControl: value => {
                 dispatch(changeHistoryProp(id, `outerYLeftControl`, value));
             },
-            updateInnerYRightControl: value => {
+            updateOuterYRightControl: value => {
                 dispatch(changeHistoryProp(id, `outerYRightControl`, value));
             },
         };
