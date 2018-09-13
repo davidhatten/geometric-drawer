@@ -137,17 +137,17 @@ export const basicRingDispatch = (dispatch, action) => ({
 
 export const manualSingleControlPointRingDispatch = (dispatch, action) => ({
     ...noControlBasicRingDispatch(dispatch, action),
-    updateInnerXLeftControl: value => {dispatch(action(`innerXleftControl`, value));},
+    updateInnerXLeftControl: value => {dispatch(action(`innerXLeftControl`, value));},
     updateInnerXRightControl: value => {dispatch(action(`innerXRightControl`, value));},
-    updateInnerYLeftControl: value => {dispatch(action(`innerYleftControl`, value));},
+    updateInnerYLeftControl: value => {dispatch(action(`innerYLeftControl`, value));},
     updateInnerYRightControl: value => {dispatch(action(`innerYRightControl`, value));},
 });
 
 export const manualDoubleControlPointRingDispatch = (dispatch, action) => ({
     ...manualSingleControlPointRingDispatch(dispatch, action),
-    updateOuterXLeftControl: value => {dispatch(action(`outerXleftControl`, value));},
+    updateOuterXLeftControl: value => {dispatch(action(`outerXLeftControl`, value));},
     updateOuterXRightControl: value => {dispatch(action(`outerXRightControl`, value));},
-    updateOuterYLeftControl: value => {dispatch(action(`outerYleftControl`, value));},
+    updateOuterYLeftControl: value => {dispatch(action(`outerYLeftControl`, value));},
     updateOuterYRightControl: value => {dispatch(action(`outerYRightControl`, value));},
 });
 
@@ -163,8 +163,7 @@ export const noControlBasicRingDispatch = (dispatch, action) => ({
 const changeInnerRadius = (action, value) => {
     return (dispatch, getState) => {
         const state = getState();
-        //TODO FIX THIS HARD CODED CONFIG THIS SHOULDN"T BE HARD CODED TO CLAW PETAL
-        const outerRadius = state[CLAW_PETAL_CONFIG].outerRadius;
+        const outerRadius = state[state.selectShape.selectedShape].outerRadius;
 
         dispatch(action(`innerRadius`, boundInnerRadius(value, outerRadius) ));
     };
@@ -173,8 +172,7 @@ const changeInnerRadius = (action, value) => {
 const changeOuterRadius = (action, value) => {
     return (dispatch, getState) => {
         const state = getState();
-        //TODO SEE ABOVE
-        const innerRadius = state[CLAW_PETAL_CONFIG].innerRadius;
+        const innerRadius = state[state.selectShape.selectedShape].innerRadius;
 
         dispatch(action(`outerRadius`, boundOuterRadius(value, innerRadius) ));
     };
@@ -275,8 +273,8 @@ export const configMap = {
         history: RoundedPetalHistory,
         img: `assets/img/rounded_petals_80x80.png`,
         form: RoundedPetalForm,
-        paletteStateToProps: state => (basicRingProps(state, ROUNDED_PETAL_CONFIG)),
-        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeRoundedPetalConfig)),
+        paletteStateToProps: state => ({...basicRingProps(state, ROUNDED_PETAL_CONFIG)}),
+        paletteDispatchToProps: dispatch => ({...basicRingDispatch(dispatch, changeRoundedPetalConfig)}),
         description: `A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'.`,
         shape: RoundedPetal,
     },
@@ -364,14 +362,6 @@ export const configMap = {
         description: `A ring of petals, each one with lines controlled by two control points.`,
         shape: PrismPetal,
     },
-};
-
-export const nameFromConfig = config => {
-    return configMap[config].name;
-};
-
-export const historyClassFromConfig = config => {
-    return configMap[config].history;
 };
 
 export const imgFromConfig = config => {
