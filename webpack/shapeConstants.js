@@ -309,7 +309,7 @@ export const configMap = {
     [MANUAL_CURVEY_PETAL_CONFIG]: {
         name: MANUAL_CURVEY_PETAL_NAME,
         history: ManualCurveyPetalHistory,
-        img: ``,
+        img: `assets/img/manual_curvey_petals_80x80.png`,
         form: ManualCurveyPetalForm,
         paletteStateToProps: state => ({
             ...manualDoubleControlPointRingProps(state, MANUAL_CURVEY_PETAL_CONFIG),
