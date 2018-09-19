@@ -4,7 +4,6 @@ import { buildPetals, getIndependentControlPoints, getMirroredControlPoints, get
 export default class AbstractPetal extends Component {
     constructor(props) {
         super(props);
-        this.firstPetalDrawn = false;
 
         if (new.target === AbstractPetal) {
             throw new TypeError(`Cannot create an abstract petal directly.`);
