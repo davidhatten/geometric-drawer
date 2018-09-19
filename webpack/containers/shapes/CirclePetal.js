@@ -12,7 +12,7 @@ class CirclePetal extends Component {
         let angle = rotation;
         const maxAngle = 360 + angle;
         const angleIncrement = 360/axes;
-        const paths = [];
+        const shapes = [];
 
         // See petalUtil.js#getPetalTipPoints and #buildPetals for explanation of this odd math
         // I could convert this to use the new petal handling, but it would actually make this more complex
@@ -20,14 +20,14 @@ class CirclePetal extends Component {
 
         while (angle < maxAngle) {
             const currentPoint = circlePoint(startingPoint, { x: x, y: y }, angle*(Math.PI/180));
-            paths.push(<Circle {...currentPoint} radius={petalRadius} style={style} key={style + angle}/>);
+            shapes.push(<Circle {...currentPoint} radius={petalRadius} style={style} key={style + angle}/>);
 
             angle += angleIncrement;
         }
 
         return (
             <g>
-                {paths}
+                {shapes}
             </g>
         );
     }
