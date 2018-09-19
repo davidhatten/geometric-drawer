@@ -14,7 +14,7 @@ class CirclePetal extends Component {
         const angleIncrement = 360/axes;
         const paths = [];
 
-        // See RoundedPetal.js for explanation of this odd math
+        // See petalUtil.js#getPetalTipPoints and #buildPetals for explanation of this odd math
         // I could convert this to use the new petal handling, but it would actually make this more complex
         const startingPoint = { x: x, y: y - ringRadius };
 
