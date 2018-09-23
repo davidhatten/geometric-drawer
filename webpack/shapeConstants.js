@@ -46,6 +46,10 @@ import ManualCurveyPetal from "./containers/shapes/ManualCurveyPetal";
 import PointedPetal from "./containers/shapes/PointedPetal";
 import ClawPetal from "./containers/shapes/ClawPetal";
 import PrismPetal from "./containers/shapes/PrismPetal";
+import ManualPointedPetalForm from "./components/forms/ManualPointedPetalForm";
+import {changeManualPointedPetalConfig} from "./actions/changeManualPointedPetalConfig";
+import ManualPointedPetal from "./containers/shapes/ManualPointedPetal";
+import ManualPointedPetalHistory from "./history/ManualPointedPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -59,6 +63,7 @@ export const PRISM_PETAL_NAME = `Prism Petals`;
 export const RECTANGLE_NAME = `Rectangle`;
 export const MANUAL_ROUNDED_PETAL_NAME = `Manual ${ROUNDED_PETAL_NAME}`;
 export const MANUAL_CURVEY_PETAL_NAME = `Manual ${CURVEY_PETAL_NAME}`;
+export const MANUAL_POINTED_PETAL_NAME = `Manual ${POINTED_PETAL_NAME}`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -72,6 +77,7 @@ export const PRISM_PETAL_CONFIG = `PRISM_PETAL_CONFIG`;
 export const RECTANGLE_CONFIG = `RECTANGLE_CONFIG`;
 export const MANUAL_ROUNDED_PETAL_CONFIG = `MANUAL_${ROUNDED_PETAL_CONFIG}`;
 export const MANUAL_CURVEY_PETAL_CONFIG = `MANUAL_${CURVEY_PETAL_CONFIG}`;
+export const MANUAL_POINTED_PETAL_CONFIG = `MANUAL_${POINTED_PETAL_CONFIG}`;
 
 export const DragTypes = {
     HISTORY_CARD: `historyCard`,
@@ -330,15 +336,15 @@ export const configMap = {
         description: `A ring of petals, each one with lines meeting at the control points.`,
         shape: PointedPetal,
     },
-    [CLAW_PETAL_CONFIG]: {
-        name: CLAW_PETAL_NAME,
-        history: ClawPetalHistory,
-        img: `assets/img/claw_petals_80x80.png`,
-        form: ClawPetalForm,
-        paletteStateToProps: state => (basicRingProps(state, CLAW_PETAL_CONFIG)),
-        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
-        description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
-        shape: ClawPetal,
+    [MANUAL_POINTED_PETAL_CONFIG]: {
+        name: MANUAL_POINTED_PETAL_NAME,
+        history: ManualPointedPetalHistory,
+        img: ``,
+        form: ManualPointedPetalForm,
+        paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_POINTED_PETAL_CONFIG) }),
+        paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualPointedPetalConfig) }),
+        description: `A ring of petals, each one with lines meeting at the control points. Each side's control points can be independently adjusted.`,
+        shape: ManualPointedPetal,
     },
     [PRISM_PETAL_CONFIG]: {
         name: PRISM_PETAL_NAME,
@@ -357,6 +363,16 @@ export const configMap = {
         }),
         description: `A ring of petals, each one with lines controlled by two control points.`,
         shape: PrismPetal,
+    },
+    [CLAW_PETAL_CONFIG]: {
+        name: CLAW_PETAL_NAME,
+        history: ClawPetalHistory,
+        img: `assets/img/claw_petals_80x80.png`,
+        form: ClawPetalForm,
+        paletteStateToProps: state => (basicRingProps(state, CLAW_PETAL_CONFIG)),
+        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
+        description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
+        shape: ClawPetal,
     },
 };
 
