@@ -339,7 +339,7 @@ export const configMap = {
     [MANUAL_POINTED_PETAL_CONFIG]: {
         name: MANUAL_POINTED_PETAL_NAME,
         history: ManualPointedPetalHistory,
-        img: ``,
+        img: `assets/img/manual_pointed_petals_80x80.png`,
         form: ManualPointedPetalForm,
         paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_POINTED_PETAL_CONFIG) }),
         paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualPointedPetalConfig) }),
