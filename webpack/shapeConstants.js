@@ -20,19 +20,16 @@ import CircleForm from "./components/forms/CircleForm";
 import {changeCircleConfig} from "./actions/changeCircleConfig";
 import CirclePetalForm from "./components/forms/CirclePetalForm";
 import {changeCirclePetalConfig} from "./actions/changeCirclePetalConfig";
-import RoundedPetalForm from "./components/forms/RoundedPetalForm";
+import SingleControlPointPetalForm from "./components/forms/SingleControlPointPetalForm";
 import {changeRoundedPetalConfig} from "./actions/changeRoundedPetalConfig";
-import ManualRoundedPetalForm from "./components/forms/ManualRoundedPetalForm";
 import {changeManualRoundedPetalConfig} from "./actions/changeManualRoundedPetalConfig";
-import CurveyPetalForm from "./components/forms/CurveyPetalForm";
+import DoubleControlPointPetalForm from "./components/forms/DoubleControlPointPetalForm";
 import {changeCurveyPetalConfig} from "./actions/changeCurveyPetalConfig";
-import ManualCurveyPetalForm from "./components/forms/ManualCurveyPetalForm";
+import ManualDoubleControlPointPetalForm from "./components/forms/ManualDoubleControlPointPetalForm";
 import {changeManualCurveyPetalConfig} from "./actions/changeManualCurveyPetalConfig";
-import PointedPetalForm from "./components/forms/PointedPetalForm";
 import {changePointedPetalConfig} from "./actions/changePointedPetalConfig";
 import ClawPetalForm from "./components/forms/ClawPetalForm";
 import {changeClawPetalConfig} from "./actions/changeClawPetalConfig";
-import PrismPetalForm from "./components/forms/PrismPetalForm";
 import {changePrismPetalConfig} from "./actions/changePrismPetalConfig";
 import FlowerOfLife from "./containers/shapes/FlowerOfLife";
 import Square from "./containers/shapes/Square";
@@ -46,10 +43,13 @@ import ManualCurveyPetal from "./containers/shapes/ManualCurveyPetal";
 import PointedPetal from "./containers/shapes/PointedPetal";
 import ClawPetal from "./containers/shapes/ClawPetal";
 import PrismPetal from "./containers/shapes/PrismPetal";
-import ManualPointedPetalForm from "./components/forms/ManualPointedPetalForm";
+import ManualSingleControlPointPetalForm from "./components/forms/ManualSingleControlPointPetalForm";
 import {changeManualPointedPetalConfig} from "./actions/changeManualPointedPetalConfig";
 import ManualPointedPetal from "./containers/shapes/ManualPointedPetal";
 import ManualPointedPetalHistory from "./history/ManualPointedPetalHistory";
+import {changeManualPrismPetalConfig} from "./actions/changeManualPrismPetal";
+import ManualPrismPetal from "./containers/shapes/ManualPrismPetal";
+import ManualPrismPetalHistory from "./history/ManualPrismPetalHistory";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -64,6 +64,7 @@ export const RECTANGLE_NAME = `Rectangle`;
 export const MANUAL_ROUNDED_PETAL_NAME = `Manual ${ROUNDED_PETAL_NAME}`;
 export const MANUAL_CURVEY_PETAL_NAME = `Manual ${CURVEY_PETAL_NAME}`;
 export const MANUAL_POINTED_PETAL_NAME = `Manual ${POINTED_PETAL_NAME}`;
+export const MANUAL_PRISM_PETAL_NAME = `Manual ${PRISM_PETAL_NAME}`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -78,6 +79,7 @@ export const RECTANGLE_CONFIG = `RECTANGLE_CONFIG`;
 export const MANUAL_ROUNDED_PETAL_CONFIG = `MANUAL_${ROUNDED_PETAL_CONFIG}`;
 export const MANUAL_CURVEY_PETAL_CONFIG = `MANUAL_${CURVEY_PETAL_CONFIG}`;
 export const MANUAL_POINTED_PETAL_CONFIG = `MANUAL_${POINTED_PETAL_CONFIG}`;
+export const MANUAL_PRISM_PETAL_CONFIG = `MANUAL_${PRISM_PETAL_CONFIG}`;
 
 export const DragTypes = {
     HISTORY_CARD: `historyCard`,
@@ -278,7 +280,7 @@ export const configMap = {
         name: ROUNDED_PETAL_NAME,
         history: RoundedPetalHistory,
         img: `assets/img/rounded_petals_80x80.png`,
-        form: RoundedPetalForm,
+        form: SingleControlPointPetalForm,
         paletteStateToProps: state => ({ ...basicRingProps(state, ROUNDED_PETAL_CONFIG) }),
         paletteDispatchToProps: dispatch => ({ ...basicRingDispatch(dispatch, changeRoundedPetalConfig) }),
         description: `A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'.`,
@@ -288,7 +290,7 @@ export const configMap = {
         name: MANUAL_ROUNDED_PETAL_NAME,
         history: ManualRoundedPetalHistory,
         img: `assets/img/manual_rounded_petals_80x80.png`,
-        form: ManualRoundedPetalForm,
+        form: ManualSingleControlPointPetalForm,
         paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_ROUNDED_PETAL_CONFIG) }),
         paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualRoundedPetalConfig) }),
         description: `A ring of petals, each rounded out by gravitating towards a control point. Each arm has its own distinct control point. For more info, see 'SVG Quadratic Path'`,
@@ -298,7 +300,7 @@ export const configMap = {
         name: CURVEY_PETAL_NAME,
         history: CurveyPetalHistory,
         img: `assets/img/curvey_petals_80x80.png`,
-        form: CurveyPetalForm,
+        form: DoubleControlPointPetalForm,
         paletteStateToProps: state => ({
             ...basicRingProps(state, CURVEY_PETAL_CONFIG),
             outerXControl: state[CURVEY_PETAL_CONFIG].outerXControl,
@@ -316,7 +318,7 @@ export const configMap = {
         name: MANUAL_CURVEY_PETAL_NAME,
         history: ManualCurveyPetalHistory,
         img: `assets/img/manual_curvey_petals_80x80.png`,
-        form: ManualCurveyPetalForm,
+        form: ManualDoubleControlPointPetalForm,
         paletteStateToProps: state => ({
             ...manualDoubleControlPointRingProps(state, MANUAL_CURVEY_PETAL_CONFIG),
         }),
@@ -330,7 +332,7 @@ export const configMap = {
         name: POINTED_PETAL_NAME,
         history: PointedPetalHistory,
         img: `assets/img/pointed_petals_80x80.png`,
-        form: PointedPetalForm,
+        form: SingleControlPointPetalForm,
         paletteStateToProps: state => (basicRingProps(state, POINTED_PETAL_CONFIG)),
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changePointedPetalConfig)),
         description: `A ring of petals, each one with lines meeting at the control points.`,
@@ -340,7 +342,7 @@ export const configMap = {
         name: MANUAL_POINTED_PETAL_NAME,
         history: ManualPointedPetalHistory,
         img: `assets/img/manual_pointed_petals_80x80.png`,
-        form: ManualPointedPetalForm,
+        form: ManualSingleControlPointPetalForm,
         paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_POINTED_PETAL_CONFIG) }),
         paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualPointedPetalConfig) }),
         description: `A ring of petals, each one with lines meeting at the control points. Each side's control points can be independently adjusted.`,
@@ -350,7 +352,7 @@ export const configMap = {
         name: PRISM_PETAL_NAME,
         history: PrismPetalHistory,
         img: `assets/img/prism_petals_80x80.png`,
-        form: PrismPetalForm,
+        form: DoubleControlPointPetalForm,
         paletteStateToProps: state => ({
             ...basicRingProps(state, CURVEY_PETAL_CONFIG),
             outerXControl: state[CURVEY_PETAL_CONFIG].outerXControl,
@@ -363,6 +365,20 @@ export const configMap = {
         }),
         description: `A ring of petals, each one with lines controlled by two control points.`,
         shape: PrismPetal,
+    },
+    [MANUAL_PRISM_PETAL_CONFIG]: {
+        name: MANUAL_PRISM_PETAL_NAME,
+        history: ManualPrismPetalHistory,
+        img: ``,
+        form: ManualDoubleControlPointPetalForm,
+        paletteStateToProps: state => ({
+            ...manualDoubleControlPointRingProps(state, MANUAL_PRISM_PETAL_CONFIG),
+        }),
+        paletteDispatchToProps: dispatch => ({
+            ...manualDoubleControlPointRingDispatch(dispatch, changeManualPrismPetalConfig),
+        }),
+        description: `A ring of petals, each one with lines controlled by two control points. Each side's control points can be independently adjusted.`,
+        shape: ManualPrismPetal,
     },
     [CLAW_PETAL_CONFIG]: {
         name: CLAW_PETAL_NAME,

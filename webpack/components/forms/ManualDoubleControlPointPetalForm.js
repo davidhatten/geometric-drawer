@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const ManualPointedPetalForm = props => (
+const ManualDoubleControlPointPetalForm = props => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
@@ -25,7 +25,39 @@ const ManualPointedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`X Left Control Point (px)`}
+                    name={`Outer X Left Control Point (px)`}
+                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.outerXLeftControl}
+                    updateValue={props.updateOuterXLeftControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Outer X Right Control Point (px)`}
+                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.outerXRightControl}
+                    updateValue={props.updateOuterXRightControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Outer Y Left Control Point (px)`}
+                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.outerYLeftControl}
+                    updateValue={props.updateOuterYLeftControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Outer Y Right Control Point (px)`}
+                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.outerYRightControl}
+                    updateValue={props.updateOuterYRightControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Inner X Left Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerXLeftControl}
                     updateValue={props.updateInnerXLeftControl}
@@ -33,7 +65,7 @@ const ManualPointedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`X Right Control Point (px)`}
+                    name={`Inner X Right Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerXRightControl}
                     updateValue={props.updateInnerXRightControl}
@@ -41,7 +73,7 @@ const ManualPointedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`Y Left Control Point (px)`}
+                    name={`Inner Y Left Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerYLeftControl}
                     updateValue={props.updateInnerYLeftControl}
@@ -49,7 +81,7 @@ const ManualPointedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`Y Right Control Point (px)`}
+                    name={`Inner Y Right Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
                     value={props.innerYRightControl}
                     updateValue={props.updateInnerYRightControl}
@@ -91,4 +123,4 @@ const ManualPointedPetalForm = props => (
     </Form>
 );
 
-export default ManualPointedPetalForm;
+export default ManualDoubleControlPointPetalForm;
