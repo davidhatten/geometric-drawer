@@ -1,14 +1,14 @@
 import AbstractPetal from "./AbstractPetal";
 import React from 'react';
 import { connect } from "react-redux";
-import {drawPointedPetal} from "../../petalUtil";
+import { drawPrismPetal } from "../../petalUtil";
 
 class ManualPrismPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
     drawPetal() {
-        return drawPointedPetal(...arguments);
+        return drawPrismPetal(...arguments);
     }
     render() {
         const paths = this.doubleControlPointIndependentForEachPetalArmAlgorithm();

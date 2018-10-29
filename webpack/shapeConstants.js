@@ -47,7 +47,7 @@ import ManualSingleControlPointPetalForm from "./components/forms/ManualSingleCo
 import {changeManualPointedPetalConfig} from "./actions/changeManualPointedPetalConfig";
 import ManualPointedPetal from "./containers/shapes/ManualPointedPetal";
 import ManualPointedPetalHistory from "./history/ManualPointedPetalHistory";
-import {changeManualPrismPetalConfig} from "./actions/changeManualPrismPetal";
+import {changeManualPrismPetalConfig} from "./actions/changeManualPrismPetalConfig";
 import ManualPrismPetal from "./containers/shapes/ManualPrismPetal";
 import ManualPrismPetalHistory from "./history/ManualPrismPetalHistory";
 
