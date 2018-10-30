@@ -7,13 +7,14 @@ const FormItem = Form.Item;
 class SliderInput extends Component {
     constructor(props) {
         super(props);
+        this.initialValue = this.props.value;
     }
 
     onChange = (value) => {
-        if (value) {
-            this.props.updateValue(parseInt(value));
+        if (isNaN(parseInt(value))) {
+            this.props.updateValue(this.initialValue);
         } else {
-            this.props.updateValue(parseInt(this.props.min));
+            this.props.updateValue(value);
         }
     }
 

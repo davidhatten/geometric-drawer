@@ -369,7 +369,7 @@ export const configMap = {
     [MANUAL_PRISM_PETAL_CONFIG]: {
         name: MANUAL_PRISM_PETAL_NAME,
         history: ManualPrismPetalHistory,
-        img: ``,
+        img: `assets/img/manual_prism_petals_80x80.png`,
         form: ManualDoubleControlPointPetalForm,
         paletteStateToProps: state => ({
             ...manualDoubleControlPointRingProps(state, MANUAL_PRISM_PETAL_CONFIG),
