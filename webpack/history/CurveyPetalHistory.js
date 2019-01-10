@@ -1,20 +1,10 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
 import {basicRingProps} from "../shapeConstants";
-import CurveyPetal from "../containers/shapes/CurveyPetal";
-import CurveyPetalForm from "../components/forms/CurveyPetalForm";
 
 export default class CurveyPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return CurveyPetal;
-    }
-
-    form() {
-        return CurveyPetalForm;
     }
 
     stateToPropsMap(state) {

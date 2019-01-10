@@ -1,7 +1,7 @@
 import AbstractHistory from "./AbstractHistory.js";
 import { manualSingleControlPointRingProps } from "../shapeConstants";
 
-export default class ManualRoundedPetalHistory extends AbstractHistory {
+export default class ManualClawPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
     }

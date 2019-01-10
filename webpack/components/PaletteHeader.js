@@ -10,7 +10,7 @@ class PaletteHeader extends Component {
     render() {
         return(
             <Tooltip title={this.props.description}>
-                <Row className="paletteHeaderRow" type="flex" justify="right" align="middle">
+                <Row className="paletteHeaderRow" type="flex" justify="start" align="middle">
                     <Col>
                         <Avatar size="large" src={this.props.img} />
                     </Col>

@@ -1,9 +1,9 @@
+import AbstractPetal from "./AbstractPetal";
 import React from 'react';
 import { connect } from "react-redux";
-import AbstractPetal from "./AbstractPetal";
-import {drawPrismPetal} from "../../petalUtil";
+import { drawPrismPetal } from "../../petalUtil";
 
-class PrismPetal extends AbstractPetal {
+class ManualPrismPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
@@ -11,7 +11,7 @@ class PrismPetal extends AbstractPetal {
         return drawPrismPetal(...arguments);
     }
     render() {
-        const paths = this.doubleControlPointsMirroredForEachPetalArmAlgorithm();
+        const paths = this.doubleControlPointIndependentForEachPetalArmAlgorithm();
 
         return (
             <g>
@@ -25,5 +25,4 @@ const mapStateToProps = state => ({
     styleProps: state.shapeStyle.byId,
 });
 
-export default connect(mapStateToProps)(PrismPetal);
-
+export default connect(mapStateToProps)(ManualPrismPetal);

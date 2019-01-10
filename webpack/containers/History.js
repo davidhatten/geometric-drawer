@@ -24,7 +24,6 @@ class History extends Component {
     }
     render() {
         const { history } = this.props;
-        console.log(styles);
         return this.props.connectDropTarget(
             <div className={styles.history}>
                 <List style={{ padding: 0, margin: 0 }} size="small" locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={[...history].reverse()} renderItem={item => (

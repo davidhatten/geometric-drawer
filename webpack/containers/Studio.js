@@ -3,7 +3,6 @@ import { Row, Col, Button, Modal, Affix } from 'antd';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
-import GeneralOptions from '../components/GeneralOptionsConfig';
 import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
@@ -17,9 +16,7 @@ class Studio extends Component {
     }
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
-        canvas.style.backgroundColor = `transparent`;
-        saveSvgAsPng(canvas, `geometry.png`);
-        canvas.style.backgroundColor = `white`;
+        saveSvgAsPng(canvas, `geometry.png`, { backgroundColor: `transparent` });
     }
     confirmClearHistory = () => {
         const self = this;

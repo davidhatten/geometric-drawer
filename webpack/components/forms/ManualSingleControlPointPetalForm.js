@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const RoundedPetalForm = props => (
+const ManualSingleControlPointPetalForm = props => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
@@ -25,18 +25,34 @@ const RoundedPetalForm = props => (
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`X Control Point (px)`}
+                    name={`X Left Control Point (px)`}
                     description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
-                    value={props.innerXControl}
-                    updateValue={props.updateInnerXControl}
+                    value={props.innerXLeftControl}
+                    updateValue={props.updateInnerXLeftControl}
                 />
                 <SliderInput
                     min={-1000}
                     max={1000}
-                    name={`Y Control Point (px)`}
+                    name={`X Right Control Point (px)`}
+                    description={`Offset in pixels of the x coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.innerXRightControl}
+                    updateValue={props.updateInnerXRightControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Y Left Control Point (px)`}
                     description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
-                    value={props.innerYControl}
-                    updateValue={props.updateInnerYControl}
+                    value={props.innerYLeftControl}
+                    updateValue={props.updateInnerYLeftControl}
+                />
+                <SliderInput
+                    min={-1000}
+                    max={1000}
+                    name={`Y Right Control Point (px)`}
+                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.`}
+                    value={props.innerYRightControl}
+                    updateValue={props.updateInnerYRightControl}
                 />
                 <SliderInput
                     min={0}
@@ -75,4 +91,4 @@ const RoundedPetalForm = props => (
     </Form>
 );
 
-export default RoundedPetalForm;
+export default ManualSingleControlPointPetalForm;

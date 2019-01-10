@@ -7,11 +7,8 @@ class ManualRoundedPetal extends AbstractPetal {
     constructor(props) {
         super(props);
     }
-    drawPetal(startInnerPoint, startOuterPoint, startControlPoint,
-        returnInnerPoint, returnOuterPoint, returnControlPoint) {
-
-        return drawRoundedPetal(startInnerPoint, startOuterPoint, startControlPoint,
-            returnInnerPoint, returnOuterPoint, returnControlPoint);
+    drawPetal() {
+        return drawRoundedPetal(...arguments);
     }
     render() {
         const paths = this.singleControlPointIndependentForEachPetalArmAlgorithm();

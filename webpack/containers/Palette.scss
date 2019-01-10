@@ -8,6 +8,18 @@
   border-radius: 10px;
 }
 
+.ant-collapse-item:last-child > .ant-collapse-content {
+  border-radius: 0 0 10px 10px;
+}
+
+.ant-collapse > .ant-collapse-item:last-child, .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header {
+  border-radius: 10px;
+}
+
 .ant-avatar {
   margin-right: 10px;
+}
+
+.palettePanel {
+  border-radius: 10px
 }
