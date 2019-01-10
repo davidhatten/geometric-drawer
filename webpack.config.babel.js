@@ -57,7 +57,7 @@ module.exports = {
                             importLoaders: 1,
                         },
                     }, // translates CSS into CommonJS
-                    AntdScssThemePlugin.themify("less-loader"),
+                    AntdScssThemePlugin.themify({loader: "less-loader", options: { javascriptEnabled: true }}),
                 ],
             },
         ],
