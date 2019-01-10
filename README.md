@@ -8,11 +8,21 @@ Current version: 1.6.2
 ## Types of Shapes
 * Flower of Life
 * Circle
+* Rectangle
 * Square
 * Rounded Petals (aka: Quadratic curves)
+* Manual Rounded Petals
 * Circle Petals
 * Curvey Petals (aka: Bezier curves)
+* Manual Curvey Petals
 * Pointed Petals
+* Manual Pointed Petals
+* Prism Petals
+* Manual Prism Petals
+* Claw Petals
+* Manual Claw Petals
+
+
 
 ## Features
 * Define the number of iterations
