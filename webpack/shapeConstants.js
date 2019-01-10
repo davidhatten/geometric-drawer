@@ -398,7 +398,7 @@ export const configMap = {
     [MANUAL_CLAW_PETAL_CONFIG]: {
         name: MANUAL_CLAW_PETAL_NAME,
         history: ManualClawPetalHistory,
-        img: ``,
+        img: `assets/img/manual_claw_petals_80x80.png`,
         form: ManualSingleControlPointPetalForm,
         paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_POINTED_PETAL_CONFIG) }),
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeManualClawPetalConfig)),
