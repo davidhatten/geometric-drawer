@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import AbstractPetal from "./AbstractPetal";
 import SvgPath from "path-svg/svg-path";
 
-class ClawPetal extends AbstractPetal {
+class ManualClawPetal extends AbstractPetal {
     constructor(props) {
         super(props);
         this.firstPetalDrawn = false;
@@ -34,7 +34,8 @@ class ClawPetal extends AbstractPetal {
         return path;
     }
     render() {
-        const paths = this.singleControlPointForBothPetalArmsAlgorithm();
+        const paths = this.singleControlPointIndependentForEachPetalArmAlgorithm();
+
         this.firstPetalDrawn = false;
 
         return (
@@ -51,4 +52,4 @@ const mapStateToProps = state => ({
     styleProps: state.shapeStyle.byId,
 });
 
-export default connect(mapStateToProps)(ClawPetal);
+export default connect(mapStateToProps)(ManualClawPetal);

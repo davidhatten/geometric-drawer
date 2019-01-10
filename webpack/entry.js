@@ -14,7 +14,11 @@ import {
     CIRCLE_PETAL_CONFIG,
     CLAW_PETAL_CONFIG,
     CURVEY_PETAL_CONFIG,
-    FOL_CONFIG, MANUAL_CURVEY_PETAL_CONFIG, MANUAL_POINTED_PETAL_CONFIG, MANUAL_PRISM_PETAL_CONFIG,
+    FOL_CONFIG,
+    MANUAL_CLAW_PETAL_CONFIG,
+    MANUAL_CURVEY_PETAL_CONFIG,
+    MANUAL_POINTED_PETAL_CONFIG,
+    MANUAL_PRISM_PETAL_CONFIG,
     MANUAL_ROUNDED_PETAL_CONFIG,
     POINTED_PETAL_CONFIG,
     PRISM_PETAL_CONFIG,
@@ -40,6 +44,7 @@ import changeManualRoundedPetalConfig from "./reducers/changeManualRoundedPetalC
 import changeManualCurveyPetalConfig from "./reducers/changeManualCurveyPetalConfig";
 import changeManualPointedPetalConfig from "./reducers/changeManualPointedPetalConfig";
 import changeManualPrismPetalConfig from "./reducers/changeManualPrismPetalConfig";
+import changeManualClawPetalConfig from "./reducers/changeManualClawPetalConfig";
 
 
 let reducers = combineReducers({
@@ -58,6 +63,7 @@ let reducers = combineReducers({
     [MANUAL_CURVEY_PETAL_CONFIG]: changeManualCurveyPetalConfig,
     [MANUAL_POINTED_PETAL_CONFIG]: changeManualPointedPetalConfig,
     [MANUAL_PRISM_PETAL_CONFIG]: changeManualPrismPetalConfig,
+    [MANUAL_CLAW_PETAL_CONFIG]: changeManualClawPetalConfig,
     shapeStyle: changeShapeStyle,
     shapeProps: changeShapeProp,
     shapeHistory: changeShapeHistory,

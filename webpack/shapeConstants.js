@@ -50,6 +50,9 @@ import ManualPointedPetalHistory from "./history/ManualPointedPetalHistory";
 import {changeManualPrismPetalConfig} from "./actions/changeManualPrismPetalConfig";
 import ManualPrismPetal from "./containers/shapes/ManualPrismPetal";
 import ManualPrismPetalHistory from "./history/ManualPrismPetalHistory";
+import {changeManualClawPetalConfig} from "./actions/changeManualClawPetalConfig";
+import ManualClawPetalHistory from "./history/ManualClawPetalHistory";
+import ManualClawPetal from "./containers/shapes/ManualClawPetal";
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -65,6 +68,7 @@ export const MANUAL_ROUNDED_PETAL_NAME = `Manual ${ROUNDED_PETAL_NAME}`;
 export const MANUAL_CURVEY_PETAL_NAME = `Manual ${CURVEY_PETAL_NAME}`;
 export const MANUAL_POINTED_PETAL_NAME = `Manual ${POINTED_PETAL_NAME}`;
 export const MANUAL_PRISM_PETAL_NAME = `Manual ${PRISM_PETAL_NAME}`;
+export const MANUAL_CLAW_PETAL_NAME = `Manual ${CLAW_PETAL_NAME}`;
 
 export const FOL_CONFIG = `FOL_CONFIG`;
 export const CIRCLE_CONFIG = `CIRCLE_CONFIG`;
@@ -80,6 +84,7 @@ export const MANUAL_ROUNDED_PETAL_CONFIG = `MANUAL_${ROUNDED_PETAL_CONFIG}`;
 export const MANUAL_CURVEY_PETAL_CONFIG = `MANUAL_${CURVEY_PETAL_CONFIG}`;
 export const MANUAL_POINTED_PETAL_CONFIG = `MANUAL_${POINTED_PETAL_CONFIG}`;
 export const MANUAL_PRISM_PETAL_CONFIG = `MANUAL_${PRISM_PETAL_CONFIG}`;
+export const MANUAL_CLAW_PETAL_CONFIG = `MANUAL_${CLAW_PETAL_NAME}`;
 
 export const DragTypes = {
     HISTORY_CARD: `historyCard`,
@@ -389,6 +394,16 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
         description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
         shape: ClawPetal,
+    },
+    [MANUAL_CLAW_PETAL_CONFIG]: {
+        name: MANUAL_CLAW_PETAL_NAME,
+        history: ManualClawPetalHistory,
+        img: ``,
+        form: ManualSingleControlPointPetalForm,
+        paletteStateToProps: state => ({ ...manualSingleControlPointRingProps(state, MANUAL_POINTED_PETAL_CONFIG) }),
+        paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeManualClawPetalConfig)),
+        description: `A ring of petals, each one with 2 lines, each line controlled by a separate control point. Intended to produce a singular closed shape.`,
+        shape: ManualClawPetal,
     },
 };
 
