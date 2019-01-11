@@ -9,7 +9,8 @@ class ClawPetal extends AbstractPetal {
         this.firstPetalDrawn = false;
         this.drawPetal = this.drawPetal.bind(this);
     }
-    drawPetal(startInnerPoint, startOuterPoint, startControlPoint, returnInnerPoint, returnOuterPoint, returnControlPoint) {
+    drawPetal(startInnerPoint, startOuterPoint, startControlPoint,
+        returnInnerPoint, returnOuterPoint, returnControlPoint) {
         // This goofy array spreading is because of the rotate library
         // at least it's confined to here
         const path = this.startClosedShapePetal(startInnerPoint);

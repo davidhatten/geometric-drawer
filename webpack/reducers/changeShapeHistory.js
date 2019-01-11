@@ -1,7 +1,6 @@
 import { DRAW_SHAPE } from '../actions/drawShape';
 import React from 'react';
-import { nameFromConfig } from './../shapeConstants';
-import { historyClassFromConfig } from "../shapeConstants";
+import {configMap} from './../shapeConstants';
 import { CLEAR_HISTORY, DELETE_SHAPE } from "../actions/removeShapes";
 import { clearShapeData } from "../stateUtil";
 import { CHANGE_ORDER } from "../actions/changeHistoryOrder";
@@ -16,13 +15,14 @@ const changeShapeHistory = (state = initialState, action) => {
     case DRAW_SHAPE: {
         const payload = action.payload;
         const id = action.payload.id;
-        const shapeHistoryClass = historyClassFromConfig(payload.shape);
+        const shapeConfig = configMap[payload.shape];
+        const shapeHistoryClass = shapeConfig.history;
         const shapeHistory = new shapeHistoryClass(id);
         const newShape = {
             id: id,
-            name: nameFromConfig(payload.shape),
-            shapeTag: shapeHistory.shape(),
-            formTag: shapeHistory.form(),
+            name: shapeConfig.name,
+            shapeTag: shapeConfig.shape,
+            formTag: shapeConfig.form,
             mapStateToProps: shapeHistory.stateToProps(),
             mapDispatchToProps: shapeHistory.dispatchToProps(),
             config: payload.shape,

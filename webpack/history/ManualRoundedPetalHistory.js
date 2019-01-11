@@ -1,24 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
-import {
-    basicHistoryDispatch,
-    basicRingProps,
-    manualHistorySingleControlPointRingDispatch,
-    manualSingleControlPointRingProps
-} from "../shapeConstants";
-import ManualRoundedPetal from "../containers/shapes/ManualRoundedPetal";
-import ManualRoundedPetalForm from "../components/forms/ManualRoundedPetalForm";
+import { manualSingleControlPointRingProps } from "../shapeConstants";
 
 export default class ManualRoundedPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return ManualRoundedPetal;
-    }
-
-    form() {
-        return ManualRoundedPetalForm;
     }
 
     stateToPropsMap(state) {
@@ -30,7 +15,7 @@ export default class ManualRoundedPetalHistory extends AbstractHistory {
 
     dispatchToPropsMap(dispatch) {
         return {
-            ...manualHistorySingleControlPointRingDispatch(dispatch, this.id),
+            ...this.manualHistorySingleControlPointRingDispatch(dispatch, this.id),
             ...this.universalDispatch(dispatch),
         };
     }

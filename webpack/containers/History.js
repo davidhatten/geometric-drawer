@@ -5,7 +5,7 @@ import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { DragTypes } from "../shapeConstants";
 import { DropTarget } from 'react-dnd';
-import './History.css';
+import styles from './History.scss';
 
 
 const cardTarget = {
@@ -24,9 +24,8 @@ class History extends Component {
     }
     render() {
         const { history } = this.props;
-
         return this.props.connectDropTarget(
-            <div  className="History">
+            <div className={styles.history}>
                 <List style={{ padding: 0, margin: 0 }} size="small" locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={[...history].reverse()} renderItem={item => (
                     <div onMouseEnter={this.props.highlightShape(item)} onMouseLeave={this.props.unhighlightShape(item)}>
                         <HistoryRow shapeId={item} />

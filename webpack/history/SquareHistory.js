@@ -1,20 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
 import {changeHistoryProp} from "../actions/changeHistoryProp";
-import {lineWidthDispatch, lineWidthState} from "../shapeConstants";
-import Square from "../containers/shapes/Square";
-import SquareForm from "../components/forms/SquareForm";
 
 export default class SquareHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return Square;
-    }
-
-    form() {
-        return SquareForm;
     }
 
     stateToPropsMap(state) {

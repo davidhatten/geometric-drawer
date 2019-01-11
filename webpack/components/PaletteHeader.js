@@ -10,12 +10,12 @@ class PaletteHeader extends Component {
     render() {
         return(
             <Tooltip title={this.props.description}>
-                <Row className="paletteHeaderRow" type="flex" justify="right" align="middle">
+                <Row className="paletteHeaderRow" type="flex" justify="start" align="middle">
                     <Col>
-                        <Avatar style={{ backgroundColor: `#FFFFFF`}} size="large" src={this.props.img} />
+                        <Avatar size="large" src={this.props.img} />
                     </Col>
                     <Col>
-                        {this.props.name}
+                        <h3 style={{margin: 0, padding: 0, fontSize: `16px`}}>{this.props.name}</h3>
                     </Col>
                 </Row>
             </Tooltip>

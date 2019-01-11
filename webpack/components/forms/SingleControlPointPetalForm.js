@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const RoundedPetalForm = props => (
+const SingleControlPointPetalForm = props => (
     <Form>
         <Row type="flex" justify="space-around">
             <Col span={24}>
@@ -75,4 +75,4 @@ const RoundedPetalForm = props => (
     </Form>
 );
 
-export default RoundedPetalForm;
+export default SingleControlPointPetalForm;

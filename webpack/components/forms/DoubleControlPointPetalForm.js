@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
 
-const PrismPetalForm = props => (
+const DoubleControlPointPetalForm = props => (
     <Form>
         <Row align="flex" justify="space-around">
             <Col span={24}>
@@ -26,7 +26,7 @@ const PrismPetalForm = props => (
                     min={-1000}
                     max={1000}
                     name={`Outer X Control Point (px)`}
-                    description={`Offset in pixels of the x coordinate of the outer control point. The control point is placed relative to the outer terminating point of the petal.`}
+                    description={`Offset in pixels of the x coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
                     value={props.outerXControl}
                     updateValue={props.updateOuterXControl}
                 />
@@ -34,7 +34,7 @@ const PrismPetalForm = props => (
                     min={-1000}
                     max={1000}
                     name={`Outer Y Control Point (px)`}
-                    description={`Offset in pixels of the y coordinate of the outer control point. The control point is placed relative to the outer terminating point of the petal.`}
+                    description={`Offset in pixels of the y coordinate of the outer control point. The control point is placed relative to the inner starting point of the petal.`}
                     value={props.outerYControl}
                     updateValue={props.updateOuterYControl}
                 />
@@ -58,7 +58,7 @@ const PrismPetalForm = props => (
                     min={0}
                     max={500}
                     name={`Outer Gap (px)`}
-                    description={`How far apart the terminating points of each petal are.`}
+                    description={`How far apart the base points of each petal are.`}
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
                 />
@@ -91,4 +91,4 @@ const PrismPetalForm = props => (
     </Form>
 );
 
-export default PrismPetalForm;
+export default DoubleControlPointPetalForm;

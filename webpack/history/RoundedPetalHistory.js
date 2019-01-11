@@ -1,19 +1,9 @@
 import AbstractHistory from "./AbstractHistory.js";
-import {basicHistoryDispatch, basicRingProps, lineWidthState, positionProps, xPosState} from "../shapeConstants";
-import RoundedPetalForm from "../components/forms/RoundedPetalForm";
-import RoundedPetal from "../containers/shapes/RoundedPetal";
+import { basicRingProps } from "../shapeConstants";
 
 export default class RoundedPetalHistory extends AbstractHistory {
     constructor(id) {
         super(id);
-    }
-
-    shape() {
-        return RoundedPetal;
-    }
-
-    form() {
-        return RoundedPetalForm;
     }
 
     stateToPropsMap(state) {
@@ -25,7 +15,7 @@ export default class RoundedPetalHistory extends AbstractHistory {
 
     dispatchToPropsMap(dispatch) {
         return {
-            ...basicHistoryDispatch(dispatch, this.id),
+            ...this.basicHistoryDispatch(dispatch, this.id),
             ...this.universalDispatch(dispatch),
         };
     }
