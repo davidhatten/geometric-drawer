@@ -67,15 +67,20 @@ module.exports = {
         new ExtractTextPlugin("styles.css"),
         new AntdScssThemePlugin(path.join(__dirname, 'theme.scss')),
     ],
+    optimization: {
+        minimizer: [
+            new UglifyESPlugin({  }),
+        ],
+    },
 };
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = 'source-map';
+    module.exports.devtool = 'cheap-source-map';
 
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new UglifyESPlugin({  }),
     ]);
+
 }
