@@ -70,7 +70,7 @@ class Studio extends Component {
                         </Row>
                         <Row>
                             <div>
-                                <h4>Version: 1.6.2</h4>
+                                <h4>Version: 1.6.3</h4>
                             </div>
                         </Row>
                     </Col>
