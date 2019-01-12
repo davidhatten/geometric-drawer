@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Anchor } from 'antd';
 
 import { triggerDraw } from '../actions/triggerDraw';
 

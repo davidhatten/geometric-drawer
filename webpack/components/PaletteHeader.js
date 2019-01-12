@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Row, Col, Tooltip } from 'antd';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Col from 'antd/lib/col';
+import 'antd/lib/col/style';
+import Avatar from 'antd/lib/avatar';
+import 'antd/lib/avatar/style';
+import Tooltip from 'antd/lib/tooltip';
+import 'antd/lib/tooltip/style';
+
+
 
 class PaletteHeader extends Component {
     constructor(props){

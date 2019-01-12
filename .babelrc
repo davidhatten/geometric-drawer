@@ -4,7 +4,7 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["import", { "libraryName": "antd", "style": true }],
+    ["import", { "libraryName": "antd", "style": true, "libraryDirectory": "es" }],
     "@babel/plugin-proposal-object-rest-spread",
     "@babel/plugin-proposal-class-properties",
     ["@babel/plugin-proposal-decorators", {
@@ -12,5 +12,10 @@
     }],
     "@babel/plugin-transform-react-constant-elements",
     "@babel/plugin-transform-react-inline-elements"
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": ["minify"]
+    }
+  }
 }

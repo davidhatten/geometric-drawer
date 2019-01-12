@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Collapse } from 'antd';
+import Collapse from 'antd/lib/collapse';
+import 'antd/lib/collapse/style';
 import PaletteHeader from '../components/PaletteHeader';
 import { configMap } from '../shapeConstants';
 import { selectShape } from '../actions/selectShape';

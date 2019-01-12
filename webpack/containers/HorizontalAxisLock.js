@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Form, Switch } from 'antd';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Switch from 'antd/lib/switch';
+import 'antd/lib/switch/style';
+import Form from 'antd/lib/form';
+import 'antd/lib/form/style';
 import {changeGeneralConfig} from "../actions/changeGeneralConfig";
 import {connect} from "react-redux";
 

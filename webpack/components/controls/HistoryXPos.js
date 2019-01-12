@@ -1,5 +1,8 @@
 import React from 'react';
-import { Col, Row } from 'antd';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Col from 'antd/lib/col';
+import 'antd/lib/col/style';
 import SliderInput from "./SliderInput";
 
 const HistoryXPos = props => (

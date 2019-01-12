@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, Modal, Affix } from 'antd';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Col from 'antd/lib/col';
+import 'antd/lib/col/style';
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style';
+import Modal from 'antd/lib/modal';
+import 'antd/lib/modal/style';
+import Affix from 'antd/lib/affix';
+import 'antd/lib/affix/style';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';

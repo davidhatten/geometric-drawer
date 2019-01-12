@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { List } from 'antd';
+import List from 'antd/lib/list';
+import 'antd/lib/list/style';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { DragTypes } from "../shapeConstants";

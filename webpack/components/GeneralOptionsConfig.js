@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Form } from 'antd';
+import Form from 'antd/lib/form';
+import 'antd/lib/form/style';
 import LineWidthInput from "../containers/LineWidthInput";
 import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 import VerticalAxisLock from "../containers/VerticalAxisLock";

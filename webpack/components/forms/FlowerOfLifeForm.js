@@ -1,5 +1,10 @@
 import React from 'react';
-import { Row, Col, Form, Input, Tooltip } from 'antd';
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
+import Col from 'antd/lib/col';
+import 'antd/lib/col/style';
+import Form from 'antd/lib/form';
+import 'antd/lib/form/style';
 import SliderInput from "../controls/SliderInput";
 import { standardRadius } from "../../shapeConstants";
 
