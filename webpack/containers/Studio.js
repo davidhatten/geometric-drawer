@@ -45,7 +45,7 @@ class Studio extends Component {
                 <Row type="flex" justify="center" style={{ padding: `12px` }} align="middle">
                     <Col>
                         <h1>
-                            Select a style and click the canvas!
+                            Select a shape and click the canvas!
                         </h1>
                     </Col>
                 </Row>
@@ -66,7 +66,7 @@ class Studio extends Component {
                     </Col>
                     <Col lg={7} md={7} sm={7}>
                         <Row>
-                            <h2 align="center">Options</h2>
+                            <h2 align="center">Shapes</h2>
                             <br />
                         </Row>
                         <Row>
