@@ -24,17 +24,8 @@ class Palette extends Component {
         const configInfo = configMap[config];
         const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
         return (
-            <RadioButton value={configInfo.name}><Avatar shape={`square`} src={configInfo.img}/></RadioButton>
+            <RadioButton value={config}><Avatar shape={`square`} src={configInfo.img} alt={configInfo.description}/></RadioButton>
         );
-        // return (
-        //     <Panel className={styles.palettePanel} showArrow={false} key={config} header={<PaletteHeader
-        //         name={configInfo.name}
-        //         img={configInfo.img}
-        //         description={configInfo.description}/>}>
-        //         <ShapeOptions />
-        //         <GeneralOptions />
-        //     </Panel>
-        // );
     }
     render() {
         const buttons = [];
@@ -42,16 +33,10 @@ class Palette extends Component {
             buttons.push(this.generateButton(configKey));
         }
         return (
-            <RadioGroup name={`palette`} buttonStyle={`solid`}>
+            <RadioGroup name={`palette`} buttonStyle={`solid`} onChange={this.props.changeCurrentShape}>
                 {buttons}
             </RadioGroup>
-
-        )
-        // return (
-        //     <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape} style={ {border: `3px transparent`} }>
-        //         {panels}
-        //     </Collapse>
-        // );
+        );
     }
 }
 
@@ -60,7 +45,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeCurrentShape: (key) => {dispatch(selectShape(key));},
+    changeCurrentShape: (key) => {dispatch(selectShape(key.target.value));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Palette);
