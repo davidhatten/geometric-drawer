@@ -1,4 +1,4 @@
-.palettePanel {
+.palettePanel, .ant-radio-button-wrapper {
   border-radius: 10px
 }
 
@@ -9,3 +9,15 @@
 .ant-radio-button-wrapper:hover {
   background: rgba(146, 41, 196, 0.44);
 }
+
+div > .ant-radio-button-wrapper:first-child, div > .ant-radio-button-wrapper:last-child {
+  border-radius: 10px;
+}
+//
+//div > .ant-radio-button-wrapper:last-child {
+//  border-radius: 10px;
+//}
+//
+//.ant-radio-button-wrapper:last-child {
+//  border-radius: 10px;
+//}

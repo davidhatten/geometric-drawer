@@ -22,7 +22,7 @@ class Palette extends Component {
     }
     generateButton = (config) => {
         const configInfo = configMap[config];
-        const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
+        // const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
         return (
             <RadioButton value={config}><Avatar shape={`square`} src={configInfo.img} alt={configInfo.description}/></RadioButton>
         );
