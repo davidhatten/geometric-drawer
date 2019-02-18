@@ -1,42 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Collapse from 'antd/lib/collapse';
-import 'antd/lib/collapse/style';
-import Avatar from 'antd/lib/avatar';
-import 'antd/lib/avatar/style';
-import PaletteHeader from '../components/PaletteHeader';
 import { configMap } from '../shapeConstants';
 import { selectShape } from '../actions/selectShape';
-import styles from './Palette.scss';
-import GeneralOptions from '../components/GeneralOptionsConfig';
-import RadioGroup from "antd/lib/radio/group";
-import RadioButton from "antd/lib/radio/radioButton";
-import "antd/lib/radio/style";
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import Icon from '@material-ui/core/Icon';
 
-
-const Panel = Collapse.Panel;
 
 class Palette extends Component {
     constructor(props) {
         super(props);
+
+        this.state = { selectedValue: `` };
     }
-    generateButton = (config) => {
-        const configInfo = configMap[config];
+    generateButton = (configKey) => {
+        const configInfo = configMap[configKey];
         // const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
+        // <Icon shape={`square`} src={configInfo.img} alt={configInfo.description}/></Radio>
+
         return (
-            <RadioButton value={config}><Avatar shape={`square`} src={configInfo.img} alt={configInfo.description}/></RadioButton>
+            <Radio onChange={this.selectShape} checked={this.state.selectedValue === configKey} name={`palette-select-button`} value={configKey} checkedIcon={configInfo.checkedIcon} icon={configInfo.icon} />
         );
+    }
+    selectShape = (event) => {
+        this.setState({ selectedValue: event.target.value });
+        this.props.changeCurrentShape(event);
     }
     render() {
         const buttons = [];
         for (let configKey in configMap) {
             buttons.push(this.generateButton(configKey));
         }
-        return (
-            <RadioGroup name={`palette`} buttonStyle={`solid`} onChange={this.props.changeCurrentShape}>
-                {buttons}
-            </RadioGroup>
-        );
+
+        return (<div>{buttons}</div>);
+        // return (
+        //     <RadioGroup name={`palette`} onChange={this.props.changeCurrentShape}>
+        //         {buttons}
+        //     </RadioGroup>
+        // );
     }
 }
 

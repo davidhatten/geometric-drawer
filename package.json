@@ -57,6 +57,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "antd": "^3.12.1",
     "path-svg": "^0.2.1",
     "point-on-circle": "^1.0.4",

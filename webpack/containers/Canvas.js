@@ -38,8 +38,8 @@ class Canvas extends Component {
                 <svg
                     id="drawingCanvas"
                     viewBox={`0 0 ${this.props.svgWidth} ${this.props.svgHeight}`}
-                    width="95%"
-                    height="95%"
+                    width="85%"
+                    height="85%"
                     style={svgStyle}
                     onClick={this.initiateDraw}>
                     You must use a browser that supports HTML5.

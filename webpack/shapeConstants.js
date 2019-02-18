@@ -53,6 +53,9 @@ import ManualPrismPetalHistory from "./history/ManualPrismPetalHistory";
 import {changeManualClawPetalConfig} from "./actions/changeManualClawPetalConfig";
 import ManualClawPetalHistory from "./history/ManualClawPetalHistory";
 import ManualClawPetal from "./containers/shapes/ManualClawPetal";
+import SvgIcon from "@material-ui/core/SvgIcon";
+import React from 'react';
+
 
 export const CIRCLE_NAME = `Circle`;
 export const SQUARE_NAME = `Square`;
@@ -212,6 +215,8 @@ export const configMap = {
         form: FlowerOfLifeForm,
         description: `A circle drawn, centered where you click, followed by layers of intersecting circles to form a flower.`,
         shape: FlowerOfLife,
+        icon: (<SvgIcon><circle cx={11} cy={11} r={9} style={{strokeWidth: `5`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [SQUARE_CONFIG]: {
         name: SQUARE_NAME,
@@ -228,6 +233,8 @@ export const configMap = {
         }),
         description: `A simple square, centered on your click.`,
         shape: Square,
+        icon: (<SvgIcon fontSize={`large`}><rect x={4} y={4} height={16} width={16} style={{strokeWidth: `2`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon fontSize={`large`} component={svgProps => (<svg {...svgProps} style={{ backgroundColor: `black` }} />)}><rect x={4} y={4} height={16} width={16} style={{ strokeWidth: `2`, fill: `black`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [RECTANGLE_CONFIG]: {
         name: RECTANGLE_NAME,
@@ -246,6 +253,8 @@ export const configMap = {
         }),
         description: `A simple rectangle, centered on your click.`,
         shape: Rectangle,
+        icon: (<SvgIcon><rect x={2} y={5} height={12} width={20} style={{strokeWidth: `2`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}/>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [CIRCLE_CONFIG]: {
         name: CIRCLE_NAME,
@@ -260,6 +269,8 @@ export const configMap = {
         }),
         description: `A simple circle, centered on your click.`,
         shape: Circle,
+        icon: (<SvgIcon><circle cx={11} cy={11} r={9} style={{strokeWidth: `2`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [CIRCLE_PETAL_CONFIG]: {
         name: CIRCLE_PETAL_NAME,
@@ -280,6 +291,8 @@ export const configMap = {
         }),
         description: `A ring of petals, each one a small circle, centered on your click.`,
         shape: CirclePetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [ROUNDED_PETAL_CONFIG]: {
         name: ROUNDED_PETAL_NAME,
@@ -290,6 +303,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => ({ ...basicRingDispatch(dispatch, changeRoundedPetalConfig) }),
         description: `A ring of petals, each rounded out by gravitating towards a control point. For more info, see 'SVG Quadratic Path'.`,
         shape: RoundedPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [MANUAL_ROUNDED_PETAL_CONFIG]: {
         name: MANUAL_ROUNDED_PETAL_NAME,
@@ -300,6 +315,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualRoundedPetalConfig) }),
         description: `A ring of petals, each rounded out by gravitating towards a control point. Each arm has its own distinct control point. For more info, see 'SVG Quadratic Path'`,
         shape: ManualRoundedPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [CURVEY_PETAL_CONFIG]: {
         name: CURVEY_PETAL_NAME,
@@ -318,6 +335,8 @@ export const configMap = {
         }),
         description: `A ring of petals, each each one rounded out by two control points. For more info, see 'SVG Bezier Curve'.`,
         shape: CurveyPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [MANUAL_CURVEY_PETAL_CONFIG]: {
         name: MANUAL_CURVEY_PETAL_NAME,
@@ -332,6 +351,8 @@ export const configMap = {
         }),
         description: `A ring of petals, each each one rounded out by two control points. Each arm has its own set of distinct control points. For more info, see 'SVG Bezier Curve'.`,
         shape: ManualCurveyPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [POINTED_PETAL_CONFIG]: {
         name: POINTED_PETAL_NAME,
@@ -342,6 +363,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changePointedPetalConfig)),
         description: `A ring of petals, each one with lines meeting at the control points.`,
         shape: PointedPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [MANUAL_POINTED_PETAL_CONFIG]: {
         name: MANUAL_POINTED_PETAL_NAME,
@@ -352,6 +375,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => ({ ...manualSingleControlPointRingDispatch(dispatch, changeManualPointedPetalConfig) }),
         description: `A ring of petals, each one with lines meeting at the control points. Each side's control points can be independently adjusted.`,
         shape: ManualPointedPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [PRISM_PETAL_CONFIG]: {
         name: PRISM_PETAL_NAME,
@@ -370,6 +395,8 @@ export const configMap = {
         }),
         description: `A ring of petals, each one with lines controlled by two control points.`,
         shape: PrismPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`} />)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [MANUAL_PRISM_PETAL_CONFIG]: {
         name: MANUAL_PRISM_PETAL_NAME,
@@ -384,6 +411,8 @@ export const configMap = {
         }),
         description: `A ring of petals, each one with lines controlled by two control points. Each side's control points can be independently adjusted.`,
         shape: ManualPrismPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [CLAW_PETAL_CONFIG]: {
         name: CLAW_PETAL_NAME,
@@ -394,6 +423,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
         description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
         shape: ClawPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
     [MANUAL_CLAW_PETAL_CONFIG]: {
         name: MANUAL_CLAW_PETAL_NAME,
@@ -404,6 +435,8 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeManualClawPetalConfig)),
         description: `A ring of petals, each one with 2 lines, each line controlled by a separate control point. Intended to produce a singular closed shape.`,
         shape: ManualClawPetal,
+        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `10`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
+        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
     },
 };
 

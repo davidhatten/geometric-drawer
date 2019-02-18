@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Col from 'antd/lib/col';
-import 'antd/lib/col/style';
-import Button from 'antd/lib/button';
-import 'antd/lib/button/style';
-import Modal from 'antd/lib/modal';
-import 'antd/lib/modal/style';
-import Affix from 'antd/lib/affix';
-import 'antd/lib/affix/style';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
@@ -16,8 +8,6 @@ import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
-
-const confirm = Modal.confirm;
 
 class Studio extends Component {
     constructor(props) {
@@ -41,50 +31,45 @@ class Studio extends Component {
     }
     render() {
         return (
-            <div>
-                <Row type="flex" justify="center" style={{ padding: `12px` }} align="middle">
-                    <Col>
-                        <h1>
-                            Select a shape and click the canvas!
-                        </h1>
-                    </Col>
-                </Row>
-                <Row type="flex" justify="center" align="top">
-                    <Col lg={6} md={6} sm={6}>
+            <React.Fragment>
+                <div align="center" style={{ paddingTop: `20px`, paddingBottom: `10px` }}>
+                    <h1>
+                        Select a shape and click the canvas!
+                    </h1>
+                </div>
+                <Grid container spacing={16} className={`studio`} direction={`row`} justify={`center`} alignItems={`flex-start`}>
+                    <Grid item lg={3}>
                         <h2 align="center">History</h2>
-                        <br />
-                        <History />
-                    </Col>
-                    <Col lg={10} md={10} sm={10}>
+                        <br/>
+                        <History/>
+                    </Grid>
+                    <Grid item lg={5}>
                         <h2 align="center">Canvas</h2>
-                        <br />
-                        <Affix>
-                            <ReactCursorPosition>
-                                <Canvas />
-                            </ReactCursorPosition>
-                        </Affix>
-                    </Col>
-                    <Col lg={7} md={7} sm={7}>
-                        <Row>
-                            <h2 align="center">Shapes</h2>
-                            <br />
-                        </Row>
-                        <Row>
-                            <Palette />
-                        </Row>
-
-                        <Row type="flex" justify="space-around" style={{ padding: `12px` }}>
-                            <Button type="primary" onClick={this.exportCanvas}>Export Canvas</Button>
-                            <Button type="danger" onClick={this.confirmClearHistory}>Clear Canvas</Button>
-                        </Row>
-                        <Row>
-                            <div>
+                        <br/>
+                        <ReactCursorPosition>
+                            <Canvas/>
+                        </ReactCursorPosition>
+                    </Grid>
+                    <Grid item lg={3}>
+                        <Grid container direction={`column`} justify={`center`} alignItems={`center`}>
+                            <Grid item>
+                                <h2 align="center">Shapes</h2>
+                                <br/>
+                            </Grid>
+                            <Grid item>
+                                <Palette/>
+                            </Grid>
+                            <Grid item>
+                                <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                                <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
+                            </Grid>
+                            <Grid item>
                                 <h4>Version: 1.6.3</h4>
-                            </div>
-                        </Row>
-                    </Col>
-                </Row>
-            </div>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </React.Fragment>
         );
     }
 
