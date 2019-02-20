@@ -6,7 +6,7 @@ import 'antd/lib/col/style';
 import SliderInput from "./SliderInput";
 import { standardLineWidth } from "../../shapeConstants";
 
-const HistoryLineWidth = props => (
+const LineWidth = props => (
     <Row type="flex" justify="space-around">
         <Col span={24}>
             <SliderInput
@@ -20,4 +20,4 @@ const HistoryLineWidth = props => (
     </Row>
 );
 
-export default HistoryLineWidth;
+export default LineWidth;

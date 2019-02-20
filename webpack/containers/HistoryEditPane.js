@@ -3,10 +3,10 @@ import { Button, Popover } from "antd";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
-import HistoryLineWidth from "../components/controls/HistoryLineWidth";
-import HistoryXPos from "../components/controls/HistoryXPos";
-import HistoryYPos from "../components/controls/HistoryYPos";
-import HistoryFillShape from "../components/controls/HistoryFillShape";
+import LineWidth from "../components/controls/LineWidth";
+import XPosition from "../components/controls/XPosition";
+import YPosition from "../components/controls/YPosition";
+import FillShape from "../components/controls/FillShape";
 import './HistoryEditPane.scss';
 
 class HistoryEditPane extends Component {
@@ -21,10 +21,10 @@ class HistoryEditPane extends Component {
         const shape = this.props.historyData[shapeId];
         const optionsConnect = connect(shape.mapStateToProps, shape.mapDispatchToProps);
         const ShapeHistoryOptions = optionsConnect(shape.formTag);
-        const LineWidthOption = optionsConnect(HistoryLineWidth);
-        const XPosOption = optionsConnect(HistoryXPos);
-        const YPosOption = optionsConnect(HistoryYPos);
-        const FillShapeOption = optionsConnect(HistoryFillShape);
+        const LineWidthOption = optionsConnect(LineWidth);
+        const XPosOption = optionsConnect(XPosition);
+        const YPosOption = optionsConnect(YPosition);
+        const FillShapeOption = optionsConnect(FillShape);
         const ContentForm = () => (
             <div>
                 <ShapeHistoryOptions />

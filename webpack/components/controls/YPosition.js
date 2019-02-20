@@ -5,7 +5,7 @@ import Col from 'antd/lib/col';
 import 'antd/lib/col/style';
 import SliderInput from "./SliderInput";
 
-const HistoryYPos = props => (
+const YPosition = props => (
     <Row type="flex" justify="space-around">
         <Col span={24}>
             <SliderInput
@@ -19,4 +19,4 @@ const HistoryYPos = props => (
     </Row>
 );
 
-export default HistoryYPos;
+export default YPosition;

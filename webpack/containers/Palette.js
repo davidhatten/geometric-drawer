@@ -6,7 +6,30 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Icon from '@material-ui/core/Icon';
+import ShapeIcon from "../components/controls/ShapeIcon";
+import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Paper from "@material-ui/core/Paper";
 
+const styles = {
+    root: {
+        display: `flex`,
+        justifyContent: `center`,
+        alignItems: `flex-end`,
+        flexWrap: `wrap`,
+        padding: `8px`,
+        borderRadius: `10px`,
+    },
+    radioButton: {
+        padding: `0px`,
+        borderRadius: `20px`,
+    },
+    radioPaper: {
+        padding: `2px`,
+        margin: `4px`,
+        borderRadius: `30px`,
+    },
+};
 
 class Palette extends Component {
     constructor(props) {
@@ -20,7 +43,15 @@ class Palette extends Component {
         // <Icon shape={`square`} src={configInfo.img} alt={configInfo.description}/></Radio>
 
         return (
-            <Radio onChange={this.selectShape} checked={this.state.selectedValue === configKey} name={`palette-select-button`} value={configKey} checkedIcon={configInfo.checkedIcon} icon={configInfo.icon} />
+            <Paper className={this.props.classes.radioPaper} elevation={3}><Radio
+                className={this.props.classes.radioButton}
+                onChange={this.selectShape}
+                checked={this.state.selectedValue === configKey}
+                name={`palette-select-button`}
+                value={configKey}
+                icon={<ShapeIcon svg={configInfo.iconSvg}/>}
+                checkedIcon={<ShapeIcon checked svg={configInfo.iconSvg}/>}
+            /></Paper>
         );
     }
     selectShape = (event) => {
@@ -33,7 +64,7 @@ class Palette extends Component {
             buttons.push(this.generateButton(configKey));
         }
 
-        return (<div>{buttons}</div>);
+        return (<Paper elevation={1} className={this.props.classes.root}>{buttons}</Paper>);
         // return (
         //     <RadioGroup name={`palette`} onChange={this.props.changeCurrentShape}>
         //         {buttons}
@@ -50,4 +81,4 @@ const mapDispatchToProps = dispatch => ({
     changeCurrentShape: (key) => {dispatch(selectShape(key.target.value));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Palette);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Palette));

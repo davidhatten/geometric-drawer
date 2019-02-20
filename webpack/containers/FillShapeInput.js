@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import HistoryFillShape from '../components/controls/HistoryFillShape';
+import FillShape from '../components/controls/FillShape';
 import { changeGeneralConfig } from "../actions/changeGeneralConfig";
 
 const mapStateToProps = state => ({
@@ -10,4 +10,4 @@ const mapDispatchToProps = dispatch => ({
     toggleFillShape: (checked) => {dispatch(changeGeneralConfig({fillShape: checked}));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryFillShape);
+export default connect(mapStateToProps, mapDispatchToProps)(FillShape);

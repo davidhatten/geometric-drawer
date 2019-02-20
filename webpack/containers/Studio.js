@@ -8,6 +8,7 @@ import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
+import GeneralOptionsConfig from "../components/GeneralOptionsConfig";
 
 class Studio extends Component {
     constructor(props) {
@@ -58,6 +59,9 @@ class Studio extends Component {
                             </Grid>
                             <Grid item>
                                 <Palette/>
+                            </Grid>
+                            <Grid item>
+                                <GeneralOptionsConfig />
                             </Grid>
                             <Grid item>
                                 <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
