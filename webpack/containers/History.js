@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import List from 'antd/lib/list';
-import 'antd/lib/list/style';
 import HistoryRow from '../components/HistoryRow';
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { DragTypes } from "../shapeConstants";
 import { DropTarget } from 'react-dnd';
-import styles from './History.scss';
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
+const styles = {
+    historyPaper: {
+        borderRadius: `8px`,
+    },
+};
 
 const cardTarget = {
     drop() {},
@@ -25,14 +32,24 @@ class History extends Component {
     }
     render() {
         const { history } = this.props;
+        let listItems = [];
+        if ([...history].length > 0) {
+            listItems = [...history].reverse().map(item => (
+                <div onMouseEnter={this.props.highlightShape(item)} onMouseLeave={this.props.unhighlightShape(item)}>
+                    <HistoryRow shapeId={item} />
+                </div>
+            ));
+        } else {
+            listItems = [<ListItem><ListItemText primary={`No Shapes Drawn`} /></ListItem>];
+        }
+
         return this.props.connectDropTarget(
-            <div className={styles.history}>
-                <List style={{ padding: 0, margin: 0 }} size="small" locale={{ emptyText: `No shapes drawn yet` }} itemLayout="vertical" dataSource={[...history].reverse()} renderItem={item => (
-                    <div onMouseEnter={this.props.highlightShape(item)} onMouseLeave={this.props.unhighlightShape(item)}>
-                        <HistoryRow shapeId={item} />
-                    </div>
-                )}>
-                </List>
+            <div>
+                <Paper className={this.props.classes.historyPaper} elevation={1}>
+                    <List dense={true}>
+                        {listItems}
+                    </List>
+                </Paper>
             </div>
         );
     }
@@ -48,4 +65,4 @@ const mapDispatchToProps = dispatch => ({
     unhighlightShape: id => () => {dispatch(changeHistoryStyle(id, `stroke`, `black`));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, cardConnect)(History));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, cardConnect)(History)));

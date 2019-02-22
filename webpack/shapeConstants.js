@@ -400,9 +400,7 @@ export const configMap = {
         }),
         description: `A ring of petals, each one with lines controlled by two control points. Each side's control points can be independently adjusted.`,
         shape: ManualPrismPetal,
-        iconSvg: (<rect x={4} y={4} height={16} width={16} style={{strokeWidth: `1`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} />),
-        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
-        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
+        iconSvg: <path d="M 1199 957 L 1219 877 L 926 422 L 1199 274 L 1199 274 L 1578 316 L 1339 857 L 1199 957 Z  M 1408.5781477158341 1078 L 1487.8601800185893 1055.3205080756888 L 1735.4017387405088 574.0750647668482 L 2000.0734985006056 736.4999999999999 L 2000.0734985006056 736.4999999999999 L 2153.2004315416593 1085.7236280343022 L 1565.1806880942781 1149.2435565298215 L 1408.5781477158341 1078 Z  M 1408.5781477158341 1320 L 1467.8601800185893 1377.3205080756886 L 2008.4017387405088 1351.075064766848 L 2000.0734985006056 1661.4999999999998 L 2000.0734985006056 1661.4999999999998 L 1774.2004315416593 1968.7236280343022 L 1425.1806880942781 1491.2435565298213 L 1408.5781477158341 1320 Z  M 1199 1441 L 1179 1521 L 1472 1976 L 1199 2124 L 1199 2124 L 820.0000000000001 2082 L 1059 1541 L 1199 1441 Z  M 989.4218522841659 1320 L 910.1398199814108 1342.6794919243114 L 662.5982612594914 1823.9249352331522 L 397.92650149939436 1661.5000000000005 L 397.92650149939436 1661.5000000000005 L 244.79956845834067 1312.2763719656982 L 832.819311905722 1248.7564434701787 L 989.4218522841659 1320 Z  M 989.4218522841659 1078 L 930.1398199814107 1020.6794919243112 L 389.5982612594912 1046.9249352331517 L 397.92650149939425 736.4999999999999 L 397.92650149939425 736.4999999999999 L 623.7995684583407 429.27637196569765 L 972.819311905722 906.7564434701785 L 989.4218522841659 1078 Z "/>,
     },
     [CLAW_PETAL_CONFIG]: {
         name: CLAW_PETAL_NAME,
@@ -413,9 +411,7 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeClawPetalConfig)),
         description: `A ring of petals, each one with lines controlled by a single control point. Intended to produce a singular closed shape.`,
         shape: ClawPetal,
-        iconSvg: (<rect x={4} y={4} height={16} width={16} style={{strokeWidth: `1`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} />),
-        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `5`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
-        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
+        iconSvg: <path d="M 1023 924 Q 1565 648 1192 272 L 1206 272 Q 1565 648 1375 924 L 1349.1569860407205 909.0795289339387 Q 1859.1799974852256 1240.4652977851044 1998.3055493081747 729.4378221735088 L 2005.3055493081747 741.5621778264909 Q 1859.1799974852256 1240.4652977851044 1525.1569860407208 1213.920471066061 L 1525.1569860407205 1184.0795289339387 Q 1493.1799974852258 1791.4652977851044 2005.3055493081747 1656.4378221735087 L 1998.3055493081747 1668.5621778264908 Q 1493.1799974852258 1791.4652977851044 1349.1569860407208 1488.920471066061 L 1375 1474 Q 833 1750 1206 2126 L 1192 2126 Q 833 1750 1023 1474 L 1048.8430139592795 1488.9204710660613 Q 538.8200025147742 1157.5347022148958 399.6944506918255 1668.5621778264915 L 392.6944506918255 1656.4378221735094 Q 538.8200025147742 1157.5347022148958 872.8430139592793 1184.079528933939 L 872.8430139592793 1213.920471066061 Q 904.8200025147744 606.5347022148953 392.6944506918254 741.5621778264909 L 399.6944506918254 729.4378221735088 Q 904.8200025147744 606.5347022148953 1048.8430139592795 909.0795289339387 Z"></path>,
     },
     [MANUAL_CLAW_PETAL_CONFIG]: {
         name: MANUAL_CLAW_PETAL_NAME,
@@ -426,14 +422,12 @@ export const configMap = {
         paletteDispatchToProps: dispatch => (basicRingDispatch(dispatch, changeManualClawPetalConfig)),
         description: `A ring of petals, each one with 2 lines, each line controlled by a separate control point. Intended to produce a singular closed shape.`,
         shape: ManualClawPetal,
-        iconSvg: (<rect x={4} y={4} height={16} width={16} style={{strokeWidth: `1`, fill: `none`, stroke: `black`, strokeLinecap: `round`}} />),
-        icon: (<SvgIcon><circle cx="12" cy="12" r="8" style={{strokeWidth: `10`, fill: `none`, fillRule: `nonzero`, stroke: `black`, strokeLinecap: `round`}} /></SvgIcon>),
-        checkedIcon: (<SvgIcon component={svgProps => (<svg {...svgProps} color={`black`}>{svgProps.children[0]}</svg>)}><rect x={1} y={1} height={20} width={20} style={{ strokeWidth: `2`, fill: `none`, stroke: `white`, color: `black`, strokeLinecap: `round` }} /></SvgIcon>),
+        iconSvg: <path d="M 1029 899 Q 614 276 1199 249 L 1199 249 Q 1455 605 1369 899 L 1373.8076211353316 901.7756813566455 Q 1705.8414476930368 230.87513878610332 2021.7241335952167 723.9999999999999 L 2021.7241335952167 723.9999999999999 Q 1841.4190898479565 1123.7025033688162 1543.8076211353316 1196.2243186433545 L 1543.8076211353316 1201.7756813566452 Q 2290.8414476930366 1153.8751387861032 2021.7241335952167 1673.9999999999998 L 2021.7241335952167 1673.9999999999998 Q 1585.4190898479567 1717.7025033688162 1373.8076211353316 1496.2243186433545 L 1369 1499 Q 1784 2122 1199.0000000000002 2149 L 1199.0000000000002 2149 Q 943.0000000000001 1793 1029 1499 L 1024.1923788646686 1496.2243186433548 Q 692.1585523069637 2167.124861213897 376.2758664047834 1674.0000000000005 L 376.2758664047834 1674.0000000000005 Q 556.5809101520434 1274.297496631184 854.1923788646684 1201.7756813566457 L 854.1923788646684 1196.2243186433545 Q 107.1585523069632 1244.1248612138966 376.2758664047833 723.9999999999999 L 376.2758664047833 723.9999999999999 Q 812.5809101520434 680.2974966311837 1024.1923788646684 901.7756813566455 Z"></path>,
     },
 };
 
-export const imgFromConfig = config => {
-    return configMap[config].img;
+export const svgFromConfig = config => {
+    return configMap[config].iconSvg;
 };
 
 export const boundInnerRadius = (value, outerRadius) => (value < outerRadius ? value : outerRadius - 1);

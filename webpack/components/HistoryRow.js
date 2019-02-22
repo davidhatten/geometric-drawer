@@ -1,22 +1,38 @@
 import React, { Component } from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Col from 'antd/lib/col';
-import 'antd/lib/col/style';
-import Button from 'antd/lib/button';
-import 'antd/lib/button/style';
-import List from 'antd/lib/list';
-import 'antd/lib/list/style';
 import { connect } from "react-redux";
 import HistoryEditPane from "../containers/HistoryEditPane";
 import { deleteShape } from "../actions/removeShapes";
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
-import { DragTypes, imgFromConfig } from "../shapeConstants";
+import { DragTypes, svgFromConfig } from "../shapeConstants";
 import { changeHistoryOrder } from "../actions/changeHistoryOrder";
-import styles from './HistoryRow.scss';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ShapeIcon from "./controls/ShapeIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-const ListItem = List.Item;
+const styles = {
+    wrappingPaper: {
+        cursor: `move`,
+        margin: `3px`,
+    },
+    avatarPaper: {
+        fontSize: `50px`,
+        backgroundColor: `white`,
+        borderRadius: `30px`,
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        margin: 0,
+    },
+};
 
 const cardSource = {
     beginDrag(props) {
@@ -72,22 +88,37 @@ class HistoryRow extends Component {
         let shape = this.props.historyData[this.props.shapeId];
         const { connectDragSource, connectDropTarget } = this.props;
 
+        /*<Row type="flex" justify="space-around" align="middle">
+            <Col span={12}>
+                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
+            </Col>
+            <Col span={6}>
+                <HistoryEditPane shapeId={shape.id} />
+            </Col>
+            <Col span={6}>
+                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
+            </Col>
+        </Row>*/
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <ListItem style={{ padding: `4px` }} className={styles.historyRow} extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
-                        <Row type="flex" justify="space-around" align="middle">
-                            <Col span={12}>
-                                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
-                            </Col>
-                            <Col span={6}>
-                                <HistoryEditPane shapeId={shape.id} />
-                            </Col>
-                            <Col span={6}>
-                                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
-                            </Col>
-                        </Row>
-                    </ListItem>
+                    <Paper elevation={3} className={this.props.classes.wrappingPaper}>
+                        <ListItem dense={true} extra={<img height={40} width={40} src={svgFromConfig(shape.config)} />}>
+                            <Paper elevation={5} className={this.props.classes.avatarPaper}>
+                                <ListItemAvatar>
+                                    <Avatar className={this.props.classes.avatar}>
+                                        <ShapeIcon svg={svgFromConfig(shape.config)} />
+                                    </Avatar>
+                                </ListItemAvatar>
+                            </Paper>
+                            <ListItemText primary={shape.name} />
+                            <ListItemSecondaryAction>
+                                <IconButton onClick={this.props.deleteShape(this.props.shapeId)} color={`secondary`}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    </Paper>
                 </div>
             ));
     }
@@ -104,4 +135,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(HistoryRow)));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(HistoryRow))));

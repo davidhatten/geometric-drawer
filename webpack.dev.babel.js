@@ -4,7 +4,7 @@ import path from 'path';
 
 module.exports = merge(common, {
     mode: `development`,
-    devtool: `cheap-source-map`,
+    devtool: `source-map`,
     devServer: {
         contentBase: path.resolve(__dirname, `webpack`),
         port: 8081,

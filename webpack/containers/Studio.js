@@ -60,9 +60,7 @@ class Studio extends Component {
                             <Grid item>
                                 <Palette/>
                             </Grid>
-                            <Grid item>
-                                <GeneralOptionsConfig />
-                            </Grid>
+
                             <Grid item>
                                 <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
                                 <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
