@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Popover } from "antd";
+import { Popover } from "@material-ui/core/Popover";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
@@ -8,6 +8,17 @@ import XPosition from "../components/controls/XPosition";
 import YPosition from "../components/controls/YPosition";
 import FillShape from "../components/controls/FillShape";
 import './HistoryEditPane.scss';
+import EditIcon from "@material-ui/icons/EditRounded";
+import IconButton from "@material-ui/core/IconButton";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+
+const styles = {
+    editButton: {
+        marginLeft: 15,
+        marginRight: 15,
+    },
+};
 
 class HistoryEditPane extends Component {
     constructor(props) {
@@ -35,9 +46,14 @@ class HistoryEditPane extends Component {
             </div>
         );
         return (
-            <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `28%` }} placement={`bottom`} title={shape.name} content={<ContentForm />} trigger={`click`}>
-                <span title={`Edit`}><Button size={`large`} icon={`edit`} /></span>
-            </Popover>
+            <React.Fragment>
+                <IconButton className={this.props.classes.editButton}>
+                    <EditIcon />
+                </IconButton>
+                <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `28%` }} placement={`bottom`} title={shape.name} content={<ContentForm />} trigger={`click`}>
+                    <ContentForm/>
+                </Popover>
+            </React.Fragment>
         );
     }
 }
@@ -59,4 +75,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HistoryEditPane);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(HistoryEditPane));

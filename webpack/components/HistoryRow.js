@@ -13,7 +13,8 @@ import ShapeIcon from "./controls/ShapeIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@material-ui/icons/DeleteRounded";
+import EditIcon from "@material-ui/icons/EditRounded";
 import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -31,6 +32,10 @@ const styles = {
         width: 50,
         height: 50,
         margin: 0,
+    },
+    editButton: {
+        marginLeft: 15,
+        marginRight: 15,
     },
 };
 
@@ -112,6 +117,7 @@ class HistoryRow extends Component {
                                 </ListItemAvatar>
                             </Paper>
                             <ListItemText primary={shape.name} />
+                            <HistoryEditPane />
                             <ListItemSecondaryAction>
                                 <IconButton onClick={this.props.deleteShape(this.props.shapeId)} color={`secondary`}>
                                     <DeleteIcon />
