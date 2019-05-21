@@ -88,22 +88,12 @@ function targetConnect(connect, monitor) {
 class HistoryRow extends Component {
     constructor(props) {
         super(props);
+        this.rowRef = React.createRef();
     }
     render() {
         let shape = this.props.historyData[this.props.shapeId];
         const { connectDragSource, connectDropTarget } = this.props;
 
-        /*<Row type="flex" justify="space-around" align="middle">
-            <Col span={12}>
-                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
-            </Col>
-            <Col span={6}>
-                <HistoryEditPane shapeId={shape.id} />
-            </Col>
-            <Col span={6}>
-                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
-            </Col>
-        </Row>*/
         return connectDragSource(
             connectDropTarget(
                 <div>
@@ -117,7 +107,7 @@ class HistoryRow extends Component {
                                 </ListItemAvatar>
                             </Paper>
                             <ListItemText primary={shape.name} />
-                            <HistoryEditPane />
+                            <HistoryEditPane shapeId={shape.id} anchorRef={this.rowRef}/>
                             <ListItemSecondaryAction>
                                 <IconButton onClick={this.props.deleteShape(this.props.shapeId)} color={`secondary`}>
                                     <DeleteIcon />

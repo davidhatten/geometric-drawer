@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Popover } from "@material-ui/core/Popover";
+import React, { Fragment, Component } from 'react';
+import Popover from "@material-ui/core/Popover";
 import { connect } from "react-redux";
 import { changeHistoryStyle } from "../actions/changeHistoryProp";
 import { beginEditing, stopEditing } from "../actions/changeEditPopover";
@@ -23,9 +23,17 @@ const styles = {
 class HistoryEditPane extends Component {
     constructor(props) {
         super(props);
+        this.state = { open: false, anchorEl: null };
     }
-    openOrClose = (val) => {
-        val ? this.props.openPopover(this.props.shapeId) : this.props.closePopover(this.props.shapeId);
+    openPopup = event => {
+        this.props.openPopover(this.props.shapeId);
+        this.setState({ open: true, anchorEl: event.currentTarget });
+    }
+    closePopup = () => {
+        if (this.props.currentlyEditing === this.props.shapeId) {
+            this.props.closePopover(this.props.shapeId);
+            this.setState({ open: false, anchorEl: null });
+        }
     }
     render() {
         let shapeId = this.props.shapeId;
@@ -37,23 +45,23 @@ class HistoryEditPane extends Component {
         const YPosOption = optionsConnect(YPosition);
         const FillShapeOption = optionsConnect(FillShape);
         const ContentForm = () => (
-            <div>
+            <Fragment>
                 <ShapeHistoryOptions />
                 <LineWidthOption />
                 <XPosOption />
                 <YPosOption />
                 <FillShapeOption />
-            </div>
+            </Fragment>
         );
         return (
-            <React.Fragment>
-                <IconButton className={this.props.classes.editButton}>
+            <Fragment>
+                <IconButton className={this.props.classes.editButton} onClick={this.openPopup}>
                     <EditIcon />
                 </IconButton>
-                <Popover onVisibleChange={this.openOrClose} overlayStyle={{ width: `28%` }} placement={`bottom`} title={shape.name} content={<ContentForm />} trigger={`click`}>
-                    <ContentForm/>
+                <Popover open={this.state.open} onClose={this.closePopup} anchorOrigin={{ vertical: `bottom` }} anchorEl={this.state.anchorEl}>
+                    <ContentForm />
                 </Popover>
-            </React.Fragment>
+            </Fragment>
         );
     }
 }
@@ -61,6 +69,7 @@ class HistoryEditPane extends Component {
 
 const mapStateToProps = state => ({
     historyData: state.shapeHistory.byId,
+    currentlyEditing: state.currentlyEditing,
 });
 
 // This feels like a weird antipattern
