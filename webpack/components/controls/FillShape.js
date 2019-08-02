@@ -6,12 +6,9 @@ import Switch from "@material-ui/core/Switch";
 
 
 const FillShape = props => (
-    <Grid container>
-        <Grid item>
-            <FormControlLabel control={
-                <Switch size="small" checked={props.fillShape} onChange={props.toggleFillShape} />
-            } label="Fill Shape" />
-        </Grid>
+    <Grid item>
+        <Typography>Fill Shape</Typography>
+        <Switch size="small" checked={props.fillShape} onChange={props.toggleFillShape} />
     </Grid>
 );
 

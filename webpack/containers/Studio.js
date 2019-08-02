@@ -4,11 +4,9 @@ import Button from '@material-ui/core/Button';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
-import ReactCursorPosition from 'react-cursor-position';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
-import GeneralOptionsConfig from "../components/GeneralOptionsConfig";
 
 class Studio extends Component {
     constructor(props) {
@@ -47,9 +45,7 @@ class Studio extends Component {
                     <Grid item lg={5}>
                         <h2 align="center">Canvas</h2>
                         <br/>
-                        <ReactCursorPosition className="Cursor position box">
-                            <Canvas/>
-                        </ReactCursorPosition>
+                        <Canvas/>
                     </Grid>
                     <Grid item lg={3}>
                         <Grid container>

@@ -31,13 +31,13 @@ class SliderInput extends Component {
         return (
             <React.Fragment>
                 <Typography>{this.props.name}</Typography>
-                <Grid container alignContent={'center'}>
-                    <Grid item xs>
+                <Grid container item justify='center'>
+                    <Grid item xs={10}>
                         <Slider min={this.props.min} max={this.props.max} value={this.props.value}
                             onChange={this.onSliderChange}/>
                     </Grid>
-                    <Grid item xs>
-                        <Input inputProps={{ step: 1, min: this.props.min, max: this.props.max, type: `number` }} value={this.props.value}
+                    <Grid item xs={2}>
+                        <Input margin='dense' inputProps={{ step: 1, min: this.props.min, max: this.props.max, type: `number` }} value={this.props.value}
                             onChange={this.onInputChange}/>
                     </Grid>
                 </Grid>

@@ -19,11 +19,9 @@ const styles = {
         marginLeft: 15,
         marginRight: 15,
     },
-    popover: {
-        width: 700,
-    },
     paper: {
-        width: 800,
+        width: 300,
+        padding: 8,
     },
 };
 

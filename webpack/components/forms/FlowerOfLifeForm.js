@@ -5,7 +5,7 @@ import {Grid} from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 
 const FlowerOfLifeForm = (props) => (
-    <FormGroup>
+    <React.Fragment>
         <Grid item>
             <SliderInput
                 min={1}
@@ -24,7 +24,7 @@ const FlowerOfLifeForm = (props) => (
                 value={props.radius}
                 updateValue={props.updateRadius} />
         </Grid>
-    </FormGroup>
+    </React.Fragment>
 );
 
 export default FlowerOfLifeForm;
