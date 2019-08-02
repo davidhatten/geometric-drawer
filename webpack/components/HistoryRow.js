@@ -107,7 +107,7 @@ class HistoryRow extends Component {
                                 </ListItemAvatar>
                             </Paper>
                             <ListItemText primary={shape.name} />
-                            <HistoryEditPane shapeId={shape.id} anchorRef={this.rowRef}/>
+                            <HistoryEditPane shapeId={shape.id} />
                             <ListItemSecondaryAction>
                                 <IconButton onClick={this.props.deleteShape(this.props.shapeId)} color={`secondary`}>
                                     <DeleteIcon />

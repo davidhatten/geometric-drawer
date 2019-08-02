@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Switch from 'antd/lib/switch';
-import 'antd/lib/switch/style';
-import Form from 'antd/lib/form';
-import 'antd/lib/form/style';
 import {changeGeneralConfig} from "../actions/changeGeneralConfig";
 import {connect} from "react-redux";
+import {FormControlLabel} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Switch from "@material-ui/core/Switch";
 
-const FormItem = Form.Item;
 
 class HorizontalAxisLock extends Component {
     constructor(props) {
@@ -16,11 +12,11 @@ class HorizontalAxisLock extends Component {
     }
     render() {
         return(
-            <Row type="flex" justify="center" align="middle">
-                <FormItem labelCol={{ span: 20 }} wrapperCol={{ span: 2 }} label="Center Horizontal Axis">
+            <Grid item>
+                <FormControlLabel control={
                     <Switch size="small" checked={this.props.checked} onChange={this.props.toggleHorizontal} />
-                </FormItem>
-            </Row>
+                } label="Center Horizontal Axis" />
+            </Grid>
         );
     }
 }

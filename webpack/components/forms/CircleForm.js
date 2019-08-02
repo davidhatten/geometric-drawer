@@ -1,13 +1,14 @@
 import React from 'react';
-import {Col, Form, Input, Row} from "antd";
 import SliderInput from "../controls/SliderInput";
 import { standardRadius } from "../../shapeConstants";
+import {FormGroup} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
 const CircleForm = (props) => (
 
-    <Form>
-        <Row type="flex" justify="space-around">
-            <Col span={24}>
+    <FormGroup>
+        <Grid container>
+            <Grid item>
                 <SliderInput
                     min={standardRadius.min}
                     max={standardRadius.max}
@@ -16,9 +17,9 @@ const CircleForm = (props) => (
                     value={props.radius}
                     updateValue={props.updateRadius}
                 />
-            </Col>
-        </Row>
-    </Form>
+            </Grid>
+        </Grid>
+    </FormGroup>
 );
 
 export default CircleForm;

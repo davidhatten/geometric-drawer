@@ -4,9 +4,9 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["import", { "libraryName": "antd", "style": true, "libraryDirectory": "es" }],
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-transform-react-class-to-function",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["@babel/plugin-proposal-decorators", {
       "legacy": true
     }],

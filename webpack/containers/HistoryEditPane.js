@@ -10,6 +10,7 @@ import FillShape from "../components/controls/FillShape";
 import './HistoryEditPane.scss';
 import EditIcon from "@material-ui/icons/EditRounded";
 import IconButton from "@material-ui/core/IconButton";
+import Grid from '@material-ui/core/Grid';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 
@@ -17,6 +18,12 @@ const styles = {
     editButton: {
         marginLeft: 15,
         marginRight: 15,
+    },
+    popover: {
+        width: 700,
+    },
+    paper: {
+        width: 800,
     },
 };
 
@@ -46,11 +53,13 @@ class HistoryEditPane extends Component {
         const FillShapeOption = optionsConnect(FillShape);
         const ContentForm = () => (
             <Fragment>
-                <ShapeHistoryOptions />
-                <LineWidthOption />
-                <XPosOption />
-                <YPosOption />
-                <FillShapeOption />
+                <Grid container direction='column'>
+                    <ShapeHistoryOptions/>
+                    <LineWidthOption/>
+                    <XPosOption/>
+                    <YPosOption/>
+                    <FillShapeOption/>
+                </Grid>
             </Fragment>
         );
         return (
@@ -58,7 +67,12 @@ class HistoryEditPane extends Component {
                 <IconButton className={this.props.classes.editButton} onClick={this.openPopup}>
                     <EditIcon />
                 </IconButton>
-                <Popover open={this.state.open} onClose={this.closePopup} anchorOrigin={{ vertical: `bottom` }} anchorEl={this.state.anchorEl}>
+                <Popover className={this.props.classes.popover}
+                    classes={{ paper: this.props.classes.paper }}
+                    open={this.state.open}
+                    onClose={this.closePopup}
+                    anchorOrigin={{ vertical: `bottom`, horizontal: `center` }}
+                    anchorEl={this.state.anchorEl}>
                     <ContentForm />
                 </Popover>
             </Fragment>

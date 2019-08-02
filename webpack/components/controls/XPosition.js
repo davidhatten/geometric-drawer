@@ -1,13 +1,10 @@
 import React from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Col from 'antd/lib/col';
-import 'antd/lib/col/style';
 import SliderInput from "./SliderInput";
+import Grid from "@material-ui/core/Grid";
 
 const XPosition = props => (
-    <Row type="flex" justify="space-around">
-        <Col span={24}>
+    <Grid container>
+        <Grid item>
             <SliderInput
                 min={0}
                 max={2550}
@@ -15,8 +12,8 @@ const XPosition = props => (
                 description={`The X position of the shape.`}
                 value={props.x}
                 updateValue={props.updateXPos} />
-        </Col>
-    </Row>
+        </Grid>
+    </Grid>
 );
 
 export default XPosition;

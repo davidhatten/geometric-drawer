@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Form from 'antd/lib/form';
-import 'antd/lib/form/style';
 import LineWidthInput from "../containers/LineWidthInput";
 import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 import VerticalAxisLock from "../containers/VerticalAxisLock";
 import FillShapeInput from "../containers/FillShapeInput";
 import CanvasSizeInput from "../containers/CanvasSizeInput";
+import {FormGroup} from "@material-ui/core";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
@@ -13,13 +12,13 @@ class GeneralOptionsConfig extends Component {
     }
     render() {
         return (
-            <Form>
+            <FormGroup>
                 <LineWidthInput />
                 <FillShapeInput />
                 <HorizontalAxisLock />
                 <VerticalAxisLock />
                 <CanvasSizeInput />
-            </Form>
+            </FormGroup>
         );
     }
 }

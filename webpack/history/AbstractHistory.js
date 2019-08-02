@@ -55,7 +55,7 @@ export default class AbstractHistory {
         return {
             ...this.historyPositionDispatch(dispatch, this.id),
             updateLineWidth: this.lineWidthDispatch(dispatch, this.id),
-            toggleFillShape: (checked) => (dispatch(changeHistoryStyle(this.id, `fill`, checked ? `white` : `none`))),
+            toggleFillShape: (event) => (dispatch(changeHistoryStyle(this.id, `fill`, event.target.checked ? `white` : `none`))),
         };
     }
 

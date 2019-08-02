@@ -1,7 +1,5 @@
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import UglifyESPlugin from 'uglifyjs-webpack-plugin';
-import AntdScssThemePlugin from 'antd-scss-theme-plugin';
 
 module.exports = {
     //webpack folder`s entry js - excluded from jekyll build
@@ -34,7 +32,6 @@ module.exports = {
                             localIdentName: `[local]`,
                         },
                     },
-                    AntdScssThemePlugin.themify(`sass-loader`),
                 ],
             },
             {
@@ -47,13 +44,11 @@ module.exports = {
                             importLoaders: 1,
                         },
                     }, // translates CSS into CommonJS
-                    AntdScssThemePlugin.themify({ loader: `less-loader`, options: { javascriptEnabled: true } }),
                 ],
             },
         ],
     },
     plugins: [
         new ExtractTextPlugin(`styles.css`),
-        new AntdScssThemePlugin(path.join(__dirname, `theme.scss`)),
     ],
 };

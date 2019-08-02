@@ -1,11 +1,12 @@
 import React from 'react';
-import { Col, Form, Row } from "antd";
 import SliderInput from "../controls/SliderInput";
+import FormGroup from "@material-ui/core/FormGroup";
+import Grid from "@material-ui/core/Grid";
 
 const ManualDoubleControlPointPetalForm = props => (
-    <Form>
-        <Row type="flex" justify="space-around">
-            <Col span={24}>
+    <FormGroup>
+        <Grid container>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={3000}
@@ -14,6 +15,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerRadius}
                     updateValue={props.updateOuterRadius}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={1400}
@@ -22,6 +25,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerRadius}
                     updateValue={props.updateInnerRadius}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -30,6 +35,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerXLeftControl}
                     updateValue={props.updateOuterXLeftControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -38,6 +45,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerXRightControl}
                     updateValue={props.updateOuterXRightControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -46,6 +55,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerYLeftControl}
                     updateValue={props.updateOuterYLeftControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -54,6 +65,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerYRightControl}
                     updateValue={props.updateOuterYRightControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -62,6 +75,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerXLeftControl}
                     updateValue={props.updateInnerXLeftControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -70,6 +85,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerXRightControl}
                     updateValue={props.updateInnerXRightControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -78,6 +95,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerYLeftControl}
                     updateValue={props.updateInnerYLeftControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -86,6 +105,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerYRightControl}
                     updateValue={props.updateInnerYRightControl}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={500}
@@ -94,6 +115,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.innerGap}
                     updateValue={props.updateInnerGap}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={500}
@@ -102,6 +125,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={36}
@@ -110,6 +135,8 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.axes}
                     updateValue={props.updateAxes}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={360}
@@ -118,9 +145,9 @@ const ManualDoubleControlPointPetalForm = props => (
                     value={props.rotation}
                     updateValue={props.updateRotation}
                 />
-            </Col>
-        </Row>
-    </Form>
+            </Grid>
+        </Grid>
+    </FormGroup>
 );
 
 export default ManualDoubleControlPointPetalForm;

@@ -1,19 +1,18 @@
 import React from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Switch from 'antd/lib/switch';
-import 'antd/lib/switch/style';
-import Form from 'antd/lib/form';
-import 'antd/lib/form/style';
+import {Grid} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
-const FormItem = Form.Item;
 
 const FillShape = props => (
-    <Row type="flex" justify="center" align="middle">
-        <FormItem labelCol={{ span: 17 }} wrapperCol={{ span: 2 }} label="Fill Shape">
-            <Switch size="small" checked={props.fillShape} onChange={props.toggleFillShape} />
-        </FormItem>
-    </Row>
+    <Grid container>
+        <Grid item>
+            <FormControlLabel control={
+                <Switch size="small" checked={props.fillShape} onChange={props.toggleFillShape} />
+            } label="Fill Shape" />
+        </Grid>
+    </Grid>
 );
 
 export default FillShape;

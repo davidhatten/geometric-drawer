@@ -38,7 +38,7 @@ class Studio extends Component {
                         Select a shape and click the canvas!
                     </h1>
                 </div>
-                <Grid container spacing={16} className={`studio`} direction={`row`} justify={`center`} alignItems={`flex-start`}>
+                <Grid container>
                     <Grid item lg={3}>
                         <h2 align="center">History</h2>
                         <br/>
@@ -47,12 +47,12 @@ class Studio extends Component {
                     <Grid item lg={5}>
                         <h2 align="center">Canvas</h2>
                         <br/>
-                        <ReactCursorPosition>
+                        <ReactCursorPosition className="Cursor position box">
                             <Canvas/>
                         </ReactCursorPosition>
                     </Grid>
                     <Grid item lg={3}>
-                        <Grid container direction={`column`} justify={`center`} alignItems={`center`}>
+                        <Grid container>
                             <Grid item>
                                 <h2 align="center">Shapes</h2>
                                 <br/>

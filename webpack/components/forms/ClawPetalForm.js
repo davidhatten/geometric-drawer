@@ -1,11 +1,12 @@
 import React from 'react';
-import { Col, Form, Row } from "antd";
+import Grid from '@material-ui/core/Grid';
 import SliderInput from "../controls/SliderInput";
+import {FormGroup} from "@material-ui/core";
 
 const ClawPetalForm = props => (
-    <Form>
-        <Row type="flex" justify="space-around">
-            <Col span={24}>
+    <FormGroup>
+        <Grid container>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={3000}
@@ -14,6 +15,8 @@ const ClawPetalForm = props => (
                     value={props.outerRadius}
                     updateValue={props.updateOuterRadius}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={1400}
@@ -22,6 +25,8 @@ const ClawPetalForm = props => (
                     value={props.innerRadius}
                     updateValue={props.updateInnerRadius}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={-1000}
                     max={1000}
@@ -30,14 +35,17 @@ const ClawPetalForm = props => (
                     value={props.innerXControl}
                     updateValue={props.updateInnerXControl}
                 />
-                <SliderInput
-                    min={-1000}
-                    max={1000}
-                    name={`Y Control Point (px)`}
-                    description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.  There is only one control point that both lines of the petal will arc towards.`}
-                    value={props.innerYControl}
-                    updateValue={props.updateInnerYControl}
-                />
+            </Grid>
+            <Grid item><SliderInput
+                min={-1000}
+                max={1000}
+                name={`Y Control Point (px)`}
+                description={`Offset in pixels of the y coordinate of the control point. The control point is placed relative to the inner point of the petal.  There is only one control point that both lines of the petal will arc towards.`}
+                value={props.innerYControl}
+                updateValue={props.updateInnerYControl}
+            />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={500}
@@ -46,6 +54,8 @@ const ClawPetalForm = props => (
                     value={props.innerGap}
                     updateValue={props.updateInnerGap}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={500}
@@ -54,6 +64,8 @@ const ClawPetalForm = props => (
                     value={props.outerGap}
                     updateValue={props.updateOuterGap}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={1}
                     max={36}
@@ -62,6 +74,8 @@ const ClawPetalForm = props => (
                     value={props.axes}
                     updateValue={props.updateAxes}
                 />
+            </Grid>
+            <Grid item>
                 <SliderInput
                     min={0}
                     max={360}
@@ -70,9 +84,9 @@ const ClawPetalForm = props => (
                     value={props.rotation}
                     updateValue={props.updateRotation}
                 />
-            </Col>
-        </Row>
-    </Form>
+            </Grid>
+        </Grid>
+    </FormGroup>
 );
 
 export default ClawPetalForm;

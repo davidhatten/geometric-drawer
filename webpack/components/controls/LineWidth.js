@@ -1,14 +1,11 @@
 import React from 'react';
-import Row from 'antd/lib/row';
-import 'antd/lib/row/style';
-import Col from 'antd/lib/col';
-import 'antd/lib/col/style';
 import SliderInput from "./SliderInput";
 import { standardLineWidth } from "../../shapeConstants";
+import Grid from "@material-ui/core/Grid";
 
 const LineWidth = props => (
-    <Row type="flex" justify="space-around">
-        <Col span={24}>
+    <Grid container>
+        <Grid item>
             <SliderInput
                 min={standardLineWidth.min}
                 max={standardLineWidth.max}
@@ -16,8 +13,8 @@ const LineWidth = props => (
                 description={`The width of the drawn lines.`}
                 value={props.lineWidth}
                 updateValue={props.updateLineWidth} />
-        </Col>
-    </Row>
+        </Grid>
+    </Grid>
 );
 
 export default LineWidth;
