@@ -7,6 +7,15 @@ import History from './History';
 import { saveSvgAsPng } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
+import {Typography} from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const styles = {
+    title: {
+        paddingTop: `20px`,
+        paddingBottom: `10px`,
+    },
+};
 
 class Studio extends Component {
     constructor(props) {
@@ -31,39 +40,36 @@ class Studio extends Component {
     render() {
         return (
             <React.Fragment>
-                <div align="center" style={{ paddingTop: `20px`, paddingBottom: `10px` }}>
-                    <h1>
-                        Select a shape and click the canvas!
-                    </h1>
-                </div>
-                <Grid container>
+                <Typography variant="h4" align="center" className={this.props.classes.title}>
+                    Select a shape and click the canvas!
+                </Typography>
+                <Grid container spacing={1} justify="flex-start">
                     <Grid item lg={3}>
-                        <h2 align="center">History</h2>
+                        <Typography variant="h5" align="center">History</Typography>
                         <br/>
                         <History/>
                     </Grid>
-                    <Grid item lg={5}>
-                        <h2 align="center">Canvas</h2>
+                    <Grid item lg={6}>
+                        <Typography variant="h5" align="center">Canvas</Typography>
                         <br/>
                         <Canvas/>
                     </Grid>
-                    <Grid item lg={3}>
-                        <Grid container>
-                            <Grid item>
-                                <h2 align="center">Shapes</h2>
-                                <br/>
-                            </Grid>
-                            <Grid item>
-                                <Palette/>
-                            </Grid>
-
-                            <Grid item>
-                                <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
-                                <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
-                            </Grid>
-                            <Grid item>
-                                <h4>Version: 1.6.3</h4>
-                            </Grid>
+                    <Grid container item lg={3} direction="column" alignItems="center">
+                        <Grid item>
+                            <Typography variant="h5" align="center">Shapes</Typography>
+                            <br/>
+                        </Grid>
+                        <Grid item>
+                            <Palette/>
+                        </Grid>
+                        <Grid item>
+                            <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                        </Grid>
+                        <Grid item>
+                            <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
+                        </Grid>
+                        <Grid item>
+                            <Typography align="center" variant="subtitle1">Version: 1.6.3</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -82,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Studio);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Studio));
