@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { triggerDraw } from '../actions/triggerDraw';
 import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { makeStyles } from '@material-ui/core/styles';
 
 const styles = {
     svgPaper: {
@@ -22,11 +21,16 @@ class Canvas extends Component {
         super(props);
     }
     initiateDraw = (event) => {
-        // const { elementDimensions, position } = this.props;
-        // elementDimensions = event.target.offsetWidth;
+        const svg = document.getElementById(`drawingCanvas`);
+        const pt = svg.createSVGPoint();
+
+        pt.x = event.clientX;
+        pt.y = event.clientY;
+        const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
         const absPosition = {
-            x: (this.props.svgWidth/event.target.width.baseVal.value) * event.clientX,
-            y: (this.props.svgHeight/event.target.height.baseVal.value) * event.clientY,
+            x: svgPt.x,
+            y: svgPt.y,
         };
 
         this.props.drawSelectedShape(absPosition);
