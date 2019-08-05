@@ -10,6 +10,7 @@ import ShapeIcon from "../components/controls/ShapeIcon";
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
+import GeneralOptionsConfig from "../components/GeneralOptionsConfig";
 
 const styles = {
     root: {
@@ -18,6 +19,10 @@ const styles = {
         alignItems: `flex-end`,
         flexWrap: `wrap`,
         padding: `8px`,
+        borderRadius: `10px`,
+    },
+    general: {
+        padding: `16px`,
         borderRadius: `10px`,
     },
     radioButton: {
@@ -39,8 +44,6 @@ class Palette extends Component {
     }
     generateButton = (configKey) => {
         const configInfo = configMap[configKey];
-        // const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
-        // <Icon shape={`square`} src={configInfo.img} alt={configInfo.description}/></Radio>
 
         return (
             <Paper className={this.props.classes.radioPaper} elevation={3}><Radio
@@ -64,7 +67,20 @@ class Palette extends Component {
             buttons.push(this.generateButton(configKey));
         }
 
-        return (<Paper elevation={1} className={this.props.classes.root}>{buttons}</Paper>);
+        return (
+            <React.Fragment>
+                <Grid item>
+                    <Paper elevation={1} className={this.props.classes.root}>
+                        {buttons}
+                    </Paper>
+                </Grid>
+                <Grid item container xl direction="column">
+                    <Paper elevation={1} className={this.props.classes.general}>
+                        <GeneralOptionsConfig/>
+                    </Paper>
+                </Grid>
+            </React.Fragment>
+        );
         // return (
         //     <RadioGroup name={`palette`} onChange={this.props.changeCurrentShape}>
         //         {buttons}

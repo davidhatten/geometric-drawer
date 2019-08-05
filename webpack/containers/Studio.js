@@ -9,6 +9,11 @@ import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
 import { Typography } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const styles = {
     title: {
@@ -20,6 +25,7 @@ const styles = {
 class Studio extends Component {
     constructor(props) {
         super(props);
+        this.state = { confirmClearOpen: false };
     }
     exportSvg = () => {
         const canvas = document.getElementById(`drawingCanvas`);
@@ -36,17 +42,15 @@ class Studio extends Component {
         const canvas = document.getElementById(`drawingCanvas`);
         saveSvgAsPng(canvas, `geometry.png`, { backgroundColor: `transparent` });
     }
+    closeConfirm = () => {
+        this.setState({ confirmClearOpen: false });
+    }
+    openClearHistory = () => {
+        this.setState({ confirmClearOpen: true });
+    }
     confirmClearHistory = () => {
-        const self = this;
-        confirm({
-            title: `Do you want to delete everything on the canvas?`,
-            content: `Every shape on the canvas will be deleted. This cannot be undone. Are you sure?`,
-            onOk() {
-                self.props.clearHistory();
-            },
-            onCancel() {},
-            okText: `Yes`,
-        });
+        this.props.clearHistory();
+        this.setState({ confirmClearOpen: false });
     }
     render() {
         return (
@@ -70,7 +74,7 @@ class Studio extends Component {
                             <Typography variant="h5" align="center">Shapes</Typography>
                             <br/>
                         </Grid>
-                        <Grid item>
+                        <Grid item container spacing={2}>
                             <Palette/>
                         </Grid>
                         <Grid item>
@@ -80,13 +84,29 @@ class Studio extends Component {
                             <Button color="primary" onClick={this.exportSvg}>Export As SVG</Button>
                         </Grid>
                         <Grid item>
-                            <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
+                            <Button color="secondary" onClick={this.openClearHistory}>Clear Canvas</Button>
                         </Grid>
                         <Grid item>
                             <Typography align="center" variant="subtitle1">Version: 1.6.3</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
+                <Dialog open={this.state.confirmClearOpen} onClose={this.closeConfirm}>
+                    <DialogTitle>Do you want to delete everything on the canvas?</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Every shape on the canvas will be deleted. This cannot be undone. Are you sure?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.confirmClearHistory} color="primary">
+                            Yes
+                        </Button>
+                        <Button onClick={this.closeConfirm} color="primary" autoFocus>
+                            No
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </React.Fragment>
         );
     }

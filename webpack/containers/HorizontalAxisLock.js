@@ -12,8 +12,8 @@ class HorizontalAxisLock extends Component {
     }
     render() {
         return(
-            <Grid item>
-                <FormControlLabel control={
+            <Grid item align="center">
+                <FormControlLabel labelPlacement="top" control={
                     <Switch size="small" checked={this.props.checked} onChange={this.props.toggleHorizontal} />
                 } label="Center Horizontal Axis" />
             </Grid>
@@ -27,7 +27,7 @@ const mapStateToProp = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleHorizontal: (checked) => {dispatch(changeGeneralConfig({lockHorizontal: checked}));},
+    toggleHorizontal: (event) => {dispatch(changeGeneralConfig({ lockHorizontal: event.target.checked }));},
 });
 
 

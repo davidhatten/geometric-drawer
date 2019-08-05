@@ -30,7 +30,7 @@ class SliderInput extends Component {
     render() {
         return (
             <React.Fragment>
-                <Typography>{this.props.name}</Typography>
+                <Typography align="center">{this.props.name}</Typography>
                 <Grid container item justify='center'>
                     <Grid item xs={10}>
                         <Slider min={this.props.min} max={this.props.max} value={this.props.value}

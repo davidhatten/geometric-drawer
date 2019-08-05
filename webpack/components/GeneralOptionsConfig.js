@@ -4,7 +4,6 @@ import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 import VerticalAxisLock from "../containers/VerticalAxisLock";
 import FillShapeInput from "../containers/FillShapeInput";
 import CanvasSizeInput from "../containers/CanvasSizeInput";
-import {FormGroup} from "@material-ui/core";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
@@ -12,13 +11,13 @@ class GeneralOptionsConfig extends Component {
     }
     render() {
         return (
-            <FormGroup>
-                <LineWidthInput />
+            <React.Fragment>
                 <FillShapeInput />
                 <HorizontalAxisLock />
                 <VerticalAxisLock />
+                <LineWidthInput />
                 <CanvasSizeInput />
-            </FormGroup>
+            </React.Fragment>
         );
     }
 }

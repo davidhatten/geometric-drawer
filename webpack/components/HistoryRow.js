@@ -14,7 +14,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/DeleteRounded";
-import EditIcon from "@material-ui/icons/EditRounded";
 import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -22,11 +21,6 @@ const styles = {
     wrappingPaper: {
         cursor: `move`,
         margin: `3px`,
-    },
-    avatarPaper: {
-        fontSize: `50px`,
-        backgroundColor: `white`,
-        borderRadius: `30px`,
     },
     avatar: {
         width: 50,
@@ -98,14 +92,12 @@ class HistoryRow extends Component {
             connectDropTarget(
                 <div>
                     <Paper elevation={3} className={this.props.classes.wrappingPaper}>
-                        <ListItem dense={true} extra={<img height={40} width={40} src={svgFromConfig(shape.config)} />}>
-                            <Paper elevation={5} className={this.props.classes.avatarPaper}>
-                                <ListItemAvatar>
-                                    <Avatar className={this.props.classes.avatar}>
-                                        <ShapeIcon svg={svgFromConfig(shape.config)} />
-                                    </Avatar>
-                                </ListItemAvatar>
-                            </Paper>
+                        <ListItem dense={true}>
+                            <ListItemAvatar>
+                                <Avatar className={this.props.classes.avatar}>
+                                    <ShapeIcon svg={svgFromConfig(shape.config)} />
+                                </Avatar>
+                            </ListItemAvatar>
                             <ListItemText primary={shape.name} />
                             <HistoryEditPane shapeId={shape.id} />
                             <ListItemSecondaryAction>

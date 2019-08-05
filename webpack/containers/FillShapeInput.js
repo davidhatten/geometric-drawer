@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleFillShape: (event) => {dispatch(changeGeneralConfig({fillShape: checked}));},
+    toggleFillShape: (event) => {dispatch(changeGeneralConfig({ fillShape: event.target.checked }));},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FillShape);
