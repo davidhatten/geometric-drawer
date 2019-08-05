@@ -39,8 +39,6 @@ const styles = {
 class Palette extends Component {
     constructor(props) {
         super(props);
-
-        this.state = { selectedValue: `` };
     }
     generateButton = (configKey) => {
         const configInfo = configMap[configKey];
@@ -49,7 +47,7 @@ class Palette extends Component {
             <Paper className={this.props.classes.radioPaper} elevation={3}><Radio
                 className={this.props.classes.radioButton}
                 onChange={this.selectShape}
-                checked={this.state.selectedValue === configKey}
+                checked={this.props.selectedShape === configKey}
                 name={`palette-select-button`}
                 value={configKey}
                 icon={<ShapeIcon svg={configInfo.iconSvg}/>}
@@ -58,7 +56,6 @@ class Palette extends Component {
         );
     }
     selectShape = (event) => {
-        this.setState({ selectedValue: event.target.value });
         this.props.changeCurrentShape(event);
     }
     render() {
@@ -81,11 +78,6 @@ class Palette extends Component {
                 </Grid>
             </React.Fragment>
         );
-        // return (
-        //     <RadioGroup name={`palette`} onChange={this.props.changeCurrentShape}>
-        //         {buttons}
-        //     </RadioGroup>
-        // );
     }
 }
 
