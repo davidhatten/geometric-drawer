@@ -4,10 +4,10 @@ import Button from '@material-ui/core/Button';
 import Palette from './Palette';
 import Canvas from './Canvas';
 import History from './History';
-import { saveSvgAsPng } from 'save-svg-as-png';
+import { saveSvgAsPng, svgAsDataUri } from 'save-svg-as-png';
 import { connect } from "react-redux";
 import { clearShapeHistory } from "../actions/removeShapes";
-import {Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = {
@@ -20,6 +20,17 @@ const styles = {
 class Studio extends Component {
     constructor(props) {
         super(props);
+    }
+    exportSvg = () => {
+        const canvas = document.getElementById(`drawingCanvas`);
+        svgAsDataUri(canvas, { backgroundColor: `transparent` }).then(uri => {
+            const link = document.createElement(`a`);
+            link.href = uri;
+            link.download = `geometry_svg.svg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
     }
     exportCanvas = () => {
         const canvas = document.getElementById(`drawingCanvas`);
@@ -63,7 +74,10 @@ class Studio extends Component {
                             <Palette/>
                         </Grid>
                         <Grid item>
-                            <Button color="primary" onClick={this.exportCanvas}>Export Canvas</Button>
+                            <Button color="primary" onClick={this.exportCanvas}>Export As PNG</Button>
+                        </Grid>
+                        <Grid item>
+                            <Button color="primary" onClick={this.exportSvg}>Export As SVG</Button>
                         </Grid>
                         <Grid item>
                             <Button color="secondary" onClick={this.confirmClearHistory}>Clear Canvas</Button>
