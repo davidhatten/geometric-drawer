@@ -87,7 +87,7 @@ class Studio extends Component {
                             <Button color="secondary" onClick={this.openClearHistory}>Clear Canvas</Button>
                         </Grid>
                         <Grid item>
-                            <Typography align="center" variant="subtitle1">Version: 1.6.3</Typography>
+                            <Typography align="center" variant="subtitle1">Version: 1.6.4</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

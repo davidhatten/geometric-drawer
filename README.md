@@ -3,7 +3,7 @@ A little single-page javascript app to generate simple geometries and mandalas
 
 https://davidhatten.github.io/geometric-drawer/
 
-Current version: 1.6.3
+Current version: 1.6.4
 
 ## Types of Shapes
 * Flower of Life
@@ -31,6 +31,7 @@ Current version: 1.6.3
 * Center your shapes
 * Generate in 8.5"x11"
 * Export to PNG
+* Export to SVG
 * History of your drawings with deletion
 
 ## Coming Soon
