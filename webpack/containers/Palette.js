@@ -1,41 +1,82 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Collapse } from 'antd';
-import PaletteHeader from '../components/PaletteHeader';
 import { configMap } from '../shapeConstants';
 import { selectShape } from '../actions/selectShape';
-import styles from './Palette.scss';
-import GeneralOptions from '../components/GeneralOptionsConfig';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import Icon from '@material-ui/core/Icon';
+import ShapeIcon from "../components/controls/ShapeIcon";
+import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Paper from "@material-ui/core/Paper";
+import GeneralOptionsConfig from "../components/GeneralOptionsConfig";
 
-
-const Panel = Collapse.Panel;
+const styles = {
+    root: {
+        display: `flex`,
+        justifyContent: `center`,
+        alignItems: `flex-end`,
+        flexWrap: `wrap`,
+        padding: `8px`,
+        borderRadius: `10px`,
+    },
+    general: {
+        padding: `16px`,
+        borderRadius: `10px`,
+    },
+    radioButton: {
+        padding: `0px`,
+        borderRadius: `20px`,
+    },
+    radioPaper: {
+        padding: `2px`,
+        margin: `4px`,
+        borderRadius: `30px`,
+    },
+};
 
 class Palette extends Component {
     constructor(props) {
         super(props);
     }
-    generatePanel = (config) => {
-        const configInfo = configMap[config];
-        const ShapeOptions = connect(configInfo.paletteStateToProps, configInfo.paletteDispatchToProps)(configInfo.form);
+    generateButton = (configKey) => {
+        const configInfo = configMap[configKey];
+
         return (
-            <Panel className={styles.palettePanel} showArrow={false} key={config} header={<PaletteHeader
-                name={configInfo.name}
-                img={configInfo.img}
-                description={configInfo.description}/>}>
-                <ShapeOptions />
-                <GeneralOptions />
-            </Panel>
+            <Paper className={this.props.classes.radioPaper} elevation={3}><Radio
+                className={this.props.classes.radioButton}
+                onChange={this.selectShape}
+                checked={this.props.selectedShape === configKey}
+                name={`palette-select-button`}
+                value={configKey}
+                icon={<ShapeIcon svg={configInfo.iconSvg}/>}
+                checkedIcon={<ShapeIcon checked svg={configInfo.iconSvg}/>}
+            /></Paper>
         );
     }
+    selectShape = (event) => {
+        this.props.changeCurrentShape(event);
+    }
     render() {
-        const panels = [];
+        const buttons = [];
         for (let configKey in configMap) {
-            panels.push(this.generatePanel(configKey));
+            buttons.push(this.generateButton(configKey));
         }
+
         return (
-            <Collapse accordion defaultActiveKey={this.props.selectedShape} onChange={this.props.changeCurrentShape} style={ {border: `3px transparent`} }>
-                {panels}
-            </Collapse>
+            <React.Fragment>
+                <Grid item>
+                    <Paper elevation={1} className={this.props.classes.root}>
+                        {buttons}
+                    </Paper>
+                </Grid>
+                <Grid item container xl direction="column">
+                    <Paper elevation={1} className={this.props.classes.general}>
+                        <GeneralOptionsConfig/>
+                    </Paper>
+                </Grid>
+            </React.Fragment>
         );
     }
 }
@@ -45,7 +86,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeCurrentShape: (key) => {dispatch(selectShape(key));},
+    changeCurrentShape: (key) => {dispatch(selectShape(key.target.value));},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Palette);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Palette));

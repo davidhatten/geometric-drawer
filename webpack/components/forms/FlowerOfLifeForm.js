@@ -1,29 +1,30 @@
 import React from 'react';
-import { Row, Col, Form, Input, Tooltip } from 'antd';
 import SliderInput from "../controls/SliderInput";
 import { standardRadius } from "../../shapeConstants";
+import {Grid} from "@material-ui/core";
+import FormGroup from "@material-ui/core/FormGroup";
 
 const FlowerOfLifeForm = (props) => (
-    <Form>
-        <Row type="flex" justify="space-around">
-            <Col span={24}>
-                <SliderInput
-                    min={1}
-                    max={10}
-                    name={`Iterations`}
-                    description={`Number of layers to build around the central circle.`}
-                    value={props.iterations}
-                    updateValue={props.updateIterations}/>
-                <SliderInput
-                    min={standardRadius.min}
-                    max={standardRadius.max}
-                    name={standardRadius.name}
-                    description={`The radius of each circle.`}
-                    value={props.radius}
-                    updateValue={props.updateRadius} />
-            </Col>
-        </Row>
-    </Form>
+    <React.Fragment>
+        <Grid item>
+            <SliderInput
+                min={1}
+                max={10}
+                name={`Iterations`}
+                description={`Number of layers to build around the central circle.`}
+                value={props.iterations}
+                updateValue={props.updateIterations}/>
+        </Grid>
+        <Grid item>
+            <SliderInput
+                min={standardRadius.min}
+                max={standardRadius.max}
+                name={standardRadius.name}
+                description={`The radius of each circle.`}
+                value={props.radius}
+                updateValue={props.updateRadius} />
+        </Grid>
+    </React.Fragment>
 );
 
 export default FlowerOfLifeForm;

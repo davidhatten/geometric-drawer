@@ -5,8 +5,10 @@ const initialState = {
     lockHorizontal: true,
     lockVertical: true,
     fillShape: false,
-    canvasHeight: 3300,
-    canvasWidth: 2550,
+    // canvasHeight: 3300,
+    // canvasWidth: 2550,
+    canvasHeight: 2400,
+    canvasWidth: 2400,
 };
 
 const changeGeneralConfig = (state = initialState, action) => {

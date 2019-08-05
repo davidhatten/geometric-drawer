@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Col, Form, InputNumber, Row, Slider, Tooltip } from "antd";
-import './SliderInput.scss';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import Input from '@material-ui/core/Input';
+import {FormGroup} from "@material-ui/core";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const FormItem = Form.Item;
 
 class SliderInput extends Component {
     constructor(props) {
@@ -10,30 +13,35 @@ class SliderInput extends Component {
         this.initialValue = this.props.value;
     }
 
-    onChange = (value) => {
-        if (isNaN(parseInt(value))) {
-            this.props.updateValue(this.initialValue);
-        } else {
-            this.props.updateValue(value);
-        }
+    onInputChange = (event) => {
+        const value = event.target.value;
+        this.props.updateValue(value === `` ? `` : Number(value));
+        // if (isNaN(parseInt(value))) {
+        //     this.props.updateValue(this.initialValue);
+        // } else {
+        //     this.props.updateValue(value);
+        // }
+    }
+
+    onSliderChange = (event, value) => {
+        this.props.updateValue(value);
     }
 
     render() {
         return (
-            <FormItem labelCol={{ span: 9 }} wrapperCol={{ span: 15 }} label={<Tooltip title={this.props.description}>{this.props.name}</Tooltip>}>
-                <Row>
-                    <Col span={12}>
+            <React.Fragment>
+                <Typography align="center">{this.props.name}</Typography>
+                <Grid container item justify='center'>
+                    <Grid item xs={10}>
                         <Slider min={this.props.min} max={this.props.max} value={this.props.value}
-                            onChange={this.onChange}/>
-                    </Col>
-                    <Col span={1}>
-                        <Tooltip title={this.props.description}>
-                            <InputNumber size="small" min={this.props.min} max={this.props.max} value={this.props.value}
-                                formatter={value => value} onChange={this.onChange}/>
-                        </Tooltip>
-                    </Col>
-                </Row>
-            </FormItem>
+                            onChange={this.onSliderChange}/>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Input margin='dense' inputProps={{ step: 1, min: this.props.min, max: this.props.max, type: `number` }} value={this.props.value}
+                            onChange={this.onInputChange}/>
+                    </Grid>
+                </Grid>
+            </React.Fragment>
         );
     }
 }

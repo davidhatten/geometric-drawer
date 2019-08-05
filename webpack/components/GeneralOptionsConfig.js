@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Form } from 'antd';
 import LineWidthInput from "../containers/LineWidthInput";
 import HorizontalAxisLock from "../containers/HorizontalAxisLock";
 import VerticalAxisLock from "../containers/VerticalAxisLock";
 import FillShapeInput from "../containers/FillShapeInput";
+import CanvasSizeInput from "../containers/CanvasSizeInput";
 
 class GeneralOptionsConfig extends Component {
     constructor(props) {
@@ -11,12 +11,13 @@ class GeneralOptionsConfig extends Component {
     }
     render() {
         return (
-            <Form>
-                <LineWidthInput />
+            <React.Fragment>
                 <FillShapeInput />
                 <HorizontalAxisLock />
                 <VerticalAxisLock />
-            </Form>
+                <LineWidthInput />
+                <CanvasSizeInput />
+            </React.Fragment>
         );
     }
 }

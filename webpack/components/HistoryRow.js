@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, List } from 'antd';
 import { connect } from "react-redux";
 import HistoryEditPane from "../containers/HistoryEditPane";
 import { deleteShape } from "../actions/removeShapes";
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
-import { DragTypes, imgFromConfig } from "../shapeConstants";
+import { DragTypes, svgFromConfig } from "../shapeConstants";
 import { changeHistoryOrder } from "../actions/changeHistoryOrder";
-import styles from './HistoryRow.scss';
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ShapeIcon from "./controls/ShapeIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/DeleteRounded";
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-const ListItem = List.Item;
+const styles = {
+    wrappingPaper: {
+        cursor: `move`,
+        margin: `3px`,
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        margin: 0,
+    },
+    editButton: {
+        marginLeft: 15,
+        marginRight: 15,
+    },
+};
 
 const cardSource = {
     beginDrag(props) {
@@ -60,6 +82,7 @@ function targetConnect(connect, monitor) {
 class HistoryRow extends Component {
     constructor(props) {
         super(props);
+        this.rowRef = React.createRef();
     }
     render() {
         let shape = this.props.historyData[this.props.shapeId];
@@ -68,19 +91,22 @@ class HistoryRow extends Component {
         return connectDragSource(
             connectDropTarget(
                 <div>
-                    <ListItem style={{ padding: `4px` }} className={styles.historyRow} extra={<img height={40} width={40} src={imgFromConfig(shape.config)} />}>
-                        <Row type="flex" justify="space-around" align="middle">
-                            <Col span={12}>
-                                <h4 style={{margin: 0, padding: 0, fontSize: `12px`}}>{shape.name}</h4>
-                            </Col>
-                            <Col span={6}>
-                                <HistoryEditPane shapeId={shape.id} />
-                            </Col>
-                            <Col span={6}>
-                                <span title={`Delete`}><Button type="danger" size={`large`} icon={`delete`} onClick={this.props.deleteShape(this.props.shapeId)} /></span>
-                            </Col>
-                        </Row>
-                    </ListItem>
+                    <Paper elevation={3} className={this.props.classes.wrappingPaper}>
+                        <ListItem dense={true}>
+                            <ListItemAvatar>
+                                <Avatar className={this.props.classes.avatar}>
+                                    <ShapeIcon svg={svgFromConfig(shape.config)} />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={shape.name} />
+                            <HistoryEditPane shapeId={shape.id} />
+                            <ListItemSecondaryAction>
+                                <IconButton onClick={this.props.deleteShape(this.props.shapeId)} color={`secondary`}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    </Paper>
                 </div>
             ));
     }
@@ -97,4 +123,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(HistoryRow)));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DragSource(DragTypes.HISTORY_CARD, cardSource, sourceConnect)(DropTarget(DragTypes.HISTORY_CARD, cardTarget, targetConnect)(HistoryRow))));

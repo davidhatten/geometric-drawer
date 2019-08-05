@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Form, Switch } from 'antd';
 import {changeGeneralConfig} from "../actions/changeGeneralConfig";
 import {connect} from "react-redux";
+import {FormControlLabel} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Switch from "@material-ui/core/Switch";
 
-const FormItem = Form.Item;
 
 class HorizontalAxisLock extends Component {
     constructor(props) {
@@ -11,11 +12,11 @@ class HorizontalAxisLock extends Component {
     }
     render() {
         return(
-            <Row type="flex" justify="center" align="middle">
-                <FormItem labelCol={{ span: 20 }} wrapperCol={{ span: 2 }} label="Center Horizontal Axis">
+            <Grid item align="center">
+                <FormControlLabel labelPlacement="top" control={
                     <Switch size="small" checked={this.props.checked} onChange={this.props.toggleHorizontal} />
-                </FormItem>
-            </Row>
+                } label="Center Horizontal Axis" />
+            </Grid>
         );
     }
 }
@@ -26,7 +27,7 @@ const mapStateToProp = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleHorizontal: (checked) => {dispatch(changeGeneralConfig({lockHorizontal: checked}));},
+    toggleHorizontal: (event) => {dispatch(changeGeneralConfig({ lockHorizontal: event.target.checked }));},
 });
 
 

@@ -4,13 +4,18 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["import", { "libraryName": "antd", "style": true }],
     "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
+    "babel-plugin-transform-react-class-to-function",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["@babel/plugin-proposal-decorators", {
       "legacy": true
     }],
     "@babel/plugin-transform-react-constant-elements",
     "@babel/plugin-transform-react-inline-elements"
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": ["minify"]
+    }
+  }
 }

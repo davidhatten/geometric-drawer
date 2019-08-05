@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Row, Col, Tooltip } from 'antd';
+import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
+
+
 
 class PaletteHeader extends Component {
     constructor(props){
@@ -9,16 +12,14 @@ class PaletteHeader extends Component {
 
     render() {
         return(
-            <Tooltip title={this.props.description}>
-                <Row className="paletteHeaderRow" type="flex" justify="start" align="middle">
-                    <Col>
-                        <Avatar size="large" src={this.props.img} />
-                    </Col>
-                    <Col>
-                        <h3 style={{margin: 0, padding: 0, fontSize: `16px`}}>{this.props.name}</h3>
-                    </Col>
-                </Row>
-            </Tooltip>
+            <Grid container>
+                <Grid item>
+                    <Avatar size="large" src={this.props.img} />
+                </Grid>
+                <Grid item>
+                    <h3 style={{margin: 0, padding: 0, fontSize: `16px`}}>{this.props.name}</h3>
+                </Grid>
+            </Grid>
         );
     }
 }
